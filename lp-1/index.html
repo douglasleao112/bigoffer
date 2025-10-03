@@ -46,7 +46,7 @@
 <!-- Tarja Vermelha com Cronômetro -->
 <div class="aviso-topo" id="aviso-topo">
   ⚠️ <b>ATENÇÃO:</b> Essa página sairá do ar em breve...<br>
-  Corra, enquanto há tempo.  
+  Corra, enquanto há tempo:  
   <span id="countdown" style="margin-left:10px; font-weight:bold;"></span>
 </div>
 
@@ -98,7 +98,7 @@
     <!-- Texto -->
     <div class="text-center lg:text-left lg:order-1">
       <h1 class="text-3xl lg:text-5xl font-bold leading-tight mb-6">
-        <span class="text-white">O CÓDIGO DA [P]ERSUASÃO</span><br>
+        <span class="text-white">O Código da [P]ersuasão</span><br>
         <span class="bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent">
           TE FARÁ DOMINAR TODAS AS PESSOAS
         </span>
@@ -589,9 +589,9 @@
     const nome = randItem(NOMES);
     const uf   = randItem(UFS);
 
-   const toast = document.createElement("div");
+const toast = document.createElement("div");
 toast.className = "pointer-events-auto toast-enter flex items-start gap-3 w-[320px] max-w-[92vw] p-4 rounded-2xl text-white shadow-2xl border border-white/10 backdrop-blur-md";
-toast.style.backgroundColor = "#131313";
+toast.style.background = "rgba(19,19,19,0.85)"; // #131313 translúcido
 toast.innerHTML = `
   <div class="shrink-0 mt-0.5">${CHECK_SVG}</div>
   <div class="flex-1 leading-tight">
