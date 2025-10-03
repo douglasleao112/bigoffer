@@ -1,417 +1,90 @@
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Emagreça comendo de Tudo</title>
-  <link rel="icon" href="https://images.emojiterra.com/google/android-11/512px/1f525.png" type="image/png">
-
+  <title>O Código da Persuasão</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/25/25694.png" type="image/png">
   <script src="https://cdn.tailwindcss.com"></script>
-<!-- AOS Animation CSS -->
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-
-
-  <!-- Meta Pixel Code -->
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src='https://connect.facebook.net/en_US/fbevents.js';
-    s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script');
-
-    fbq('init', '1290378376428374');
-    fbq('track', 'PageView');
-  </script>
-  <noscript>
-    <img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1290378376428374&ev=PageView&noscript=1"/>
-  </noscript>
-  <!-- End Meta Pixel Code -->
-
-  <style>
-    .btn-pulsante {
-      position: relative;
-      z-index: 1;
-      animation: pulse-zoom 1.5s ease-in-out infinite;
-      will-change: transform;
-    }
-
-    .btn-pulsante::after {
-      content: '';
-      position: absolute;
-      top: -6px;
-      left: -6px;
-      right: -6px;
-      bottom: -6px;
-      border-radius: 9999px;
-      background-color: rgba(34, 197, 94, 0.3);
-      z-index: -1;
-      opacity: 0;
-      animation: aura-pulse 1.5s ease-in-out infinite;
-    }
-
-    @keyframes pulse-zoom {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.05);
-      }
-    }
-
-    @keyframes aura-pulse {
-      0% {
-        transform: scale(0.95);
-        opacity: 0.4;
-      }
-      50% {
-        transform: scale(1.2);
-        opacity: 0;
-      }
-      100% {
-        transform: scale(0.95);
-        opacity: 0;
-      }
-    }
-  </style>
-  
-<style>
-  @keyframes glass-flash-once {
-    0% {
-      left: -75%;
-    }
-    100% {
-      left: 125%;
-    }
-  }
-
-  .reflexo-glass {
-    position: relative;
-  }
-
-  .reflexo-glass::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -75%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(to right, rgba(255,255,255,0.15), rgba(255,255,255,0));
-    transform: skewX(-20deg);
-    pointer-events: none;
-    z-index: 20;
-  }
-
-  .reflexo-glass.ativo::before {
-    animation: glass-flash-once 3s ease-in-out 1 forwards;
-  }
-</style>
-
-
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "r0oqvd12ri");
-</script>
-
-
 </head>
 
 <body class="bg-black text-white font-sans">
 
+<!-- HERO -->
+<section class="relative min-h-screen flex items-center justify-center text-center px-4">
+  <div>
+    <h1 class="text-3xl lg:text-5xl font-bold leading-tight mb-6">
+      <span class="text-white">O Código da Persuasão:</span><br>
+      <span class="bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent">Domine os Gatilhos Mentais</span>
+    </h1>
+    <p class="text-lg max-w-2xl mx-auto text-gray-300 mb-8">
+      Descubra como usar técnicas comprovadas de PNL e persuasão para influenciar pessoas, conquistar respeito e transformar sua vida.
+    </p>
 
-<!-- DATA DO EVENTO (DINÂMICA) -->
-<div id="data-evento" class="text-center text-sm mt-1 text-white font-semibold"></div>
-
-
-
-
-  <!-- CRONÔMETRO COM GRADIENTE -->
-  <div class="w-full text-white relative bg-gradient-to-b from-black to-[#001b03]">
-    <div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-green-300 to-transparent"></div>
-    <div class="max-w-6xl mx-auto px-4 py-2 flex justify-center">
-<div class="flex space-x-4 font-semibold uppercase text-[10px] lg:text-xs">
-  <div class="text-center">
-    <span id="dias" class="block text-2xl lg:text-3xl text-[#5fff72]">--</span>
-    <span class="text-white">DIAS</span>
-  </div>
-  <div class="text-center">
-    <span id="horas" class="block text-2xl lg:text-3xl text-[#5fff72]">--</span>
-    <span class="text-white">HRS</span>
-  </div>
-  <div class="text-center">
-    <span id="minutos" class="block text-2xl lg:text-3xl text-[#5fff72]">--</span>
-    <span class="text-white">MINS</span>
-  </div>
-  <div class="text-center">
-    <span id="segundos" class="block text-2xl lg:text-3xl text-[#5fff72]">--</span>
-    <span class="text-white">SEGS</span>
-  </div>
-</div>
+    <!-- CARD DE PREÇO -->
+    <div class="bg-white/10 border border-gray-500 rounded-xl p-6 max-w-md mx-auto text-black">
+      <h3 class="text-xl font-bold text-white mb-2">CÓDIGO DA PERSUASÃO</h3>
+      <p class="text-gray-300">De <s>R$ 97,00</s> por apenas:</p>
+      <p class="text-3xl font-bold text-green-400 mt-2">R$ 27,90 à vista</p>
+      <p class="text-gray-300 text-sm mb-4">ou 6x de R$ 5,23</p>
+      <a href="https://chk.eduzz.com/E0D6P4V691" 
+         class="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 w-full block rounded-lg transition-all">
+         QUERO DESBLOQUEAR O CÓDIGO
+      </a>
     </div>
   </div>
+</section>
 
-  <!-- HERO SECTION -->
-  <section class="relative overflow-hidden min-h-screen px-4 lg:px-0 w-full">
-    
-<!-- FUNDO COM BLURS EM VERDE MAIS TRANSPARENTES -->
-<div class="absolute inset-0 -z-10 overflow-hidden">
-  <div class="absolute w-[400px] h-[400px] bg-emerald-400/10 rounded-full blur-3xl top-[-100px] left-[-100px] mix-blend-lighten pointer-events-none"></div>
-  <div class="absolute w-[500px] h-[500px] bg-green-400/5 rounded-full blur-2xl bottom-0 right-[50px] mix-blend-lighten pointer-events-none"></div>
-  <div class="absolute w-[300px] h-[300px] bg-lime-500/5 rounded-full blur-2xl top-[40%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 mix-blend-lighten pointer-events-none"></div>
-</div>
-
-    <!-- CONTEÚDO CENTRALIZADO -->
-   <div class="max-w-6xl mx-auto w-full flex flex-col lg:flex-row items-center justify-center pb-10 lg:pb-16">
-
-      
-      <!-- BLOCO DE TEXTO -->
-      <div class="flex-1 mt-12 lg:mt-0 lg:pt-4 lg:pr-10">
-    
-	
-	  <!-- LOGO pequena e discreta -->
-  <div class="flex justify-center lg:justify-start">
-    <img
-      src="https://static.wixstatic.com/media/7f5efc_e6c47774387b4355a3f0c7b475436863~mv2.webp"
-      class="h-28 lg:h-27 w-auto opacity-80 -mt-1"
-    />
+<!-- SEÇÃO 2: PARA QUEM É -->
+<section class="px-6 py-20 bg-black text-center">
+  <h2 class="text-3xl lg:text-4xl font-bold mb-10 bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent">
+    Para quem é este eBook?
+  </h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+    <div class="border border-gray-600 rounded-xl p-6 bg-white/5">Para quem sente dificuldade em influenciar pessoas.</div>
+    <div class="border border-gray-600 rounded-xl p-6 bg-white/5">Para quem deseja vender mais e fechar negócios com facilidade.</div>
+    <div class="border border-gray-600 rounded-xl p-6 bg-white/5">Para quem quer melhorar relacionamentos e conexões pessoais.</div>
+    <div class="border border-gray-600 rounded-xl p-6 bg-white/5">Para quem busca respeito, autoridade e autoconfiança.</div>
   </div>
-  
-  
-   <h1 class="mt-6 text-2xl lg:text-4xl max-w-3xl leading-tight text-center lg:text-left">
-<span class="font-bold">DESAFIO:</span> Emagreça até<br>
-  <span class="bg-gradient-to-t from-green-500 to-[#27c61b] bg-clip-text text-transparent px-1">
-   16kg em 6 semanas</span>
-  <br class="hidden lg:block">  sem deixar de comer as coisas que gosta.
-</h1>
+</section>
 
+<!-- SEÇÃO 3: O QUE VOCÊ VAI APRENDER -->
+<section class="px-6 py-20 bg-black text-center">
+  <h2 class="text-3xl lg:text-4xl font-bold mb-10 bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent">
+    O que você vai aprender dentro do Código da Persuasão?
+  </h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto text-gray-300">
+    <div class="p-6 border border-gray-600 rounded-lg bg-white/5">
+      <h3 class="font-bold mb-2 text-white">📖 15 Gatilhos Mentais</h3>
+      <p>Descubra cada gatilho, como funciona e como aplicá-lo no dia a dia.</p>
+    </div>
+    <div class="p-6 border border-gray-600 rounded-lg bg-white/5">
+      <h3 class="font-bold mb-2 text-white">🧠 Técnicas de PNL</h3>
+      <p>Como programar sua mente e a dos outros para aceitar novas ideias.</p>
+    </div>
+    <div class="p-6 border border-gray-600 rounded-lg bg-white/5">
+      <h3 class="font-bold mb-2 text-white">🎯 Aplicações Práticas</h3>
+      <p>Exemplos reais de como usar persuasão em vendas, negociações e relacionamentos.</p>
+    </div>
+  </div>
+</section>
 
-<br>
+<!-- SEÇÃO 4: OFERTA FINAL -->
+<section class="px-6 py-20 bg-gradient-to-b from-black to-gray-900 text-center">
+  <h2 class="text-3xl lg:text-5xl font-bold mb-6">Oferta Especial de Lançamento</h2>
+  <p class="text-gray-300 mb-8">De <s>R$ 97,00</s> por apenas R$ 27,90 à vista ou 6x de R$ 5,23.<br> Aproveite antes que o preço suba!</p>
+  <a href="https://chk.eduzz.com/E0D6P4V691" 
+     class="bg-green-500 hover:bg-green-600 text-white font-bold py-5 px-8 rounded-full text-lg transition-all btn-pulsante">
+     SIM, QUERO ACESSAR AGORA
+  </a>
+</section>
 
-
-<div class="border border-green-300 rounded-xl p-4 space-y-4 max-w-md mx-auto lg:mx-0 text-sm lg:text-base">
-  <!-- Item 1 -->
-  <div class="flex items-start gap-2">
-    <img src="https://cdn-icons-png.flaticon.com/512/5709/5709755.png" alt="Check" class="w-5 h-5 mt-1" />
-    <span>
-      Cadastre-se e <b>receba agora</b> um 
-      <span class="font-bold">📒 Livro de Receitas Digital</span>
-    </span>
-  </div>  
-</div>
-
-<div class="mt-8 w-[350px] mx-auto lg:mx-0">
-<!-- TEXTO ACIMA DA BARRA -->
-<p class="mb-2 text-sm lg:text-base text-gray-200 text-center">
-  Evento Online e <b>Gratuito</b> 
-</p>
-
-
-<!-- BARRA DE LOADING -->
-<div id="barra-loading-container" class="w-full h-2 relative bg-transparent border border-white rounded-full overflow-hidden">
-  <div id="barra-loading" class="absolute top-0 left-0 h-full bg-green-500 rounded-full transition-all duration-2000 ease-in-out"></div>
-</div>
-
-<!-- TEXTO ABAIXO DA BARRA -->
-<div class="mb-2 text-white text-sm font-semibold text-center" id="texto-loading">
-  0% das vagas preenchidas.
-</div>
-
-
-<!-- BOTÃO -->
-<a id="cta-btn"
-   href="#"
-   class="mt-8 inline-block bg-green-500 text-center hover:bg-green-600 text-white font-bold py-5 px-6 w-full rounded-xl text-lg transition-all btn-pulsante">
-  QUERO PARTICIPAR
-</a>
-</div>
-
-
-
-<script>
-  function getPorcentagemDia() {
-    const dia = new Date().getDay();
-    switch (dia) {
-      case 5: return 97; // Sexta
-      case 6: return 98; // Sábado
-      case 0: return 99; // Domingo
-      default: return 95; // Outros dias
-    }
-  }
-
-  const porcentagemFinal = getPorcentagemDia();
-  const barra = document.getElementById('barra-loading');
-  const texto = document.getElementById('texto-loading');
-
-  let atual = 0;
-  const intervalo = setInterval(() => {
-    if (atual >= porcentagemFinal) {
-      atual = porcentagemFinal;
-      clearInterval(intervalo);
-    }
-    barra.style.width = atual + '%';
-    texto.textContent = `${atual}% das vagas preenchidas.`;
-    atual++;
-  }, 25);
-</script> 
-
-
-</div>
-
-<!-- IMAGEM HERO -->
-<div class="flex-1 mt-4 lg:mt-32 flex justify-center lg:justify-start">
-  <img 
-    src="https://static.wixstatic.com/media/7f5efc_cc3dfd0e73c0464c9edf27960ac8e1a2~mv2.webp"
-    class="w-[95vw] max-w-[420px] lg:w-[550px] lg:max-w-none object-contain lg:-ml-12 animate-floating"
-  />
-</div>
-</div>
-
-
-  <script>
-    <!-- SCRIPT DO CRONÔMETRO -->
-    const customTargetDate = null;
-
-    function getNextSundayAt19h() {
-      const now = new Date();
-      const dayOfWeek = now.getDay();
-      const daysUntilSunday = (7 - dayOfWeek) % 7;
-      const nextSunday = new Date(now);
-      nextSunday.setDate(now.getDate() + daysUntilSunday);
-      nextSunday.setHours(19, 0, 0, 0);
-      if (now > nextSunday) nextSunday.setDate(nextSunday.getDate() + 7);
-      return nextSunday;
-    }
-	
-  function formatarDataEvento(date) {
-    const diasSemana = [
-      '⚠️ Domingo','⚠️ Segunda','⚠️ Terça','⚠️ Quarta',
-      '⚠️ Quinta','⚠️ Sexta','⚠️ Sábado'
-    ];
-    const diaSemana = diasSemana[date.getDay()];
-    const diaNumero = date.getDate(); 
-    const horas = String(date.getHours()).padStart(2, '0');
-    const minutos = String(date.getMinutes()).padStart(2, '0');
-    return `${diaSemana} dia ${diaNumero}, às ${horas}:${minutos}h`;
-  }
-
-
-    function updateCountdown() {
-      const targetDate = customTargetDate || getNextSundayAt19h();
-      const now = new Date();
-      const diff = targetDate - now;
-      if (diff <= 0) return;
-      const totalSeconds = Math.floor(diff / 1000);
-      const dias = Math.floor(totalSeconds / (3600 * 24));
-      const horas = Math.floor((totalSeconds % (3600 * 24)) / 3600);
-      const minutos = Math.floor((totalSeconds % 3600) / 60);
-      const segundos = totalSeconds % 60;
-      document.getElementById("dias").textContent = String(dias).padStart(2, '0');
-      document.getElementById("horas").textContent = String(horas).padStart(2, '0');
-      document.getElementById("minutos").textContent = String(minutos).padStart(2, '0');
-      document.getElementById("segundos").textContent = String(segundos).padStart(2, '0');
-	  // Atualiza a data exibida acima do cronômetro
-document.getElementById("data-evento").textContent = formatarDataEvento(targetDate);
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-  </script>
-  
-
-
-
-
-
-
-
-<script>
-  // Mapeamento dos links por dia da semana
-  document.addEventListener('DOMContentLoaded', () => {
-    const linksPorDia = {
-      0: 'https://www.dougleao.com.br/webnar-start-dom',
-      1: 'https://www.dougleao.com.br/webnar-start-seg',
-      2: 'https://www.dougleao.com.br/webnar-start-ter',
-      3: 'https://www.dougleao.com.br/webnar-start-qua',
-      4: 'https://www.dougleao.com.br/webnar-start-qui',
-      5: 'https://www.dougleao.com.br/webnar-start-sex',
-      6: 'https://www.dougleao.com.br/webnar-start-sab'
-    };
-
-      // Detecta o dia atual
-    const diaAtual = new Date().getDay();         
-    const linkDoDia = linksPorDia[diaAtual];
-
-    const cta = document.getElementById('cta-btn');
-    if (cta && linkDoDia) {
-      cta.href = linkDoDia;                      
-    }
-
-    // fallback: garante navegação mesmo se algo sobrescrever o href
-    cta?.addEventListener('click', (e) => {
-      if (!linkDoDia) return;
-      if (!cta.href || cta.href === '#') cta.href = linkDoDia;
-    });
-  });
-  
-  
-  
-// Bloqueia pinça (touchmove com 2 dedos)
-document.addEventListener('touchmove', function(e) {
-  if (e.touches && e.touches.length > 1) {
-    e.preventDefault();
-  }
-}, { passive: false });
-
-// Bloqueia duplo-toque rápido
-let lastTouchEnd = 0;
-document.addEventListener('touchend', function(e) {
-  const now = Date.now();
-  if (now - lastTouchEnd <= 300) {
-    e.preventDefault();
-  }
-  lastTouchEnd = now;
-}, false);
-
-// Bloqueia gestos específicos no iOS
-document.addEventListener('gesturestart', function(e) {
-  e.preventDefault();
-});
-
-
-
-// Bloqueia o menu de contexto (clique direito)
-document.addEventListener('contextmenu', e => e.preventDefault());
-
-// Impede copiar/recortar/selecionar texto
-['copy','cut','selectstart','dragstart'].forEach(evt =>
-  document.addEventListener(evt, e => e.preventDefault())
-);
-
-// Bloqueia atalho Ctrl+C, Ctrl+U (ver fonte), Ctrl+S, Ctrl+P e F12
-document.addEventListener('keydown', e => {
-  const forbidden =
-    // combinações de Ctrl + C, U, S, P, A
-    (e.ctrlKey &&
-      ['c','u','s','p','a'].includes(e.key.toLowerCase()))
-    // F12
-    || e.key === 'F12';
-  if (forbidden) e.preventDefault();
-});
-
-
-
-</script>
-
-
-
+<!-- FOOTER -->
+<footer class="bg-black text-gray-500 text-xs text-center py-8 px-4">
+  <p><strong>Dr. Douglas Leão</strong> - Todos os direitos reservados.<br>
+  ESTE SITE NÃO É do FACEBOOK. Este site não faz parte do site do Facebook ou do Facebook Inc.<br>
+  FACEBOOK é uma marca comercial independente da FACEBOOK, Inc.</p>
+</footer>
 
 </body>
 </html>
