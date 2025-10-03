@@ -198,21 +198,21 @@
 <!-- SEÇÃO 3 -->
 <section class="relative px-6 py-32 bg-black text-center overflow-hidden">
   <h2 class="text-3xl lg:text-4xl font-bold mb-16 bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent relative z-20">
-    O que você vai aprender dentro do Código da Persuasão?
+    O que você vai aprender dentro do Código da <span class="text-red-600">Persuasão</span>?
   </h2>
 
   <!-- Linha de sangue -->
-  <div id="blood-line" class="absolute top-32 left-1/2 -translate-x-1/2 w-[6px] rounded-full z-10"></div>
+  <div id="blood-line" class="absolute top-48 left-1/2 -translate-x-1/2 w-[6px] rounded-full z-10"></div>
 
   <!-- Textos -->
-  <div class="relative flex flex-col items-center gap-24 z-20">
-    <p class="opacity-0 transition-opacity duration-1000 text-white text-xl max-w-xl fade-text drop-shadow-[0_0_10px_black]">
+  <div class="relative flex flex-col items-center gap-20 z-20">
+    <p class="opacity-0 transition-opacity duration-1000 text-white text-base max-w-md fade-text drop-shadow-[0_0_10px_black]">
       📖 Descubra os 15 gatilhos mentais, como funcionam e como aplicá-los no dia a dia.
     </p>
-    <p class="opacity-0 transition-opacity duration-1000 text-white text-xl max-w-xl fade-text drop-shadow-[0_0_10px_black]">
+    <p class="opacity-0 transition-opacity duration-1000 text-white text-base max-w-md fade-text drop-shadow-[0_0_10px_black]">
       🧠 Domine as técnicas de PNL para programar sua mente e influenciar os outros.
     </p>
-    <p class="opacity-0 transition-opacity duration-1000 text-white text-xl max-w-xl fade-text drop-shadow-[0_0_10px_black]">
+    <p class="opacity-0 transition-opacity duration-1000 text-white text-base max-w-md fade-text drop-shadow-[0_0_10px_black]">
       🎯 Veja aplicações práticas em vendas, negociações e relacionamentos reais.
     </p>
   </div>
@@ -235,8 +235,8 @@
     bottom: -15px;
     left: 50%;
     transform: translateX(-50%);
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     background: radial-gradient(circle, #ff0000 0%, #8b0000 80%);
     border-radius: 50%;
     box-shadow: 0 0 20px rgba(255,0,0,0.6);
@@ -258,7 +258,7 @@
 
       // altura proporcional
       bloodLine.style.height = `${progress * rect.height}px`;
-      bloodLine.style.width = `${6 + progress * 6}px`; // engrossa um pouco descendo
+      bloodLine.style.width = `${6 + progress * 6}px`; // engrossa descendo
 
       // mostrar textos conforme o sangue chega perto deles
       texts.forEach((text, i) => {
@@ -270,6 +270,9 @@
     }
   });
 </script>
+
+
+
 
 
 
