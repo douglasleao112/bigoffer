@@ -195,6 +195,7 @@
 
 
 
+
 <!-- SEÇÃO 3 -->
 <section class="relative px-6 py-20 bg-black text-center overflow-hidden">
   <h2 class="text-3xl lg:text-4xl font-bold mb-16 bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent relative z-20">
@@ -202,10 +203,10 @@
   </h2>
 
   <!-- Linha de sangue -->
-  <div id="blood-line" class="absolute top-[120px] left-1/2 transform -translate-x-1/2 w-2 bg-red-600 rounded-full z-10"></div>
+  <div id="blood-line" class="absolute top-[100px] left-1/2 transform -translate-x-1/2 w-2 bg-red-600 rounded-t-full z-10"></div>
 
   <!-- Textos -->
-  <div class="relative z-20 max-w-3xl mx-auto space-y-12 text-gray-300">
+  <div class="relative z-20 max-w-3xl mx-auto space-y-16 text-gray-300">
     <div>
       <h3 class="font-bold mb-2 text-white text-xl lg:text-2xl drop-shadow-[2px_2px_6px_black]">📖 15 Gatilhos Mentais</h3>
       <p class="drop-shadow-[2px_2px_6px_black]">Descubra cada gatilho, como funciona e como aplicá-lo no dia a dia.</p>
@@ -224,28 +225,30 @@
 <!-- SCRIPT -->
 <script>
   const bloodLine = document.getElementById("blood-line");
-  let maxHeight = 0;
+  let maxScroll = 0;
 
   window.addEventListener("scroll", () => {
-    // Altura máxima que o sangue pode "escorrer"
-    const limit = document.body.scrollHeight - window.innerHeight;
-
-    // Pega a posição atual do scroll
     const scrollTop = window.scrollY;
 
-    // Cresce a linha de sangue apenas quando rolar para baixo
-    if (scrollTop > maxHeight) {
-      maxHeight = scrollTop;
-      const newHeight = Math.min(maxHeight * 0.5, 600); // limite de 600px
+    // só cresce se o scroll atual for maior que o já percorrido
+    if (scrollTop > maxScroll) {
+      maxScroll = scrollTop;
+
+      // altura da gota proporcional ao scroll
+      const newHeight = Math.min(maxScroll * 0.4, 600); // limite de 600px
       bloodLine.style.height = `${newHeight}px`;
 
-      // Engrossa a ponta da linha para parecer uma gota
+      // engrossa a ponta conforme desce
+      const newWidth = Math.min(2 + newHeight / 80, 30);
+      bloodLine.style.width = `${newWidth}px`;
+
+      // ponta arredondada estilo gota
       bloodLine.style.borderBottomLeftRadius = "50%";
       bloodLine.style.borderBottomRightRadius = "50%";
-      bloodLine.style.width = `${Math.min(2 + newHeight / 80, 30)}px`;
     }
   });
 </script>
+
 
 
 
