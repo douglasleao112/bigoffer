@@ -242,7 +242,6 @@
     box-shadow: 0 0 20px rgba(255,0,0,0.6);
   }
 </style>
-
 <script>
   const bloodLine = document.getElementById("blood-line");
   const texts = document.querySelectorAll(".fade-text");
@@ -258,8 +257,9 @@
       bloodLine.style.height = `${progress * rect.height}px`;
       bloodLine.style.width = `${6 + progress * 6}px`;
 
+      // Textos aparecem mais rápido
       texts.forEach((text, i) => {
-        let trigger = (i + 1) * 0.2 + 0.15;
+        let trigger = (i + 1) * 0.15 + 0.05;
         if (progress > trigger) {
           text.classList.add("opacity-100");
         }
@@ -267,7 +267,6 @@
     }
   });
 </script>
-
 
 
 
