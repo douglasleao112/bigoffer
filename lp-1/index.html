@@ -6,10 +6,42 @@
   <title>O Código da Persuasão</title>
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/25/25694.png" type="image/png">
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Tarja Vermelha */
+    .aviso-topo {
+      background-color: #b71e1e;
+      color: #fff;
+      text-align: center;
+      padding: 10px 16px;
+      font-weight: bold;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9999;
+      transition: top 0.4s ease-in-out;
+    }
+    body { margin-top: 60px; }
+    .aviso-topo.hide { top: -60px; }
+
+    /* Botão pulsante com brilho */
+    .btn-pulsante {
+      animation: pulseZoom 1.5s infinite ease-in-out;
+      box-shadow: 0 0 15px rgba(34,197,94,0.8), 0 0 25px rgba(34,197,94,0.6);
+      transition: transform 0.3s ease-in-out;
+    }
+    @keyframes pulseZoom {
+      0%   { transform: scale(1);   box-shadow: 0 0 10px rgba(34,197,94,0.7), 0 0 20px rgba(34,197,94,0.5); }
+      50%  { transform: scale(1.08); box-shadow: 0 0 20px rgba(34,197,94,1), 0 0 40px rgba(34,197,94,0.7); }
+      100% { transform: scale(1);   box-shadow: 0 0 10px rgba(34,197,94,0.7), 0 0 20px rgba(34,197,94,0.5); }
+    }
+  </style>
 </head>
 
 <body class="bg-black text-white font-sans">
-
 
 <!-- Tarja Vermelha com Cronômetro -->
 <div class="aviso-topo" id="aviso-topo">
@@ -17,35 +49,9 @@
   <span id="countdown" style="margin-left:10px; font-weight:bold;"></span>
 </div>
 
-<style>
-  .aviso-topo {
-    background-color: #b71e1e;
-    color: #fff;
-    text-align: center;
-    padding: 10px 16px;
-    font-weight: bold;
-    font-size: 14px;
-    font-family: Arial, sans-serif;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 9999;
-    transition: top 0.4s ease-in-out;
-  }
-
-  body {
-    margin-top: 60px; /* cria espaço para não ficar escondido */
-  }
-
-  .aviso-topo.hide {
-    top: -60px; /* esconde fora da tela */
-  }
-</style>
-
 <script>
   // Cronômetro regressivo de 5 minutos
-  let tempo = 5 * 60; // 5 minutos em segundos
+  let tempo = 5 * 60; 
   const countdownEl = document.getElementById("countdown");
 
   function atualizarCountdown() {
@@ -65,32 +71,29 @@
   // Esconder tarja ao rolar
   let ultimoScroll = 0;
   const aviso = document.getElementById("aviso-topo");
-
   window.addEventListener("scroll", () => {
     const atualScroll = window.scrollY;
     if (atualScroll > ultimoScroll) {
-      aviso.classList.add("hide"); // rolando para baixo -> esconde
+      aviso.classList.add("hide");
     } else {
-      aviso.classList.remove("hide"); // rolando para cima -> mostra
+      aviso.classList.remove("hide");
     }
     ultimoScroll = atualScroll;
   });
 </script>
 
-
-
 <!-- HERO -->
 <section class="relative min-h-screen px-6 py-12 lg:py-20 bg-black">
   <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
 
-    <!-- BLOCO DA IMAGEM (MOBILE EM CIMA / DESKTOP À DIREITA) -->
+    <!-- Imagem -->
     <div class="flex justify-center lg:order-2">
       <img src="https://i.imgur.com/rE9pIj5.png" 
            alt="O Código da Persuasão"
            class="w-[90%] max-w-sm lg:max-w-md object-contain" />
     </div>
 
-    <!-- BLOCO DE TEXTO -->
+    <!-- Texto -->
     <div class="text-center lg:text-left lg:order-1">
       <h1 class="text-3xl lg:text-5xl font-bold leading-tight mb-6">
         <span class="text-white">O Código da Persuasão:</span><br>
@@ -103,7 +106,7 @@
         conquistar respeito e transformar sua vida.
       </p>
       <a href="#preco" 
-         class="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-full text-lg transition-all">
+         class="bg-green-500 text-white font-bold py-4 px-8 rounded-full text-lg transition-all btn-pulsante">
         🔒 DESBLOQUEAR CÓDIGO
       </a>
     </div>
@@ -111,7 +114,7 @@
   </div>
 </section>
 
-<!-- SEÇÃO 2: PARA QUEM É -->
+<!-- SEÇÃO 2 -->
 <section class="px-6 py-20 bg-black text-center">
   <h2 class="text-3xl lg:text-4xl font-bold mb-10 bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent">
     Descubra se você tem maturidade para este material?
@@ -124,12 +127,7 @@
   </div>
 </section>
 
-
-
-
-
-
-<!-- SEÇÃO 3: O QUE VOCÊ VAI APRENDER -->
+<!-- SEÇÃO 3 -->
 <section class="px-6 py-20 bg-black text-center">
   <h2 class="text-3xl lg:text-4xl font-bold mb-10 bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent">
     O que você vai aprender dentro do Código da Persuasão?
@@ -148,50 +146,42 @@
       <p>Exemplos reais de como usar persuasão em vendas, negociações e relacionamentos.</p>
     </div>
   </div>
-</section> 
-
+</section>
 
 <!-- CARD DE PREÇO -->
-<div class="bg-white/10 border border-gray-500 rounded-xl p-6 max-w-md mx-auto text-black mt-12">
+<div id="preco" class="bg-white/10 border border-gray-500 rounded-xl p-6 max-w-md mx-auto text-black mt-12">
   <h3 class="text-xl font-bold text-white mb-2">CÓDIGO DA PERSUASÃO</h3>
   <p class="text-gray-300">De <s>R$ 97,00</s> por apenas:</p>
   <p class="text-3xl font-bold text-green-400 mt-2">R$ 27,90 à vista</p>
   <p class="text-gray-300 text-sm mb-4">ou 6x de R$ 5,23</p>
-  <a href="https://chk.eduzz.com/E0D6P4V691" 
-     class="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 w-full block rounded-lg transition-all">
+  <a href="https://sun.eduzz.com/E0D6P4V691" 
+     class="bg-green-500 text-white font-bold py-4 px-6 w-full block rounded-lg transition-all btn-pulsante">
      QUERO DESBLOQUEAR O CÓDIGO
   </a>
 </div>
 
-<!-- CARD DE GARANTIA -->
+<!-- GARANTIA -->
 <section class="px-6 py-16 text-center">
   <div class="bg-white text-black rounded-xl shadow-lg max-w-lg mx-auto p-8">
-    
-    <!-- Imagem da Garantia -->
     <img src="https://media.inlead.cloud/uploads/7652/2025-03-12/sm-x1kj9-sm-5qzj0-image-220-2-3.webp" 
          alt="Garantia 30 Dias" 
          class="mx-auto mb-6 w-32 lg:w-40">
-
     <h3 class="text-2xl font-bold mb-4">Garantia Incondicional de 30 Dias</h3>
     <p style="font-size:14px; color:#333; line-height:1.5; max-width:420px; margin:0 auto;">
-      A compra deste material é totalmente <br>
-      sem risco para você.<br><br>
-      Se ele não atender às suas expectativas nos <br>
-      primeiros 30 dias após a compra, nós reembolsaremos <br>
+      A compra deste material é totalmente sem risco para você.<br><br>
+      Se ele não atender às suas expectativas nos primeiros 30 dias após a compra, nós reembolsaremos 
       todo o valor que você pagou, sem fazer perguntas.<br><br>
-      Basta enviar um e-mail para o <br>
-      suporte em <b>contato@start-app.com</b>
+      Basta enviar um e-mail para o suporte em <b>contato@start-app.com</b>
     </p>
   </div>
 </section>
 
-
-<!-- SEÇÃO 4: OFERTA FINAL -->
+<!-- OFERTA FINAL -->
 <section class="px-6 py-20 bg-gradient-to-b from-black to-gray-900 text-center">
   <h2 class="text-3xl lg:text-5xl font-bold mb-6">Oferta Especial de Lançamento</h2>
   <p class="text-gray-300 mb-8">De <s>R$ 97,00</s> por apenas R$ 27,90 à vista ou 6x de R$ 5,23.<br> Aproveite antes que o preço suba!</p>
-  <a href="https://chk.eduzz.com/E0D6P4V691" 
-     class="bg-green-500 hover:bg-green-600 text-white font-bold py-5 px-8 rounded-full text-lg transition-all btn-pulsante">
+  <a href="https://sun.eduzz.com/E0D6P4V691" 
+     class="bg-green-500 text-white font-bold py-5 px-8 rounded-full text-lg transition-all btn-pulsante">
      SIM, QUERO ACESSAR AGORA
   </a>
 </section>
