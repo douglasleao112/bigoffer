@@ -10,6 +10,61 @@
 
 <body class="bg-black text-white font-sans">
 
+
+
+  <!-- Tarja Vermelha com Cronômetro -->
+<div class="aviso-topo" id="aviso-topo">
+  ⚠️ ATENÇÃO: Essa página sairá do ar em breve, corra enquanto é tempo!  
+  <span id="countdown" style="margin-left:10px; font-weight:bold;"></span>
+</div>
+
+<style>
+  .aviso-topo {
+    background-color: #b71e1e;
+    color: #fff;
+    text-align: center;
+    padding: 10px 16px;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+  }
+
+  body {
+    margin-top: 60px; /* cria espaço para não ficar escondido */
+  }
+</style>
+
+<script>
+  // Cronômetro regressivo de 5 minutos
+  let tempo = 5 * 60; // 5 minutos em segundos
+  const countdownEl = document.getElementById("countdown");
+
+  function atualizarCountdown() {
+    const minutos = Math.floor(tempo / 60);
+    const segundos = tempo % 60;
+    countdownEl.textContent = `${minutos}:${segundos.toString().padStart(2,'0')}`;
+    if (tempo > 0) {
+      tempo--;
+    } else {
+      clearInterval(timer);
+      countdownEl.textContent = "Expirado!";
+      // Aqui você pode redirecionar para outra página se quiser:
+      // window.location.href = "pagina-expirada.html";
+    }
+  }
+
+  atualizarCountdown(); // mostra imediatamente
+  const timer = setInterval(atualizarCountdown, 1000);
+</script>
+
+
+
+
 <!-- HERO -->
 <section class="relative min-h-screen px-6 py-12 lg:py-20 bg-black">
   <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
