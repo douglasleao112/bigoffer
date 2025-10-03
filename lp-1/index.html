@@ -584,15 +584,16 @@
     const nome = randItem(NOMES);
     const uf   = randItem(UFS);
 
-    const toast = document.createElement("div");
-    toast.className = "pointer-events-auto toast-enter flex items-start gap-3 w-[320px] max-w-[92vw] p-4 rounded-2xl bg-slate-800/90 text-white shadow-2xl border border-white/10 backdrop-blur-md";
-    toast.innerHTML = `
-      <div class="shrink-0 mt-0.5">${CHECK_SVG}</div>
-      <div class="flex-1 leading-tight">
-        <div class="font-semibold">${nome}, ${uf}</div>
-        <div class="text-sm text-white/90">Compra efetuada!</div>
-      </div>
-    `;
+   const toast = document.createElement("div");
+toast.className = "pointer-events-auto toast-enter flex items-start gap-3 w-[320px] max-w-[92vw] p-4 rounded-2xl text-white shadow-2xl border border-white/10 backdrop-blur-md";
+toast.style.backgroundColor = "#131313";
+toast.innerHTML = `
+  <div class="shrink-0 mt-0.5">${CHECK_SVG}</div>
+  <div class="flex-1 leading-tight">
+    <div class="font-semibold">${nome}, ${uf}</div>
+    <div class="text-sm text-white/90">Compra efetuada!</div>
+  </div>
+`;
 
     TOASTS_WRAP.appendChild(toast);
 
