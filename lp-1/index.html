@@ -11,8 +11,7 @@
 <body class="bg-black text-white font-sans">
 
 
-
-  <!-- Tarja Vermelha com Cronômetro -->
+<!-- Tarja Vermelha com Cronômetro -->
 <div class="aviso-topo" id="aviso-topo">
   ⚠️ ATENÇÃO: Essa página sairá do ar em breve, corra enquanto é tempo!  
   <span id="countdown" style="margin-left:10px; font-weight:bold;"></span>
@@ -32,10 +31,15 @@
     left: 0;
     width: 100%;
     z-index: 9999;
+    transition: top 0.4s ease-in-out;
   }
 
   body {
     margin-top: 60px; /* cria espaço para não ficar escondido */
+  }
+
+  .aviso-topo.hide {
+    top: -60px; /* esconde fora da tela */
   }
 </style>
 
@@ -53,15 +57,25 @@
     } else {
       clearInterval(timer);
       countdownEl.textContent = "Expirado!";
-      // Aqui você pode redirecionar para outra página se quiser:
-      // window.location.href = "pagina-expirada.html";
     }
   }
-
-  atualizarCountdown(); // mostra imediatamente
+  atualizarCountdown();
   const timer = setInterval(atualizarCountdown, 1000);
-</script>
 
+  // Esconder tarja ao rolar
+  let ultimoScroll = 0;
+  const aviso = document.getElementById("aviso-topo");
+
+  window.addEventListener("scroll", () => {
+    const atualScroll = window.scrollY;
+    if (atualScroll > ultimoScroll) {
+      aviso.classList.add("hide"); // rolando para baixo -> esconde
+    } else {
+      aviso.classList.remove("hide"); // rolando para cima -> mostra
+    }
+    ultimoScroll = atualScroll;
+  });
+</script>
 
 
 
