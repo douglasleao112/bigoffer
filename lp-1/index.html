@@ -196,101 +196,53 @@
 
 
 <!-- SEÇÃO 3 -->
-<section class="relative px-6 py-32 bg-black text-center overflow-hidden">
-  <h2 class="text-3xl lg:text-4xl font-bold mb-24 bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent relative z-20">
+<section class="relative px-6 py-20 bg-black text-center overflow-hidden">
+  <h2 class="text-3xl lg:text-4xl font-bold mb-16 bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent relative z-20">
     O que você vai aprender dentro do Código da Persuasão?
   </h2>
 
   <!-- Linha de sangue -->
-  <div id="blood-line" class="absolute left-1/2 -translate-x-1/2 top-[120px] w-[4px] rounded-full z-10"></div>
+  <div id="blood-line" class="absolute top-[120px] left-1/2 transform -translate-x-1/2 w-2 bg-red-600 rounded-full z-10"></div>
 
-  <!-- Textos sem card -->
-  <div class="relative flex flex-col items-center gap-20 z-20">
-    <div class="opacity-0 transition-opacity duration-1000 fade-text max-w-xl">
-      <h3 class="font-bold mb-2 text-white text-2xl drop-shadow-[0_0_10px_black]">📖 15 Gatilhos Mentais</h3>
-      <p class="text-gray-300 text-lg drop-shadow-[0_0_10px_black]">
-        Descubra cada gatilho, como funciona e como aplicá-lo no dia a dia.
-      </p>
+  <!-- Textos -->
+  <div class="relative z-20 max-w-3xl mx-auto space-y-12 text-gray-300">
+    <div>
+      <h3 class="font-bold mb-2 text-white text-xl lg:text-2xl drop-shadow-[2px_2px_6px_black]">📖 15 Gatilhos Mentais</h3>
+      <p class="drop-shadow-[2px_2px_6px_black]">Descubra cada gatilho, como funciona e como aplicá-lo no dia a dia.</p>
     </div>
-    <div class="opacity-0 transition-opacity duration-1000 fade-text max-w-xl">
-      <h3 class="font-bold mb-2 text-white text-2xl drop-shadow-[0_0_10px_black]">🧠 Técnicas de PNL</h3>
-      <p class="text-gray-300 text-lg drop-shadow-[0_0_10px_black]">
-        Como programar sua mente e a dos outros para aceitar novas ideias.
-      </p>
+    <div>
+      <h3 class="font-bold mb-2 text-white text-xl lg:text-2xl drop-shadow-[2px_2px_6px_black]">🧠 Técnicas de PNL</h3>
+      <p class="drop-shadow-[2px_2px_6px_black]">Como programar sua mente e a dos outros para aceitar novas ideias.</p>
     </div>
-    <div class="opacity-0 transition-opacity duration-1000 fade-text max-w-xl">
-      <h3 class="font-bold mb-2 text-white text-2xl drop-shadow-[0_0_10px_black]">🎯 Aplicações Práticas</h3>
-      <p class="text-gray-300 text-lg drop-shadow-[0_0_10px_black]">
-        Exemplos reais de como usar persuasão em vendas, negociações e relacionamentos.
-      </p>
+    <div>
+      <h3 class="font-bold mb-2 text-white text-xl lg:text-2xl drop-shadow-[2px_2px_6px_black]">🎯 Aplicações Práticas</h3>
+      <p class="drop-shadow-[2px_2px_6px_black]">Exemplos reais de como usar persuasão em vendas, negociações e relacionamentos.</p>
     </div>
   </div>
 </section>
 
-<style>
-  /* Linha de sangue */
-  #blood-line {
-    height: 0;
-    background: linear-gradient(to bottom, #b71c1c 0%, #ff0000 40%, #700000 100%);
-    box-shadow: 0 0 25px rgba(255,0,0,0.6);
-    border-radius: 999px;
-    position: absolute;
-  }
-
-  /* Gota na ponta */
-  #blood-line::after {
-    content: '';
-    position: absolute;
-    bottom: -18px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 22px;
-    height: 22px;
-    background: radial-gradient(circle, #ff0000 0%, #8b0000 80%);
-    border-radius: 50%;
-    box-shadow: 0 0 20px rgba(255,0,0,0.6);
-    opacity: 0;
-  }
-</style>
-
+<!-- SCRIPT -->
 <script>
   const bloodLine = document.getElementById("blood-line");
-  const texts = document.querySelectorAll(".fade-text");
-
-  let maxHeight = 0; // altura máxima já atingida (para não subir ao rolar pra cima)
+  let maxHeight = 0;
 
   window.addEventListener("scroll", () => {
-    const section = bloodLine.parentElement;
-    const rect = section.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
+    // Altura máxima que o sangue pode "escorrer"
+    const limit = document.body.scrollHeight - window.innerHeight;
 
-    if (rect.top < windowHeight && rect.bottom > 0) {
-      let progress = Math.min(Math.max((windowHeight - rect.top) / (rect.height + windowHeight), 0), 1);
+    // Pega a posição atual do scroll
+    const scrollTop = window.scrollY;
 
-      let newHeight = progress * rect.height * 0.8; // altura proporcional
-      if (newHeight > maxHeight) {
-        maxHeight = newHeight;
-        bloodLine.style.height = `${maxHeight}px`;
-        bloodLine.style.width = `${4 + maxHeight * 0.03}px`; // engrossa como cone
-        bloodLine.style.borderRadius = "999px";
+    // Cresce a linha de sangue apenas quando rolar para baixo
+    if (scrollTop > maxHeight) {
+      maxHeight = scrollTop;
+      const newHeight = Math.min(maxHeight * 0.5, 600); // limite de 600px
+      bloodLine.style.height = `${newHeight}px`;
 
-        // aparece gota se já cresceu o suficiente
-        if (maxHeight > 100) {
-          bloodLine.style.setProperty("--show-drop", 1);
-          bloodLine.querySelector;
-          bloodLine.style.setProperty("content", "");
-          bloodLine.style.setProperty("opacity", 1);
-          bloodLine.style.setProperty("transition", "opacity 0.5s");
-        }
-      }
-
-      // mostrar textos em fade-in conforme a linha chega perto deles
-      texts.forEach((text, i) => {
-        let trigger = (i + 1) * 0.25;
-        if (progress > trigger) {
-          text.classList.add("opacity-100");
-        }
-      });
+      // Engrossa a ponta da linha para parecer uma gota
+      bloodLine.style.borderBottomLeftRadius = "50%";
+      bloodLine.style.borderBottomRightRadius = "50%";
+      bloodLine.style.width = `${Math.min(2 + newHeight / 80, 30)}px`;
     }
   });
 </script>
