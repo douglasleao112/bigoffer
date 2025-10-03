@@ -261,14 +261,16 @@
         maxProgress = progress;
       }
 
-      // altura proporcional ao progresso máximo
-      bloodLine.style.height = `${maxProgress * rect.height}px`;
-      bloodLine.style.width = `${6 + maxProgress * 6}px`;
+      // sangue desce mais devagar (divisor = velocidade)
+      const slowProgress = maxProgress * 0.6; // 0.5 = bem devagar, 0.8 = mais rápido
 
-      // Textos aparecem mais rápido conforme a linha cresce
+      bloodLine.style.height = `${slowProgress * rect.height}px`;
+      bloodLine.style.width = `${6 + slowProgress * 6}px`;
+
+      // Textos aparecem um pouco antes
       texts.forEach((text, i) => {
-        let trigger = (i + 1) * 0.15 + 0.05;
-        if (maxProgress > trigger) {
+        let trigger = (i + 1) * 0.12 + 0.05;
+        if (slowProgress > trigger) {
           text.classList.add("opacity-100");
         }
       });
