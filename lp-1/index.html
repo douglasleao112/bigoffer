@@ -546,5 +546,77 @@
 </script>
 
 
+
+<!-- Notificações (canto inferior esquerdo) -->
+<div id="toasts" class="fixed bottom-4 left-4 z-[10000] space-y-3 pointer-events-none"></div>
+
+<style>
+  /* animações do toast */
+  @keyframes toastIn {
+    from { transform: translate(-20px, 20px); opacity: 0; }
+    to   { transform: translate(0, 0);        opacity: 1; }
+  }
+  @keyframes toastOut {
+    to { transform: translateY(10px); opacity: 0; }
+  }
+  .toast-enter { animation: toastIn .6s ease forwards; }
+  .toast-exit  { animation: toastOut .5s ease forwards; }
+</style>
+
+<script>
+  // listas: 5 homens + 5 mulheres, 10 UFs diferentes
+  const NOMES = [
+    "Luiz Carlos", "Marcos Vinícius", "João Pedro", "Rafael Lima", "Diego Souza",
+    "Ana Paula", "Juliana Costa", "Fernanda Ribeiro", "Mariana Alves", "Camila Rocha"
+  ];
+  const UFS = ["SP","RJ","MG","BA","RS","SC","PR","GO","DF","PE"];
+
+  const TOASTS_WRAP = document.getElementById("toasts");
+  const CHECK_SVG = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="12" fill="#22c55e" opacity=".95"></circle>
+      <path d="M7 12.5l3.2 3L17 9" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`;
+
+  function randItem(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+  function showToast() {
+    const nome = randItem(NOMES);
+    const uf   = randItem(UFS);
+
+    const toast = document.createElement("div");
+    toast.className = "pointer-events-auto toast-enter flex items-start gap-3 w-[320px] max-w-[92vw] p-4 rounded-2xl bg-slate-800/90 text-white shadow-2xl border border-white/10 backdrop-blur-md";
+    toast.innerHTML = `
+      <div class="shrink-0 mt-0.5">${CHECK_SVG}</div>
+      <div class="flex-1 leading-tight">
+        <div class="font-semibold">${nome}, ${uf}</div>
+        <div class="text-sm text-white/90">Compra efetuada!</div>
+      </div>
+    `;
+
+    TOASTS_WRAP.appendChild(toast);
+
+    // remove após ~5s
+    setTimeout(() => {
+      toast.classList.remove("toast-enter");
+      toast.classList.add("toast-exit");
+      setTimeout(() => toast.remove(), 550);
+    }, 5000);
+
+    // agenda próxima notificação em 15–20s
+    scheduleNext();
+  }
+
+  function scheduleNext(){
+    const delay = 15000 + Math.random()*5000; // 15s a 20s
+    setTimeout(showToast, delay);
+  }
+
+  // inicia após um pequeno atraso
+  setTimeout(showToast, 3000);
+</script>
+
+
+
 </body>
 </html>
