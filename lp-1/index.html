@@ -114,18 +114,76 @@
   </div>
 </section>
 
-<!-- SEÇÃO 2 -->
+
+
+<!-- SEÇÃO 2: PARA QUEM É -->
 <section class="px-6 py-20 bg-black text-center">
   <h2 class="text-3xl lg:text-4xl font-bold mb-10 bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent">
-    Descubra se você tem maturidade para este material?
+    Descubra se você tem maturidade p/ este material
   </h2>
+
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-    <div class="border border-gray-600 rounded-xl p-6 bg-white/5">Para quem sente dificuldade em influenciar pessoas.</div>
-    <div class="border border-gray-600 rounded-xl p-6 bg-white/5">Para quem deseja vender mais e fechar negócios com facilidade.</div>
-    <div class="border border-gray-600 rounded-xl p-6 bg-white/5">Para quem quer melhorar relacionamentos e conexões pessoais.</div>
-    <div class="border border-gray-600 rounded-xl p-6 bg-white/5">Para quem busca respeito, autoridade e autoconfiança.</div>
+
+    <!-- CARD 1 -->
+    <div class="card relative border border-gray-600 rounded-xl p-6 bg-white/5 overflow-hidden opacity-0 translate-y-10 transition-all duration-700">
+      <img src="https://img.freepik.com/premium-photo/audience-concert-black-white_832479-14491.jpg"
+           class="absolute inset-0 w-full h-full object-cover opacity-30 transition-transform duration-500 hover:scale-110" />
+      <div class="relative z-10 text-white font-semibold">
+        Para quem sente dificuldade em influenciar pessoas.
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card relative border border-gray-600 rounded-xl p-6 bg-white/5 overflow-hidden opacity-0 translate-y-10 transition-all duration-700">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ823lK4dDABdtlnYdKF3QKQCjAiK5y-lwLOOaUlgdA8cuIx3FGlFO_dpVW3H-a7imgmFk&usqp=CAU"
+           class="absolute inset-0 w-full h-full object-cover opacity-30 transition-transform duration-500 hover:scale-110" />
+      <div class="relative z-10 text-white font-semibold">
+        Para quem deseja vender mais e fechar negócios com facilidade.
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="card relative border border-gray-600 rounded-xl p-6 bg-white/5 overflow-hidden opacity-0 translate-y-10 transition-all duration-700">
+      <img src="https://www.eusemfronteiras.com.br/wp-content/uploads/2018/11/pexels-photo-568025.jpeg"
+           class="absolute inset-0 w-full h-full object-cover opacity-30 transition-transform duration-500 hover:scale-110" />
+      <div class="relative z-10 text-white font-semibold">
+        Para quem quer melhorar relacionamentos e conexões pessoais.
+      </div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="card relative border border-gray-600 rounded-xl p-6 bg-white/5 overflow-hidden opacity-0 translate-y-10 transition-all duration-700">
+      <img src="https://images.pexels.com/photos/1666816/pexels-photo-1666816.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+           class="absolute inset-0 w-full h-full object-cover opacity-30 transition-transform duration-500 hover:scale-110" />
+      <div class="relative z-10 text-white font-semibold">
+        Para quem busca respeito, autoridade e autoconfiança.
+      </div>
+    </div>
+
   </div>
 </section>
+
+<script>
+  // Animação dos cards ao rolar a página
+  const cards = document.querySelectorAll('.card');
+
+  function revelarCards() {
+    const triggerBottom = window.innerHeight * 0.85;
+    cards.forEach(card => {
+      const cardTop = card.getBoundingClientRect().top;
+      if (cardTop < triggerBottom) {
+        card.classList.add("opacity-100", "translate-y-0");
+        card.classList.remove("opacity-0", "translate-y-10");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", revelarCards);
+  window.addEventListener("load", revelarCards);
+</script>
+
+
+
 
 <!-- SEÇÃO 3 -->
 <section class="px-6 py-20 bg-black text-center">
