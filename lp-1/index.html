@@ -115,6 +115,8 @@
 </section>
 
 
+
+
 <!-- SEÇÃO 2: PARA QUEM É -->
 <section class="relative px-6 py-20 bg-black text-center">
   
@@ -169,6 +171,28 @@
   </div>
 </section>
 
+
+
+
+
+<script>
+  // Animação dos cards ao rolar a página
+  const cards = document.querySelectorAll('.card');
+
+  function revelarCards() {
+    const triggerBottom = window.innerHeight * 0.85;
+    cards.forEach(card => {
+      const cardTop = card.getBoundingClientRect().top;
+      if (cardTop < triggerBottom) {
+        card.classList.add("opacity-100", "translate-y-0");
+        card.classList.remove("opacity-0", "translate-y-10");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", revelarCards);
+  window.addEventListener("load", revelarCards);
+</script>
 
 
 
