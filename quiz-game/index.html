@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oráculo da Persuasão</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding-top: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+ 
+    .gif-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.gif-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0) 35%,   /* centro totalmente visível */
+    rgba(0, 0, 0, 1) 60%,   /* borda já começa a escurecer */
+    rgba(0, 0, 0, 1) 100%   /* borda 100% preta */
+  );
+  z-index: 2;
+}
+
+.gif-container img {
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+    .hidden {
+      display: none;
+    }
+    .answers button, #startBtn {
+      background: linear-gradient(145deg, #1f1f1f, #2a2a2a);
+      border: 1px solid #444;
+      color: #fff;
+      padding: 14px 25px;
+      margin: 10px auto;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1em;
+      font-weight: bold;
+      width: 90%;
+      max-width: 300px;
+      display: block;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0,255,200,0.2);
+    }
+    .answers button:hover, #startBtn:hover {
+      background: linear-gradient(145deg, #00ffcc, #00ccff);
+      color: #000;
+      box-shadow: 0 0 20px rgba(0,255,200,0.6);
+      border: none;
+    }
+    .progress-bar-top {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: #222;
+      z-index: 9999;
+      overflow: hidden;
+    }
+    .progress-bar-fill-top {
+      height: 100%;
+      background: linear-gradient(to right, red 20%, #ff4d4d 50%, red 80%);
+      width: 10%; /* Começa em 10% */
+      position: relative;
+      animation: shimmer 2s infinite;
+      background-size: 200% 100%;
+    }
+    @keyframes shimmer {
+      0% { background-position: -200px 0; }
+      100% { background-position: 200px 0; }
+    }
+    .progress-text {
+      display: none;
+    }
+    #quizAudio {
+      display: none;
+    }
+.question-text {
+  display: none;
+  text-align: center;
+  font-size: 1em;
+  font-weight: bold;
+  margin: 18px auto;
+  line-height: 1.4em;
+  max-width: 80%;
+  color: #fff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div class="progress-bar-top" id="progressBar">
+      <div class="progress-bar-fill-top" id="progressFillTop"></div>
+    </div>
+
+    <div class="gif-container" id="gifTop" onclick="unmuteIntro()">
+      <img src="https://static.wixstatic.com/media/7f5efc_a7bee9f2a76c46c4b3f33679c2bdc969~mv2.gif" alt="Oráculo">
+    </div>
+    <audio id="introAudio" autoplay muted onended="showStartButton()">
+      <source src="https://static.wixstatic.com/mp3/7f5efc_9c72927ebd644091a41f85b97a93198b.mp3" type="audio/mpeg">
+      Seu navegador não suporta áudio.
+    </audio>
+
+    <button id="startBtn" onclick="startQuiz()" style="display: none;">🔓 INICIAR TESTE</button>
+
+    <audio id="quizAudio" onended="showOptions()">
+      <source id="quizAudioSrc" src="" type="audio/mpeg">
+      Seu navegador não suporta áudio.
+    </audio>
+
+    <div id="quizContent" style="display:none">
+      <div class="question-text" id="questionText"></div>
+      <div class="answers" id="answers" style="display:none"></div>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        text: "Valendo...",
+        options: ["Escassez", "Prova Social", "Autoridade"],
+        correct: 2,
+        audio: "https://static.wixstatic.com/mp3/7f5efc_6887c7208e59424ab157e31a39137b0c.mp3",
+        gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif"
+      },
+      {
+        text: "Até uma criança sabe essa!",
+        options: ["Urgência", "Escassez", "Reciprocidade"],
+        correct: 1,
+        audio: "https://static.wixstatic.com/mp3/7f5efc_5a19d15e56a742a6992b2a3f46597638.mp3",
+        gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif"
+      },
+      {
+        text: "Eu nem chamaria de amigo...",
+        options: ["Prova Social", "Autoridade", "Medo"],
+        correct: 0,
+        audio: "https://static.wixstatic.com/mp3/7f5efc_02c932a98ba940de96496fcbc7d72bd9.mp3",
+        gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif"
+      },
+      {
+        text: "Me prova que sabe",
+        options: ["Reciprocidade", "Curiosidade", "Escassez"],
+        correct: 0,
+        audio: "https://static.wixstatic.com/mp3/7f5efc_d4565de85cfe47e182eb158a74424204.mp3",
+        gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif"
+      },
+      {
+        text: "Te peguei não é mesmo?",
+        options: ["Medo", "Urgência", "Prova Social"],
+        correct: 1,
+        audio: "https://static.wixstatic.com/mp3/7f5efc_42f722c97490452f9c83c23d29c49329.mp3",
+        gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif"
+      }
+    ];
+
+
+
+    let currentQuestion = 0;
+
+    function unmuteIntro() {
+      const audio = document.getElementById("introAudio");
+      audio.muted = false;
+      audio.play();
+      document.getElementById("gifTop").onclick = null;
+    }
+
+    function showStartButton() {
+      document.getElementById("startBtn").style.display = "block";
+    }
+
+    function startQuiz() {
+      document.querySelector('.gif-container').onclick = null;
+      document.getElementById("startBtn").style.display = "none";
+      document.getElementById("quizContent").style.display = "block";
+      document.getElementById("progressBar").style.display = "block";
+      playCurrentAudio();
+      updateTopProgress();
+    }
+
+    function playCurrentAudio() {
+      const question = questions[currentQuestion];
+      const quizAudio = document.getElementById("quizAudio");
+      const source = document.getElementById("quizAudioSrc");
+      source.src = question.audio;
+      quizAudio.load();
+      quizAudio.play();
+      document.getElementById("gifTop").innerHTML = `<img src="${question.gif}" alt="Oráculo">`;
+    }
+
+    function showOptions() {
+      const answersDiv = document.getElementById("answers");
+      answersDiv.innerHTML = "";
+      const question = questions[currentQuestion];
+      document.getElementById("questionText").textContent = question.text;
+      document.getElementById("questionText").style.display = "block";
+      question.options.forEach((opt, index) => {
+        const btn = document.createElement("button");
+        btn.textContent = opt;
+        btn.onclick = () => handleAnswer(index);
+        answersDiv.appendChild(btn);
+      });
+      answersDiv.style.display = "block";
+    }
+
+    function handleAnswer(selectedIndex) {
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        loadNextQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function loadNextQuestion() {
+      document.getElementById("answers").style.display = "none";
+      document.getElementById("questionText").style.display = "none";
+      playCurrentAudio();
+      updateTopProgress();
+    }
+
+    function updateTopProgress() {
+      const percent = ((currentQuestion + 1) / questions.length) * 100;
+      document.getElementById("progressFillTop").style.width = percent + "%";
+    }
+
+
+
+
+
+
+    // Permitir tocar o áudio ao clicar em qualquer lugar da tela
+document.body.addEventListener("click", function playOnce() {
+  unmuteIntro();
+  document.body.removeEventListener("click", playOnce);
+});
+
+
+
+
+
+const finalStages = [
+  {
+    audio: "https://static.wixstatic.com/mp3/7f5efc_c16fb254d2164b75a55acb4b5f1f9d35.mp3",
+    title: "Você chegou longe, mas ainda há mais a descobrir...",
+    gif: "https://static.wixstatic.com/media/7f5efc_e4cececd9a3d4752ac73ed9e3aa22854~mv2.gif",
+    buttons: [
+      { text: "Resgatar Presente", action: "continuar" }
+    ]
+  },
+  {
+    audio: "https://static.wixstatic.com/mp3/7f5efc_d08020db61c748099a1ddce786e47530.mp3",
+    title: "Agora sim, o verdadeiro jogo começa.",
+    gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif",
+    buttons: [
+      { text: "Sim, tenho!", action: "continuar" },
+      { text: "Desbloquear agora", action: "continuar" }
+    ]
+  },
+  {
+    audio: "https://static.wixstatic.com/mp3/7f5efc_6223bdff2fca421aa8f0720e0242a96e.mp3",
+    title: "Está pronto para o poder completo?",
+    gif: "https://static.wixstatic.com/media/7f5efc_356fcdf2e88344ea95e2f7d8e218c018~mv2.gif",
+    buttons: [
+      { text: "Sim, está claro", action: "continuar" },
+      { text: "Continuar agora", action: "continuar" }
+    ]
+  },
+  {
+    audio: "https://static.wixstatic.com/mp3/7f5efc_7932cb65472544788ac6dc7ebb2a5b37.mp3",
+    title: "Você se compromete?",
+    gif: "https://static.wixstatic.com/media/7f5efc_8f04a0244d954ae795ddd741d52fc009~mv2.gif",
+    buttons: [
+      { text: "Sim, eu me comprometo", action: "continuar" },
+      { text: "Vou pensar", action: "continuar" }
+    ]
+  },
+  {
+    audio: "https://static.wixstatic.com/mp3/7f5efc_45087183048d4fa1a9586f0100342b08.mp3",
+    title: "Última etapa... o portal está se abrindo.",
+    gif: "https://static.wixstatic.com/media/7f5efc_dfcf2f7c50bc4d9c9a91efcfec1c89e6~mv2.gif",
+    buttons: [
+      { text: "🚪 LIBERAR ACESSO AO CÓDIGO DA PERSUASÃO", action: "link", link: "https://sun.eduzz.com/E0D6P4V691" }
+    ]
+  }
+];
+
+let currentStage = 0;
+
+/* 🎬 Inicia a primeira etapa final */
+function showResult() {
+  currentStage = 0;
+  playFinalStage();
+}
+
+/* 🔊 Toca o áudio e mostra o GIF correspondente */
+function playFinalStage() {
+  const stage = finalStages[currentStage];
+  const container = document.querySelector(".quiz-container");
+
+  container.innerHTML = `
+    <div class="gif-container">
+      <img src="${stage.gif}" alt="Oráculo">
+    </div>
+  `;
+
+  const audio = new Audio(stage.audio);
+  audio.play();
+  audio.onended = () => showStageButtons();
+}
+
+/* 🧠 Mostra título e botões ao fim do áudio */
+function showStageButtons() {
+  const stage = finalStages[currentStage];
+  const container = document.querySelector(".quiz-container");
+
+  container.innerHTML = `
+    <div class="gif-container">
+      <img src="${stage.gif}" alt="Oráculo">
+    </div>
+    <div class="question-text" style="display:block;">${stage.title}</div>
+  `;
+
+  stage.buttons.forEach(btnData => {
+    const btn = document.createElement("button");
+    btn.textContent = btnData.text;
+    btn.style.cssText = `
+      background: linear-gradient(145deg, #00ffcc, #00ccff);
+      color: #000;
+      border: none;
+      font-weight: bold;
+      padding: 15px 25px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1.1em;
+      margin: 10px auto;
+      width: 90%;
+      max-width: 300px;
+      box-shadow: 0 0 15px rgba(0,255,200,0.6);
+      transition: all .3s ease;
+    `;
+    btn.onmouseenter = () => btn.style.boxShadow = "0 0 25px rgba(0,255,200,0.9)";
+    btn.onmouseleave = () => btn.style.boxShadow = "0 0 15px rgba(0,255,200,0.6)";
+
+    if (btnData.action === "continuar") {
+      btn.onclick = () => {
+        currentStage++;
+        if (currentStage < finalStages.length) {
+          playFinalStage();
+        } else {
+          window.location.href = "https://sun.eduzz.com/E0D6P4V691";
+        }
+      };
+    } else if (btnData.action === "link") {
+      btn.onclick = () => window.location.href = btnData.link;
+    }
+
+    container.appendChild(btn);
+  });
+}
+</script>
+
+
+</body>
+</html>
