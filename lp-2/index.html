@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O Código da [P]ersuasão</title>
+  <link rel="icon" href="https://i.imgur.com/iPllVtt.jpeg" type="image/png">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Favicon -->
+<link rel="icon" href="https://i.imgur.com/iPllVtt.jpeg" type="image/png">
+
+<!-- Open Graph para redes sociais -->
+<meta property="og:title" content="O Código da [P]ersuasão" />
+<meta property="og:description" content="Descubra os gatilhos mentais ocultos e técnicas de persuasão proibidas." />
+<meta property="og:image" content="https://i.imgur.com/iPllVtt.jpeg" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://bigoffer.netlify.app/lp-1/" />
+
+<!-- Para WhatsApp e Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="O Código da [P]ersuasão" />
+<meta name="twitter:description" content="Descubra os gatilhos mentais ocultos e técnicas de persuasão proibidas." />
+<meta name="twitter:image" content="https://i.imgur.com/iPllVtt.jpeg" />
+
+  <style>
+      html {
+    scroll-behavior: smooth;
+  }
+    .aviso-topo {
+      background-color: #b71e1e;
+      color: #fff;
+      text-align: center;
+      padding: 10px 16px;
+      font-weight: bold;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9999;
+      transition: top 0.4s ease-in-out;
+    }
+    body { margin-top: 60px; }
+    .aviso-topo.hide { top: -60px; }
+
+    /* Botão pulsante com brilho */
+    .btn-pulsante {
+      animation: pulseZoom 1.5s infinite ease-in-out;
+      box-shadow: 0 0 15px rgba(34,197,94,0.8), 0 0 25px rgba(34,197,94,0.6);
+      transition: transform 0.3s ease-in-out;
+    }
+    @keyframes pulseZoom {
+      0%   { transform: scale(1);   box-shadow: 0 0 10px rgba(34,197,94,0.7), 0 0 20px rgba(34,197,94,0.5); }
+      50%  { transform: scale(1.08); box-shadow: 0 0 20px rgba(34,197,94,1), 0 0 40px rgba(34,197,94,0.7); }
+      100% { transform: scale(1);   box-shadow: 0 0 10px rgba(34,197,94,0.7), 0 0 20px rgba(34,197,94,0.5); }
+    }
+  </style>
+</head>
+
+<body class="bg-black text-white font-sans">
+
+<!-- Tarja Vermelha com Cronômetro -->
+<div class="aviso-topo" id="aviso-topo">
+  ⚠️ <b>ATENÇÃO:</b> Essa página sairá do ar em breve...<br>
+  Corra, enquanto há tempo:  
+  <span id="countdown" style="margin-left:10px; font-weight:bold;"></span>
+</div>
+
+<script>
+  // Cronômetro regressivo de 5 minutos
+  let tempo = 10 * 60; 
+  const countdownEl = document.getElementById("countdown");
+
+  function atualizarCountdown() {
+    const minutos = Math.floor(tempo / 60);
+    const segundos = tempo % 60;
+    countdownEl.textContent = `${minutos}:${segundos.toString().padStart(2,'0')}`;
+    if (tempo > 0) {
+      tempo--;
+    } else {
+      clearInterval(timer);
+      countdownEl.textContent = "Expirado!";
+    }
+  }
+  atualizarCountdown();
+  const timer = setInterval(atualizarCountdown, 1000);
+
+  // Esconder tarja ao rolar
+  let ultimoScroll = 0;
+  const aviso = document.getElementById("aviso-topo");
+  window.addEventListener("scroll", () => {
+    const atualScroll = window.scrollY;
+    if (atualScroll > ultimoScroll) {
+      aviso.classList.add("hide");
+    } else {
+      aviso.classList.remove("hide");
+    }
+    ultimoScroll = atualScroll;
+  });
+</script>
+
+<!-- HERO -->
+ <br><br>
+<section class="relative px-6 pt-12 pb-4 lg:pt-16 lg:pb-4 bg-black">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
+
+    <!-- Imagem -->
+    <div class="flex justify-center lg:order-2">
+      <img src="https://i.imgur.com/rE9pIj5.png" 
+          class="w-[90%] max-w-sm lg:max-w-md object-contain" />
+    </div>
+
+    <!-- Texto -->
+    <div class="text-center lg:text-left lg:order-1">
+      <h1 class="text-3xl lg:text-5xl font-bold leading-tight mb-6">
+        <span class="text-white">O Código da [P]ersuasão</span><br>
+        <span class="bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent">
+          Te Fará Rico Nos Próximos Dias
+        </span>
+      </h1>
+      <p class="text-lg max-w-xl mx-auto lg:mx-0 text-gray-300 mb-8">
+        Conquiste o que deseja com estas técnicas comprovadas de PNL e persuasão para <b>manipular pessoas, 
+        conquistar dinheiro e respeito</b>.
+      </p><br>
+<a href="#preco" 
+   class="bg-green-500 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all btn-pulsante">
+   🔒 ASSUMIR OS RISCOS
+</a>
+
+<p class="mt-4 text-sm text-gray-400">
+  *Só clique se tiver coragem de começar!
+</p>
+    </div>
+
+  </div>
+</section><br><br><br><br>
+
+
+
+
+<!-- SEÇÃO 2: PARA QUEM É -->
+<section class="px-6 pt-0 pb-12 bg-black text-center">
+ 
+
+<!-- Imagem translucida com fade-in -->
+<div class="flex justify-center">
+  <img src="https://i.imgur.com/5cdAX57.png" 
+       alt="Decoração"
+       class="w-full max-w-2xl opacity-0 animate-fade-in -mb-2">
+</div>
+
+<style>
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(1.05); }
+  to   { opacity: 0.8; transform: scale(1); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1.5s ease-in-out forwards;
+  animation-delay: 1s; /* só aparece depois de 2 segundos */
+}
+</style>
+
+
+  <!-- Título -->
+<h2 class="text-3xl lg:text-4xl font-bold mb-10 bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent">
+  Descubra se vc tem <span class="underline decoration-red-600 decoration-2 underline-offset-2">maturidade</span> p/ este tipo de conteúdo...
+</h2>
+
+  <!-- Grid dos cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+    <div class="card relative border border-gray-600 rounded-xl p-6 bg-white/5 overflow-hidden">
+      <img src="https://img.freepik.com/premium-photo/audience-concert-black-white_832479-14491.jpg"
+           class="absolute inset-0 w-full h-full object-cover opacity-30" />
+      <div class="relative z-10 text-white font-semibold">
+        Para quem deseja ganhar dinheiro e enriquecer com a [P]ersuasão.
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card relative border border-gray-600 rounded-xl p-6 bg-white/5 overflow-hidden opacity-0 translate-y-10 transition-all duration-700">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ823lK4dDABdtlnYdKF3QKQCjAiK5y-lwLOOaUlgdA8cuIx3FGlFO_dpVW3H-a7imgmFk&usqp=CAU"
+           class="absolute inset-0 w-full h-full object-cover opacity-30 transition-transform duration-500 hover:scale-110" />
+      <div class="relative z-10 text-white font-semibold">
+        Aprenda estas técnicas para controlar e manipular as pessoas.
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="card relative border border-gray-600 rounded-xl p-6 bg-white/5 overflow-hidden opacity-0 translate-y-10 transition-all duration-700">
+      <img src="https://www.eusemfronteiras.com.br/wp-content/uploads/2018/11/pexels-photo-568025.jpeg"
+           class="absolute inset-0 w-full h-full object-cover opacity-30 transition-transform duration-500 hover:scale-110" />
+      <div class="relative z-10 text-white font-semibold">
+        Para quem quer melhorar relacionamentos e conseguir o que deseja.
+      </div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="card relative border border-gray-600 rounded-xl p-6 bg-white/5 overflow-hidden opacity-0 translate-y-10 transition-all duration-700">
+      <img src="https://images.pexels.com/photos/1666816/pexels-photo-1666816.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+           class="absolute inset-0 w-full h-full object-cover opacity-30 transition-transform duration-500 hover:scale-110" />
+      <div class="relative z-10 text-white font-semibold">
+        Para quem busca respeito, autoridade e autoconfiança.
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+  // Animação dos cards ao rolar a página
+  const cards = document.querySelectorAll('.card');
+
+  function revelarCards() {
+    const triggerBottom = window.innerHeight * 0.85;
+    cards.forEach(card => {
+      const cardTop = card.getBoundingClientRect().top;
+      if (cardTop < triggerBottom) {
+        card.classList.add("opacity-100", "translate-y-0");
+        card.classList.remove("opacity-0", "translate-y-10");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", revelarCards);
+  window.addEventListener("load", revelarCards);
+</script>
+
+
+
+
+
+
+
+<!-- SEÇÃO 3 -->
+<section class="relative px-6 py-32 bg-black text-center overflow-hidden">
+  <h2 class="text-3xl lg:text-4xl font-bold mb-16 bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent relative z-20">
+    O que vc vai aprender dentro do Código da <span class="text-red-600">[P]ersuasão</span>?
+  </h2>
+
+  <!-- Linha de sangue -->
+  <div id="blood-line" class="absolute top-56 left-1/2 -translate-x-1/2 w-[6px] rounded-full z-10"></div>
+
+  <!-- Textos -->
+  <div class="relative flex flex-col items-center gap-20 z-20">
+    <p class="opacity-0 transition-opacity duration-1000 text-white text-base max-w-md fade-text drop-shadow-[0_0_10px_black]">
+      📖 Descubra os 15 gatilhos mentais, <br>
+      como funcionam e como aplicá-los <br>
+      no dia a dia.
+    </p>
+    <p class="opacity-0 transition-opacity duration-1000 text-white text-base max-w-md fade-text drop-shadow-[0_0_10px_black]">
+      🧠 Domine as técnicas de PNL para <br>
+      programar sua mente e influenciar <br>
+      pessoas.
+    </p>
+    <p class="opacity-0 transition-opacity duration-1000 text-white text-base max-w-md fade-text drop-shadow-[0_0_10px_black]">
+      🎯 Veja aplicações práticas em vendas, <br>
+      negociações e relacionamentos reais.
+    </p>
+  </div>
+</section>
+
+<style>
+  #blood-line {
+    height: 0;
+    background: linear-gradient(to bottom, #b71c1c 0%, #ff0000 40%, #700000 100%);
+    box-shadow: 0 0 25px rgba(255,0,0,0.6);
+    position: absolute;
+    border-radius: 999px;
+  }
+  #blood-line::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #ff0000 0%, #8b0000 80%);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(255,0,0,0.6);
+  }
+</style>
+<script>
+  const bloodLine = document.getElementById("blood-line");
+  const texts = document.querySelectorAll(".fade-text");
+
+  let maxProgress = 0; // guarda até onde já chegou
+
+  window.addEventListener("scroll", () => {
+    const section = bloodLine.parentElement;
+    const rect = section.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    if (rect.top < windowHeight && rect.bottom > 0) {
+      let progress = Math.min(Math.max((windowHeight - rect.top) / (rect.height + windowHeight), 0), 1);
+
+      // nunca diminuir, só aumentar
+      if (progress > maxProgress) {
+        maxProgress = progress;
+      }
+
+      // sangue desce mais devagar (divisor = velocidade)
+      const slowProgress = maxProgress * 0.6; // 0.5 = bem devagar, 0.8 = mais rápido
+
+      bloodLine.style.height = `${slowProgress * rect.height}px`;
+      bloodLine.style.width = `${6 + slowProgress * 6}px`;
+
+      // Textos aparecem um pouco antes
+      texts.forEach((text, i) => {
+        let trigger = (i + 1) * 0.12 + 0.05;
+        if (slowProgress > trigger) {
+          text.classList.add("opacity-100");
+        }
+      });
+    }
+  });
+</script>
+
+
+
+
+
+
+<!-- CARD DE PREÇO -->
+<div id="preco" class="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-8 max-w-sm sm:max-w-md mx-auto text-black mt-20 shadow-2xl">
+
+  <!-- Reflexos de vidro -->
+  <div class="absolute inset-0 pointer-events-none rounded-2xl">
+    <div class="absolute top-0 left-0 w-1/2 h-1/3 bg-gradient-to-br from-white/40 to-transparent opacity-20 blur-2xl"></div>
+    <div class="absolute bottom-0 right-0 w-1/3 h-1/4 bg-gradient-to-tl from-white/30 to-transparent opacity-10 blur-xl"></div>
+    <div class="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-5"></div>
+  </div>
+
+  <!-- Imagem  -->
+  <div class="flex justify-center relative -mt-36 z-20">
+    <img src="https://i.imgur.com/AQVxso7.png" 
+         alt="Capa Código da Persuasão" 
+         class="w-[360px] sm:w-[460px] h-auto object-contain drop-shadow-[0_0_45px_rgba(0,0,0,0.9)]">
+  </div>
+
+  <!-- Conteúdo do card -->
+  <div class="relative z-10 -mt-10">
+    <!-- Título -->
+ <h3 class="text-2xl font-extrabold text-white mb-6 text-center relative z-10 mt-10">
+  O CÓDIGO DA [P]ERSUASÃO
+</h3>
+
+    <!-- Lista de benefícios -->
+    <ul class="mx-auto max-w-[300px] text-left mb-6 space-y-3 text-white/90 text-sm sm:text-base">
+      <li class="flex items-start gap-2">
+        <span class="flex-shrink-0 mt-0.5 text-red-500 text-lg">✓</span>
+        <span><strong class="text-white">Código Completo de Persuasão</strong></span>
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="flex-shrink-0 mt-0.5 text-red-500 text-lg">✓</span>
+        <span>Versão em <strong>Audio book</strong> completo</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="flex-shrink-0 mt-0.5 text-red-500 text-lg">✓</span>
+        <span><strong>Manual de manipulação</strong> de pessoas</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="flex-shrink-0 mt-0.5 text-red-500 text-lg">✓</span>
+        <span><strong>Livros Proibidos</strong> para gerar Riqueza</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="flex-shrink-0 mt-0.5 text-red-500 text-lg">✓</span>
+        <span>Conteúdo fechado de grandes Mentorias</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="flex-shrink-0 mt-0.5 text-red-500 text-lg">✓</span>
+        <span>Acesso <strong>vitalício</strong> à Área de Membros</span>
+      </li>
+    </ul>
+
+    <!-- Preço -->
+    <div class="text-center mb-4">
+      <p class="text-base mb-2 text-gray-200">
+        De <s class="text-red-500">R$ 97,00</s> por
+      </p>
+<div class="flex items-center justify-center gap-2 leading-none">
+  <span class="text-xl sm:text-2xl text-gray-300">6x de</span>
+  <span class="text-6xl sm:text-7xl font-extrabold text-green-400 drop-shadow-[0_0_20px_rgba(34,197,94,0.9)]">
+    R$ 5,23
+  </span>
+</div>
+
+      <div class="mt-1 text-gray-200 text-base">ou R$ 27,90 à vista</div>
+    </div><br>
+
+    <!-- Botão CTA -->
+    <a href="https://sun.eduzz.com/E0D6P4V691"
+       class="block bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-lg text-lg transition-all btn-pulsante text-center shadow-lg">
+      DESBLOQUEAR O CÓDIGO
+    </a>
+
+    <!-- Rodapé com imagem colada no botão -->
+<!-- Rodapé com imagem colada no botão -->
+<div class="flex justify-center mt-4">
+  <img src="https://www.lucasnaves.com.br/wp-content/uploads/2019/07/compra-Segura-vetor-branco1-1.png" 
+       alt="Compra Segura" class="w-56 h-auto opacity-95">
+</div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<br><br>
+
+<!-- SEÇÃO DEPOIMENTOS -->
+<section class="px-6 py-20 bg-black text-center relative overflow-hidden">
+  <h2 class="text-3xl lg:text-4xl font-bold mb-10 bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent">
+    Manipuladores que garantiram o Código da [P]ersuasão:
+  </h2>
+
+  <div class="slider-container relative w-full overflow-hidden">
+    <div class="slider-track flex gap-6 w-max animate-slide">
+
+      <!-- DEPOIMENTO 1 -->
+      <div class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative">
+        <div class="flex items-center gap-4 mb-4">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq0jls4tKxq6BxwxiA4Amhif4qtfzJoD-1TQ&s" 
+               alt="Homem 1" class="w-16 h-16 rounded-full object-cover">
+          <div class="text-left">
+            <div class="text-yellow-400">★★★★★</div>
+            <p class="font-bold">Carlos Mendes</p>
+            <p class="text-sm text-gray-300">@carlos.mendes</p>
+          </div>
+        </div>
+        <p class="italic text-gray-200">"Depois que apliquei as técnicas, meu relacionamento mudou completamente. Hoje tenho respeito e admiração da minha parceira como nunca."</p>
+      </div>
+
+      <!-- DEPOIMENTO 2 -->
+      <div class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative">
+        <div class="flex items-center gap-4 mb-4">
+          <img src="https://storage.alboom.ninja/sites/12999/media/20841125_1231455266966305_7701507656374992607_n_b6ed5833d2e7_54ddc3f2ae66.jpg?t=1583411351" 
+               alt="Mulher 1" class="w-16 h-16 rounded-full object-cover">
+          <div class="text-left">
+            <div class="text-yellow-400">★★★★★</div>
+            <p class="font-bold">Juliana Costa</p>
+            <p class="text-sm text-gray-300">@julicosta.oficial</p>
+          </div>
+        </div>
+        <p class="italic text-gray-200">"Consegui dobrar minhas vendas em menos de 2 semanas. As pessoas simplesmente não dizem mais 'não' para mim."</p>
+      </div>
+
+      <!-- DEPOIMENTO 3 -->
+      <div class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative">
+        <div class="flex items-center gap-4 mb-4">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI50nmF1rK5pKKVxoP9YwrRGwQzv_b-AbGJg&s" 
+               alt="Homem 2" class="w-16 h-16 rounded-full object-cover">
+          <div class="text-left">
+            <div class="text-yellow-400">★★★★★</div>
+            <p class="font-bold">Daniel Moreira</p>
+            <p class="text-sm text-gray-300">@danmoreira</p>
+          </div>
+        </div>
+        <p class="italic text-gray-200">"No trabalho, passei a ser visto como líder. Fechei projetos milionários e finalmente alcancei a promoção que buscava."</p>
+      </div>
+
+      <!-- DEPOIMENTO 4 -->
+      <div class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative">
+        <div class="flex items-center gap-4 mb-4">
+          <img src="https://cdn.vgnoticias.com.br/storage/webdisco/2018/12/23/800x600/74e6e3a8d13a7ba54fda12c07f6b225a.jpg" 
+               alt="Mulher 2" class="w-16 h-16 rounded-full object-cover">
+          <div class="text-left">
+            <div class="text-yellow-400">★★★★★</div>
+            <p class="font-bold">Fernanda Ribeiro</p>
+            <p class="text-sm text-gray-300">@fer.ribeiro</p>
+          </div>
+        </div>
+        <p class="italic text-gray-200">"Aprendi a manipular as situações ao meu favor. Hoje ganho mais dinheiro e tenho o respeito das pessoas ao meu redor."</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ESTILOS -->
+<style>
+  .glass-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+  }
+
+  .slider-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .slider-track {
+    display: flex;
+    gap: 20px;
+    animation: slide 25s linear infinite;
+  }
+
+  @keyframes slide {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+</style>
+
+
+
+
+
+
+<!-- GARANTIA -->
+<section class="px-6 py-16 text-center">
+  <div class="bg-white text-black rounded-xl shadow-lg max-w-lg mx-auto p-8">
+    <img src="https://media.inlead.cloud/uploads/7652/2025-03-12/sm-x1kj9-sm-5qzj0-image-220-2-3.webp" 
+         alt="Garantia 30 Dias" 
+         class="mx-auto mb-6 w-32 lg:w-40">
+    <h3 class="text-2xl font-bold mb-4">Garantia de 30 Dias</h3>
+    <p style="font-size:14px; color:#333; line-height:1.5; max-width:420px; margin:0 auto;">
+      Eu sei que você vive com medinho, então eu decidi garantir este material por 30 dias.<br><br>
+      Se ele não atender às suas expectativas, nós reembolsaremos essa mixaria que você pagou, sem perguntas.<br><br>
+      Basta enviar um e-mail para o suporte <b>contato@codigo-persuasao.com.br</b>
+    </p>
+  </div>
+</section>
+
+<!-- OFERTA FINAL -->
+<section class="px-6 py-20 bg-gradient-to-b from-black to-gray-900 text-center">
+  <h2 class="text-3xl lg:text-5xl font-bold mb-6"><b>⚠️ Ansioso...</b> Já rolou a página até o final sem ler?</h2>
+  <p class="text-gray-300 mb-8">Vou resumir para vc... Este material é um guia completo de <b>PNL e Gatilhos Mentais</b> para influenciar pessoas, persuadir e conquistar respeito, vendas e autoridade. 
+<br>
+ <p class="text-gray-300 mb-8"><b>CUIDADO:</b> Não utilize estas técnicas para o mal!!! 
+  </p>
+  <a href="https://sun.eduzz.com/E0D6P4V691" 
+     class="bg-green-500 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all btn-pulsante">
+     ✅ QUERO ACESSAR AGORA
+  </a>
+</section>
+
+
+
+<!-- FOOTER -->
+<footer class="bg-black text-gray-500 text-xs text-center py-8 px-4">
+  
+  <!-- Imagem pequena acima do texto -->
+<br><br>
+
+  <p><strong>O Código da [P]ersuasão</strong> - Todos os direitos reservados.<br>
+  ESTE SITE NÃO É do FACEBOOK. Este site não faz parte do site do Facebook ou do Facebook Inc.<br>
+  FACEBOOK é uma marca comercial independente da FACEBOOK, Inc.</p><br><br>
+</footer>
+
+
+<script>
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+</script>
+
+
+
+<!-- Notificações (canto inferior esquerdo) -->
+<div id="toasts" class="fixed bottom-4 left-4 z-[10000] space-y-3 pointer-events-none"></div>
+
+<style>
+  /* animações do toast */
+  @keyframes toastIn {
+    from { transform: translate(-20px, 20px); opacity: 0; }
+    to   { transform: translate(0, 0);        opacity: 1; }
+  }
+  @keyframes toastOut {
+    to { transform: translateY(10px); opacity: 0; }
+  }
+  .toast-enter { animation: toastIn .6s ease forwards; }
+  .toast-exit  { animation: toastOut .5s ease forwards; }
+</style>
+
+<script>
+  // listas: 5 homens + 5 mulheres, 10 UFs diferentes
+  const NOMES = [
+    "Luiz Carlos", "Marcos Vinícius", "João Pedro", "Rafael Lima", "Diego Souza",
+    "Ana Paula", "Juliana Costa", "Fernanda Ribeiro", "Mariana Alves", "Camila Rocha"
+  ];
+  const UFS = ["SP","RJ","MG","BA","RS","SC","PR","GO","DF","PE"];
+
+  const TOASTS_WRAP = document.getElementById("toasts");
+  const CHECK_SVG = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="12" fill="#22c55e" opacity=".95"></circle>
+      <path d="M7 12.5l3.2 3L17 9" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`;
+
+  function randItem(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+  function showToast() {
+    const nome = randItem(NOMES);
+    const uf   = randItem(UFS);
+
+const toast = document.createElement("div");
+toast.className = "pointer-events-auto toast-enter flex items-start gap-3 w-[320px] max-w-[92vw] p-4 rounded-2xl text-white shadow-2xl border border-white/10 backdrop-blur-md";
+toast.style.background = "rgba(19,19,19,0.85)"; // #131313 translúcido
+toast.innerHTML = `
+  <div class="shrink-0 mt-0.5">${CHECK_SVG}</div>
+  <div class="flex-1 leading-tight">
+    <div class="font-semibold">${nome}, ${uf}</div>
+    <div class="text-sm text-white/90">Compra efetuada!</div>
+  </div>
+`;
+
+    TOASTS_WRAP.appendChild(toast);
+
+    // remove após ~5s
+    setTimeout(() => {
+      toast.classList.remove("toast-enter");
+      toast.classList.add("toast-exit");
+      setTimeout(() => toast.remove(), 550);
+    }, 5000);
+
+    // agenda próxima notificação em 15–20s
+    scheduleNext();
+  }
+
+  function scheduleNext(){
+    const delay = 20000 + Math.random()*10000; // 20s a 30s
+    setTimeout(showToast, delay);
+  }
+
+  // inicia após um pequeno atraso
+  setTimeout(showToast, 7000);
+
+
+
+
+
+
+  
+// Bloqueia pinça (touchmove com 2 dedos)
+document.addEventListener('touchmove', function(e) {
+  if (e.touches && e.touches.length > 1) {
+    e.preventDefault();
+  }
+}, { passive: false });
+
+// Bloqueia duplo-toque rápido
+let lastTouchEnd = 0;
+document.addEventListener('touchend', function(e) {
+  const now = Date.now();
+  if (now - lastTouchEnd <= 300) {
+    e.preventDefault();
+  }
+  lastTouchEnd = now;
+}, false);
+
+// Bloqueia gestos específicos no iOS
+document.addEventListener('gesturestart', function(e) {
+  e.preventDefault();
+});
+
+
+
+// Bloqueia o menu de contexto (clique direito)
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+// Impede copiar/recortar/selecionar texto
+['copy','cut','selectstart','dragstart'].forEach(evt =>
+  document.addEventListener(evt, e => e.preventDefault())
+);
+
+// Bloqueia atalho Ctrl+C, Ctrl+U (ver fonte), Ctrl+S, Ctrl+P e F12
+document.addEventListener('keydown', e => {
+  const forbidden =
+    // combinações de Ctrl + C, U, S, P, A
+    (e.ctrlKey &&
+      ['c','u','s','p','a'].includes(e.key.toLowerCase()))
+    // F12
+    || e.key === 'F12';
+  if (forbidden) e.preventDefault();
+});
+
+
+</script>
+
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '839138854780074'); // seu pixel ID
+  fbq('track', 'PageView');
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+       src="https://www.facebook.com/tr?id=839138854780074&ev=PageView&noscript=1"/>
+</noscript>
+
+
+<!-- SCRIPT PARA REPASSAR UTM -->
+<script>
+  // captura os parâmetros da URL
+  const queryString = window.location.search;
+
+  // encontra todos os links com eduzz/sun/checkout/etc
+  document.querySelectorAll("a[href*='sun.eduzz.com'], a[href*='eduzz.com']").forEach(link => {
+    let url = new URL(link.href);
+
+    // se já tem query, mantém
+    if(queryString){
+      url.search += (url.search ? '&' : '') + queryString.substring(1);
+      link.href = url.toString();
+    }
+  });
+</script>
+
+</body>
+</html>
