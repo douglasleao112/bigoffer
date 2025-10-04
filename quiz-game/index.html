@@ -147,14 +147,14 @@
   <script>
     const questions = [
       {
-        text: "Valendo...",
+        text: "Vamos lá! Valendo...",
         options: ["Escassez", "Prova Social", "Autoridade"],
         correct: 2,
         audio: "https://static.wixstatic.com/mp3/7f5efc_6887c7208e59424ab157e31a39137b0c.mp3",
         gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif"
       },
       {
-        text: "Até uma criança sabe essa!",
+        text: "Até uma criança de 5 anos sabe essa!",
         options: ["Urgência", "Escassez", "Reciprocidade"],
         correct: 1,
         audio: "https://static.wixstatic.com/mp3/7f5efc_5a19d15e56a742a6992b2a3f46597638.mp3",
@@ -168,7 +168,7 @@
         gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif"
       },
       {
-        text: "Me prova que sabe",
+        text: "Me prova que sabe...",
         options: ["Reciprocidade", "Curiosidade", "Escassez"],
         correct: 0,
         audio: "https://static.wixstatic.com/mp3/7f5efc_d4565de85cfe47e182eb158a74424204.mp3",
@@ -254,17 +254,11 @@
     }
 
 
-
-
-
-
     // Permitir tocar o áudio ao clicar em qualquer lugar da tela
 document.body.addEventListener("click", function playOnce() {
   unmuteIntro();
   document.body.removeEventListener("click", playOnce);
 });
-
-
 
 
 
@@ -353,21 +347,27 @@ function showStageButtons() {
   stage.buttons.forEach(btnData => {
     const btn = document.createElement("button");
     btn.textContent = btnData.text;
-    btn.style.cssText = `
-      background: linear-gradient(145deg, #00ffcc, #00ccff);
-      color: #000;
-      border: none;
-      font-weight: bold;
-      padding: 15px 25px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-size: 1.1em;
-      margin: 10px auto;
-      width: 90%;
-      max-width: 300px;
-      box-shadow: 0 0 15px rgba(0,255,200,0.6);
-      transition: all .3s ease;
-    `;
+btn.style.cssText = `
+  display: block;
+  background: linear-gradient(145deg, #00ffcc, #00ccff);
+  color: #000;
+  border: none;
+  font-weight: bold;
+  padding: 15px 25px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1.1em;
+  margin: 20px auto;
+  width: fit-content;
+  min-width: 220px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0,255,200,0.6);
+  transition: all .3s ease;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+`;
+
     btn.onmouseenter = () => btn.style.boxShadow = "0 0 25px rgba(0,255,200,0.9)";
     btn.onmouseleave = () => btn.style.boxShadow = "0 0 15px rgba(0,255,200,0.6)";
 
