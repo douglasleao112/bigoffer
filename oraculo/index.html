@@ -154,7 +154,7 @@
 #thermometer-container {
   position: fixed;
   left: 20px;
-  bottom: 15px;
+  bottom: 30px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -164,7 +164,7 @@
 /* Barra principal */
 #thermometer {
   width: 10px;
-  height: 170px;
+  height: 180px;
   background: linear-gradient(to top, #111, #1a1a1a);
   border-radius: 8px;
   border: 1px solid rgba(255,255,255,0.08);
@@ -173,12 +173,11 @@
   position: relative;
 }
 
-/* Interior e preenchimento */
 .thermo-inner {
   position: relative;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: visible; /* ✅ agora a bolinha pode aparecer fora da barra */
   border-radius: 8px;
   box-shadow: inset 0 0 6px rgba(0,255,200,0.25);
 }
@@ -194,31 +193,30 @@
   box-shadow: 0 0 8px rgba(0,255,200,0.5);
 }
 
-/* ✅ Bolinha com mesma cor e brilho da barra */
+/* 🔵 Bolinha ligeiramente maior e mais viva */
 .thermo-bulb {
   position: absolute;
-  bottom: -12px;
+  bottom: -14px; /* ajusta para alinhar com a base */
   left: 50%;
   transform: translateX(-50%);
-  width: 20px;
-  height: 20px;
+  width: 20px;  /* 🔼 aumentada */
+  height: 20px; /* 🔼 aumentada */
   background: radial-gradient(circle at 30% 30%, #00ffcc, #00bfff); /* mesma cor do preenchimento */
   border-radius: 50%;
-  box-shadow: 0 0 14px rgba(0,255,200,0.8); /* brilho verde igual ao da barra */
+  box-shadow: 0 0 18px rgba(0,255,200,0.9); /* brilho reforçado */
   border: 1px solid rgba(0,255,200,0.3);
   z-index: 3;
 }
-
-/* Indicador lateral */
+/* 🔁 Seta invertida (apontando para a esquerda) */
 .thermo-arrow {
   position: absolute;
-  right: -8px;
+  left: -8px; /* muda o lado da seta */
   top: calc(100% - 10%);
   width: 0;
   height: 0;
   border-top: 4px solid transparent;
   border-bottom: 4px solid transparent;
-  border-left: 6px solid #fff;
+  border-right: 6px solid #fff; /* seta aponta agora para a esquerda */
   opacity: 0.7;
   filter: drop-shadow(0 0 2px rgba(255,255,255,0.5));
   transition: top 1s ease-in-out;
@@ -725,7 +723,7 @@ const thermoFill = document.getElementById("thermoFill");
 const thermoArrow = document.querySelector(".thermo-arrow");
 
 // Define os níveis do termômetro em cada pergunta (0 a 100)
-const thermometerLevels = [20, 55, 40, 30, 85];
+const thermometerLevels = [20, 55, 30, 80, 35];
 
 function updateThermometer() {
   thermometerContainer.style.display = "flex"; // 🔥 Mostra o conjunto completo
