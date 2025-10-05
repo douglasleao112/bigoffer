@@ -24,6 +24,23 @@
 <meta name="twitter:image" content="https://i.imgur.com/iPllVtt.jpeg" />
 
   <style>
+    /* 🔼 Ajuste fino da posição do GIF, título e botões */
+.quiz-container {
+  margin-top: -40px; /* sobe todo o conjunto */
+}
+
+.gif-container img {
+  margin-top: -15px; /* sobe levemente o GIF */
+}
+
+.question-text {
+  margin-top: -10px; /* aproxima o texto do GIF */
+}
+
+.answers, .btn-universal, #startBtn {
+  margin-top: 8px; /* reduz o espaçamento dos botões */
+}
+
 body {
       background-color: #000;
       color: #fff;
@@ -319,10 +336,18 @@ body {
 
 <script>
 document.getElementById("beginPortal").addEventListener("click", () => {
+  // Fecha o aviso inicial
   document.getElementById("startOverlay").style.display = "none";
-  const audio = document.getElementById("introAudio");
-  audio.muted = false;
-  audio.play();
+
+  // Inicia o áudio principal do quiz
+  const intro = document.getElementById("introAudio");
+  intro.muted = false;
+  intro.play();
+
+  // 🎵 Inicia música de fundo com volume 30%
+  const bgMusic = document.getElementById("bgMusic");
+  bgMusic.volume = 0.5;
+  bgMusic.play().catch(err => console.log("Autoplay bloqueado até interação:", err));
 });
 </script>
 
@@ -742,8 +767,12 @@ function hideThermometer() {
   thermometerContainer.style.display = "none"; // 🔕 Esconde tudo junto
 }
 
-
 </script>
+<!-- 🎵 Áudio de fundo -->
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2024/05/21/audio_852c1196bc.mp3?filename=suspense-e-investigacao-hipervigilrpg-211156.mp3" type="audio/mpeg">
+  Seu navegador não suporta áudio.
+</audio>
 
 </body>
 </html>
