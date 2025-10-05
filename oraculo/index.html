@@ -638,43 +638,12 @@ function playFinalStage() {
   audio.onended = () => showStageButtons();
 }
 
-/* 🧠 Mostra título e botões ao fim do áudio */
-function showStageButtons() {
-  const stage = finalStages[currentStage];
-  const container = document.querySelector(".quiz-container");
 
-  container.innerHTML = `
-    <div class="gif-container">
-      <img src="${stage.gif}" alt="Oráculo">
-    </div>
-    <div class="question-text" style="display:block;">${stage.title}</div>
-  `;
 
-  stage.buttons.forEach(btnData => {
 
-    const btn = document.createElement("button");
-          btn.textContent = btnData.text;
-          btn.className = "btn-universal";
 
-    btn.onmouseenter = () => btn.style.boxShadow = "0 0 25px rgba(0,255,200,0.9)";
-    btn.onmouseleave = () => btn.style.boxShadow = "0 0 15px rgba(0,255,200,0.6)";
 
-    if (btnData.action === "continuar") {
-      btn.onclick = () => {
-        currentStage++;
-        if (currentStage < finalStages.length) {
-          playFinalStage();
-        } else {
-          window.location.href = "https://sun.eduzz.com/E0D6P4V691";
-        }
-      };
-    } else if (btnData.action === "link") {
-      btn.onclick = () => window.location.href = btnData.link;
-    }
 
-    container.appendChild(btn);
-  });
-}
 
 // 🔊 Som de clique
 const clickSound = new Audio("https://cdn.pixabay.com/download/audio/2025/08/03/audio_1df12d5efc.mp3?filename=computer-mouse-click-02-383961.mp3");
@@ -692,37 +661,6 @@ document.addEventListener("click", (e) => {
 
 
 
-<script>
-// 🔗 Captura UTMs e as adiciona a todos os links de saída
-(function() {
-  const params = new URLSearchParams(window.location.search);
-  if (!params.toString()) return;
-
-  // Monta a string de UTM
-  const utmString = params.toString();
-
-  // Percorre todos os links da página
-  document.querySelectorAll('a, button').forEach(el => {
-    const href = el.getAttribute('href');
-    if (href && href.includes('http')) {
-      // Se já tiver parâmetros, adiciona com &
-      const separator = href.includes('?') ? '&' : '?';
-      el.setAttribute('href', `${href}${separator}${utmString}`);
-    }
-
-    // Se o botão usa redirecionamento via JS:
-    if (el.onclick && el.onclick.toString().includes('window.location.href')) {
-      const match = el.onclick.toString().match(/window\.location\.href\s*=\s*['"](.*?)['"]/);
-      if (match) {
-        const link = match[1];
-        const separator = link.includes('?') ? '&' : '?';
-        const newLink = `${link}${separator}${utmString}`;
-        el.onclick = () => window.location.href = newLink;
-      }
-    }
-  });
-})();
-</script>
 
 
 
@@ -966,7 +904,8 @@ if (currentStage === 0) {
 
 
 
-// 🧠 Mostra os botões e também salva o progresso
+
+
 function showStageButtons() {
   const stage = finalStages[currentStage];
   const container = document.querySelector(".quiz-container");
@@ -986,27 +925,52 @@ function showStageButtons() {
     btn.onmouseenter = () => btn.style.boxShadow = "0 0 25px rgba(0,255,200,0.9)";
     btn.onmouseleave = () => btn.style.boxShadow = "0 0 15px rgba(0,255,200,0.6)";
 
+    // 🔹 Se for botão de continuar
     if (btnData.action === "continuar") {
       btn.onclick = () => {
         currentStage++;
-        saveProgress(); // 💾 salva o avanço
+        saveProgress();
         if (currentStage < finalStages.length) {
           playFinalStage();
         } else {
+          resetProgress();
           window.location.href = "https://sun.eduzz.com/E0D6P4V691";
-          resetProgress(); // 🧹 limpa o progresso ao final
         }
       };
-    } else if (btnData.action === "link") {
-      btn.onclick = () => {
-        resetProgress(); // 🧹 limpa o progresso ao clicar no link final
-        window.location.href = btnData.link;
-      };
     }
+
+// 🔹 Se for o botão final (link)
+else if (btnData.action === "link") {
+  btn.onclick = () => {
+    // 🎆 Efeito de fogos
+    launchFireworks();
+
+    // 🔗 Recupera UTMs da URL atual
+    const params = new URLSearchParams(window.location.search);
+    const utmString = params.toString();
+    let finalLink = btnData.link;
+
+    if (utmString) {
+      const separator = finalLink.includes('?') ? '&' : '?';
+      finalLink = `${finalLink}${separator}${utmString}`;
+    }
+
+    // 🧹 Limpa progresso e redireciona após o efeito
+    setTimeout(() => {
+      resetProgress();
+      window.location.href = finalLink;
+    }, 1800);
+  };
+}
 
     container.appendChild(btn);
   });
 }
+
+
+
+
+
 
 // 🧹 Função para limpar o progresso completamente
 function resetProgress() {
@@ -1023,7 +987,51 @@ document.addEventListener('click', e => {
 </script>
 
 
+<script>
+// 🎆 EFEITO DE FOGOS DE ARTIFÍCIO
+function launchFireworks() {
+  const fireworksContainer = document.createElement('div');
+  fireworksContainer.style.position = 'fixed';
+  fireworksContainer.style.inset = '0';
+  fireworksContainer.style.pointerEvents = 'none';
+  fireworksContainer.style.zIndex = '999999';
+  document.body.appendChild(fireworksContainer);
 
+  const colors = ['#00fff2', '#00bfff', '#ff00cc', '#ffcc00', '#ffffff'];
+
+  for (let i = 0; i < 60; i++) {
+    const particle = document.createElement('div');
+    particle.style.position = 'absolute';
+    particle.style.width = '4px';
+    particle.style.height = '4px';
+    particle.style.borderRadius = '50%';
+    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+    particle.style.left = Math.random() * 100 + 'vw';
+    particle.style.top = Math.random() * 100 + 'vh';
+    particle.style.opacity = 1;
+    particle.style.transform = 'scale(1)';
+    fireworksContainer.appendChild(particle);
+
+    const angle = Math.random() * 2 * Math.PI;
+    const distance = 80 + Math.random() * 80;
+
+    const x = Math.cos(angle) * distance;
+    const y = Math.sin(angle) * distance;
+
+    particle.animate([
+      { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+      { transform: `translate(${x}px, ${y}px) scale(0.2)`, opacity: 0 }
+    ], {
+      duration: 1200 + Math.random() * 600,
+      easing: 'ease-out',
+      fill: 'forwards'
+    });
+  }
+
+  // Remove o container após o efeito
+  setTimeout(() => fireworksContainer.remove(), 2000);
+}
+</script>
 
 </body>
 </html>
