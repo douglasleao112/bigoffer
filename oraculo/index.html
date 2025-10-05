@@ -24,7 +24,7 @@
 <meta name="twitter:image" content="https://i.imgur.com/iPllVtt.jpeg" />
 
   <style>
-    body {
+body {
       background-color: #000;
       color: #fff;
       font-family: 'Arial', sans-serif;
@@ -216,13 +216,13 @@
 /* 🔁 Seta à direita, apontando para a esquerda */
 .thermo-arrow {
   position: absolute;
-  right: -10px; /* ✅ posiciona no lado direito da barra */
-  top: calc(100% - 12%);
+  right: -10px; 
+  top: calc(100% - 18%);
   width: 0;
   height: 0;
   border-top: 4px solid transparent;
   border-bottom: 4px solid transparent;
-  border-right: 6px solid #fff; /* ✅ aponta para a esquerda */
+  border-right: 6px solid #fff; 
   opacity: 0.7;
   filter: drop-shadow(0 0 2px rgba(255,255,255,0.5));
   transition: top 1s ease-in-out;
@@ -364,7 +364,7 @@ document.getElementById("beginPortal").addEventListener("click", () => {
         gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif"
       },
       {
-        text: "Até uma criança de 5 anos sabe essa!",
+        text: "Uma criança de 5 anos sabe!",
         options: ["Urgência", "Escassez", "Reciprocidade"],
         correct: 1,
         audio: "https://static.wixstatic.com/mp3/7f5efc_5a19d15e56a742a6992b2a3f46597638.mp3",
@@ -550,7 +550,9 @@ function showResult() {
   playFinalStage();
 }
 
-/* 🔊 Toca o áudio e mostra o GIF correspondente */
+
+
+
 function playFinalStage() {
   const stage = finalStages[currentStage];
   const container = document.querySelector(".quiz-container");
@@ -562,7 +564,28 @@ function playFinalStage() {
   `;
 
   const audio = new Audio(stage.audio);
+
+  // 🔥 Efeito de desintegração na 1ª etapa do áudio final
+  if (currentStage === 0 && stage.audio.includes("7f5efc_c16fb254d2164b75a55acb4b5f1f9d35.mp3")) {
+    efeitoDesintegrar();
+  }
+
   audio.play();
+
+  // 🚀 Evento do último áudio (mantém seu controle)
+  if (currentStage === finalStages.length - 1) {
+    fbq('track', 'AddToWishlist');
+    console.log("📩 Evento AddToWishlist disparado (última etapa)");
+  }
+
+  audio.onended = () => showStageButtons();
+}
+
+
+
+
+
+
 
   // 🚀 Dispara evento quando o último áudio começa
   if (currentStage === finalStages.length - 1) {
@@ -740,6 +763,23 @@ function updateThermometer() {
 
 function hideThermometer() {
   thermometerContainer.style.display = "none"; // 🔕 Esconde tudo junto
+}
+
+
+
+/* 🌀 EFEITO DE DESINTEGRAÇÃO */
+function efeitoDesintegrar() {
+  const fade = document.createElement("div");
+  fade.className = "overlay";
+  fade.style.position = "fixed";
+  fade.style.inset = "0";
+  fade.style.background = "radial-gradient(circle, rgba(0,255,200,0.1) 0%, rgba(0,0,0,1) 90%)";
+  fade.style.transition = "opacity 2s ease";
+  fade.style.zIndex = "9999";
+  fade.style.pointerEvents = "none";
+  document.body.appendChild(fade);
+  setTimeout(() => fade.style.opacity = 0, 200);
+  setTimeout(() => fade.remove(), 2200);
 }
 </script>
 
