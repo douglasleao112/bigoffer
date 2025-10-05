@@ -810,6 +810,7 @@ window.addEventListener('load', () => {
 
   // Se estava nas etapas finais
   else if (saved.phase === 'final') {
+    audioPlaying = false; // limpa estados antigos
     currentStage = saved.currentStage || 0;
     document.getElementById("startOverlay").style.display = "none";
     hideThermometer();
