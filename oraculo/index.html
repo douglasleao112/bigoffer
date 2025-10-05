@@ -493,7 +493,7 @@ document.getElementById("beginPortal").addEventListener("click", () => {
       document.getElementById("gifTop").innerHTML = `<img src="${question.gif}" alt="Oráculo">`;
 
       if (currentQuestion === 0 && typeof fbq === "function") {
-      fbq('track', 'Lead');
+      fbq('track', 'CompleteRegistration');
       }
     }
 
@@ -606,8 +606,8 @@ let currentStage = 0;
 /* 🎬 Inicia a primeira etapa do pitch */
 function showResult() {
   if (typeof fbq === "function") {
-    fbq('track', 'CompleteRegistration');
-    console.log("✅ Evento CompleteRegistration disparado!");
+    fbq('track', 'AddToWishlist');
+    console.log("✅ Evento disparado!");
   }
 
   // Continua o fluxo normal
@@ -631,8 +631,8 @@ function playFinalStage() {
 
   // 🚀 Dispara evento quando o último áudio começa
   if (currentStage === finalStages.length - 1) {
-    fbq('track', 'AddToWishlist');
-    console.log("📩 Evento AddToWishlist disparado (última etapa)");
+    fbq('track', 'Search');
+    console.log("📩 Evento disparado (última etapa)");
   }
 
   audio.onended = () => showStageButtons();
@@ -957,7 +957,7 @@ if (currentStage === 0) {
   // 🎯 Evento do pixel se for a última etapa
   if (currentStage === finalStages.length - 1) {
     fbq('track', 'AddToWishlist');
-    console.log("📩 Evento AddToWishlist disparado (última etapa)");
+    console.log("📩 Evento disparado (última etapa)");
   }
 
   audio.onended = () => showStageButtons();
