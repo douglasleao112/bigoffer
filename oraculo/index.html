@@ -595,12 +595,14 @@ const finalStages = [
   {
   audio: "https://static.wixstatic.com/mp3/7f5efc_45087183048d4fa1a9586f0100342b08.mp3",
 title: (() => {
-  const dias = ["domingo", "segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado"];
+  const dias = ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"];
   const hoje = new Date();
   const diaSemana = dias[hoje.getDay()];
   const dia = hoje.getDate().toString().padStart(2, '0');
   const mes = hoje.toLocaleString('pt-BR', { month: 'long' });
-  return `Agora é com você... O portal está aberto para garantir o Código da Persuasão com 70% de desconto!<br>
+  return `Agora é com você... <br>
+  <br>
+  O portal está aberto para garantir o Código da Persuasão com 70% de Desconto!<br>
   <br>
   <b>ATENÇÃO:</b> essa promoção ficará disponível somente hoje, ${diaSemana} ${dia} de ${mes}.`;
 })(),
