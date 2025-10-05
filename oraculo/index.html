@@ -152,39 +152,40 @@
 
 
 
+
 /* 🌡️ Contêiner geral do termômetro + legenda */
 #thermometer-container {
   position: fixed;
   left: 20px;
-  bottom: 40px;
+  bottom: 180px; /* 🔼 antes era 40px — agora sobe mais */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   z-index: 9999;
+  transition: bottom 0.4s ease; /* 🔄 movimento suave se quiser animar depois */
 }
 
-/* 🔋 Termômetro minimalista e elegante */
+/* 🔋 Termômetro minimalista fino */
 #thermometer {
-  width: 14px;
+  width: 10px; /* 👈 agora mais fino */
   height: 120px;
-  background: linear-gradient(to top, #1a1a1a, #222);
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.1);
-  box-shadow: 0 0 12px rgba(0,255,200,0.25);
-  display: none;
+  background: linear-gradient(to top, #111, #1a1a1a);
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 10px rgba(0,255,200,0.25);
 }
 
-/* Interior com leve brilho interno */
+/* Interior com brilho interno sutil */
 .thermo-inner {
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border-radius: 10px;
-  box-shadow: inset 0 0 8px rgba(0,255,200,0.3);
+  border-radius: 8px;
+  box-shadow: inset 0 0 6px rgba(0,255,200,0.25);
 }
 
-/* Preenchimento (nível de inocência) — verde neon futurista */
+/* Preenchimento (nível de inocência) — verde neon */
 .thermo-fill {
   position: absolute;
   bottom: 0;
@@ -193,50 +194,49 @@
   background: linear-gradient(to top, #00ffcc, #00bfff);
   height: 0%;
   transition: height 1s ease-in-out;
-  box-shadow: 0 0 10px rgba(0,255,200,0.6);
+  box-shadow: 0 0 8px rgba(0,255,200,0.5);
 }
 
-/* Base luminosa */
+/* Base luminosa ajustada e centralizada */
 #thermometer::before {
   content: "";
   position: absolute;
-  bottom: -18px;
+  bottom: -12px; /* 🔽 aproxima mais da barra */
   left: 50%;
-  transform: translateX(-50%);
-  width: 28px;
-  height: 28px;
-  background: radial-gradient(circle at 30% 30%, #00ffcc, #007777);
+  transform: translateX(-48%); /* 🔧 ligeiro ajuste para centralizar */
+  width: 16px;   /* 🔽 menor */
+  height: 16px;  /* 🔽 menor */
+  background: radial-gradient(circle at 30% 30%, #00ffcc, #006666);
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.2);
-  box-shadow: 0 0 15px rgba(0,255,200,0.7);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 8px rgba(0,255,200,0.6);
 }
 
-/* Indicador lateral branco discreto */
+/* Indicador lateral discreto */
 .thermo-arrow {
   position: absolute;
-  right: -10px;
+  right: -8px;
   top: calc(100% - 10%);
   width: 0;
   height: 0;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-left: 7px solid #fff;
-  opacity: 0.8;
-  filter: drop-shadow(0 0 2px rgba(255,255,255,0.6));
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 6px solid #fff;
+  opacity: 0.7;
+  filter: drop-shadow(0 0 2px rgba(255,255,255,0.5));
   transition: top 1s ease-in-out;
 }
 
 /* Texto abaixo — “Nível de Inocência” */
 #thermo-label {
-  font-size: 0.6em;
-  color: rgba(255,255,255,0.7);
-  margin-top: 8px;
+  font-size: 0.75em;
+  color: rgba(255,255,255,0.65);
+  margin-top: 6px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-weight: 600;
-  text-shadow: 0 0 6px rgba(0,255,200,0.3);
+  font-weight: 500;
+  text-shadow: 0 0 6px rgba(0,255,200,0.25);
 }
-
 
 
 
@@ -265,10 +265,8 @@
 </noscript>
 <!-- 🔵 End Meta Pixel Code -->
 
-
 </head>
 <body>
-
 
 
 <!-- 🌀 POPUP DE INÍCIO -->
@@ -329,13 +327,6 @@ document.getElementById("beginPortal").addEventListener("click", () => {
   audio.play();
 });
 </script>
-
-
-
-
-
-
-
 
 
 
@@ -721,35 +712,35 @@ document.addEventListener('keydown', e => {
 
 
 <!-- 🌡️ Termômetro de Inocência -->
-<div id="thermometer-container">
+<div id="thermometer-container" style="display: none;">
   <div id="thermometer">
     <div class="thermo-inner">
       <div class="thermo-fill" id="thermoFill"></div>
       <div class="thermo-arrow"></div>
     </div>
-    <p id="thermo-label">Nível de Inocência</p>
   </div>
+  <p id="thermo-label">Nível de Inocência</p>
 </div>
 
 <script>
-// 🔥 Termômetro de Inocência
+// 🌡️ Termômetro de Inocência
+const thermometerContainer = document.getElementById("thermometer-container");
 const thermometer = document.getElementById("thermometer");
 const thermoFill = document.getElementById("thermoFill");
 const thermoArrow = document.querySelector(".thermo-arrow");
 
 // Define os níveis do termômetro em cada pergunta (0 a 100)
-const thermometerLevels = [20, 55, 40, 30, 85]; 
-// 1ª: vermelho | 2ª: sobe | 3ª e 4ª: desce | 5ª: sobe quase no topo
+const thermometerLevels = [20, 55, 40, 30, 85];
 
 function updateThermometer() {
-  thermometer.style.display = "block";
+  thermometerContainer.style.display = "flex"; // 🔥 Mostra o conjunto completo
   const level = thermometerLevels[currentQuestion];
   thermoFill.style.height = `${level}%`;
   thermoArrow.style.top = `${100 - level}%`;
 }
 
 function hideThermometer() {
-  thermometer.style.display = "none";
+  thermometerContainer.style.display = "none"; // 🔕 Esconde tudo junto
 }
 </script>
 
