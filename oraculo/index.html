@@ -600,7 +600,9 @@ title: (() => {
   const diaSemana = dias[hoje.getDay()];
   const dia = hoje.getDate().toString().padStart(2, '0');
   const mes = hoje.toLocaleString('pt-BR', { month: 'long' });
-  return `Agora é com você... O portal está aberto para garantir o Código da Persuasão com 70% de desconto!<br><br><b>ATENÇÃO:</b> essa promoção ficará disponível somente hoje, ${diaSemana} ${dia} de ${mes}.`;
+  return `Agora é com você... O portal está aberto para garantir o Código da Persuasão com 70% de desconto!<br>
+  <br>
+  <b>ATENÇÃO:</b> essa promoção ficará disponível somente hoje, ${diaSemana} ${dia} de ${mes}.`;
 })(),
   gif: "https://static.wixstatic.com/media/7f5efc_a7bee9f2a76c46c4b3f33679c2bdc969~mv2.gif",
   buttons: [
@@ -882,7 +884,17 @@ if (currentStage === 0) {
     console.log("📩 Evento disparado (última etapa)");
   }
 
-  audio.onended = () => showStageButtons();
+   // 🔁 Verifica se é retorno de progresso salvo
+  const saved = loadProgress();
+  const isReturning = saved && saved.phase === 'final' && saved.currentStage === currentStage;
+
+  if (isReturning) {
+    // Se for retorno, já mostra o conteúdo final com botão e texto imediatamente
+    showStageButtons();
+  } else {
+    // Caso normal (primeira vez na etapa)
+    audio.onended = () => showStageButtons();
+  }
 }
 
 
