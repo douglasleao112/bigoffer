@@ -207,16 +207,17 @@
   border: 1px solid rgba(0,255,200,0.3);
   z-index: 3;
 }
-/* 🔁 Seta invertida (apontando para a esquerda) */
+
+/* 🔁 Seta à direita, apontando para a esquerda */
 .thermo-arrow {
   position: absolute;
-  left: -8px; /* muda o lado da seta */
+  right: -10px; /* ✅ posiciona no lado direito da barra */
   top: calc(100% - 10%);
   width: 0;
   height: 0;
   border-top: 4px solid transparent;
   border-bottom: 4px solid transparent;
-  border-right: 6px solid #fff; /* seta aponta agora para a esquerda */
+  border-right: 6px solid #fff; /* ✅ aponta para a esquerda */
   opacity: 0.7;
   filter: drop-shadow(0 0 2px rgba(255,255,255,0.5));
   transition: top 1s ease-in-out;
