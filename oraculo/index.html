@@ -73,6 +73,11 @@
       display: none;
     }
 
+
+    .answers {
+  margin-top: -10px; 
+}
+
 .answers button, #startBtn, .btn-universal {
   display: block;
   background: linear-gradient(145deg, #00ffcc, #00ccff);
@@ -139,10 +144,10 @@
 .question-text {
   display: none;
   text-align: center;
-  font-size: 1em;
+  font-size: 1em;          
   font-weight: bold;
-  margin: 18px auto;
-  line-height: 1.4em;
+  margin: 8px auto;        
+  line-height: 1.3em;    
   max-width: 80%;
   color: #fff;
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
@@ -164,7 +169,7 @@
 /* Barra principal */
 #thermometer {
   width: 10px;
-  height: 180px;
+  height: 190px;
   background: linear-gradient(to top, #111, #1a1a1a);
   border-radius: 8px;
   border: 1px solid rgba(255,255,255,0.08);
@@ -199,8 +204,8 @@
   bottom: -14px; /* ajusta para alinhar com a base */
   left: 50%;
   transform: translateX(-50%);
-  width: 20px;  /* 🔼 aumentada */
-  height: 20px; /* 🔼 aumentada */
+  width: 20px; 
+  height: 20px; 
   background: radial-gradient(circle at 30% 30%, #00ffcc, #00bfff); /* mesma cor do preenchimento */
   border-radius: 50%;
   box-shadow: 0 0 18px rgba(0,255,200,0.9); /* brilho reforçado */
@@ -212,7 +217,7 @@
 .thermo-arrow {
   position: absolute;
   right: -10px; /* ✅ posiciona no lado direito da barra */
-  top: calc(100% - 10%);
+  top: calc(100% - 12%);
   width: 0;
   height: 0;
   border-top: 4px solid transparent;
