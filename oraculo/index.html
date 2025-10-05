@@ -277,7 +277,7 @@
   border-radius: 16px;
   padding: 25px 20px;
   width: 90%;
-  max-width: 280px; /* mais estreita */
+  max-width: 260px; /* mais estreita */
   text-align: center;
   color: #fff;
   box-shadow: none; /* sem brilho */
@@ -395,47 +395,29 @@ document.getElementById("beginPortal").addEventListener("click", () => {
       document.getElementById("startBtn").style.display = "block";
     }
 
-    
-
-
     function startQuiz() {
-  const intro = document.getElementById("introAudio");
-  const quizAudio = document.getElementById("quizAudio");
-  const quizSrc = document.getElementById("quizAudioSrc");
+      document.querySelector('.gif-container').onclick = null;
+      document.getElementById("startBtn").style.display = "none";
+      document.getElementById("quizContent").style.display = "block";
+      document.getElementById("progressBar").style.display = "block";
+      playCurrentAudio();
+      updateTopProgress();
+       updateThermometer(); 
+    }
 
-  // Garante que o áudio inicial pare completamente
-  intro.pause();
-  intro.currentTime = 0;
+    function playCurrentAudio() {
+      const question = questions[currentQuestion];
+      const quizAudio = document.getElementById("quizAudio");
+      const source = document.getElementById("quizAudioSrc");
+      source.src = question.audio;
+      quizAudio.load();
+      quizAudio.play();
+      document.getElementById("gifTop").innerHTML = `<img src="${question.gif}" alt="Oráculo">`;
 
-  // Mostra o conteúdo do quiz
-  document.querySelector('.gif-container').onclick = null;
-  document.getElementById("startBtn").style.display = "none";
-  document.getElementById("quizContent").style.display = "block";
-  document.getElementById("progressBar").style.display = "block";
-
-  // Desbloqueia o som do quiz e inicia o primeiro áudio
-  quizAudio.muted = false;
-  quizSrc.src = questions[0].audio;
-  quizAudio.load();
-
-  quizAudio.play().then(() => {
-    console.log("🎧 Quiz iniciado");
-    showThermometer();
-    updateTopProgress();
-  }).catch(err => {
-    console.warn("⚠️ Reprodução bloqueada:", err);
-    alert("Ative o som e clique novamente em 'ASSUMIR OS RISCOS' para iniciar.");
-  });
-
-  // Atualiza o GIF inicial
-  document.getElementById("gifTop").innerHTML = `<img src="${questions[0].gif}" alt="Oráculo">`;
-
-  // Dispara o evento do pixel
-  if (typeof fbq === "function") fbq('track', 'Lead');
-}
-
-
-
+      if (currentQuestion === 0 && typeof fbq === "function") {
+      fbq('track', 'Lead');
+      }
+    }
 
     function showOptions() {
       const answersDiv = document.getElementById("answers");
@@ -454,15 +436,13 @@ document.getElementById("beginPortal").addEventListener("click", () => {
 
 
 
-function handleAnswer(selectedIndex) {
+    function handleAnswer(selectedIndex) {
   currentQuestion++;
-
   if (currentQuestion < questions.length) {
     loadNextQuestion();
     updateThermometer(); // 🔥 Atualiza o nível
   } else {
-    hideThermometer(); // ❌ Some ao terminar
-    document.getElementById("progressBar").style.display = "none";
+    hideThermometer(); // 🔕 Some ao terminar
     showResult();
   }
 }
@@ -476,22 +456,19 @@ const thermoArrow = document.querySelector(".thermo-arrow");
 const thermometerLevels = [20, 55, 40, 30, 85]; 
 // 1ª: vermelho | 2ª: sobe | 3ª e 4ª: desce | 5ª: sobe quase no topo
 
-function showThermometer() {
-  thermometer.style.display = "block";
-  updateThermometer();
-}
-
 function updateThermometer() {
+  thermometer.style.display = "block";
   const level = thermometerLevels[currentQuestion];
-  if (level !== undefined) {
-    thermoFill.style.height = `${level}%`;
-    thermoArrow.style.top = `${100 - level}%`;
-  }
+  thermoFill.style.height = `${level}%`;
+  thermoArrow.style.top = `${100 - level}%`;
 }
 
 function hideThermometer() {
   thermometer.style.display = "none";
 }
+
+
+
 
 
 
