@@ -367,10 +367,15 @@ body {
 }
 </style>
 
-<script>
 document.getElementById("beginPortal").addEventListener("click", () => {
   // Fecha o aviso inicial
   document.getElementById("startOverlay").style.display = "none";
+
+  // Dispara o evento Lead no clique de iniciar
+  if (typeof fbq === "function") {
+    fbq('track', 'Lead');
+    console.log("🔥 Evento Lead disparado!");
+  }
 
   // Inicia o áudio principal do quiz
   const intro = document.getElementById("introAudio");
