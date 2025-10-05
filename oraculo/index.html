@@ -150,31 +150,30 @@
 
 
 
-
-
-
-/* 🌡️ Contêiner geral do termômetro + legenda */
+/* 🌡️ Contêiner geral */
 #thermometer-container {
   position: fixed;
   left: 20px;
-  bottom: 40px;
+  bottom: 15px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   z-index: 9999;
 }
 
-/* 🔋 Termômetro minimalista fino */
+/* Barra principal */
 #thermometer {
-  width: 10px; /* 👈 agora mais fino */
-  height: 120px;
+  width: 10px;
+  height: 170px;
   background: linear-gradient(to top, #111, #1a1a1a);
   border-radius: 8px;
   border: 1px solid rgba(255,255,255,0.08);
   box-shadow: 0 0 10px rgba(0,255,200,0.25);
+  margin-bottom: 25px;
+  position: relative;
 }
 
-/* Interior com brilho interno sutil */
+/* Interior e preenchimento */
 .thermo-inner {
   position: relative;
   width: 100%;
@@ -184,7 +183,6 @@
   box-shadow: inset 0 0 6px rgba(0,255,200,0.25);
 }
 
-/* Preenchimento (nível de inocência) — verde neon */
 .thermo-fill {
   position: absolute;
   bottom: 0;
@@ -196,22 +194,22 @@
   box-shadow: 0 0 8px rgba(0,255,200,0.5);
 }
 
-/* Base luminosa ajustada e centralizada */
-#thermometer::before {
-  content: "";
+/* ✅ Bolinha com mesma cor e brilho da barra */
+.thermo-bulb {
   position: absolute;
-  bottom: -12px; /* 🔽 aproxima mais da barra */
+  bottom: -12px;
   left: 50%;
-  transform: translateX(-48%); /* 🔧 ligeiro ajuste para centralizar */
-  width: 16px;   /* 🔽 menor */
-  height: 16px;  /* 🔽 menor */
-  background: radial-gradient(circle at 30% 30%, #00ffcc, #006666);
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at 30% 30%, #00ffcc, #00bfff); /* mesma cor do preenchimento */
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.1);
-  box-shadow: 0 0 8px rgba(0,255,200,0.6);
+  box-shadow: 0 0 14px rgba(0,255,200,0.8); /* brilho verde igual ao da barra */
+  border: 1px solid rgba(0,255,200,0.3);
+  z-index: 3;
 }
 
-/* Indicador lateral discreto */
+/* Indicador lateral */
 .thermo-arrow {
   position: absolute;
   right: -8px;
@@ -226,18 +224,15 @@
   transition: top 1s ease-in-out;
 }
 
-/* Texto abaixo — “Nível de Inocência” */
+/* Texto fixo no rodapé */
 #thermo-label {
-  font-size: 0.75em;
+  font-size: 0.65em;
   color: rgba(255,255,255,0.65);
-  margin-top: 6px;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 500;
   text-shadow: 0 0 6px rgba(0,255,200,0.25);
 }
-
-
 
 
   </style>
@@ -715,6 +710,7 @@ document.addEventListener('keydown', e => {
   <div id="thermometer">
     <div class="thermo-inner">
       <div class="thermo-fill" id="thermoFill"></div>
+      <div class="thermo-bulb"></div> <!-- ✅ bolinha real dentro da estrutura -->
       <div class="thermo-arrow"></div>
     </div>
   </div>
