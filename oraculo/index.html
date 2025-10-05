@@ -932,10 +932,20 @@ function showStageButtons() {
         saveProgress();
         if (currentStage < finalStages.length) {
           playFinalStage();
-        } else {
-          resetProgress();
-          window.location.href = "https://sun.eduzz.com/E0D6P4V691";
-        }
+       else {
+  // 🔗 Recupera UTMs da URL atual
+  const params = new URLSearchParams(window.location.search);
+  const utmString = params.toString();
+  let finalLink = "https://sun.eduzz.com/E0D6P4V691";
+
+  if (utmString) {
+    const separator = finalLink.includes('?') ? '&' : '?';
+    finalLink = `${finalLink}${separator}${utmString}`;
+  }
+
+  resetProgress();
+  window.location.href = finalLink;
+}
       };
     }
 
