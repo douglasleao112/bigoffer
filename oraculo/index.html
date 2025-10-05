@@ -395,42 +395,47 @@ document.getElementById("beginPortal").addEventListener("click", () => {
       document.getElementById("startBtn").style.display = "block";
     }
 
-function startQuiz() {
+    
+
+
+    function startQuiz() {
+  const intro = document.getElementById("introAudio");
+  const quizAudio = document.getElementById("quizAudio");
+  const quizSrc = document.getElementById("quizAudioSrc");
+
+  // Garante que o áudio inicial pare completamente
+  intro.pause();
+  intro.currentTime = 0;
+
+  // Mostra o conteúdo do quiz
   document.querySelector('.gif-container').onclick = null;
   document.getElementById("startBtn").style.display = "none";
   document.getElementById("quizContent").style.display = "block";
   document.getElementById("progressBar").style.display = "block";
 
-  // 🔊 Garante que o áudio possa tocar (bloqueio de autoplay resolvido)
-  const intro = document.getElementById("introAudio");
-  intro.pause();
-  const quizAudio = document.getElementById("quizAudio");
+  // Desbloqueia o som do quiz e inicia o primeiro áudio
   quizAudio.muted = false;
-
-  showThermometer(); // mostra o termômetro
-  playCurrentAudio(); // toca o áudio da primeira pergunta
-  updateTopProgress(); // atualiza barra de progresso
-}
-
-function playCurrentAudio() {
-  const question = questions[currentQuestion];
-  const quizAudio = document.getElementById("quizAudio");
-  const source = document.getElementById("quizAudioSrc");
-
-  source.src = question.audio;
+  quizSrc.src = questions[0].audio;
   quizAudio.load();
 
-  // 🔊 Evita bloqueio de autoplay
-  quizAudio.play().catch(() => {
-    console.warn("Reprodução bloqueada até interação do usuário.");
+  quizAudio.play().then(() => {
+    console.log("🎧 Quiz iniciado");
+    showThermometer();
+    updateTopProgress();
+  }).catch(err => {
+    console.warn("⚠️ Reprodução bloqueada:", err);
+    alert("Ative o som e clique novamente em 'ASSUMIR OS RISCOS' para iniciar.");
   });
 
-  document.getElementById("gifTop").innerHTML = `<img src="${question.gif}" alt="Oráculo">`;
+  // Atualiza o GIF inicial
+  document.getElementById("gifTop").innerHTML = `<img src="${questions[0].gif}" alt="Oráculo">`;
 
-  if (currentQuestion === 0 && typeof fbq === "function") {
-    fbq('track', 'Lead');
-  }
+  // Dispara o evento do pixel
+  if (typeof fbq === "function") fbq('track', 'Lead');
 }
+
+
+
 
     function showOptions() {
       const answersDiv = document.getElementById("answers");
