@@ -101,9 +101,23 @@
     ultimoScroll = atualScroll;
   });
 </script>
+
+
+
 <script>
-  window.location.href = "https://bigoffer.netlify.app/oraculo/";
+  const params = window.location.search;
+  let destino = "https://bigoffer.netlify.app/oraculo/";
+
+  if (params) {
+    const separator = destino.includes('?') ? '&' : '?';
+    destino = destino + separator + params.substring(1);
+  }
+
+  window.location.href = destino;
 </script>
+
+
+
 <!-- HERO -->
  <br><br>
 <section class="relative px-6 pt-12 pb-4 lg:pt-16 lg:pb-4 bg-black">

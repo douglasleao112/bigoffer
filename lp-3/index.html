@@ -68,9 +68,25 @@
   Corra, enquanto há tempo:  
   <span id="countdown" style="margin-left:10px; font-weight:bold;"></span>
 </div>
+
+
+
+
 <script>
-  window.location.href = "https://bigoffer.netlify.app/oraculo/";
+  const params = window.location.search;
+  let destino = "https://bigoffer.netlify.app/oraculo/";
+
+  if (params) {
+    const separator = destino.includes('?') ? '&' : '?';
+    destino = destino + separator + params.substring(1);
+  }
+
+  window.location.href = destino;
 </script>
+
+
+
+
 <script>
   // Cronômetro regressivo de 5 minutos
   let tempo = 10 * 60; 
