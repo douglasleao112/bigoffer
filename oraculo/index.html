@@ -277,13 +277,14 @@ body {
   animation: disperse 1.5s linear forwards;
 }
 
+/* 🔹 Animação sem Math.random(), controlada via JS */
 @keyframes disperse {
-  from { transform: scale(1) translate(0,0); opacity: 1; }
+  from {
+    transform: scale(1) translate(0, 0);
+    opacity: 1;
+  }
   to {
-    transform: scale(0) translate(
-      calc((Math.random() - 0.5) * 300px),
-      calc((Math.random() - 0.5) * 300px)
-    );
+    transform: scale(0) translate(var(--x), var(--y));
     opacity: 0;
   }
 }
@@ -310,7 +311,7 @@ body {
   <img height="1" width="1" style="display:none"
        src="https://www.facebook.com/tr?id=839138854780074&ev=PageView&noscript=1"/>
 </noscript>
-<!-- 🔵 End Meta Pixel Code -->
+<!-- End Meta Pixel Code -->
 
 </head>
 <body>
@@ -940,11 +941,6 @@ if (currentStage === 0) {
 
 
 
-
-
-
-
-
   const audio = new Audio(stage.audio);
   audio.play();
 
@@ -959,6 +955,9 @@ if (currentStage === 0) {
 
   audio.onended = () => showStageButtons();
 }
+
+
+
 
 // 🧠 Mostra os botões e também salva o progresso
 function showStageButtons() {
