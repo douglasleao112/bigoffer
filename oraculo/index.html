@@ -53,28 +53,46 @@
     .hidden {
       display: none;
     }
-    .answers button, #startBtn {
-      background: linear-gradient(145deg, #1f1f1f, #2a2a2a);
-      border: 1px solid #444;
-      color: #fff;
-      padding: 14px 25px;
-      margin: 10px auto;
-      border-radius: 12px;
-      cursor: pointer;
-      font-size: 1em;
-      font-weight: bold;
-      width: 90%;
-      max-width: 300px;
-      display: block;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 10px rgba(0,255,200,0.2);
-    }
-    .answers button:hover, #startBtn:hover {
-      background: linear-gradient(145deg, #00ffcc, #00ccff);
-      color: #000;
-      box-shadow: 0 0 20px rgba(0,255,200,0.6);
-      border: none;
-    }
+
+
+
+
+
+.answers button, #startBtn, .btn-universal {
+  display: block;
+  background: linear-gradient(145deg, #00ffcc, #00ccff);
+  color: #fff; /* branco */
+  border: none;
+  font-weight: bold;
+  padding: 15px 25px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1.1em;
+  margin: 15px auto;
+  width: 90%;
+  max-width: 320px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0,255,200,0.6);
+  transition: all 0.3s ease;
+  text-shadow: 
+    -1px -1px 0 #676767,
+     1px -1px 0 #383838,
+    -1px  1px 0 #676767,
+     1px  1px 0 #444444; 
+}
+
+.answers button:hover, #startBtn:hover {
+  background: linear-gradient(145deg, #00ffcc, #00ccff);
+  box-shadow: 0 0 25px rgba(0,255,200,0.9);
+  transform: scale(1.05);
+}
+
+.btn-universal:hover {
+  box-shadow: 0 0 25px rgba(0,255,200,0.9);
+  transform: scale(1.05);
+}
+
+
     .progress-bar-top {
       display: none;
       position: fixed;
@@ -118,20 +136,93 @@
   </style>
 </head>
 <body>
+
+
+
+
+
+<!-- 🌀 POPUP DE INÍCIO -->
+<div id="startOverlay" class="overlay">
+  <div class="popup-glass">
+    <h2>⚠️ATENÇÃO</h2>
+    <p>Antes de continuar, <b>confirme que o som do seu celular está no volume máximo</b>.</p>
+    <button id="beginPortal" class="btn-universal">INICIAR</button>
+  </div>
+</div>
+
+<style>
+/* 🔲 Fundo escuro com desfoque */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+/* 💎 Caixa de vidro */
+.popup-glass {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 25px 20px;
+  width: 90%;
+  max-width: 240px; /* mais estreita */
+  text-align: center;
+  color: #fff;
+  box-shadow: none; /* sem brilho */
+}
+
+/* ✨ Texto e botão */
+.popup-glass h2 {
+  font-size: 1.3em;
+  margin-bottom: 10px;
+}
+
+.popup-glass p {
+  font-size: 0.95em;
+  line-height: 1.4em;
+  color: #ddd;
+  margin-bottom: 20px;
+}
+</style>
+
+<script>
+document.getElementById("beginPortal").addEventListener("click", () => {
+  document.getElementById("startOverlay").style.display = "none";
+  const audio = document.getElementById("introAudio");
+  audio.muted = false;
+  audio.play();
+});
+</script>
+
+
+
+
+
+
+
+
+
+
   <div class="quiz-container">
     <div class="progress-bar-top" id="progressBar">
       <div class="progress-bar-fill-top" id="progressFillTop"></div>
     </div>
 
     <div class="gif-container" id="gifTop" onclick="unmuteIntro()">
-      <img src="https://static.wixstatic.com/media/7f5efc_a7bee9f2a76c46c4b3f33679c2bdc969~mv2.gif" alt="Oráculo">
+      <img src="https://static.wixstatic.com/media/7f5efc_43c1c40f773b406dbfcbd0332c43715c~mv2.gif" alt="Oráculo">
     </div>
     <audio id="introAudio" autoplay muted onended="showStartButton()">
       <source src="https://static.wixstatic.com/mp3/7f5efc_9c72927ebd644091a41f85b97a93198b.mp3" type="audio/mpeg">
       Seu navegador não suporta áudio.
     </audio>
 
-    <button id="startBtn" onclick="startQuiz()" style="display: none;">🔓 INICIAR TESTE</button>
+    <button id="startBtn" onclick="startQuiz()" style="display: none;">ASSUMIR OS RISCOS</button>
 
     <audio id="quizAudio" onended="showOptions()">
       <source id="quizAudioSrc" src="" type="audio/mpeg">
@@ -158,21 +249,21 @@
         options: ["Urgência", "Escassez", "Reciprocidade"],
         correct: 1,
         audio: "https://static.wixstatic.com/mp3/7f5efc_5a19d15e56a742a6992b2a3f46597638.mp3",
-        gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif"
+        gif: "https://static.wixstatic.com/media/7f5efc_a7bee9f2a76c46c4b3f33679c2bdc969~mv2.gif"
       },
       {
         text: "Eu nem chamaria de amigo...",
         options: ["Prova Social", "Autoridade", "Medo"],
         correct: 0,
         audio: "https://static.wixstatic.com/mp3/7f5efc_02c932a98ba940de96496fcbc7d72bd9.mp3",
-        gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif"
+        gif: "https://static.wixstatic.com/media/7f5efc_65ecff36c016466f86572c9701297323~mv2.gif"
       },
       {
         text: "Me prova que sabe...",
         options: ["Reciprocidade", "Curiosidade", "Escassez"],
         correct: 0,
         audio: "https://static.wixstatic.com/mp3/7f5efc_d4565de85cfe47e182eb158a74424204.mp3",
-        gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif"
+        gif: "https://static.wixstatic.com/media/7f5efc_356fcdf2e88344ea95e2f7d8e218c018~mv2.gif"
       },
       {
         text: "Te peguei não é mesmo?",
@@ -265,7 +356,7 @@ document.body.addEventListener("click", function playOnce() {
 const finalStages = [
   {
     audio: "https://static.wixstatic.com/mp3/7f5efc_c16fb254d2164b75a55acb4b5f1f9d35.mp3",
-    title: "Você chegou longe, mas ainda há mais a descobrir...",
+    title: "Ainda há mais a descobrir...",
     gif: "https://static.wixstatic.com/media/7f5efc_e4cececd9a3d4752ac73ed9e3aa22854~mv2.gif",
     buttons: [
       { text: "Resgatar Presente", action: "continuar" }
@@ -273,7 +364,7 @@ const finalStages = [
   },
   {
     audio: "https://static.wixstatic.com/mp3/7f5efc_d08020db61c748099a1ddce786e47530.mp3",
-    title: "Agora sim, o verdadeiro jogo começa.",
+    title: "Agora o verdadeiro jogo começa.",
     gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif",
     buttons: [
       { text: "Sim, tenho!", action: "continuar" },
@@ -283,7 +374,7 @@ const finalStages = [
   {
     audio: "https://static.wixstatic.com/mp3/7f5efc_6223bdff2fca421aa8f0720e0242a96e.mp3",
     title: "Está pronto para o poder completo?",
-    gif: "https://static.wixstatic.com/media/7f5efc_356fcdf2e88344ea95e2f7d8e218c018~mv2.gif",
+    gif: "https://static.wixstatic.com/media/7f5efc_65ecff36c016466f86572c9701297323~mv2.gif",
     buttons: [
       { text: "Sim, está claro", action: "continuar" },
       { text: "Continuar agora", action: "continuar" }
@@ -294,16 +385,16 @@ const finalStages = [
     title: "Você se compromete?",
     gif: "https://static.wixstatic.com/media/7f5efc_8f04a0244d954ae795ddd741d52fc009~mv2.gif",
     buttons: [
-      { text: "Sim, eu me comprometo", action: "continuar" },
+      { text: "Eu me comprometo", action: "continuar" },
       { text: "Vou pensar", action: "continuar" }
     ]
   },
   {
     audio: "https://static.wixstatic.com/mp3/7f5efc_45087183048d4fa1a9586f0100342b08.mp3",
-    title: "Última etapa... o portal está se abrindo.",
-    gif: "https://static.wixstatic.com/media/7f5efc_dfcf2f7c50bc4d9c9a91efcfec1c89e6~mv2.gif",
+    title: "Agora é com você... O portal está aberto!",
+    gif: "https://static.wixstatic.com/media/7f5efc_a7bee9f2a76c46c4b3f33679c2bdc969~mv2.gif",
     buttons: [
-      { text: "🚪 LIBERAR ACESSO AO CÓDIGO DA PERSUASÃO", action: "link", link: "https://sun.eduzz.com/E0D6P4V691" }
+      { text: "ACESSAR O CÓDIGO DA PERSUASÃO", action: "link", link: "https://sun.eduzz.com/E0D6P4V691" }
     ]
   }
 ];
@@ -345,28 +436,10 @@ function showStageButtons() {
   `;
 
   stage.buttons.forEach(btnData => {
+
     const btn = document.createElement("button");
-    btn.textContent = btnData.text;
-btn.style.cssText = `
-  display: block;
-  background: linear-gradient(145deg, #00ffcc, #00ccff);
-  color: #000;
-  border: none;
-  font-weight: bold;
-  padding: 15px 25px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 1.1em;
-  margin: 20px auto;
-  width: fit-content;
-  min-width: 220px;
-  text-align: center;
-  box-shadow: 0 0 15px rgba(0,255,200,0.6);
-  transition: all .3s ease;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-`;
+          btn.textContent = btnData.text;
+          btn.className = "btn-universal";
 
     btn.onmouseenter = () => btn.style.boxShadow = "0 0 25px rgba(0,255,200,0.9)";
     btn.onmouseleave = () => btn.style.boxShadow = "0 0 15px rgba(0,255,200,0.6)";
