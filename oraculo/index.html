@@ -1,9 +1,28 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Oráculo da Persuasão</title>
+<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O Código da [P]ersuasão</title>
+  <link rel="icon" href="https://i.imgur.com/iPllVtt.jpeg" type="image/png">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Favicon -->
+<link rel="icon" href="https://i.imgur.com/iPllVtt.jpeg" type="image/png">
+
+<!-- Open Graph para redes sociais -->
+<meta property="og:title" content="O Código da [P]ersuasão" />
+<meta property="og:description" content="Descubra os gatilhos mentais ocultos e técnicas de persuasão proibidas." />
+<meta property="og:image" content="https://i.imgur.com/iPllVtt.jpeg" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://bigoffer.netlify.app/lp-1/" />
+
+<!-- Para WhatsApp e Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="O Código da [P]ersuasão" />
+<meta name="twitter:description" content="Descubra os gatilhos mentais ocultos e técnicas de persuasão proibidas." />
+<meta name="twitter:image" content="https://i.imgur.com/iPllVtt.jpeg" />
+
   <style>
     body {
       background-color: #000;
@@ -54,10 +73,6 @@
       display: none;
     }
 
-
-
-
-
 .answers button, #startBtn, .btn-universal {
   display: block;
   background: linear-gradient(145deg, #00ffcc, #00ccff);
@@ -91,7 +106,6 @@
   box-shadow: 0 0 25px rgba(0,255,200,0.9);
   transform: scale(1.05);
 }
-
 
     .progress-bar-top {
       display: none;
@@ -134,10 +148,32 @@
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
 }
   </style>
+
+
+<!-- 🔵 Meta Pixel Code -->
+<script>
+  !(function(f,b,e,v,n,t,s){
+    if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)n._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)
+  })(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+  fbq('init', '839138854780074'); // ✅ seu pixel
+  fbq('track', 'PageView');
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+       src="https://www.facebook.com/tr?id=839138854780074&ev=PageView&noscript=1"/>
+</noscript>
+<!-- 🔵 End Meta Pixel Code -->
+
+
 </head>
 <body>
-
-
 
 
 
@@ -306,6 +342,10 @@ document.getElementById("beginPortal").addEventListener("click", () => {
       quizAudio.load();
       quizAudio.play();
       document.getElementById("gifTop").innerHTML = `<img src="${question.gif}" alt="Oráculo">`;
+
+      if (currentQuestion === 0 && typeof fbq === "function") {
+      fbq('track', 'Lead');
+      }
     }
 
     function showOptions() {
@@ -401,8 +441,14 @@ const finalStages = [
 
 let currentStage = 0;
 
-/* 🎬 Inicia a primeira etapa final */
+/* 🎬 Inicia a primeira etapa do pitch */
 function showResult() {
+  if (typeof fbq === "function") {
+    fbq('track', 'CompleteRegistration');
+    console.log("✅ Evento CompleteRegistration disparado!");
+  }
+
+  // Continua o fluxo normal
   currentStage = 0;
   playFinalStage();
 }
@@ -420,6 +466,13 @@ function playFinalStage() {
 
   const audio = new Audio(stage.audio);
   audio.play();
+
+  // 🚀 Dispara evento quando o último áudio começa
+  if (currentStage === finalStages.length - 1) {
+    fbq('track', 'AddToWishlist');
+    console.log("📩 Evento AddToWishlist disparado (última etapa)");
+  }
+
   audio.onended = () => showStageButtons();
 }
 
@@ -460,6 +513,19 @@ function showStageButtons() {
     container.appendChild(btn);
   });
 }
+
+// 🔊 Som de clique
+const clickSound = new Audio("https://cdn.pixabay.com/download/audio/2025/08/03/audio_1df12d5efc.mp3?filename=computer-mouse-click-02-383961.mp3");
+clickSound.volume = 0.5; // volume moderado
+
+// Tocar o som sempre que qualquer botão for clicado
+document.addEventListener("click", (e) => {
+  if (e.target.tagName === "BUTTON") {
+    clickSound.currentTime = 0;
+    clickSound.play();
+  }
+});
+
 </script>
 
 
