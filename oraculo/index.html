@@ -400,24 +400,37 @@ function startQuiz() {
   document.getElementById("startBtn").style.display = "none";
   document.getElementById("quizContent").style.display = "block";
   document.getElementById("progressBar").style.display = "block";
-  showThermometer(); // ✅ Mostra o termômetro assim que o quiz começa
-  playCurrentAudio();
-  updateTopProgress();
+
+  // 🔊 Garante que o áudio possa tocar (bloqueio de autoplay resolvido)
+  const intro = document.getElementById("introAudio");
+  intro.pause();
+  const quizAudio = document.getElementById("quizAudio");
+  quizAudio.muted = false;
+
+  showThermometer(); // mostra o termômetro
+  playCurrentAudio(); // toca o áudio da primeira pergunta
+  updateTopProgress(); // atualiza barra de progresso
 }
 
-    function playCurrentAudio() {
-      const question = questions[currentQuestion];
-      const quizAudio = document.getElementById("quizAudio");
-      const source = document.getElementById("quizAudioSrc");
-      source.src = question.audio;
-      quizAudio.load();
-      quizAudio.play();
-      document.getElementById("gifTop").innerHTML = `<img src="${question.gif}" alt="Oráculo">`;
+function playCurrentAudio() {
+  const question = questions[currentQuestion];
+  const quizAudio = document.getElementById("quizAudio");
+  const source = document.getElementById("quizAudioSrc");
 
-      if (currentQuestion === 0 && typeof fbq === "function") {
-      fbq('track', 'Lead');
-      }
-    }
+  source.src = question.audio;
+  quizAudio.load();
+
+  // 🔊 Evita bloqueio de autoplay
+  quizAudio.play().catch(() => {
+    console.warn("Reprodução bloqueada até interação do usuário.");
+  });
+
+  document.getElementById("gifTop").innerHTML = `<img src="${question.gif}" alt="Oráculo">`;
+
+  if (currentQuestion === 0 && typeof fbq === "function") {
+    fbq('track', 'Lead');
+  }
+}
 
     function showOptions() {
       const answersDiv = document.getElementById("answers");
