@@ -435,7 +435,7 @@ document.getElementById("beginPortal").addEventListener("click", () => {
         audio: "https://static.wixstatic.com/mp3/7f5efc_5a19d15e56a742a6992b2a3f46597638.mp3",
         gif: "https://static.wixstatic.com/media/7f5efc_a7bee9f2a76c46c4b3f33679c2bdc969~mv2.gif"
       },
-     {
+      {
         text: "Eu nem chamaria de amigo...",
         options: ["Reciprocidade", "Autoridade", "Medo"],
         correct: 0,
@@ -591,14 +591,28 @@ const finalStages = [
       { text: "Vou pensar", action: "continuar" }
     ]
   },
+  
   {
-    audio: "https://static.wixstatic.com/mp3/7f5efc_45087183048d4fa1a9586f0100342b08.mp3",
-    title: "Agora é com você... O portal está aberto!",
-    gif: "https://static.wixstatic.com/media/7f5efc_a7bee9f2a76c46c4b3f33679c2bdc969~mv2.gif",
-    buttons: [
-      { text: "ACESSAR O CÓDIGO DA PERSUASÃO", action: "link", link: "https://sun.eduzz.com/E0D6P4V691" }
-    ]
-  }
+  audio: "https://static.wixstatic.com/mp3/7f5efc_45087183048d4fa1a9586f0100342b08.mp3",
+title: (() => {
+  const dias = ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"];
+  const hoje = new Date();
+  const diaSemana = dias[hoje.getDay()];
+  const dia = hoje.getDate().toString().padStart(2, '0');
+  const mes = hoje.toLocaleString('pt-BR', { month: 'long' });
+  return `Agora é com você... <br>
+  <br>
+  O portal está aberto para garantir o Código da Persuasão com 70% de Desconto!<br>
+  <br>
+  <b>ATENÇÃO:</b> essa promoção ficará disponível somente hoje, ${diaSemana} ${dia} de ${mes}.`;
+})(),
+  gif: "https://static.wixstatic.com/media/7f5efc_a7bee9f2a76c46c4b3f33679c2bdc969~mv2.gif",
+  buttons: [
+    { text: "GARANTIR AGORA!", action: "link", link: "https://sun.eduzz.com/E0D6P4V691" }
+  ]
+}
+  
+
 ];
 
 let currentStage = 0;
@@ -798,6 +812,7 @@ window.addEventListener('load', () => {
 
   // Se estava nas etapas finais
   else if (saved.phase === 'final') {
+    audioPlaying = false; // limpa estados antigos
     currentStage = saved.currentStage || 0;
     document.getElementById("startOverlay").style.display = "none";
     hideThermometer();
