@@ -615,32 +615,6 @@ function showResult() {
   playFinalStage();
 }
 
-/* 🔊 Toca o áudio e mostra o GIF correspondente */
-function playFinalStage() {
-  const stage = finalStages[currentStage];
-  const container = document.querySelector(".quiz-container");
-
-  container.innerHTML = `
-    <div class="gif-container">
-      <img src="${stage.gif}" alt="Oráculo">
-    </div>
-  `;
-
-  const audio = new Audio(stage.audio);
-  audio.play();
-
-  // IMPORTANTE! fim do quiz
-  if (currentStage === finalStages.length - 1) {
-    fbq('track', 'Search');
-    console.log("📩 Evento disparado (última etapa)");
-  }
-
-  audio.onended = () => showStageButtons();
-}
-
-
-
-
 
 
 
@@ -955,6 +929,9 @@ else if (btnData.action === "link") {
   btn.onclick = () => {
     // 🎆 Efeito de fogos
     launchFireworks();
+    const sound = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_e8b2fa25cf.mp3?filename=goodresult-82807.mp3");
+sound.volume = 0.4;
+sound.play();
 
     // 🔗 Recupera UTMs da URL atual
     const params = new URLSearchParams(window.location.search);
