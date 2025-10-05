@@ -895,7 +895,7 @@ function showStageButtons() {
   if (currentStage === finalStages.length - 1) {
     launchConfetti();
 
-    const sound = new Audio("https://cdn.pixabay.com/download/audio/2024/07/30/audio_206667a482.mp3?filename=fart-2-228242.mp3");
+    const sound = new Audio("https://cdn.pixabay.com/download/audio/2022/03/10/audio_5b4d3bfb9e.mp3?filename=balloon-pop-48030.mp3");
     sound.volume = 0.4;
     sound.play();
   }
@@ -950,10 +950,6 @@ function showStageButtons() {
     container.appendChild(btn);
   });
 }
-
-
-
-
 
 
 
@@ -1016,48 +1012,41 @@ function launchFireworks() {
   // Remove o container após o efeito
   setTimeout(() => fireworksContainer.remove(), 2000);
 }
+</script>
 
+<!-- Biblioteca do confete (coloque no topo da página, antes da função) -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
-
+<script>
 function launchConfetti() {
-  const confettiContainer = document.createElement('div');
-  confettiContainer.style.position = 'fixed';
-  confettiContainer.style.inset = '0';
-  confettiContainer.style.pointerEvents = 'none';
-  confettiContainer.style.zIndex = '999999';
-  document.body.appendChild(confettiContainer);
+  // duração total do efeito
+  var duration = 2000;
+  var end = Date.now() + duration;
 
-  const colors = ['#00fff2', '#ff00cc', '#ffcc00', '#ffffff', '#00bfff', '#ff7b00'];
-
-  for (let i = 0; i < 120; i++) {
-    const confetti = document.createElement('div');
-    confetti.style.position = 'absolute';
-    confetti.style.width = Math.random() * 8 + 4 + 'px';
-    confetti.style.height = Math.random() * 10 + 6 + 'px';
-    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-    confetti.style.left = Math.random() * 100 + 'vw';
-    confetti.style.top = '-10px';
-    confetti.style.opacity = 0.9;
-    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-    confettiContainer.appendChild(confetti);
-
-    // Define animação individual
-    const fallDuration = 2500 + Math.random() * 1500;
-    const xDrift = (Math.random() - 0.5) * 200;
-
-    confetti.animate([
-      { transform: `translate(0, 0) rotate(0deg)`, opacity: 1 },
-      { transform: `translate(${xDrift}px, 100vh) rotate(${720 + Math.random() * 360}deg)`, opacity: 0.8 }
-    ], {
-      duration: fallDuration,
-      easing: 'ease-out',
-      fill: 'forwards'
+  // loop de animação
+  (function frame() {
+    // Confete explodindo da esquerda
+    confetti({
+      particleCount: 6,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0, y: 1 },
+      colors: ['#00ffcc', '#00e0ff', '#00bfff', '#00aaff', '#66ffff']
     });
-  }
 
-  // Remove o container após o efeito
-  setTimeout(() => confettiContainer.remove(), 4000);
+    // Confete explodindo da direita
+    confetti({
+      particleCount: 6,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1, y: 1 },
+      colors: ['#00ffcc', '#00e0ff', '#00bfff', '#00aaff', '#66ffff']
+    });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  })();
 }
 </script>
 
