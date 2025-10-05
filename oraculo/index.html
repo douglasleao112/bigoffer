@@ -372,7 +372,7 @@ document.getElementById("beginPortal").addEventListener("click", () => {
   // Fecha o aviso inicial
   document.getElementById("startOverlay").style.display = "none";
 
-  // Dispara o evento Lead no clique de iniciar
+  // IMPORTANTE inicia o quiz
   if (typeof fbq === "function") {
     fbq('track', 'Lead');
     console.log("🔥 Evento Lead disparado!");
@@ -493,7 +493,7 @@ document.getElementById("beginPortal").addEventListener("click", () => {
       document.getElementById("gifTop").innerHTML = `<img src="${question.gif}" alt="Oráculo">`;
 
       if (currentQuestion === 0 && typeof fbq === "function") {
-      fbq('track', 'CompleteRegistration');
+      fbq('track', 'CompleteRegistration'); // IMPORTANTE! inicia as perguntas do quiz
       }
     }
 
@@ -603,7 +603,7 @@ const finalStages = [
 
 let currentStage = 0;
 
-/* 🎬 Inicia a primeira etapa do pitch */
+/* 🎬 IMPORTANTE!  Fim das Pergutnas Inicio do Pitch */
 function showResult() {
   if (typeof fbq === "function") {
     fbq('track', 'AddToWishlist');
@@ -629,7 +629,7 @@ function playFinalStage() {
   const audio = new Audio(stage.audio);
   audio.play();
 
-  // 🚀 Dispara evento quando o último áudio começa
+  // IMPORTANTE! fim do quiz
   if (currentStage === finalStages.length - 1) {
     fbq('track', 'Search');
     console.log("📩 Evento disparado (última etapa)");
@@ -956,7 +956,7 @@ if (currentStage === 0) {
 
   // 🎯 Evento do pixel se for a última etapa
   if (currentStage === finalStages.length - 1) {
-    fbq('track', 'AddToWishlist');
+    fbq('track', 'Search');
     console.log("📩 Evento disparado (última etapa)");
   }
 
