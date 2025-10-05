@@ -2,26 +2,27 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>O Código da [P]ersuasão</title>
-  <link rel="icon" href="https://i.imgur.com/iPllVtt.jpeg" type="image/png">
-  <script src="https://cdn.tailwindcss.com"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>El Código de la [P]ersuasión</title>
+<link rel="icon" href="https://i.imgur.com/iPllVtt.jpeg" type="image/png">
+<script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Favicon -->
+<!-- Favicon -->
 <link rel="icon" href="https://i.imgur.com/iPllVtt.jpeg" type="image/png">
 
-<!-- Open Graph para redes sociais -->
-<meta property="og:title" content="O Código da [P]ersuasão" />
-<meta property="og:description" content="Descubra os gatilhos mentais ocultos e técnicas de persuasão proibidas." />
+<!-- Open Graph para redes sociales -->
+<meta property="og:title" content="El Código de la [P]ersuasión" />
+<meta property="og:description" content="Descubre los gatillos mentales ocultos y técnicas de persuasión prohibidas." />
 <meta property="og:image" content="https://i.imgur.com/iPllVtt.jpeg" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://bigoffer.netlify.app/lp-1/" />
 
-<!-- Para WhatsApp e Twitter -->
+<!-- Para WhatsApp y Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="O Código da [P]ersuasão" />
-<meta name="twitter:description" content="Descubra os gatilhos mentais ocultos e técnicas de persuasão proibidas." />
+<meta name="twitter:title" content="El Código de la [P]ersuasión" />
+<meta name="twitter:description" content="Descubre los gatillos mentales ocultos y técnicas de persuasión prohibidas." />
 <meta name="twitter:image" content="https://i.imgur.com/iPllVtt.jpeg" />
+
 
   <style>
     /* 🔼 Ajuste fino da posição do GIF, título e botões */
@@ -320,11 +321,12 @@ body {
 <!-- 🌀 POPUP DE INÍCIO -->
 <div id="startOverlay" class="overlay">
   <div class="popup-glass">
-    <h2>⚠️ATENÇÃO</h2>
-    <p>Antes de continuar, coloque o <b>VOLUME NO MÁXIMO</b> para ouvir tudo com clareza.</p>
-    <button id="beginPortal" class="btn-universal">OUVIR 🔊</button>
+    <h2>⚠️ATENCIÓN</h2>
+    <p>Antes de continuar, pon el <b>VOLUMEN AL MÁXIMO</b> para escuchar todo con claridad.</p>
+    <button id="beginPortal" class="btn-universal">ESCUCHAR 🔊</button>
   </div>
 </div>
+
 
 <style>
 /* 🔲 Fundo escuro com desfoque */
@@ -383,7 +385,7 @@ document.getElementById("beginPortal").addEventListener("click", () => {
   intro.muted = false;
   intro.play();
 
-  // 🎵 Inicia música de fundo com volume 30%
+  // 🎵 Inicia música de fundo com volume 50%
   const bgMusic = document.getElementById("bgMusic");
   bgMusic.volume = 0.5;
   bgMusic.play().catch(err => console.log("Autoplay bloqueado até interação:", err));
@@ -398,19 +400,19 @@ document.getElementById("beginPortal").addEventListener("click", () => {
       <div class="progress-bar-fill-top" id="progressFillTop"></div>
     </div>
 
-    <div class="gif-container" id="gifTop" onclick="unmuteIntro()">
+    <div class="gif-container" id="gifTop" onclick="unmuteIntro()">  
       <img src="https://static.wixstatic.com/media/7f5efc_43c1c40f773b406dbfcbd0332c43715c~mv2.gif" alt="Oráculo">
     </div>
-    <audio id="introAudio" autoplay muted onended="showStartButton()">
-      <source src="https://static.wixstatic.com/mp3/7f5efc_9c72927ebd644091a41f85b97a93198b.mp3" type="audio/mpeg">
-      Seu navegador não suporta áudio.
+    <audio id="introAudio" autoplay muted onended="showStartButton()"> <!-- 🎧 Áudio 1 - IMPORTANTE! -->
+      <source src="https://static.wixstatic.com/mp3/7f5efc_9843fe2910e34fd28334d2a07ec9c6e4.mp3" type="audio/mpeg"> 
+      Tu navegador no soporta audio.
     </audio>
 
     <button id="startBtn" onclick="startQuiz()" style="display: none;">ASSUMIR OS RISCOS</button>
 
     <audio id="quizAudio" onended="showOptions()">
       <source id="quizAudioSrc" src="" type="audio/mpeg">
-      Seu navegador não suporta áudio.
+      Tu navegador no soporta audio.
     </audio>
 
     <div id="quizContent" style="display:none">
@@ -421,42 +423,43 @@ document.getElementById("beginPortal").addEventListener("click", () => {
 
   <script>
     const questions = [
-      {
-        text: "Vamos lá! Valendo...",
-        options: ["Escassez", "Prova Social", "Autoridade"],
-        correct: 2,
-        audio: "https://static.wixstatic.com/mp3/7f5efc_6887c7208e59424ab157e31a39137b0c.mp3",
-        gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif"
-      },
-      {
-        text: "Uma criança de 5 anos sabe!",
-        options: ["Urgência", "Escassez", "Reciprocidade"],
-        correct: 1,
-        audio: "https://static.wixstatic.com/mp3/7f5efc_5a19d15e56a742a6992b2a3f46597638.mp3",
-        gif: "https://static.wixstatic.com/media/7f5efc_a7bee9f2a76c46c4b3f33679c2bdc969~mv2.gif"
-      },
-      {
-        text: "Eu nem chamaria de amigo...",
-        options: ["Reciprocidade", "Autoridade", "Medo"],
-        correct: 0,
-        audio: "https://static.wixstatic.com/mp3/7f5efc_02c932a98ba940de96496fcbc7d72bd9.mp3",
-        gif: "https://static.wixstatic.com/media/7f5efc_65ecff36c016466f86572c9701297323~mv2.gif"
-      },
-      {
-        text: "Me prova que sabe...",
-        options: ["Medo de Perder", "Raiva", "Recompensa"],
-        correct: 2,
-        audio: "https://static.wixstatic.com/mp3/7f5efc_d4565de85cfe47e182eb158a74424204.mp3",
-        gif: "https://static.wixstatic.com/media/7f5efc_356fcdf2e88344ea95e2f7d8e218c018~mv2.gif"
-      },
-      {
-        text: "Te peguei não é mesmo?",
-        options: ["Antecipação", "Autonomia", "Chantagem"],
-        correct: 1,
-        audio: "https://static.wixstatic.com/mp3/7f5efc_42f722c97490452f9c83c23d29c49329.mp3",
-        gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif"
-      }
-    ];
+{
+  text: "¡Vamos allá! Empieza el juego...",
+  options: ["Escasez", "Prueba Social", "Autoridad"],
+  correct: 2,
+  audio: "https://static.wixstatic.com/mp3/7f5efc_1839db906af140d3b48f652e152fd9b4.mp3",  // 🎧 Audio 2
+  gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif"
+},
+{
+  text: "¡Un niño de 5 años lo sabe!",
+  options: ["Urgencia", "Escasez", "Reciprocidad"],
+  correct: 1,
+  audio: "https://static.wixstatic.com/mp3/7f5efc_91a7155bbe9345c1ae9c35be45dc3ff0.mp3",   // 🎧 Audio 3
+  gif: "https://static.wixstatic.com/media/7f5efc_a7bee9f2a76c46c4b3f33679c2bdc969~mv2.gif"
+},
+{
+  text: "Ni siquiera lo llamaría amigo...",
+  options: ["Reciprocidad", "Autoridad", "Miedo"],
+  correct: 0,
+  audio: "https://static.wixstatic.com/mp3/7f5efc_c7cb429f1b7843039c250d9c0fd0ac96.mp3",   // 🎧 Audio 4
+  gif: "https://static.wixstatic.com/media/7f5efc_65ecff36c016466f86572c9701297323~mv2.gif"
+},
+{
+  text: "Demuestra que lo sabes...",
+  options: ["Miedo a perder", "Ira", "Recompensa"],
+  correct: 2,
+  audio: "https://static.wixstatic.com/mp3/7f5efc_cf00803275fe4b8496b2a79d21f4876c.mp3",   // 🎧 Audio 5
+  gif: "https://static.wixstatic.com/media/7f5efc_356fcdf2e88344ea95e2f7d8e218c018~mv2.gif"
+},
+{
+  text: "Te atrapé, ¿verdad?",
+  options: ["Anticipación", "Autonomía", "Chantaje"],
+  correct: 1,
+  audio: "https://static.wixstatic.com/mp3/7f5efc_50c6a4905a0142ada95a2cece91b9639.mp3",   // 🎧 Audio 6
+  gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif"
+}
+];
+
 
 
 
@@ -556,59 +559,60 @@ document.body.addEventListener("click", function playOnce() {
 
 
 const finalStages = [
-  {
-    audio: "https://static.wixstatic.com/mp3/7f5efc_c16fb254d2164b75a55acb4b5f1f9d35.mp3",
-    title: "Ainda há mais a descobrir...",
-    gif: "https://static.wixstatic.com/media/7f5efc_e4cececd9a3d4752ac73ed9e3aa22854~mv2.gif",
-    buttons: [
-      { text: "Resgatar Presente", action: "continuar" }
-    ]
-  },
-  {
-    audio: "https://static.wixstatic.com/mp3/7f5efc_d08020db61c748099a1ddce786e47530.mp3",
-    title: "Agora o verdadeiro jogo começa.",
-    gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif",
-    buttons: [
-      { text: "Sim, tenho!", action: "continuar" },
-      { text: "Desbloquear agora", action: "continuar" }
-    ]
-  },
-  {
-    audio: "https://static.wixstatic.com/mp3/7f5efc_6223bdff2fca421aa8f0720e0242a96e.mp3",
-    title: "Está pronto para o poder completo?",
-    gif: "https://static.wixstatic.com/media/7f5efc_65ecff36c016466f86572c9701297323~mv2.gif",
-    buttons: [
-      { text: "Sim, está claro", action: "continuar" },
-      { text: "Continuar agora", action: "continuar" }
-    ]
-  },
-  {
-    audio: "https://static.wixstatic.com/mp3/7f5efc_7932cb65472544788ac6dc7ebb2a5b37.mp3",
-    title: "Você se compromete?",
-    gif: "https://static.wixstatic.com/media/7f5efc_8f04a0244d954ae795ddd741d52fc009~mv2.gif",
-    buttons: [
-      { text: "Eu me comprometo", action: "continuar" },
-      { text: "Vou pensar", action: "continuar" }
-    ]
-  },
+ {
+  audio: "https://static.wixstatic.com/mp3/7f5efc_dfee1ff35aa342f0b0318b3e9772ff34.mp3",  // 🎧 Audio 7
+  title: "Aún hay más por descubrir...",
+  gif: "https://static.wixstatic.com/media/7f5efc_e4cececd9a3d4752ac73ed9e3aa22854~mv2.gif",
+  buttons: [
+    { text: "Reclamar Regalo", action: "continuar" }
+  ]
+},
+{
+  audio: "https://static.wixstatic.com/mp3/7f5efc_a693289732534832af56017ed03173cb.mp3",  // 🎧 Audio 8
+  title: "Ahora comienza el verdadero juego.",
+  gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif",
+  buttons: [
+    { text: "Sí, lo tengo", action: "continuar" },
+    { text: "Desbloquear ahora", action: "continuar" }
+  ]
+},
+{
+  audio: "https://static.wixstatic.com/mp3/7f5efc_8c92a5ada4fd4a7bb7e69334272c59df.mp3",  // 🎧 Audio 9
+  title: "¿Estás listo para el poder completo?",
+  gif: "https://static.wixstatic.com/media/7f5efc_65ecff36c016466f86572c9701297323~mv2.gif",
+  buttons: [
+    { text: "Sí, está claro", action: "continuar" },
+    { text: "Continuar ahora", action: "continuar" }
+  ]
+},
+{
+  audio: "https://static.wixstatic.com/mp3/7f5efc_9c90bcfd47ec494f8066895bf978af0b.mp3",  // 🎧 Audio 10
+  title: "¿Te comprometes?",
+  gif: "https://static.wixstatic.com/media/7f5efc_8f04a0244d954ae795ddd741d52fc009~mv2.gif",
+  buttons: [
+    { text: "Me comprometo", action: "continuar" },
+    { text: "Lo pensaré", action: "continuar" }
+  ]
+},
+
   
   {
-  audio: "https://static.wixstatic.com/mp3/7f5efc_45087183048d4fa1a9586f0100342b08.mp3",
+  audio: "https://static.wixstatic.com/mp3/7f5efc_c55ae0194c5b477dbfe8870727b1d1a4.mp3",    // 🎧 Áudio 11
 title: (() => {
-  const dias = ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"];
+  const dias = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
   const hoje = new Date();
   const diaSemana = dias[hoje.getDay()];
   const dia = hoje.getDate().toString().padStart(2, '0');
-  const mes = hoje.toLocaleString('pt-BR', { month: 'long' });
-  return `Agora é com você... <br>
+  const mes = hoje.toLocaleString('es-ES', { month: 'long' });
+  return `Ahora es tu turno... <br>
   <br>
-  O portal está aberto para garantir o Código da [P]ersuasão com 70% de Desconto!<br>
+  El portal está abierto para asegurar el Código de la [P]ersuasión con un 70% de descuento.<br>
   <br>
-  ⚠️<b>ATENÇÃO:</b> Essa promoção ficará disponível somente hoje, ${diaSemana} ${dia} de ${mes}.`;
+  ⚠️<b>ATENCIÓN:</b> Esta promoción estará disponible solo hoy, ${diaSemana} ${dia} de ${mes}.`;
 })(),
   gif: "https://static.wixstatic.com/media/7f5efc_a7bee9f2a76c46c4b3f33679c2bdc969~mv2.gif",
   buttons: [
-    { text: "GARANTIR AGORA!", action: "link", link: "https://sun.eduzz.com/E0D6P4V691" }
+    { text: "¡ASEGURAR AHORA!", action: "link", link: "https://sun.eduzz.com/E0D6P4V691" }
   ]
 }
   
