@@ -880,8 +880,6 @@ if (currentStage === 0) {
 
 
 
-
-
 function showStageButtons() {
   const stage = finalStages[currentStage];
   const container = document.querySelector(".quiz-container");
@@ -893,6 +891,15 @@ function showStageButtons() {
     <div class="question-text" style="display:block;">${stage.title}</div>
   `;
 
+  // 🎇 Se for a última etapa, dispara fogos e som automaticamente
+  if (currentStage === finalStages.length - 1) {
+    launchConfetti();
+
+    const sound = new Audio("https://cdn.pixabay.com/download/audio/2024/07/30/audio_206667a482.mp3?filename=fart-2-228242.mp3");
+    sound.volume = 0.4;
+    sound.play();
+  }
+
   stage.buttons.forEach(btnData => {
     const btn = document.createElement("button");
     btn.textContent = btnData.text;
@@ -901,15 +908,13 @@ function showStageButtons() {
     btn.onmouseenter = () => btn.style.boxShadow = "0 0 25px rgba(0,255,200,0.9)";
     btn.onmouseleave = () => btn.style.boxShadow = "0 0 15px rgba(0,255,200,0.6)";
 
-    // 🔹 Se for botão de continuar
     if (btnData.action === "continuar") {
       btn.onclick = () => {
         currentStage++;
-        saveProgress(); // ✅ continua salvando o progresso
+        saveProgress();
         if (currentStage < finalStages.length) {
           playFinalStage();
         } else {
-          // 🔗 Redireciona para o checkout COM UTMs (sem resetar)
           const params = new URLSearchParams(window.location.search);
           const utmString = params.toString();
           let finalLink = "https://sun.eduzz.com/E0D6P4V691";
@@ -919,22 +924,14 @@ function showStageButtons() {
             finalLink = `${finalLink}${separator}${utmString}`;
           }
 
-          // ❌ NÃO limpa o progresso
           window.location.href = finalLink;
         }
       };
     }
 
-    // 🔹 Se for o botão final (link)
     else if (btnData.action === "link") {
       btn.onclick = () => {
-        // 🎆 Efeito de fogos + som
-        launchFireworks();
-        const sound = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_e8b2fa25cf.mp3?filename=goodresult-82807.mp3");
-        sound.volume = 0.4;
-        sound.play();
-
-        // 🔗 Mantém UTMs
+        // apenas redireciona (efeito já foi disparado antes)
         const params = new URLSearchParams(window.location.search);
         const utmString = params.toString();
         let finalLink = btnData.link;
@@ -944,7 +941,6 @@ function showStageButtons() {
           finalLink = `${finalLink}${separator}${utmString}`;
         }
 
-        // ✅ NÃO limpa o progresso — mantém salvo no localStorage
         setTimeout(() => {
           window.location.href = finalLink;
         }, 1500);
@@ -954,6 +950,7 @@ function showStageButtons() {
     container.appendChild(btn);
   });
 }
+
 
 
 
@@ -1018,6 +1015,49 @@ function launchFireworks() {
 
   // Remove o container após o efeito
   setTimeout(() => fireworksContainer.remove(), 2000);
+}
+
+
+
+function launchConfetti() {
+  const confettiContainer = document.createElement('div');
+  confettiContainer.style.position = 'fixed';
+  confettiContainer.style.inset = '0';
+  confettiContainer.style.pointerEvents = 'none';
+  confettiContainer.style.zIndex = '999999';
+  document.body.appendChild(confettiContainer);
+
+  const colors = ['#00fff2', '#ff00cc', '#ffcc00', '#ffffff', '#00bfff', '#ff7b00'];
+
+  for (let i = 0; i < 120; i++) {
+    const confetti = document.createElement('div');
+    confetti.style.position = 'absolute';
+    confetti.style.width = Math.random() * 8 + 4 + 'px';
+    confetti.style.height = Math.random() * 10 + 6 + 'px';
+    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.left = Math.random() * 100 + 'vw';
+    confetti.style.top = '-10px';
+    confetti.style.opacity = 0.9;
+    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    confettiContainer.appendChild(confetti);
+
+    // Define animação individual
+    const fallDuration = 2500 + Math.random() * 1500;
+    const xDrift = (Math.random() - 0.5) * 200;
+
+    confetti.animate([
+      { transform: `translate(0, 0) rotate(0deg)`, opacity: 1 },
+      { transform: `translate(${xDrift}px, 100vh) rotate(${720 + Math.random() * 360}deg)`, opacity: 0.8 }
+    ], {
+      duration: fallDuration,
+      easing: 'ease-out',
+      fill: 'forwards'
+    });
+  }
+
+  // Remove o container após o efeito
+  setTimeout(() => confettiContainer.remove(), 4000);
 }
 </script>
 
