@@ -550,9 +550,7 @@ function showResult() {
   playFinalStage();
 }
 
-
-
-
+/* 🔊 Toca o áudio e mostra o GIF correspondente */
 function playFinalStage() {
   const stage = finalStages[currentStage];
   const container = document.querySelector(".quiz-container");
@@ -564,28 +562,7 @@ function playFinalStage() {
   `;
 
   const audio = new Audio(stage.audio);
-
-  // 🔥 Efeito de desintegração na 1ª etapa do áudio final
-  if (currentStage === 0 && stage.audio.includes("7f5efc_c16fb254d2164b75a55acb4b5f1f9d35.mp3")) {
-    efeitoDesintegrar();
-  }
-
   audio.play();
-
-  // 🚀 Evento do último áudio (mantém seu controle)
-  if (currentStage === finalStages.length - 1) {
-    fbq('track', 'AddToWishlist');
-    console.log("📩 Evento AddToWishlist disparado (última etapa)");
-  }
-
-  audio.onended = () => showStageButtons();
-}
-
-
-
-
-
-
 
   // 🚀 Dispara evento quando o último áudio começa
   if (currentStage === finalStages.length - 1) {
@@ -766,21 +743,6 @@ function hideThermometer() {
 }
 
 
-
-/* 🌀 EFEITO DE DESINTEGRAÇÃO */
-function efeitoDesintegrar() {
-  const fade = document.createElement("div");
-  fade.className = "overlay";
-  fade.style.position = "fixed";
-  fade.style.inset = "0";
-  fade.style.background = "radial-gradient(circle, rgba(0,255,200,0.1) 0%, rgba(0,0,0,1) 90%)";
-  fade.style.transition = "opacity 2s ease";
-  fade.style.zIndex = "9999";
-  fade.style.pointerEvents = "none";
-  document.body.appendChild(fade);
-  setTimeout(() => fade.style.opacity = 0, 200);
-  setTimeout(() => fade.remove(), 2200);
-}
 </script>
 
 </body>
