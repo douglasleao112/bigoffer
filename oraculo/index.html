@@ -887,17 +887,7 @@ if (currentStage === 0) {
     console.log("📩 Evento disparado (última etapa)");
   }
 
-   // 🔁 Verifica se é retorno de progresso salvo
-  const saved = loadProgress();
-  const isReturning = saved && saved.phase === 'final' && saved.currentStage === currentStage;
-
-  if (isReturning) {
-    // Se for retorno, já mostra o conteúdo final com botão e texto imediatamente
-    showStageButtons();
-  } else {
-    // Caso normal (primeira vez na etapa)
-    audio.onended = () => showStageButtons();
-  }
+  audio.onended = () => showStageButtons();
 }
 
 
