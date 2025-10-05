@@ -774,5 +774,188 @@ function hideThermometer() {
   Seu navegador não suporta áudio.
 </audio>
 
+
+
+
+<script>
+// 🔄 Controle de progresso com localStorage
+
+// 🔹 Salva o progresso a cada etapa
+function saveProgress() {
+  const progress = {
+    currentQuestion,
+    currentStage,
+    phase: (currentQuestion < questions.length) ? 'quiz' : 'final'
+  };
+  localStorage.setItem('persuasaoProgress', JSON.stringify(progress));
+}
+
+// 🔹 Carrega o progresso salvo (se existir)
+function loadProgress() {
+  const saved = localStorage.getItem('persuasaoProgress');
+  if (!saved) return null;
+  try {
+    return JSON.parse(saved);
+  } catch {
+    return null;
+  }
+}
+
+// 🔹 Inicializa a música de fundo
+function startBackgroundMusic() {
+  const bgMusic = document.getElementById("bgMusic");
+  if (!bgMusic) return;
+
+  bgMusic.volume = 0.3;
+  bgMusic.loop = true;
+
+  const playMusic = () => {
+    bgMusic.play().catch(() => {
+      console.log("⚠️ Autoplay bloqueado — aguardando interação.");
+    });
+  };
+
+  // tenta tocar imediatamente (caso já permitido)
+  playMusic();
+
+  // garante que toque após interação
+  document.body.addEventListener("click", playMusic, { once: true });
+}
+
+// 🔹 Restaura o estado salvo ao abrir a página
+window.addEventListener('load', () => {
+  const saved = loadProgress();
+
+  // Sempre inicia a música de fundo
+  startBackgroundMusic();
+
+  if (!saved) return;
+
+  console.log("🔁 Restaurando progresso:", saved);
+
+  // Se estava no quiz
+  if (saved.phase === 'quiz') {
+    currentQuestion = saved.currentQuestion || 0;
+    document.getElementById("startOverlay").style.display = "none";
+    document.getElementById("quizContent").style.display = "block";
+    document.getElementById("progressBar").style.display = "block";
+    playCurrentAudio();
+    updateTopProgress();
+    updateThermometer();
+  }
+
+  // Se estava nas etapas finais
+  else if (saved.phase === 'final') {
+    currentStage = saved.currentStage || 0;
+    document.getElementById("startOverlay").style.display = "none";
+    hideThermometer();
+    playFinalStage();
+  }
+});
+
+// 🧩 Sempre salvar quando muda de etapa
+function handleAnswer(selectedIndex) {
+  currentQuestion++;
+
+  if (currentQuestion < questions.length) {
+    loadNextQuestion();
+    updateThermometer();
+    saveProgress(); // 💾 salva o progresso
+  } else {
+    document.getElementById("answers").style.display = "none";
+    document.getElementById("questionText").style.display = "none";
+    hideThermometer();
+    setTimeout(() => {
+      showResult();
+      saveProgress(); // 💾 salva quando termina o quiz
+    }, 500);
+  }
+}
+
+// 🔹 Também salvar nas etapas finais
+function playFinalStage() {
+  const stage = finalStages[currentStage];
+  const container = document.querySelector(".quiz-container");
+
+  container.innerHTML = `
+    <div class="gif-container">
+      <img src="${stage.gif}" alt="Oráculo">
+    </div>
+  `;
+
+  const audio = new Audio(stage.audio);
+  audio.play();
+
+  // 🚨 Salva o estágio atual no localStorage
+  saveProgress();
+
+  // 🎯 Evento do pixel se for a última etapa
+  if (currentStage === finalStages.length - 1) {
+    fbq('track', 'AddToWishlist');
+    console.log("📩 Evento AddToWishlist disparado (última etapa)");
+  }
+
+  audio.onended = () => showStageButtons();
+}
+
+// 🧠 Mostra os botões e também salva o progresso
+function showStageButtons() {
+  const stage = finalStages[currentStage];
+  const container = document.querySelector(".quiz-container");
+
+  container.innerHTML = `
+    <div class="gif-container">
+      <img src="${stage.gif}" alt="Oráculo">
+    </div>
+    <div class="question-text" style="display:block;">${stage.title}</div>
+  `;
+
+  stage.buttons.forEach(btnData => {
+    const btn = document.createElement("button");
+    btn.textContent = btnData.text;
+    btn.className = "btn-universal";
+
+    btn.onmouseenter = () => btn.style.boxShadow = "0 0 25px rgba(0,255,200,0.9)";
+    btn.onmouseleave = () => btn.style.boxShadow = "0 0 15px rgba(0,255,200,0.6)";
+
+    if (btnData.action === "continuar") {
+      btn.onclick = () => {
+        currentStage++;
+        saveProgress(); // 💾 salva o avanço
+        if (currentStage < finalStages.length) {
+          playFinalStage();
+        } else {
+          window.location.href = "https://sun.eduzz.com/E0D6P4V691";
+          resetProgress(); // 🧹 limpa o progresso ao final
+        }
+      };
+    } else if (btnData.action === "link") {
+      btn.onclick = () => {
+        resetProgress(); // 🧹 limpa o progresso ao clicar no link final
+        window.location.href = btnData.link;
+      };
+    }
+
+    container.appendChild(btn);
+  });
+}
+
+// 🧹 Função para limpar o progresso completamente
+function resetProgress() {
+  localStorage.removeItem('persuasaoProgress');
+  console.log("🧹 Progresso resetado");
+}
+
+// 🧲 Se o lead clicar no botão final manualmente, também limpa
+document.addEventListener('click', e => {
+  if (e.target.textContent.includes("ACESSAR O CÓDIGO")) {
+    resetProgress();
+  }
+});
+</script>
+
+
+
+
 </body>
 </html>
