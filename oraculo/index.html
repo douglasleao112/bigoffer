@@ -256,6 +256,38 @@ body {
 }
 
 
+
+
+
+/* 💥 Efeito de desintegração */
+.disintegration-effect {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 99999;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(0,255,200,0.8);
+  border-radius: 50%;
+  animation: disperse 1.5s linear forwards;
+}
+
+@keyframes disperse {
+  from { transform: scale(1) translate(0,0); opacity: 1; }
+  to {
+    transform: scale(0) translate(
+      calc((Math.random() - 0.5) * 300px),
+      calc((Math.random() - 0.5) * 300px)
+    );
+    opacity: 0;
+  }
+}
+
   </style>
 
 
@@ -739,7 +771,7 @@ document.addEventListener('keydown', e => {
   <div id="thermometer">
     <div class="thermo-inner">
       <div class="thermo-fill" id="thermoFill"></div>
-      <div class="thermo-bulb"></div> <!-- ✅ bolinha real dentro da estrutura -->
+      <div class="thermo-bulb"></div> 
       <div class="thermo-arrow"></div>
     </div>
   </div>
@@ -882,6 +914,36 @@ function playFinalStage() {
       <img src="${stage.gif}" alt="Oráculo">
     </div>
   `;
+
+
+
+
+
+
+// 🌌 Efeito de desintegração só na primeira etapa final
+if (currentStage === 0) {
+  const effect = document.createElement("div");
+  effect.className = "disintegration-effect";
+  document.body.appendChild(effect);
+
+  for (let i = 0; i < 120; i++) {
+    const particle = document.createElement("span");
+    particle.className = "particle";
+    particle.style.left = Math.random() * 100 + "vw";
+    particle.style.top = Math.random() * 100 + "vh";
+    particle.style.animationDelay = Math.random() * 1.5 + "s";
+    effect.appendChild(particle);
+  }
+
+  setTimeout(() => effect.remove(), 2500); // limpa o efeito após 2,5s
+}
+
+
+
+
+
+
+
 
   const audio = new Audio(stage.audio);
   audio.play();
