@@ -290,6 +290,12 @@ body {
   }
 }
 
+
+@keyframes blinkVolume {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
   </style>
 
 
@@ -384,6 +390,30 @@ document.getElementById("beginPortal").addEventListener("click", () => {
   const intro = document.getElementById("introAudio");
   intro.muted = false;
   intro.play();
+
+
+  // 👇 Adiciona texto piscando "Sube el volumen!♫" por 5s abaixo da máscara
+const volumeText = document.createElement("div");
+volumeText.textContent = "Sube el volumen!♫";
+volumeText.style.position = "absolute";
+volumeText.style.top = "calc(100% + 5px)"; // fica logo abaixo da máscara
+volumeText.style.left = "50%";
+volumeText.style.transform = "translateX(-50%)";
+volumeText.style.fontSize = "8px";
+volumeText.style.color = "white";
+volumeText.style.fontWeight = "300";
+volumeText.style.opacity = "0";
+volumeText.style.animation = "blinkVolume 1s infinite";
+volumeText.style.zIndex = "5";
+
+// adiciona dentro do container da máscara
+document.querySelector(".gif-container").appendChild(volumeText);
+
+// remove o texto depois de 5s
+setTimeout(() => {
+  volumeText.remove();
+}, 5000);
+
 
   // 🎵 Inicia música de fundo com volume 50%
   const bgMusic = document.getElementById("bgMusic");
