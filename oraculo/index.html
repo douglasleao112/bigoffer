@@ -29,9 +29,6 @@
   margin-top: -40px; /* sobe todo o conjunto */
 }
 
-.gif-container img {
-  margin-top: -15px; /* sobe levemente o GIF */
-}
 
 .question-text {
   margin-top: -10px; /* aproxima o texto do GIF */
@@ -81,10 +78,43 @@ body {
   max-width: 300px;
   display: block;
   margin: 0 auto;
+  margin-top: -15px; /* sobe levemente o GIF */
   cursor: pointer;
   position: relative;
   z-index: 1;
 }
+
+
+
+/* 🔊 Texto "Aumente o Volume" */
+#volumeHint {
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 500;
+  text-shadow: 0 0 8px rgba(255,255,255,0.8);
+  opacity: 0;
+  z-index: 3; /* texto acima de tudo */
+  animation: blink 1.2s ease-in-out infinite, fadeOut 5s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  90% { opacity: 0.9; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+
+
 
     .hidden {
       display: none;
@@ -364,35 +394,6 @@ body {
   line-height: 1.4em;
   color: #ddd;
   margin-bottom: 20px;
-}
-
-
-
-/* Texto "Aumente o Volume" piscando */
-#volumeHint {
-  position: absolute;
-  bottom: -25px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 13px;
-  color: #ffffff; /* branco puro */
-  font-weight: 500;
-  text-shadow: 0 0 10px rgba(255,255,255,0.9);
-  opacity: 0;
-  z-index: 3; /* 🔥 fica acima do gradiente */
-  animation: blink 1.2s ease-in-out infinite, fadeOut 5s ease forwards;
-  pointer-events: none;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 1; }
-}
-
-@keyframes fadeOut {
-  0% { opacity: 1; }
-  90% { opacity: 0.9; }
-  100% { opacity: 0; visibility: hidden; }
 }
 
 </style>
