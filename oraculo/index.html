@@ -79,7 +79,6 @@ body {
   max-width: 300px;
   display: block;
   margin: 0 auto;
-  
   cursor: pointer;
   position: relative;
   z-index: 1;
@@ -583,11 +582,31 @@ function handleAnswer(selectedIndex) {
     }
 
 
-    // Permitir tocar o áudio ao clicar em qualquer lugar da tela
-document.body.addEventListener("click", function playOnce() {
-  unmuteIntro();
-  document.body.removeEventListener("click", playOnce);
-});
+// 🎧 Controle inteligente de cliques para liberar o áudio
+function setupGlobalAudioUnlock() {
+  document.body.addEventListener("click", function handleAudioPlay(e) {
+    const overlay = document.getElementById("startOverlay");
+    const button = document.getElementById("beginPortal");
+
+    // 🚫 Se o overlay ainda está ativo, só permite clique no botão
+    if (overlay && overlay.style.display !== "none") {
+      if (!button.contains(e.target)) {
+        e.stopPropagation();
+        e.preventDefault();
+        return false; // ignora clique fora
+      }
+      // Se clicou no botão, o próprio listener do botão já cuida do áudio
+      return;
+    }
+
+    // ✅ Depois que o overlay some, qualquer clique libera o áudio
+    unmuteIntro();
+    document.body.removeEventListener("click", handleAudioPlay);
+  });
+}
+
+// Executa assim que a página carrega
+setupGlobalAudioUnlock();
 
 
 
