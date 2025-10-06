@@ -290,12 +290,6 @@ body {
   }
 }
 
-
-@keyframes blinkVolume {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 1; }
-}
-
   </style>
 
 
@@ -378,65 +372,25 @@ body {
 <script>
 document.getElementById("beginPortal").addEventListener("click", () => {
   // Fecha o aviso inicial
-  const overlay = document.getElementById("startOverlay");
-  overlay.style.opacity = "0";
-  setTimeout(() => (overlay.style.display = "none"), 300);
+  document.getElementById("startOverlay").style.display = "none";
 
-  // 🎯 dispara evento do pixel
-  if (typeof fbq === "function") fbq('track', 'Lead');
+  // IMPORTANTE inicia o quiz
+  if (typeof fbq === "function") {
+    fbq('track', 'Lead');
+    console.log("🔥 Evento Lead disparado!");
+  }
 
-  // 🎵 Inicia o áudio principal
+  // Inicia o áudio principal do quiz
   const intro = document.getElementById("introAudio");
   intro.muted = false;
-  intro.play().catch(() => console.log("⚠️ Autoplay bloqueado"));
+  intro.play();
 
-  // 🎶 Música de fundo
+  // 🎵 Inicia música de fundo com volume 50%
   const bgMusic = document.getElementById("bgMusic");
   bgMusic.volume = 0.5;
-  bgMusic.play().catch(() => console.log("⚠️ Autoplay bloqueado"));
-
-  // 👇 Aguarda a renderização do GIF antes de exibir o texto
-  setTimeout(() => {
-    const gifContainer =
-      document.getElementById("gifTop") ||
-      document.querySelector(".gif-container");
-
-    if (gifContainer) {
-      // Remove qualquer texto antigo
-      const oldText = document.getElementById("volumeText");
-      if (oldText) oldText.remove();
-
-      // Cria o texto piscante
-      const volumeText = document.createElement("div");
-      volumeText.id = "volumeText";
-      volumeText.textContent = "Sube el volumen!♫";
-      Object.assign(volumeText.style, {
-        position: "absolute",
-        bottom: "-25px",
-        left: "50%",
-        transform: "translateX(-50%)",
-        fontSize: "12px",
-        color: "#fff",
-        fontWeight: "400",
-        textShadow: "0 0 8px rgba(255,255,255,0.8)",
-        animation: "blinkVolume 1s infinite",
-        zIndex: "9999",
-        pointerEvents: "none",
-      });
-
-      gifContainer.appendChild(volumeText);
-
-      // Remove o texto após 5s
-      setTimeout(() => {
-        volumeText.remove();
-      }, 5000);
-    } else {
-      console.warn("⚠️ gifContainer não encontrado.");
-    }
-  }, 1000); // espera 1s para garantir que o GIF foi renderizado
+  bgMusic.play().catch(err => console.log("Autoplay bloqueado até interação:", err));
 });
 </script>
-
 
 
 
