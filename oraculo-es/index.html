@@ -30,9 +30,6 @@
   margin-top: -40px; /* sobe todo o conjunto */
 }
 
-.gif-container img {
-  margin-top: -15px; /* sobe levemente o GIF */
-}
 
 .question-text {
   margin-top: -10px; /* aproxima o texto do GIF */
@@ -54,12 +51,12 @@ body {
       min-height: 100vh;
     }
  
-    .gif-container {
+ .gif-container {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow: visible !important; /* permite o texto sair da área da imagem */
 }
 
 .gif-container::after {
@@ -82,9 +79,40 @@ body {
   max-width: 300px;
   display: block;
   margin: 0 auto;
+  margin-top: -15px; /* sobe levemente o GIF */
   cursor: pointer;
   position: relative;
   z-index: 1;
+}
+
+
+
+/* Texto piscante */
+#volumeHint {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* fonte mais fina e moderna */
+  color: #fff;
+  font-weight: 500;
+  text-shadow: 0 0 8px rgba(255,255,255,0.8);
+  opacity: 0;
+  z-index: 3;
+  animation: blink 1.2s ease-in-out infinite, fadeOut 7s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  90% { opacity: 0.9; }
+  100% { opacity: 0; visibility: hidden; }
 }
 
     .hidden {
@@ -400,9 +428,12 @@ document.getElementById("beginPortal").addEventListener("click", () => {
       <div class="progress-bar-fill-top" id="progressFillTop"></div>
     </div>
 
-    <div class="gif-container" id="gifTop" onclick="unmuteIntro()">  
-      <img src="https://static.wixstatic.com/media/7f5efc_43c1c40f773b406dbfcbd0332c43715c~mv2.gif" alt="Oráculo">
-    </div>
+<div class="gif-container" id="gifTop" onclick="unmuteIntro()">
+  <div class="gif-wrapper">
+    <img src="https://static.wixstatic.com/media/7f5efc_43c1c40f773b406dbfcbd0332c43715c~mv2.gif" alt="Oráculo">
+    <div id="volumeHint">♫ Aumente o Volume</div>
+  </div>
+</div>
     <audio id="introAudio" autoplay muted onended="showStartButton()"> <!-- 🎧 Áudio 1 - IMPORTANTE! -->
       <source src="https://static.wixstatic.com/mp3/7f5efc_9843fe2910e34fd28334d2a07ec9c6e4.mp3" type="audio/mpeg"> 
       Tu navegador no soporta audio.
