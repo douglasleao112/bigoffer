@@ -392,27 +392,29 @@ document.getElementById("beginPortal").addEventListener("click", () => {
   intro.play();
 
 
-  // 👇 Adiciona texto piscando "Sube el volumen!♫" por 5s abaixo da máscara
-const volumeText = document.createElement("div");
-volumeText.textContent = "Sube el volumen!♫";
-volumeText.style.position = "absolute";
-volumeText.style.top = "calc(100% + 5px)"; // fica logo abaixo da máscara
-volumeText.style.left = "50%";
-volumeText.style.transform = "translateX(-50%)";
-volumeText.style.fontSize = "8px";
-volumeText.style.color = "white";
-volumeText.style.fontWeight = "300";
-volumeText.style.opacity = "0";
-volumeText.style.animation = "blinkVolume 1s infinite";
-volumeText.style.zIndex = "5";
-
-// adiciona dentro do container da máscara
-document.querySelector(".gif-container").appendChild(volumeText);
-
-// remove o texto depois de 5s
+// 👇 Adiciona texto piscando "Sube el volumen!♫" por 5s abaixo da máscara
 setTimeout(() => {
-  volumeText.remove();
-}, 5000);
+  const gifContainer = document.querySelector(".gif-container");
+  if (gifContainer) {
+    const volumeText = document.createElement("div");
+    volumeText.textContent = "Sube el volumen!♫";
+    volumeText.style.position = "absolute";
+    volumeText.style.top = "calc(100% + 5px)"; // fica logo abaixo da máscara
+    volumeText.style.left = "50%";
+    volumeText.style.transform = "translateX(-50%)";
+    volumeText.style.fontSize = "10px";
+    volumeText.style.color = "white";
+    volumeText.style.fontWeight = "400";
+    volumeText.style.textShadow = "0 0 8px rgba(255,255,255,0.5)";
+    volumeText.style.opacity = "0";
+    volumeText.style.animation = "blinkVolume 1s infinite";
+    volumeText.style.zIndex = "5";
+
+    gifContainer.appendChild(volumeText);
+
+    setTimeout(() => volumeText.remove(), 5000);
+  }
+}, 800); // aguarda 0.8s para garantir que o GIF já está renderizado
 
 
   // 🎵 Inicia música de fundo com volume 50%
