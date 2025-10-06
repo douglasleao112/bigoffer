@@ -810,25 +810,31 @@ window.addEventListener('load', () => {
     updateThermometer();
   }
 
-  // Se estava nas etapas finais
-  else if (saved.phase === 'final') {
-    audioPlaying = false; // limpa estados antigos
-    currentStage = saved.currentStage || 0;
-    document.getElementById("startOverlay").style.display = "none";
-    hideThermometer();
-    playFinalStage();
+   // Se estava nas etapas finais
+else if (saved.phase === 'final') {
+  audioPlaying = false; // limpa estados antigos
+  currentStage = saved.currentStage || 0;
+  document.getElementById("startOverlay").style.display = "none";
+  hideThermometer();
+  playFinalStage();
 
-    // 🔊 Retoma o áudio com 1 clique se o usuário voltar no pitch final
-    document.body.addEventListener('click', function resumeFinalAudioOnce() {
-      const stage = finalStages[saved.currentStage || 0];
-      if (stage && stage.audio) {
-        const resumeAudio = new Audio(stage.audio);
-        resumeAudio.play().catch(err => console.log("⚠️ Autoplay bloqueado:", err));
-      }
-      // remove o evento após tocar
-      document.body.removeEventListener('click', resumeFinalAudioOnce);
-    });
-  }
+  // 🔊 Retoma o áudio com 1 clique se o usuário voltar no pitch final
+  document.body.addEventListener('click', function resumeFinalAudioOnce() {
+    const stage = finalStages[saved.currentStage || 0];
+    if (stage && stage.audio) {
+      const resumeAudio = new Audio(stage.audio);
+      resumeAudio.play().catch(err => console.log("⚠️ Autoplay bloqueado:", err));
+
+      // ✅ Quando o áudio terminar, mostra os botões e o texto
+      resumeAudio.onended = () => {
+        showStageButtons();
+      };
+    }
+
+    // remove o evento após tocar
+    document.body.removeEventListener('click', resumeFinalAudioOnce);
+  });
+}
 });
 
 // 🧩 Sempre salvar quando muda de etapa
