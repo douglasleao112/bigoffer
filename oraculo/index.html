@@ -366,16 +366,20 @@ body {
   margin-bottom: 20px;
 }
 
+
+
+/* Texto "Aumente o Volume" piscando */
 #volumeHint {
   position: absolute;
-  bottom: -22px;
+  bottom: -25px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 13px;
   color: #ffffff; /* branco puro */
   font-weight: 500;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+  text-shadow: 0 0 10px rgba(255,255,255,0.9);
   opacity: 0;
+  z-index: 3; /* 🔥 fica acima do gradiente */
   animation: blink 1.2s ease-in-out infinite, fadeOut 5s ease forwards;
   pointer-events: none;
 }
