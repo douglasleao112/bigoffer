@@ -566,21 +566,49 @@
 </section>
 
 
-
 <!-- Estilos carrusel -->
 <style>
-  .glass-card{
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
-    backdrop-filter: blur(10px);
-  }
+.glass-card {
+  position: relative;
+  background: rgba(16, 16, 16, 0.348);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('https://i.pinimg.com/564x/b2/9d/df/b29ddf01acd53e07e44d63efcc5c54a4.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3; /* textura translúcida */
+  z-index: 0;
+}
+
+.glass-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0) 60%,   /* centro limpo */
+    rgba(0, 0, 0, 0.7) 100%  /* bordas escuras */
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.glass-card > * {
+  position: relative;
+  z-index: 2;
+}
   .hide-scrollbar::-webkit-scrollbar{ display:none; }
   .hide-scrollbar{ -ms-overflow-style:none; scrollbar-width:none; }
   #infiniteSlider { scroll-behavior: auto; }
   #infiniteSlider.grabbing, #infiniteSlider:active { cursor: grabbing; }
 </style>
-
-
 
 
 
