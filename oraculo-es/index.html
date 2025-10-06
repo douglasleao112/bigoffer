@@ -378,49 +378,48 @@ body {
 <script>
 document.getElementById("beginPortal").addEventListener("click", () => {
   // Fecha o aviso inicial
-  document.getElementById("startOverlay").style.display = "none";
+  const overlay = document.getElementById("startOverlay");
+  overlay.style.display = "none";
 
-  // IMPORTANTE inicia o quiz
-  if (typeof fbq === "function") {
-    fbq('track', 'Lead');
-    console.log("🔥 Evento Lead disparado!");
-  }
+  // dispara evento do pixel
+  if (typeof fbq === "function") fbq('track', 'Lead');
 
-  // Inicia o áudio principal do quiz
+  // Inicia o áudio principal
   const intro = document.getElementById("introAudio");
   intro.muted = false;
   intro.play();
 
+  // Espera o DOM atualizar completamente
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      const gifContainer = document.querySelector(".gif-container");
+      if (!gifContainer) return;
 
-// 👇 Adiciona texto piscando "Sube el volumen!♫" por 5s abaixo da máscara
-setTimeout(() => {
-  const gifContainer = document.querySelector(".gif-container");
-  if (gifContainer) {
-    const volumeText = document.createElement("div");
-    volumeText.textContent = "Sube el volumen!♫";
-    volumeText.style.position = "absolute";
-    volumeText.style.top = "calc(100% + 5px)"; // fica logo abaixo da máscara
-    volumeText.style.left = "50%";
-    volumeText.style.transform = "translateX(-50%)";
-    volumeText.style.fontSize = "10px";
-    volumeText.style.color = "white";
-    volumeText.style.fontWeight = "400";
-    volumeText.style.textShadow = "0 0 8px rgba(255,255,255,0.5)";
-    volumeText.style.opacity = "0";
-    volumeText.style.animation = "blinkVolume 1s infinite";
-    volumeText.style.zIndex = "5";
+      const volumeText = document.createElement("div");
+      volumeText.textContent = "Sube el volumen!♫";
+      Object.assign(volumeText.style, {
+        position: "absolute",
+        top: "calc(100% + 6px)",
+        left: "50%",
+        transform: "translateX(-50%)",
+        fontSize: "11px",
+        color: "#fff",
+        fontWeight: "400",
+        textShadow: "0 0 8px rgba(255,255,255,0.8)",
+        animation: "blinkVolume 1s infinite",
+        zIndex: "5",
+      });
 
-    gifContainer.appendChild(volumeText);
+      gifContainer.appendChild(volumeText);
+      // remove após 5 s
+      setTimeout(() => volumeText.remove(), 5000);
+    }, 300); // pequeno delay de render
+  });
 
-    setTimeout(() => volumeText.remove(), 5000);
-  }
-}, 800); // aguarda 0.8s para garantir que o GIF já está renderizado
-
-
-  // 🎵 Inicia música de fundo com volume 50%
+  // música de fundo
   const bgMusic = document.getElementById("bgMusic");
   bgMusic.volume = 0.5;
-  bgMusic.play().catch(err => console.log("Autoplay bloqueado até interação:", err));
+  bgMusic.play().catch(() => console.log("Autoplay bloqueado"));
 });
 </script>
 
