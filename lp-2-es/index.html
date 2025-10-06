@@ -438,94 +438,239 @@
     Manipuladores que adquirieron el Código de la [P]ersuación:
   </h2>
 
-  <div class="slider-container relative w-full overflow-hidden">
-    <div class="slider-track flex gap-6 w-max animate-slide">
+  <!-- Contenedor con scroll y drag -->
+  <div id="infiniteSlider" class="relative w-full overflow-x-auto select-none hide-scrollbar cursor-grab">
+    <div id="sliderContent" class="flex gap-6 py-2">
+      <!-- ====== COPIA BASE (8 tarjetas) ====== -->
 
-      <!-- DEPOIMENTO 1 -->
-      <div class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative">
+      <!-- 1) Carlos (ya existía) -->
+      <article class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative flex-shrink-0">
         <div class="flex items-center gap-4 mb-4">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq0jls4tKxq6BxwxiA4Amhif4qtfzJoD-1TQ&s" 
-               alt="Homem 1" class="w-16 h-16 rounded-full object-cover">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq0jls4tKxq6BxwxiA4Amhif4qtfzJoD-1TQ&s"
+               alt="Carlos Mendes" class="w-16 h-16 rounded-full object-cover">
           <div class="text-left">
             <div class="text-yellow-400">★★★★★</div>
             <p class="font-bold">Carlos Mendes</p>
             <p class="text-sm text-gray-300">@carlos.mendes</p>
           </div>
-       </div>
-<p class="italic text-gray-200">"Después de aplicar las técnicas, mi relación cambió por completo. Hoy tengo el respeto y la admiración de mi pareja como nunca antes."</p>
-</div>
+        </div>
+        <p class="italic text-gray-200">"Después de aplicar las técnicas, mi relación cambió por completo. Hoy tengo el respeto y la admiración de mi pareja como nunca antes."</p>
+      </article>
 
-      <!-- DEPOIMENTO 2 -->
-      <div class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative">
+      <!-- 2) Juliana (ya existía) -->
+      <article class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative flex-shrink-0">
         <div class="flex items-center gap-4 mb-4">
-          <img src="https://storage.alboom.ninja/sites/12999/media/20841125_1231455266966305_7701507656374992607_n_b6ed5833d2e7_54ddc3f2ae66.jpg?t=1583411351" 
-               alt="Mulher 1" class="w-16 h-16 rounded-full object-cover">
+          <img src="https://storage.alboom.ninja/sites/12999/media/20841125_1231455266966305_7701507656374992607_n_b6ed5833d2e7_54ddc3f2ae66.jpg?t=1583411351"
+               alt="Juliana Costa" class="w-16 h-16 rounded-full object-cover">
           <div class="text-left">
             <div class="text-yellow-400">★★★★★</div>
             <p class="font-bold">Juliana Costa</p>
             <p class="text-sm text-gray-300">@julicosta.oficial</p>
           </div>
-      </div>
-<p class="italic text-gray-200">"Logré duplicar mis ventas en menos de 2 semanas. La gente simplemente ya no me dice 'no'."</p>
-</div>
+        </div>
+        <p class="italic text-gray-200">"Logré duplicar mis ventas en menos de 2 semanas. La gente simplemente ya no me dice 'no'."</p>
+      </article>
 
-      <!-- DEPOIMENTO 3 -->
-      <div class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative">
+      <!-- 3) Daniel (ya existía) -->
+      <article class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative flex-shrink-0">
         <div class="flex items-center gap-4 mb-4">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI50nmF1rK5pKKVxoP9YwrRGwQzv_b-AbGJg&s" 
-               alt="Homem 2" class="w-16 h-16 rounded-full object-cover">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI50nmF1rK5pKKVxoP9YwrRGwQzv_b-AbGJg&s"
+               alt="Daniel Moreira" class="w-16 h-16 rounded-full object-cover">
           <div class="text-left">
             <div class="text-yellow-400">★★★★★</div>
             <p class="font-bold">Daniel Moreira</p>
             <p class="text-sm text-gray-300">@danmoreira</p>
           </div>
-       </div>
-<p class="italic text-gray-200">"En el trabajo empecé a ser visto como un líder. Cerré proyectos millonarios y finalmente alcancé la promoción que buscaba."</p>
-</div>
+        </div>
+        <p class="italic text-gray-200">"En el trabajo empecé a ser visto como un líder. Cerré proyectos millonarios y finalmente alcancé la promoción que buscaba."</p>
+      </article>
 
-      <!-- DEPOIMENTO 4 -->
-      <div class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative">
+      <!-- 4) Fernanda (ya existía) -->
+      <article class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative flex-shrink-0">
         <div class="flex items-center gap-4 mb-4">
-          <img src="https://cdn.vgnoticias.com.br/storage/webdisco/2018/12/23/800x600/74e6e3a8d13a7ba54fda12c07f6b225a.jpg" 
-               alt="Mulher 2" class="w-16 h-16 rounded-full object-cover">
+          <img src="https://cdn.vgnoticias.com.br/storage/webdisco/2018/12/23/800x600/74e6e3a8d13a7ba54fda12c07f6b225a.jpg"
+               alt="Fernanda Ribeiro" class="w-16 h-16 rounded-full object-cover">
           <div class="text-left">
             <div class="text-yellow-400">★★★★★</div>
             <p class="font-bold">Fernanda Ribeiro</p>
             <p class="text-sm text-gray-300">@fer.ribeiro</p>
           </div>
-      </div>
-<p class="italic text-gray-200">"Aprendí a manipular las situaciones a mi favor. Hoy gano más dinero y tengo el respeto de las personas a mi alrededor."</p>
-</div>
+        </div>
+        <p class="italic text-gray-200">"Aprendí a manipular las situaciones a mi favor. Hoy gano más dinero y tengo el respeto de las personas a mi alrededor."</p>
+      </article>
 
+      <!-- ====== NUEVOS 4 TESTIMONIOS (2H / 2M) ====== -->
+
+      <!-- 5) Hombre (foto 1) -->
+      <article class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative flex-shrink-0">
+        <div class="flex items-center gap-4 mb-4">
+          <img src="https://ogimg.infoglobo.com.br/in/22286655-81b-b82/FT1086A/reproducao-facebook.jpg"
+               alt="Rafael Álvarez" class="w-16 h-16 rounded-full object-cover">
+          <div class="text-left">
+            <div class="text-yellow-400">★★★★★</div>
+            <p class="font-bold">Rafael Álvarez</p>
+            <p class="text-sm text-gray-300">@rafa.alvarez</p>
+          </div>
+        </div>
+        <p class="italic text-gray-200">"Pensé que esto era humo, pero a la semana ya cerré dos contratos grandes. Control y respeto, y más autoridad."</p>
+      </article>
+
+      <!-- 6) Hombre (foto 2) -->
+      <article class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative flex-shrink-0">
+        <div class="flex items-center gap-4 mb-4">
+          <img src="https://static.ndmais.com.br/2023/01/mateus-macedo.jpg"
+               alt="Mateo Macedo" class="w-16 h-16 rounded-full object-cover">
+          <div class="text-left">
+            <div class="text-yellow-400">★★★★★</div>
+            <p class="font-bold">Mateo Macedo</p>
+            <p class="text-sm text-gray-300">@mateomacedo</p>
+          </div>
+        </div>
+        <p class="italic text-gray-200">"Aplicando un par de frases, invertí la dinámica con mi ex y en ventas. Hoy marco el ritmo y nadie me pisa."</p>
+      </article>
+
+      <!-- 7) Mujer (foto 1) -->
+      <article class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative flex-shrink-0">
+        <div class="flex items-center gap-4 mb-4">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA1G-RMwZqjJSlrfOa_D8gmRVci6aNi3IEHQ&s"
+               alt="Carolina Gómez" class="w-16 h-16 rounded-full object-cover">
+          <div class="text-left">
+            <div class="text-yellow-400">★★★★★</div>
+            <p class="font-bold">Carolina Gómez</p>
+            <p class="text-sm text-gray-300">@carogomez</p>
+          </div>
+        </div>
+        <p class="italic text-gray-200">"Dejé de ser invisible en reuniones. Ahora me escuchan, cierro acuerdos y el miedo desapareció. Vale cada centavo, literal, en mi carrera."</p>
+      </article>
+
+      <!-- 8) Mujer (foto 2) -->
+      <article class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative flex-shrink-0">
+        <div class="flex items-center gap-4 mb-4">
+          <img src="https://marilianoticia.com.br/wp-content/uploads/2016/04/asfixia.jpg"
+               alt="María Luisa" class="w-16 h-16 rounded-full object-cover">
+          <div class="text-left">
+            <div class="text-yellow-400">★★★★★</div>
+            <p class="font-bold">María Luisa</p>
+            <p class="text-sm text-gray-300">@marialuisa.ok</p>
+          </div>
+        </div>
+        <p class="italic text-gray-200">"Usé las técnicas con límites claros: resultados en trabajo y pareja. Seguridad, carisma y cero dramas. Lo recomendaría a mi mejor amiga."</p>
+      </article>
+
+      <!-- ====== FIN COPIA BASE ====== -->
     </div>
   </div>
 </section>
 
-<!-- ESTILOS -->
+
+
+<!-- Estilos carrusel -->
 <style>
-  .glass-card {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+  .glass-card{
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
     backdrop-filter: blur(10px);
   }
-
-  .slider-container {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-  }
-
-  .slider-track {
-    display: flex;
-    gap: 20px;
-    animation: slide 25s linear infinite;
-  }
-
-  @keyframes slide {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
+  .hide-scrollbar::-webkit-scrollbar{ display:none; }
+  .hide-scrollbar{ -ms-overflow-style:none; scrollbar-width:none; }
+  #infiniteSlider { scroll-behavior: auto; }
+  #infiniteSlider.grabbing, #infiniteSlider:active { cursor: grabbing; }
 </style>
+
+
+
+
+
+<script>
+(() => {
+  const container = document.getElementById('infiniteSlider');
+  const content = document.getElementById('sliderContent');
+
+  // Duplica os cards para garantir rolagem infinita suave
+  const items = Array.from(content.children);
+  content.append(...items.map(el => el.cloneNode(true)), ...items.map(el => el.cloneNode(true)));
+
+  let totalWidth = 0;
+  function computeWidth() {
+    const gap = parseFloat(getComputedStyle(content).gap || 0);
+    totalWidth = items.reduce((sum, el) => sum + el.offsetWidth, 0) + gap * (items.length - 1);
+  }
+
+  window.addEventListener('load', () => {
+    computeWidth();
+    container.scrollLeft = totalWidth; // começa no meio
+    requestAnimationFrame(autoScroll);
+  });
+  window.addEventListener('resize', computeWidth);
+
+  // --- Loop infinito imperceptível ---
+  function keepInfinite() {
+    if (container.scrollLeft <= 0) {
+      // Quando chega ao início, volta para o meio sem "pular"
+      container.scrollLeft += totalWidth;
+    } else if (container.scrollLeft >= totalWidth * 2) {
+      container.scrollLeft -= totalWidth;
+    }
+  }
+
+  // --- Autoplay suave e lento (da direita → esquerda) ---
+  let speed = 0.05; // quanto menor, mais lento
+  let active = true;
+  let last = performance.now();
+
+  function autoScroll(now) {
+    const delta = now - last;
+    last = now;
+    if (active) {
+      container.scrollLeft -= speed * delta; // move da direita para a esquerda
+      keepInfinite();
+    }
+    requestAnimationFrame(autoScroll);
+  }
+
+  function pauseScroll() { active = false; }
+  let resumeTimer;
+  function resumeScroll() {
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(() => (active = true), 2000);
+  }
+
+  // --- Arrasto manual bidirecional ---
+  let isDown = false, startX = 0, scrollStart = 0, dragged = false;
+  container.addEventListener('pointerdown', e => {
+    pauseScroll();
+    isDown = true;
+    dragged = false;
+    startX = e.clientX;
+    scrollStart = container.scrollLeft;
+    container.classList.add('grabbing');
+    container.setPointerCapture(e.pointerId);
+  });
+
+  container.addEventListener('pointermove', e => {
+    if (!isDown) return;
+    const dx = e.clientX - startX;
+    if (Math.abs(dx) > 3) dragged = true;
+    container.scrollLeft = scrollStart - dx;
+    keepInfinite();
+  });
+
+  const endDrag = e => {
+    if (!isDown) return;
+    isDown = false;
+    container.classList.remove('grabbing');
+    if (e.pointerId) try { container.releasePointerCapture(e.pointerId); } catch(_){}
+    resumeScroll();
+  };
+
+  container.addEventListener('pointerup', endDrag);
+  container.addEventListener('pointerleave', endDrag);
+  container.addEventListener('click', e => {
+    if (dragged) { e.preventDefault(); e.stopPropagation(); }
+  }, true);
+})();
+</script>
+
 
 
 
@@ -733,7 +878,8 @@ document.addEventListener('keydown', e => {
 
     // Se existir query atual, adiciona os parâmetros
     if (queryString) {
-      url.search += (url.search ? '&' : '') + queryString.substring(1);
+      const params = queryString.replace(/^\?/, '');
+url.search += (url.search ? '&' : '') + params;
       link.href = url.toString();
     }
   });
