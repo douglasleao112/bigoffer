@@ -426,14 +426,10 @@ document.getElementById("beginPortal").addEventListener("click", () => {
 
     <div class="gif-container" id="gifTop" onclick="unmuteIntro()">
       <img src="https://static.wixstatic.com/media/7f5efc_43c1c40f773b406dbfcbd0332c43715c~mv2.gif" alt="Oráculo">
+       <div id="volumeHint">♫ Aumente o Volume</div>
     </div>
 
-    <div class="gif-container" id="gifTop" onclick="unmuteIntro()">
-  <img src="https://static.wixstatic.com/media/7f5efc_43c1c40f773b406dbfcbd0332c43715c~mv2.gif" alt="Oráculo">
-  <div id="volumeHint">♫ Aumente o Volume</div>
-</div>
-
-    <audio id="introAudio" autoplay muted onended="showStartButton()">
+     <audio id="introAudio" autoplay muted onended="showStartButton()">
       <source src="https://static.wixstatic.com/mp3/7f5efc_9c72927ebd644091a41f85b97a93198b.mp3" type="audio/mpeg">
       Seu navegador não suporta áudio.
     </audio>
