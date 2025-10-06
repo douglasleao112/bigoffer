@@ -724,15 +724,15 @@ document.addEventListener('keydown', e => {
 
 <!-- SCRIPT PARA REPASSAR UTM -->
 <script>
-  // captura os parâmetros da URL
+  // Captura os parâmetros da URL (UTMs)
   const queryString = window.location.search;
 
-  // encontra todos os links com eduzz/sun/checkout/etc
-  document.querySelectorAll("a[href*='sun.eduzz.com'], a[href*='eduzz.com']").forEach(link => {
+  // Seleciona todos os links que contenham domínio da Hotmart
+  document.querySelectorAll("a[href*='pay.hotmart.com'], a[href*='hotmart.com']").forEach(link => {
     let url = new URL(link.href);
 
-    // se já tem query, mantém
-    if(queryString){
+    // Se existir query atual, adiciona os parâmetros
+    if (queryString) {
       url.search += (url.search ? '&' : '') + queryString.substring(1);
       link.href = url.toString();
     }
