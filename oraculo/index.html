@@ -817,6 +817,17 @@ window.addEventListener('load', () => {
     document.getElementById("startOverlay").style.display = "none";
     hideThermometer();
     playFinalStage();
+
+    // 🔊 Retoma o áudio com 1 clique se o usuário voltar no pitch final
+    document.body.addEventListener('click', function resumeFinalAudioOnce() {
+      const stage = finalStages[saved.currentStage || 0];
+      if (stage && stage.audio) {
+        const resumeAudio = new Audio(stage.audio);
+        resumeAudio.play().catch(err => console.log("⚠️ Autoplay bloqueado:", err));
+      }
+      // remove o evento após tocar
+      document.body.removeEventListener('click', resumeFinalAudioOnce);
+    });
   }
 });
 
