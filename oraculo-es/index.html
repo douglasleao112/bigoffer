@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>El Código de la [P]ersuasión</title>
+<title>El Código de la [P]ersuasión</title> <!-- IMPORTANTE!-->
 <link rel="icon" href="https://i.imgur.com/iPllVtt.jpeg" type="image/png">
 <script src="https://cdn.tailwindcss.com"></script>
 
@@ -228,7 +228,7 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  overflow: visible; /* ✅ agora a bolinha pode aparecer fora da barra */
+  overflow: visible; 
   border-radius: 8px;
   box-shadow: inset 0 0 6px rgba(0,255,200,0.25);
 }
@@ -358,7 +358,7 @@ body {
 <body>
 
 
-<!-- 🌀 POPUP DE INÍCIO -->
+<!-- 🌀 POPUP DE INÍCIO --><!-- IMPORTANTE!-->
 <div id="startOverlay" class="overlay">
   <div class="popup-glass">
     <h2>⚠️ATENCIÓN</h2>
@@ -414,7 +414,7 @@ document.getElementById("beginPortal").addEventListener("click", () => {
   // Fecha o aviso inicial
   document.getElementById("startOverlay").style.display = "none";
 
-  // IMPORTANTE inicia o quiz
+  // <!-- Pixel ao iniciar o quiz IMPORTANTE!-->
   if (typeof fbq === "function") {
     fbq('track', 'Lead');
     console.log("🔥 Evento Lead disparado!");
@@ -425,7 +425,7 @@ document.getElementById("beginPortal").addEventListener("click", () => {
   intro.muted = false;
   intro.play();
 
-  // 🎵 Inicia música de fundo com volume 50%
+  // 🎵 Inicia música de fundo com volume 50% <!-- IMPORTANTE!-->
   const bgMusic = document.getElementById("bgMusic");
   bgMusic.volume = 0.5;
   bgMusic.play().catch(err => console.log("Autoplay bloqueado até interação:", err));
@@ -442,7 +442,7 @@ document.getElementById("beginPortal").addEventListener("click", () => {
 
 <div class="gif-container" id="gifTop" onclick="unmuteIntro()">
   <div class="gif-wrapper">
-    <img src="https://static.wixstatic.com/media/7f5efc_43c1c40f773b406dbfcbd0332c43715c~mv2.gif" alt="Oráculo">
+    <img src="https://static.wixstatic.com/media/7f5efc_43c1c40f773b406dbfcbd0332c43715c~mv2.gif" alt="Oráculo"> <!--Gif 01 - IMPORTANTE!-->
     <div id="volumeHint">🔊 Sube el volumen</div>
   </div>
 </div>
@@ -451,7 +451,7 @@ document.getElementById("beginPortal").addEventListener("click", () => {
       Tu navegador no soporta audio.
     </audio>
 
-    <button id="startBtn" onclick="startQuiz()" style="display: none;">ACEPTAR EL DESAFÍO</button>
+    <button id="startBtn" onclick="startQuiz()" style="display: none;">ACEPTAR EL DESAFÍO</button> <!--Botão 01 - IMPORTANTE!-->
 
     <audio id="quizAudio" onended="showOptions()">
       <source id="quizAudioSrc" src="" type="audio/mpeg">
@@ -539,7 +539,7 @@ document.getElementById("beginPortal").addEventListener("click", () => {
       document.getElementById("gifTop").innerHTML = `<img src="${question.gif}" alt="Oráculo">`;
 
       if (currentQuestion === 0 && typeof fbq === "function") {
-      fbq('track', 'CompleteRegistration'); // IMPORTANTE! inicia as perguntas do quiz
+      fbq('track', 'CompleteRegistration'); // IMPORTANTE! pixel ao iniciar as perguntas do quiz A2
       }
     }
 
@@ -667,11 +667,7 @@ title: (() => {
   const diaSemana = dias[hoje.getDay()];
   const dia = hoje.getDate().toString().padStart(2, '0');
   const mes = hoje.toLocaleString('es-ES', { month: 'long' });
-  return `Ahora es tu turno... <br>
-  <br>
-  El portal está abierto para asegurar el Código de la [P]ersuasión con un 70% de descuento.<br>
-  <br>
-  ⚠️<b>ATENCIÓN:</b> Esta promoción estará disponible solo hoy, ${diaSemana} ${dia} de ${mes}.`;
+  return `70% de descuento en el Código de la [P]ersuasión, válida solo este ${diaSemana} ${dia} de ${mes}.`;
 })(),
   gif: "https://static.wixstatic.com/media/7f5efc_a7bee9f2a76c46c4b3f33679c2bdc969~mv2.gif",
   buttons: [
@@ -786,7 +782,7 @@ const thermometer = document.getElementById("thermometer");
 const thermoFill = document.getElementById("thermoFill");
 const thermoArrow = document.querySelector(".thermo-arrow");
 
-// Define os níveis do termômetro em cada pergunta (0 a 100)
+// Define os níveis do termômetro em cada pergunta (0 a 100) <!-- IMPORTANTE!-->
 const thermometerLevels = [20, 55, 30, 80, 35];
 
 function updateThermometer() {
@@ -801,7 +797,7 @@ function hideThermometer() {
 }
 
 </script>
-<!-- 🎵 Áudio de fundo MIPORTANTE! -->
+<!-- 🎵 Áudio de fundo IMPORTANTE! -->
 <audio id="bgMusic" loop>
   <source src="https://cdn.pixabay.com/download/audio/2024/12/23/audio_a6afcd20f6.mp3?filename=chromatic-dark-ambient-279768.mp3" type="audio/mpeg">
   Seu navegador não suporta áudio.
@@ -971,7 +967,7 @@ if (currentStage === 0) {
   // 🚨 Salva o estágio atual no localStorage
   saveProgress();
 
-  // 🎯 Evento do pixel se for a última etapa
+  // 🎯 Evento do pixel se for a última etapa  <!-- IMPORTANTE!-->
   if (currentStage === finalStages.length - 1) {
     fbq('track', 'Search');
     console.log("📩 Evento disparado (última etapa)");
@@ -996,11 +992,11 @@ function showStageButtons() {
     <div class="question-text" style="display:block;">${stage.title}</div>
   `;
 
-  // 🎇 Se for a última etapa, dispara fogos e som automaticamente
+  // 🎇 Se for a última etapa, dispara fogos e som automaticamente  <!-- IMPORTANTE!--> 
   if (currentStage === finalStages.length - 1) {
-    launchConfetti();
+    launchConfetti();  
 
-    const sound = new Audio("https://cdn.pixabay.com/download/audio/2022/03/10/audio_5b4d3bfb9e.mp3?filename=balloon-pop-48030.mp3");
+    const sound = new Audio("https://cdn.pixabay.com/download/audio/2022/03/10/audio_5b4d3bfb9e.mp3?filename=balloon-pop-48030.mp3");  // som dos fogos
     sound.volume = 0.4;
     sound.play();
   }
