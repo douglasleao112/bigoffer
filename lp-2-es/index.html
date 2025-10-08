@@ -959,23 +959,32 @@ document.addEventListener('keydown', e => {
 </noscript>
 
 
-<!-- SCRIPT PARA REPASSAR UTM -->
+
+
 <script>
-  // Captura os parâmetros da URL (UTMs)
-  const queryString = window.location.search;
+    let prefix = ["https://payment.hotmart.com", "https://pay.hotmart.com"];
 
-  // Seleciona todos os links que contenham domínio da Hotmart
-  document.querySelectorAll("a[href*='pay.hotmart.com'], a[href*='hotmart.com']").forEach(link => {
-    let url = new URL(link.href);
-
-    // Se existir query atual, adiciona os parâmetros
-    if (queryString) {
-      const params = queryString.replace(/^\?/, '');
-url.search += (url.search ? '&' : '') + params;
-      link.href = url.toString();
+function getParams() {
+    let t = "",
+        e = window.top.location.href,
+        r = new URL(e);
+    if (null != r) {
+        let a = r.searchParams.get("utm_source"),
+            n = r.searchParams.get("utm_medium"),
+            o = r.searchParams.get("utm_campaign"),
+            m = r.searchParams.get("utm_term"),
+            c = r.searchParams.get("utm_content"); - 1 !== e.indexOf("?") && (t = `&sck=${a}|${n}|${o}|${m}|${c}`), console.log(t)
     }
-  });
+    return t
+}! function() {
+    var t = new URLSearchParams(window.location.search);
+    t.toString() && document.querySelectorAll("a").forEach(function(e) {
+        for (let r = 0; r < prefix.length; r++) - 1 !== e.href.indexOf(prefix[r]) && (-1 === e.href.indexOf("?") ? e.href += "?" + t.toString() + getParams() : e.href += "&" + t.toString() + getParams())
+    })
+}();
+
 </script>
+
 
 </body>
 </html>
