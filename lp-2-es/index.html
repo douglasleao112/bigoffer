@@ -125,11 +125,31 @@
 <section class="relative px-6 pt-12 pb-4 lg:pt-16 lg:pb-4 bg-black">
   <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
 
-    <!-- Imagem -->
-    <div class="flex justify-center lg:order-2">
-      <img src="https://i.imgur.com/rE9pIj5.png" 
-          class="w-[90%] max-w-sm lg:max-w-md object-contain" />
-    </div>
+    <!-- Imagem HERO -->
+<div class="flex justify-center lg:order-2">
+  <img 
+    src="https://i.imgur.com/rE9pIj5.png" 
+    class="w-[90%] max-w-sm lg:max-w-md object-contain animate-zoom"
+  />
+</div>
+
+<!-- Animação personalizada -->
+<style>
+@keyframes zoomInOut {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.animate-zoom {
+  animation: zoomInOut 4s ease-in-out infinite;
+}
+</style>
+
+
 
  <!-- Texto -->
     <div class="text-center lg:text-left lg:order-1">
