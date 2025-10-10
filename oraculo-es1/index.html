@@ -452,11 +452,14 @@ document.getElementById("beginPortal").addEventListener("click", () => {
 
 
 
-<p id="introLabel" class="text-center text-sm font-semibold text-gray-300 mt-2 mb-1 tracking-wide uppercase">
-  Demuestra tu inteligencia
-</p>
-<button id="startBtn" onclick="startQuiz()" style="display: none;">DESBLOQUEA AL MANUAL SECRETO</button><!--Botão 01 - IMPORTANTE!-->
+<!-- 🔹 Texto + botão de início -->
+<div id="introSection" style="display: none; text-align: center;">
+  <div class="question-text" id="introText" style="display:block;">
+    Demuestra tu inteligencia
+  </div>
+  <button id="startBtn" onclick="startQuiz()">DESBLOQUEA LO QUE TE HAN OCULTADO</button><!--Botão 01 - IMPORTANTE!-->
 
+  
     <audio id="quizAudio" onended="showOptions()">
       <source id="quizAudioSrc" src="" type="audio/mpeg">
       Tu navegador no soporta audio.
@@ -519,12 +522,13 @@ document.getElementById("beginPortal").addEventListener("click", () => {
       document.getElementById("gifTop").onclick = null;
     }
 
-    function showStartButton() {
-      document.getElementById("startBtn").style.display = "block";
-    }
+function showStartButton() {
+  document.getElementById("introSection").style.display = "block";
+}
 
     function startQuiz() {
       document.querySelector('.gif-container').onclick = null;
+      document.getElementById("introSection").style.display = "none";
       document.getElementById("startBtn").style.display = "none";
       document.getElementById("quizContent").style.display = "block";
       document.getElementById("progressBar").style.display = "block";
