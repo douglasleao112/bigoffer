@@ -870,10 +870,6 @@ window.addEventListener('load', () => {
   }
 
   console.log("🔁 Restaurando progresso persistente:", saved);
-
-
-
-
   console.log("🔁 Restaurando progresso:", saved);
 
   // Se estava no quiz
@@ -1075,14 +1071,6 @@ function resetProgress(force = false) {
     console.log("🧹 Progresso resetado manualmente.");
   } else {
     console.log("⚠️ Reset ignorado — proteção de persistência ativa.");
-  }
-}
-
-
-function resetProgress(force = false) {
-  if (force) {
-    localStorage.removeItem('persuasaoProgress');
-    console.log("🧹 Progresso resetado manualmente.");
   }
 }
 

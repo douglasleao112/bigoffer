@@ -800,17 +800,28 @@ function hideThermometer() {
 
 
 <script>
-// 🔄 Controle de progresso com localStorage
 
 // 🔹 Salva o progresso a cada etapa
 function saveProgress() {
-  const progress = {
-    currentQuestion,
-    currentStage,
-    phase: (currentQuestion < questions.length) ? 'quiz' : 'final'
-  };
-  localStorage.setItem('persuasaoProgress', JSON.stringify(progress));
+  try {
+    const progress = {
+      currentQuestion,
+      currentStage,
+      phase: (currentQuestion < questions.length) ? 'quiz' : 'final',
+      timestamp: new Date().toISOString()
+    };
+
+    // 🔒 Salva só se for um progresso válido (evita sobrescrever com undefined)
+    if (progress.phase && !isNaN(progress.currentQuestion)) {
+      localStorage.setItem('persuasaoProgress', JSON.stringify(progress));
+      console.log("💾 Progresso salvo:", progress);
+    }
+  } catch (err) {
+    console.error("⚠️ Erro ao salvar progresso:", err);
+  }
 }
+
+
 
 // 🔹 Carrega o progresso salvo (se existir)
 function loadProgress() {
@@ -851,8 +862,13 @@ window.addEventListener('load', () => {
   // Sempre inicia a música de fundo
   startBackgroundMusic();
 
-  if (!saved) return;
+  // 🚫 Garante que só sobrescreve se REALMENTE não houver progresso salvo
+  if (!saved || !saved.phase) {
+    console.log("ℹ️ Nenhum progresso salvo encontrado — iniciando do zero.");
+    return;
+  }
 
+  console.log("🔁 Restaurando progresso persistente:", saved);
   console.log("🔁 Restaurando progresso:", saved);
 
   // Se estava no quiz
@@ -1046,19 +1062,24 @@ function showStageButtons() {
 }
 
 
-
 // 🧹 Função para limpar o progresso completamente
-function resetProgress() {
-  localStorage.removeItem('persuasaoProgress');
-  console.log("🧹 Progresso resetado");
+function resetProgress(force = false) {
+  if (force) {
+    localStorage.removeItem('persuasaoProgress');
+    console.log("🧹 Progresso resetado manualmente.");
+  } else {
+    console.log("⚠️ Reset ignorado — proteção de persistência ativa.");
+  }
 }
 
+/*
 // 🧲 Se o lead clicar no botão final manualmente, também limpa
 document.addEventListener('click', e => {
   if (e.target.textContent.includes("ACESSAR O CÓDIGO")) {
     resetProgress();
   }
 });
+*/
 </script>
 
 
