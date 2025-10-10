@@ -131,32 +131,8 @@
 
 
 
-<!-- Notas de dinheiro sobre o HERO -->
-<div class="absolute inset-0 pointer-events-none z-20">
-  <!-- Nota canto superior direito -->
-  <img src="https://i.imgur.com/y3gEyJ5.png" 
-       alt="Nota de dinheiro" 
-       class="absolute top-6 right-6 w-32 opacity-80 rotate-6 animate-float" />
 
-  <!-- Nota canto inferior esquerdo -->
-  <img src="https://i.imgur.com/op6Rtye.png" 
-       alt="Nota de dinheiro" 
-       class="absolute bottom-4 left-6 w-28 opacity-80 -rotate-3 animate-float-delay" />
-</div>
 
-<style>
-@keyframes floatMoney {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(2deg); }
-}
-.animate-float {
-  animation: floatMoney 6s ease-in-out infinite;
-}
-.animate-float-delay {
-  animation: floatMoney 7s ease-in-out infinite;
-  animation-delay: 1.5s;
-}
-</style>
 
 
 
@@ -180,7 +156,37 @@ mão manipulado: https://i.imgur.com/o4XQhvi.png
     src="https://i.imgur.com/GQhgSxH.png"      
     class="w-[90%] max-w-sm lg:max-w-md object-contain animate-zoom-sutil"
   />
+
+
+  <!-- Notas de dinheiro sobre o HERO -->
+<div class="absolute inset-0 pointer-events-none z-20">
+  <!-- Nota canto superior direito -->
+  <img src="https://i.imgur.com/y3gEyJ5.png" 
+       alt="Nota de dinheiro" 
+       class="absolute top-6 right-6 w-32 opacity-80 rotate-6 animate-float" />
+
+  <!-- Nota canto inferior esquerdo -->
+  <img src="https://i.imgur.com/op6Rtye.png" 
+       alt="Nota de dinheiro" 
+       class="absolute bottom-4 left-6 w-28 opacity-80 -rotate-3 animate-float-delay" />
 </div>
+
+</div>
+
+<style>
+@keyframes floatMoney {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+.animate-float {
+  animation: floatMoney 6s ease-in-out infinite;
+}
+.animate-float-delay {
+  animation: floatMoney 7s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+</style>
+
 
 <!-- Animação personalizada
 <style>
