@@ -1069,17 +1069,33 @@ function showStageButtons() {
 
 
 // 🧹 Função para limpar o progresso completamente
-function resetProgress() {
-  localStorage.removeItem('persuasaoProgress');
-  console.log("🧹 Progresso resetado");
+function resetProgress(force = false) {
+  if (force) {
+    localStorage.removeItem('persuasaoProgress');
+    console.log("🧹 Progresso resetado manualmente.");
+  } else {
+    console.log("⚠️ Reset ignorado — proteção de persistência ativa.");
+  }
 }
 
+
+function resetProgress(force = false) {
+  if (force) {
+    localStorage.removeItem('persuasaoProgress');
+    console.log("🧹 Progresso resetado manualmente.");
+  }
+}
+
+
+/*
 // 🧲 Se o lead clicar no botão final manualmente, também limpa
 document.addEventListener('click', e => {
   if (e.target.textContent.includes("ACESSAR O CÓDIGO")) {
     resetProgress();
   }
-});
+});*/
+
+
 </script>
 
 
