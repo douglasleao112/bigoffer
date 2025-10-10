@@ -132,71 +132,26 @@
 
 
 
-
-
-
-
-
-<!--   IMAGENS HERO
-mão na boca: https://i.imgur.com/rE9pIj5.png      
-saco de dinheiro: https://i.imgur.com/0lYJNhC.png 
-mão manipulado: https://i.imgur.com/o4XQhvi.png
--->
-
-   
-<style>
-@keyframes floatMoney {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(2deg); }
-}
-.animate-float {
-  animation: floatMoney 6s ease-in-out infinite;
-}
-.animate-float-delay {
-  animation: floatMoney 7s ease-in-out infinite;
-  animation-delay: 1.5s;
-}
-</style>
-
-
-<!-- Animação personalizada
-<style>
-@keyframes zoomInOutSutil {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.06);
-  }
-}
-
-.animate-zoom-sutil {
-  animation: zoomInOutSutil 6s ease-in-out infinite;
-}
-</style>
--->
-
-
-
 <!-- HERO -->
 <section class="relative px-6 pt-12 pb-4 lg:pt-16 lg:pb-4 bg-black overflow-hidden">
   <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
 
-    <!-- Imagem HERO com notas sobrepostas -->
+    <!-- Imagem HERO com notas sobrepostas  https://i.imgur.com/rE9pIj5.png  https://i.imgur.com/0lYJNhC.png  https://i.imgur.com/o4XQhvi.png-->
     <div class="flex justify-center lg:order-2 relative">
       <img 
         src="https://i.imgur.com/GQhgSxH.png"      
         class="w-[90%] max-w-sm lg:max-w-md object-contain animate-zoom-sutil relative z-10"
       />
 
-      <!-- Notas flutuando sobre a imagem -->
+      <!-- Nota canto superior direito -->
       <img src="https://i.imgur.com/y3gEyJ5.png" 
            alt="Nota de dinheiro" 
            class="absolute top-0 right-[-30px] lg:right-[-60px] w-32 lg:w-40 opacity-80 rotate-6 animate-float z-20" />
 
+      <!-- Nota canto esquerdo (mais alta agora) -->
       <img src="https://i.imgur.com/op6Rtye.png" 
            alt="Nota de dinheiro" 
-           class="absolute bottom-0 left-[-20px] lg:left-[-60px] w-28 lg:w-36 opacity-80 -rotate-3 animate-float-delay z-20" />
+           class="absolute bottom-[60px] lg:bottom-[100px] left-[-20px] lg:left-[-60px] w-28 lg:w-36 opacity-80 -rotate-3 animate-float-delay z-20" />
     </div>
 
     <!-- Texto HERO -->
@@ -225,7 +180,38 @@ mão manipulado: https://i.imgur.com/o4XQhvi.png
 </section>
 
 
+   <!-- notas flutuando -->
+<style>
+@keyframes floatMoney {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+.animate-float {
+  animation: floatMoney 6s ease-in-out infinite;
+}
+.animate-float-delay {
+  animation: floatMoney 7s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+</style>
 
+
+<!-- Animação zoom img da hero
+<style>
+@keyframes zoomInOutSutil {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+.animate-zoom-sutil {
+  animation: zoomInOutSutil 6s ease-in-out infinite;
+}
+</style>
+-->
 
 
 
