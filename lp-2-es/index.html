@@ -1039,5 +1039,30 @@ function getParams() {
 </script>
 
 
+<script> //zona clicavem da hero para avançar para dobra 2
+document.addEventListener("DOMContentLoaded", () => {
+  const hero = document.querySelector("section.relative"); // seção do HERO
+  const target = document.querySelector("#oque"); // destino do scroll
+
+  if (hero && target) {
+    hero.addEventListener("click", (e) => {
+      const rect = hero.getBoundingClientRect();
+      const y = e.clientY - rect.top; // posição do clique dentro do hero
+
+      // Define zona clicável: entre 30% e 90% da altura (onde estão headline e botão)
+      const zoneStart = rect.height * 0.3;
+      const zoneEnd = rect.height * 0.9;
+
+      // Se o clique estiver dentro da zona, rola suavemente até #oque
+      if (y >= zoneStart && y <= zoneEnd) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  }
+});
+</script>
+
+
 </body>
 </html>
