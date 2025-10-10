@@ -822,41 +822,6 @@ function hideThermometer() {
 
 <script>
 
-// 🔹 Salva o progresso a cada etapa
-function saveProgress() {
-  try {
-    const progress = {
-      currentQuestion,
-      currentStage,
-      phase: (currentQuestion < questions.length) ? 'quiz' : 'final',
-      timestamp: new Date().toISOString()
-    };
-
-    // 🔒 Salva só se for um progresso válido (evita sobrescrever com undefined)
-    if (progress.phase && !isNaN(progress.currentQuestion)) {
-      localStorage.setItem('persuasaoProgress', JSON.stringify(progress));
-      console.log("💾 Progresso salvo:", progress);
-    }
-  } catch (err) {
-    console.error("⚠️ Erro ao salvar progresso:", err);
-  }
-}
-
-
-
-
-
-// 🔹 Carrega o progresso salvo (se existir)
-function loadProgress() {
-  const saved = localStorage.getItem('persuasaoProgress');
-  if (!saved) return null;
-  try {
-    return JSON.parse(saved);
-  } catch {
-    return null;
-  }
-}
-
 // 🔹 Inicializa a música de fundo
 function startBackgroundMusic() {
   const bgMusic = document.getElementById("bgMusic");
@@ -878,64 +843,6 @@ function startBackgroundMusic() {
   document.body.addEventListener("click", playMusic, { once: true });
 }
 
-// 🔹 Restaura o estado salvo ao abrir a página
-window.addEventListener('load', () => {
-  const saved = loadProgress();
-
-  // Sempre inicia a música de fundo
-  startBackgroundMusic();
-
-  // 🚫 Garante que só sobrescreve se REALMENTE não houver progresso salvo
-  if (!saved || !saved.phase) {
-    console.log("ℹ️ Nenhum progresso salvo encontrado — iniciando do zero.");
-    return;
-  }
-
-  console.log("🔁 Restaurando progresso persistente:", saved);
-  console.log("🔁 Restaurando progresso:", saved);
-
-  // Se estava no quiz
-  if (saved.phase === 'quiz') {
-    currentQuestion = saved.currentQuestion || 0;
-    document.getElementById("startOverlay").style.display = "none";
-    document.getElementById("quizContent").style.display = "block";
-    document.getElementById("progressBar").style.display = "block";
-    playCurrentAudio();
-    updateTopProgress();
-    updateThermometer();
-  }
-
-  // Se estava nas etapas finais
-else if (saved.phase === 'final') {
-  audioPlaying = false; // limpa estados antigos
-  currentStage = saved.currentStage || 0;
-  document.getElementById("startOverlay").style.display = "none";
-  hideThermometer();
-  playFinalStage();
-
-  // 🔊 Retoma o áudio com 1 clique se o usuário voltar no pitch final
-  document.body.addEventListener('click', function resumeFinalAudioOnce() {
-    const stage = finalStages[saved.currentStage || 0];
-    if (stage && stage.audio) {
-      const resumeAudio = new Audio(stage.audio);
-      resumeAudio.play().catch(err => console.log("⚠️ Autoplay bloqueado:", err));
-
-      // ✅ Quando o áudio terminar, mostra os botões e o texto
-      resumeAudio.onended = () => {
-        showStageButtons();
-      };
-    }
-
-    // remove o evento após tocar
-    document.body.removeEventListener('click', resumeFinalAudioOnce);
-  });
-}
-  
-});
-
-
-
-
 
 
 // 🧩 Sempre salvar quando muda de etapa
@@ -945,14 +852,14 @@ function handleAnswer(selectedIndex) {
   if (currentQuestion < questions.length) {
     loadNextQuestion();
     updateThermometer();
-    saveProgress(); // 💾 salva o progresso
+
   } else {
     document.getElementById("answers").style.display = "none";
     document.getElementById("questionText").style.display = "none";
     hideThermometer();
     setTimeout(() => {
       showResult();
-      saveProgress(); // 💾 salva quando termina o quiz
+
     }, 500);
   }
 }
@@ -996,8 +903,7 @@ if (currentStage === 0) {
   const audio = new Audio(stage.audio);
   audio.play();
 
-  // 🚨 Salva o estágio atual no localStorage
-  saveProgress();
+
 
   // 🎯 Evento do pixel se for a última etapa  <!-- IMPORTANTE!-->
   if (currentStage === finalStages.length - 1) {
@@ -1044,7 +950,7 @@ function showStageButtons() {
     if (btnData.action === "continuar") {
       btn.onclick = () => {
         currentStage++;
-        saveProgress();
+    
         if (currentStage < finalStages.length) {
           playFinalStage();
         } else {
@@ -1083,27 +989,6 @@ function showStageButtons() {
     container.appendChild(btn);
   });
 }
-
-
-
-// 🧹 Função para limpar o progresso completamente
-function resetProgress(force = false) {
-  if (force) {
-    localStorage.removeItem('persuasaoProgress');
-    console.log("🧹 Progresso resetado manualmente.");
-  } else {
-    console.log("⚠️ Reset ignorado — proteção de persistência ativa.");
-  }
-}
-
-/*
-// 🧲 Se o lead clicar no botão final manualmente, também limpa
-document.addEventListener('click', e => {
-  if (e.target.textContent.includes("ACESSAR O CÓDIGO")) {
-    resetProgress();
-  }
-});
-*/
 
 </script>
 
