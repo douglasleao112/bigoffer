@@ -473,41 +473,46 @@ document.getElementById("beginPortal").addEventListener("click", () => {
 
   <script>
    const questions = [
-{
-  text: "Veamos si reconoces la manipulación más obvia…",
-  options: ["Anclaje", "Misterio", "Autoridad"],
-  correct: 2,
-  audio: "https://static.wixstatic.com/mp3/7f5efc_1839db906af140d3b48f652e152fd9b4.mp3",  // 🎧 Audio 2
-  gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif"
+ {
+  audio: "https://static.wixstatic.com/mp3/7f5efc_42e20ac7756f4146b4ec6d5d0e2c627b.mp3",  // 🎧 Audio 7
+  title: "Aún hay más por descubrir...",
+  gif: "https://static.wixstatic.com/media/7f5efc_e4cececd9a3d4752ac73ed9e3aa22854~mv2.gif",
+  buttons: [
+    { text: "Desbloquear ahora", action: "continuar" },
+    { text: "Acceso exclusivo", action: "continuar" }
+  ]
 },
 {
-  text: "Si fallas esta… es mejor que te rindas ahora.",
-  options: ["Identidad", "Escasez", "Reciprocidad"],
-  correct: 1,
-  audio: "https://static.wixstatic.com/mp3/7f5efc_91a7155bbe9345c1ae9c35be45dc3ff0.mp3",   // 🎧 Audio 3
-  gif: "https://static.wixstatic.com/media/7f5efc_a7bee9f2a76c46c4b3f33679c2bdc969~mv2.gif"
+  audio: "https://static.wixstatic.com/mp3/7f5efc_8c92a5ada4fd4a7bb7e69334272c59df.mp3",  // 🎧 Audio 8
+  title: "¿Te comprometes?",
+  gif: "https://static.wixstatic.com/media/7f5efc_8f04a0244d954ae795ddd741d52fc009~mv2.gif",
+  buttons: [
+    { text: "Estoy listo, continuar", action: "continuar" },
+    { text: "Dominar la persuasión", action: "continuar" }
+  ]
 },
-{
-  text: "¿De verdad sabes lo que te están cobrando?",
-  options: ["Reciprocidad", "Ambición", "Confianza"],
-  correct: 0,
-  audio: "https://static.wixstatic.com/mp3/7f5efc_c7cb429f1b7843039c250d9c0fd0ac96.mp3",   // 🎧 Audio 4
-  gif: "https://static.wixstatic.com/media/7f5efc_65ecff36c016466f86572c9701297323~mv2.gif"
-},
-{
-  text: "Te atraparon por emociones… ¿puedes nombrarlo?",
-  options: ["Dependencia", "Miedo", "Recompensa"],
-  correct: 2,
-  audio: "https://static.wixstatic.com/mp3/7f5efc_cf00803275fe4b8496b2a79d21f4876c.mp3",   // 🎧 Audio 5
-  gif: "https://static.wixstatic.com/media/7f5efc_356fcdf2e88344ea95e2f7d8e218c018~mv2.gif"
-},
-{
-  text: "Todo esto fue una trampa… ¿descubriste el gatillo oculto?",
-  options: ["Amenaza", "Autonomía", "Control"],
-  correct: 1,
-  audio: "https://static.wixstatic.com/mp3/7f5efc_50c6a4905a0142ada95a2cece91b9639.mp3",   // 🎧 Audio 6
-  gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif"
+
+  
+  {
+  audio: "https://static.wixstatic.com/mp3/7f5efc_dc7763dc85574e4b85dcacbf241e3b49.mp3",    // 🎧 Áudio 9
+title: (() => {
+  const dias = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
+  const hoje = new Date();
+  const diaSemana = dias[hoje.getDay()];
+  const dia = hoje.getDate().toString().padStart(2, '0');
+  const mes = hoje.toLocaleString('es-ES', { month: 'long' });
+  return `$ 50 OFF, válida solo este ${diaSemana} ${dia} de ${mes}.`;
+})(),
+  gif: "https://static.wixstatic.com/media/7f5efc_a7bee9f2a76c46c4b3f33679c2bdc969~mv2.gif",
+    buttons: [
+    { text: "¡ASEGURAR AHORA!", action: "link", link: "/lp-2-es/" },
+    { text: "Me comprometo.", action: "link", link: "/lp-2-es/" }
+  ]
 }
+
+
+
+
 ];
 
 
