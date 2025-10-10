@@ -143,36 +143,7 @@ saco de dinheiro: https://i.imgur.com/0lYJNhC.png
 mão manipulado: https://i.imgur.com/o4XQhvi.png
 -->
 
-    
-
-<!-- HERO -->
-
-<section class="relative px-6 pt-12 pb-4 lg:pt-16 lg:pb-4 bg-black">
-  <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
- 
-<!-- Imagem HERO --> 
-<div class="flex justify-center lg:order-2">
-  <img 
-    src="https://i.imgur.com/GQhgSxH.png"      
-    class="w-[90%] max-w-sm lg:max-w-md object-contain animate-zoom-sutil"
-  />
-
-
-  <!-- Notas de dinheiro sobre o HERO -->
-<div class="absolute inset-0 pointer-events-none z-20">
-  <!-- Nota canto superior direito -->
-  <img src="https://i.imgur.com/y3gEyJ5.png" 
-       alt="Nota de dinheiro" 
-       class="absolute top-6 right-6 w-32 opacity-80 rotate-6 animate-float" />
-
-  <!-- Nota canto inferior esquerdo -->
-  <img src="https://i.imgur.com/op6Rtye.png" 
-       alt="Nota de dinheiro" 
-       class="absolute bottom-4 left-6 w-28 opacity-80 -rotate-3 animate-float-delay" />
-</div>
-
-</div>
-
+   
 <style>
 @keyframes floatMoney {
   0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -206,7 +177,29 @@ mão manipulado: https://i.imgur.com/o4XQhvi.png
 -->
 
 
- <!-- Texto -->
+
+<!-- HERO -->
+<section class="relative px-6 pt-12 pb-4 lg:pt-16 lg:pb-4 bg-black overflow-hidden">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
+
+    <!-- Imagem HERO com notas sobrepostas -->
+    <div class="flex justify-center lg:order-2 relative">
+      <img 
+        src="https://i.imgur.com/GQhgSxH.png"      
+        class="w-[90%] max-w-sm lg:max-w-md object-contain animate-zoom-sutil relative z-10"
+      />
+
+      <!-- Notas flutuando sobre a imagem -->
+      <img src="https://i.imgur.com/y3gEyJ5.png" 
+           alt="Nota de dinheiro" 
+           class="absolute top-0 right-[-30px] lg:right-[-60px] w-32 lg:w-40 opacity-80 rotate-6 animate-float z-20" />
+
+      <img src="https://i.imgur.com/op6Rtye.png" 
+           alt="Nota de dinheiro" 
+           class="absolute bottom-0 left-[-20px] lg:left-[-60px] w-28 lg:w-36 opacity-80 -rotate-3 animate-float-delay z-20" />
+    </div>
+
+    <!-- Texto HERO -->
     <div class="text-center lg:text-left lg:order-1">
       <h1 class="text-3xl lg:text-5xl font-bold leading-tight mb-6">
         <span class="text-white">
@@ -219,14 +212,23 @@ mão manipulado: https://i.imgur.com/o4XQhvi.png
       <p class="text-lg max-w-xl mx-auto lg:mx-0 text-gray-300 mb-8">
         Descubre cómo convertir las palabras en <b>armas de influencia para dominar los negocios, las relaciones y el DINERO</b>.
       </p><br>
-<div style="display: inline-block; text-align: center;">
-  <a href="#oque" class="bg-green-500 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all btn-pulsante"> 
-    🔒 DESBLOQUEAR CÓDIGO 
-  </a>
-  <p class="text-sm text-gray-400" style="margin-top: 18px;">
-    *Solo por hoy. Vuelve a esta página<br> y perderás el acceso exclusivo.
-  </p>
-</div>
+      <div style="display: inline-block; text-align: center;">
+        <a href="#oque" class="bg-green-500 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all btn-pulsante"> 
+          🔒 DESBLOQUEAR CÓDIGO 
+        </a>
+        <p class="text-sm text-gray-400" style="margin-top: 18px;">
+          *Solo por hoy. Vuelve a esta página<br> y perderás el acceso exclusivo.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
 
 <style>
 @media (min-width: 1024px) {
