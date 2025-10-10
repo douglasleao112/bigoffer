@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>El Código de la [P]ersuasión</title> <!-- IMPORTANTE!-->
+<link rel="icon" href="https://i.imgur.com/iPllVtt.jpeg" type="image/png">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Favicon -->
+<link rel="icon" href="https://i.imgur.com/iPllVtt.jpeg" type="image/png">
+
+<!-- Open Graph para redes sociales -->
+<meta property="og:title" content="El Código de la [P]ersuasión" />
+<meta property="og:description" content="Descubre los gatillos mentales ocultos y técnicas de persuasión prohibidas." />
+<meta property="og:image" content="https://i.imgur.com/iPllVtt.jpeg" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://bigoffer.netlify.app/lp-1/" />
+
+<!-- Para WhatsApp y Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="El Código de la [P]ersuasión" />
+<meta name="twitter:description" content="Descubre los gatillos mentales ocultos y técnicas de persuasión prohibidas." />
+<meta name="twitter:image" content="https://i.imgur.com/iPllVtt.jpeg" />
+
+
+  <style>
+    /* 🔼 Ajuste fino da posição do GIF, título e botões */
+.quiz-container {
+  margin-top: -40px; /* sobe todo o conjunto */
+}
+
+
+.question-text {
+  margin-top: -10px; /* aproxima o texto do GIF */
+}
+
+.answers, .btn-universal, #startBtn {
+  margin-top: 8px; /* reduz o espaçamento dos botões */
+}
+
+body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding-top: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+ 
+ .gif-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: -15px; /* 🔥 sobe o conjunto todo (GIF + vinheta + texto) */
+  align-items: center;
+  overflow: visible !important; /* permite o texto sair da área da imagem */
+}
+
+.gif-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0) 35%,   /* centro totalmente visível */
+    rgba(0, 0, 0, 1) 60%,   /* borda já começa a escurecer */
+    rgba(0, 0, 0, 1) 100%   /* borda 100% preta */
+  );
+  z-index: 2;
+}
+
+.gif-container img {
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+
+
+/* Texto piscante */
+#volumeHint {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* fonte mais fina e moderna */
+  color: #fff;
+  font-weight: 500;
+  text-shadow: 0 0 8px rgba(255,255,255,0.8);
+  opacity: 0;
+  z-index: 3;
+  animation: blink 1.2s ease-in-out infinite, fadeOut 20s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  90% { opacity: 0.9; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+    .hidden {
+      display: none;
+    }
+
+
+    .answers {
+  margin-top: -10px; 
+}
+
+.answers button, #startBtn, .btn-universal {
+  display: block;
+  background: linear-gradient(145deg, #00ffcc, #00ccff);
+  color: #fff; /* branco */
+  border: none;
+  font-weight: bold;
+  padding: 15px 25px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1.1em;
+  margin: 15px auto;
+  width: 90%;
+  max-width: 320px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0,255,200,0.6);
+  transition: all 0.3s ease;
+  text-shadow: 
+    -1px -1px 0 #676767,
+     1px -1px 0 #383838,
+    -1px  1px 0 #676767,
+     1px  1px 0 #444444; 
+}
+
+.answers button:hover, #startBtn:hover {
+  background: linear-gradient(145deg, #00ffcc, #00ccff);
+  box-shadow: 0 0 25px rgba(0,255,200,0.9);
+  transform: scale(1.05);
+}
+
+.btn-universal:hover {
+  box-shadow: 0 0 25px rgba(0,255,200,0.9);
+  transform: scale(1.05);
+}
+
+    .progress-bar-top {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: #222;
+      z-index: 9999;
+      overflow: hidden;
+    }
+    .progress-bar-fill-top {
+      height: 100%;
+      background: linear-gradient(to right, red 20%, #ff4d4d 50%, red 80%);
+      width: 10%; /* Começa em 10% */
+      position: relative;
+      animation: shimmer 2s infinite;
+      background-size: 200% 100%;
+    }
+    @keyframes shimmer {
+      0% { background-position: -200px 0; }
+      100% { background-position: 200px 0; }
+    }
+    .progress-text {
+      display: none;
+    }
+    #quizAudio {
+      display: none;
+    }
+.question-text {
+  display: none;
+  text-align: center;
+  font-size: 1em;          
+  font-weight: bold;
+  margin: 8px auto;        
+  line-height: 1.3em;    
+  max-width: 80%;
+  color: #fff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+
+
+/* 🌡️ Contêiner geral */
+#thermometer-container {
+  position: fixed;
+  left: 20px;
+  bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 9999;
+}
+
+/* Barra principal */
+#thermometer {
+  width: 10px;
+  height: 190px;
+  background: linear-gradient(to top, #111, #1a1a1a);
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 10px rgba(0,255,200,0.25);
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.thermo-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible; 
+  border-radius: 8px;
+  box-shadow: inset 0 0 6px rgba(0,255,200,0.25);
+}
+
+.thermo-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, #00ffcc, #00bfff);
+  height: 0%;
+  transition: height 1s ease-in-out;
+  box-shadow: 0 0 8px rgba(0,255,200,0.5);
+}
+
+/* 🔵 Bolinha ligeiramente maior e mais viva */
+.thermo-bulb {
+  position: absolute;
+  bottom: -14px; /* ajusta para alinhar com a base */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px; 
+  height: 20px; 
+  background: radial-gradient(circle at 30% 30%, #00ffcc, #00bfff); /* mesma cor do preenchimento */
+  border-radius: 50%;
+  box-shadow: 0 0 18px rgba(0,255,200,0.9); /* brilho reforçado */
+  border: 1px solid rgba(0,255,200,0.3);
+  z-index: 3;
+}
+
+/* 🔁 Seta à direita, apontando para a esquerda */
+.thermo-arrow {
+  position: absolute;
+  right: -10px; 
+  top: calc(100% - 18%);
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-right: 6px solid #fff; 
+  opacity: 0.7;
+  filter: drop-shadow(0 0 2px rgba(255,255,255,0.5));
+  transition: top 1s ease-in-out;
+}
+
+/* Texto fixo no rodapé */
+#thermo-label {
+  font-size: 0.65em;
+  color: rgba(255,255,255,0.65);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+  text-shadow: 0 0 6px rgba(0,255,200,0.25);
+}
+
+
+
+
+
+/* 💥 Efeito de desintegração */
+.disintegration-effect {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 99999;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(0,255,200,0.8);
+  border-radius: 50%;
+  animation: disperse 1.5s linear forwards;
+}
+
+/* 🔹 Animação sem Math.random(), controlada via JS */
+@keyframes disperse {
+  from {
+    transform: scale(1) translate(0, 0);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0) translate(var(--x), var(--y));
+    opacity: 0;
+  }
+}
+
+  </style>
+
+
+<!-- 🔵 Meta Pixel Code -->
+<script>
+  !(function(f,b,e,v,n,t,s){
+    if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)n._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)
+  })(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+  fbq('init', '839138854780074'); // ✅ seu pixel
+  fbq('track', 'ViewContent');
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+       src="https://www.facebook.com/tr?id=839138854780074&ev=ViewContent&noscript=1"/>
+</noscript>
+<!-- End Meta Pixel Code -->
+
+
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "tmugztuwhn");
+</script>
+
+
+</head>
+<body>
+
+
+<!-- 🌀 POPUP DE INÍCIO --><!-- IMPORTANTE!-->
+<div id="startOverlay" class="overlay">
+  <div class="popup-glass">
+    <h2>⚠️ATENCIÓN</h2>
+    <p>Antes de continuar, pon el <b>VOLUMEN AL MÁXIMO</b> para escuchar todo con claridad.</p>
+    <button id="beginPortal" class="btn-universal">ESCUCHAR 🔊</button>
+  </div>
+</div>
+
+
+<style>
+/* 🔲 Fundo escuro com desfoque */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+/* 💎 Caixa de vidro */
+.popup-glass {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 25px 20px;
+  width: 90%;
+  max-width: 280px; /* mais estreita */
+  text-align: center;
+  color: #fff;
+  box-shadow: none; /* sem brilho */
+}
+
+/* ✨ Texto e botão */
+.popup-glass h2 {
+  font-size: 1.3em;
+  margin-bottom: 10px;
+}
+
+.popup-glass p {
+  font-size: 0.95em;
+  line-height: 1.4em;
+  color: #ddd;
+  margin-bottom: 20px;
+}
+</style>
+
+<script>
+document.getElementById("beginPortal").addEventListener("click", () => {
+  // Fecha o aviso inicial
+  document.getElementById("startOverlay").style.display = "none";
+
+  // <!-- Pixel ao iniciar o quiz IMPORTANTE!-->
+  if (typeof fbq === "function") {
+    fbq('track', 'Lead');
+    console.log("🔥 Evento Lead disparado!");
+  }
+
+  // Inicia o áudio principal do quiz
+  const intro = document.getElementById("introAudio");
+  intro.muted = false;
+  intro.play();
+
+  // 🎵 Inicia música de fundo com volume 50% <!-- IMPORTANTE!-->
+  const bgMusic = document.getElementById("bgMusic");
+  bgMusic.volume = 0.5;
+  bgMusic.play().catch(err => console.log("Autoplay bloqueado até interação:", err));
+});
+</script>
+
+
+
+
+  <div class="quiz-container">
+    <div class="progress-bar-top" id="progressBar">
+      <div class="progress-bar-fill-top" id="progressFillTop"></div>
+    </div>
+
+<div class="gif-container" id="gifTop" onclick="unmuteIntro()">
+  <div class="gif-wrapper">
+    <img src="https://static.wixstatic.com/media/7f5efc_43c1c40f773b406dbfcbd0332c43715c~mv2.gif" alt="Oráculo"> <!--Gif 01 - IMPORTANTE!-->
+    <div id="volumeHint">🔊 Sube el volumen</div>
+  </div>
+</div>
+
+    <audio id="introAudio" autoplay muted onended="showStartButton()"> <!-- 🎧 Áudio 1 - IMPORTANTE! -->
+      <source src="https://static.wixstatic.com/mp3/7f5efc_5c41a7b9e6084e2cb371875758deef2d.mp3" type="audio/mpeg"> 
+      Tu navegador no soporta audio.
+    </audio>
+
+
+
+<p id="introLabel" class="text-center text-sm font-semibold text-gray-300 mt-2 mb-1 tracking-wide uppercase">
+  Demuestra tu inteligencia
+</p>
+<button id="startBtn" onclick="startQuiz()" style="display: none;">DESBLOQUEA TU PODER AHORA</button><!--Botão 01 - IMPORTANTE!-->
+
+    <audio id="quizAudio" onended="showOptions()">
+      <source id="quizAudioSrc" src="" type="audio/mpeg">
+      Tu navegador no soporta audio.
+    </audio>
+
+    <div id="quizContent" style="display:none">
+      <div class="question-text" id="questionText"></div>
+      <div class="answers" id="answers" style="display:none"></div>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+{
+  text: "¡Vamos allá! Empieza el juego...",
+  options: ["Escasez", "Prueba Social", "Autoridad"],
+  correct: 2,
+  audio: "https://static.wixstatic.com/mp3/7f5efc_1839db906af140d3b48f652e152fd9b4.mp3",  // 🎧 Audio 2
+  gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif"
+},
+{
+  text: "¡Un niño de 5 años lo sabe!",
+  options: ["Urgencia", "Escasez", "Reciprocidad"],
+  correct: 1,
+  audio: "https://static.wixstatic.com/mp3/7f5efc_91a7155bbe9345c1ae9c35be45dc3ff0.mp3",   // 🎧 Audio 3
+  gif: "https://static.wixstatic.com/media/7f5efc_a7bee9f2a76c46c4b3f33679c2bdc969~mv2.gif"
+},
+{
+  text: "Ni siquiera lo llamaría amigo...",
+  options: ["Reciprocidad", "Autoridad", "Miedo"],
+  correct: 0,
+  audio: "https://static.wixstatic.com/mp3/7f5efc_c7cb429f1b7843039c250d9c0fd0ac96.mp3",   // 🎧 Audio 4
+  gif: "https://static.wixstatic.com/media/7f5efc_65ecff36c016466f86572c9701297323~mv2.gif"
+},
+{
+  text: "Demuestra que lo sabes...",
+  options: ["Miedo a perder", "Negociación", "Recompensa"],
+  correct: 2,
+  audio: "https://static.wixstatic.com/mp3/7f5efc_cf00803275fe4b8496b2a79d21f4876c.mp3",   // 🎧 Audio 5
+  gif: "https://static.wixstatic.com/media/7f5efc_356fcdf2e88344ea95e2f7d8e218c018~mv2.gif"
+},
+{
+  text: "Te atrapé, ¿verdad?",
+  options: ["Anticipación", "Autonomía", "Chantaje"],
+  correct: 1,
+  audio: "https://static.wixstatic.com/mp3/7f5efc_50c6a4905a0142ada95a2cece91b9639.mp3",   // 🎧 Audio 6
+  gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif"
+}
+];
+
+
+
+
+    let currentQuestion = 0;
+
+    function unmuteIntro() {
+      const audio = document.getElementById("introAudio");
+      audio.muted = false;
+      audio.play();
+      document.getElementById("gifTop").onclick = null;
+    }
+
+    function showStartButton() {
+      document.getElementById("startBtn").style.display = "block";
+    }
+
+    function startQuiz() {
+      document.querySelector('.gif-container').onclick = null;
+      document.getElementById("startBtn").style.display = "none";
+      document.getElementById("quizContent").style.display = "block";
+      document.getElementById("progressBar").style.display = "block";
+      playCurrentAudio();
+      updateTopProgress();
+       updateThermometer(); 
+    }
+
+    function playCurrentAudio() {
+      const question = questions[currentQuestion];
+      const quizAudio = document.getElementById("quizAudio");
+      const source = document.getElementById("quizAudioSrc");
+      source.src = question.audio;
+      quizAudio.load();
+      quizAudio.play();
+      document.getElementById("gifTop").innerHTML = `<img src="${question.gif}" alt="Oráculo">`;
+
+      if (currentQuestion === 0 && typeof fbq === "function") {
+      fbq('track', 'CompleteRegistration'); // IMPORTANTE! pixel ao iniciar as perguntas do quiz A2
+      }
+    }
+
+    function showOptions() {
+      const answersDiv = document.getElementById("answers");
+      answersDiv.innerHTML = "";
+      const question = questions[currentQuestion];
+      document.getElementById("questionText").textContent = question.text;
+      document.getElementById("questionText").style.display = "block";
+      question.options.forEach((opt, index) => {
+        const btn = document.createElement("button");
+        btn.textContent = opt;
+        btn.onclick = () => handleAnswer(index);
+        answersDiv.appendChild(btn);
+      });
+      answersDiv.style.display = "block";
+    }
+
+
+
+function handleAnswer(selectedIndex) {
+  currentQuestion++;
+
+  if (currentQuestion < questions.length) {
+    loadNextQuestion();
+    updateThermometer();
+  } else {
+    // Garante que a interface zere antes de ir para o pitch final
+    document.getElementById("answers").style.display = "none";
+    document.getElementById("questionText").style.display = "none";
+    hideThermometer();
+
+    // Dá um pequeno delay para transição suave
+    setTimeout(() => {
+      showResult();
+    }, 500);
+  }
+}
+
+
+    function loadNextQuestion() {
+      document.getElementById("answers").style.display = "none";
+      document.getElementById("questionText").style.display = "none";
+      playCurrentAudio();
+      updateTopProgress();
+    }
+
+    function updateTopProgress() {
+      const percent = ((currentQuestion + 1) / questions.length) * 100;
+      document.getElementById("progressFillTop").style.width = percent + "%";
+    }
+
+
+// 🎧 Controle inteligente de cliques para liberar o áudio
+function setupGlobalAudioUnlock() {
+  document.body.addEventListener("click", function handleAudioPlay(e) {
+    const overlay = document.getElementById("startOverlay");
+    const button = document.getElementById("beginPortal");
+
+    // 🚫 Se o overlay ainda está ativo, só permite clique no botão
+    if (overlay && overlay.style.display !== "none") {
+      if (!button.contains(e.target)) {
+        e.stopPropagation();
+        e.preventDefault();
+        return false; // ignora clique fora
+      }
+      // Se clicou no botão, o próprio listener do botão já cuida do áudio
+      return;
+    }
+
+    // ✅ Depois que o overlay some, qualquer clique libera o áudio
+    unmuteIntro();
+    document.body.removeEventListener("click", handleAudioPlay);
+  });
+}
+
+// Executa assim que a página carrega
+setupGlobalAudioUnlock();
+
+
+
+const finalStages = [
+ {
+  audio: "https://static.wixstatic.com/mp3/7f5efc_dfee1ff35aa342f0b0318b3e9772ff34.mp3",  // 🎧 Audio 7
+  title: "Aún hay más por descubrir...",
+  gif: "https://static.wixstatic.com/media/7f5efc_e4cececd9a3d4752ac73ed9e3aa22854~mv2.gif",
+  buttons: [
+    { text: "Reclamar Regalo", action: "continuar" }
+  ]
+},
+{
+  audio: "https://static.wixstatic.com/mp3/7f5efc_a693289732534832af56017ed03173cb.mp3",  // 🎧 Audio 8
+  title: "Ahora comienza el verdadero juego.",
+  gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif",
+  buttons: [
+    { text: "Sí, lo tengo", action: "continuar" },
+    { text: "Desbloquear ahora", action: "continuar" }
+  ]
+},
+{
+  audio: "https://static.wixstatic.com/mp3/7f5efc_8c92a5ada4fd4a7bb7e69334272c59df.mp3",  // 🎧 Audio 9
+  title: "¿Estás listo para el poder completo?",
+  gif: "https://static.wixstatic.com/media/7f5efc_65ecff36c016466f86572c9701297323~mv2.gif",
+  buttons: [
+    { text: "Sí, está claro", action: "continuar" },
+    { text: "Continuar ahora", action: "continuar" }
+  ]
+},
+{
+  audio: "https://static.wixstatic.com/mp3/7f5efc_9c90bcfd47ec494f8066895bf978af0b.mp3",  // 🎧 Audio 10
+  title: "¿Te comprometes?",
+  gif: "https://static.wixstatic.com/media/7f5efc_8f04a0244d954ae795ddd741d52fc009~mv2.gif",
+  buttons: [
+    { text: "Me comprometo", action: "continuar" },
+    { text: "Lo pensaré", action: "continuar" }
+  ]
+},
+
+  
+  {
+  audio: "https://static.wixstatic.com/mp3/7f5efc_c55ae0194c5b477dbfe8870727b1d1a4.mp3",    // 🎧 Áudio 11
+title: (() => {
+  const dias = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
+  const hoje = new Date();
+  const diaSemana = dias[hoje.getDay()];
+  const dia = hoje.getDate().toString().padStart(2, '0');
+  const mes = hoje.toLocaleString('es-ES', { month: 'long' });
+  return `70% OFF, válida solo este ${diaSemana} ${dia} de ${mes}.`;
+})(),
+  gif: "https://static.wixstatic.com/media/7f5efc_a7bee9f2a76c46c4b3f33679c2bdc969~mv2.gif",
+  buttons: [
+    { text: "¡ASEGURAR AHORA!", action: "link", link: "/lp-2-es/" } 
+  ]
+}
+  
+
+];
+
+let currentStage = 0;
+
+/* 🎬 IMPORTANTE!  Fim das Pergutnas Inicio do Pitch */
+function showResult() {
+  if (typeof fbq === "function") {
+    fbq('track', 'AddToWishlist');
+    console.log("✅ Evento disparado!");
+  }
+
+  // Continua o fluxo normal
+  currentStage = 0;
+  playFinalStage();
+}
+
+
+
+
+
+// 🔊 Som de clique
+const clickSound = new Audio("https://cdn.pixabay.com/download/audio/2025/08/03/audio_1df12d5efc.mp3?filename=computer-mouse-click-02-383961.mp3");
+clickSound.volume = 0.7; // volume moderado IMPROTANTE!
+
+// Tocar o som sempre que qualquer botão for clicado
+document.addEventListener("click", (e) => {
+  if (e.target.tagName === "BUTTON") {
+    clickSound.currentTime = 0;
+    clickSound.play();
+  }
+});
+
+</script>
+
+
+
+
+
+
+<script>
+
+// Bloqueia pinça (touchmove com 2 dedos)
+document.addEventListener('touchmove', function(e) {
+  if (e.touches && e.touches.length > 1) {
+    e.preventDefault();
+  }
+}, { passive: false });
+
+// Bloqueia duplo-toque rápido
+let lastTouchEnd = 0;
+document.addEventListener('touchend', function(e) {
+  const now = Date.now();
+  if (now - lastTouchEnd <= 300) {
+    e.preventDefault();
+  }
+  lastTouchEnd = now;
+}, false);
+
+// Bloqueia gestos específicos no iOS
+document.addEventListener('gesturestart', function(e) {
+  e.preventDefault();
+});
+
+
+
+// Bloqueia o menu de contexto (clique direito)
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+// Impede copiar/recortar/selecionar texto
+['copy','cut','selectstart','dragstart'].forEach(evt =>
+  document.addEventListener(evt, e => e.preventDefault())
+);
+
+// Bloqueia atalho Ctrl+C, Ctrl+U (ver fonte), Ctrl+S, Ctrl+P e F12
+document.addEventListener('keydown', e => {
+  const forbidden =
+    // combinações de Ctrl + C, U, S, P, A
+    (e.ctrlKey &&
+      ['c','u','s','p','a'].includes(e.key.toLowerCase()))
+    // F12
+    || e.key === 'F12';
+  if (forbidden) e.preventDefault();
+});
+
+</script>
+
+
+<!-- 🌡️ Termômetro de Inocência -->
+<div id="thermometer-container" style="display: none;">
+  <div id="thermometer">
+    <div class="thermo-inner">
+      <div class="thermo-fill" id="thermoFill"></div>
+      <div class="thermo-bulb"></div> 
+      <div class="thermo-arrow"></div>
+    </div>
+  </div>
+  <p id="thermo-label">Nivel de Inocencia</p>
+</div>
+
+<script>
+// 🌡️ Termômetro de Inocência
+const thermometerContainer = document.getElementById("thermometer-container");
+const thermometer = document.getElementById("thermometer");
+const thermoFill = document.getElementById("thermoFill");
+const thermoArrow = document.querySelector(".thermo-arrow");
+
+// Define os níveis do termômetro em cada pergunta (0 a 100) <!-- IMPORTANTE!-->
+const thermometerLevels = [20, 55, 30, 80, 35];
+
+function updateThermometer() {
+  thermometerContainer.style.display = "flex"; // 🔥 Mostra o conjunto completo
+  const level = thermometerLevels[currentQuestion];
+  thermoFill.style.height = `${level}%`;
+  thermoArrow.style.top = `${100 - level}%`;
+}
+
+function hideThermometer() {
+  thermometerContainer.style.display = "none"; // 🔕 Esconde tudo junto
+}
+
+</script>
+<!-- 🎵 Áudio de fundo IMPORTANTE! -->
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2024/12/23/audio_a6afcd20f6.mp3?filename=chromatic-dark-ambient-279768.mp3" type="audio/mpeg">
+  Seu navegador não suporta áudio.
+</audio>
+
+
+
+
+<script>
+// 🔄 Controle de progresso com localStorage
+
+// 🔹 Salva o progresso a cada etapa
+function saveProgress() {
+  const progress = {
+    currentQuestion,
+    currentStage,
+    phase: (currentQuestion < questions.length) ? 'quiz' : 'final'
+  };
+  localStorage.setItem('persuasaoProgress', JSON.stringify(progress));
+}
+
+// 🔹 Carrega o progresso salvo (se existir)
+function loadProgress() {
+  const saved = localStorage.getItem('persuasaoProgress');
+  if (!saved) return null;
+  try {
+    return JSON.parse(saved);
+  } catch {
+    return null;
+  }
+}
+
+// 🔹 Inicializa a música de fundo
+function startBackgroundMusic() {
+  const bgMusic = document.getElementById("bgMusic");
+  if (!bgMusic) return;
+
+  bgMusic.volume = 0.3;
+  bgMusic.loop = true;
+
+  const playMusic = () => {
+    bgMusic.play().catch(() => {
+      console.log("⚠️ Autoplay bloqueado — aguardando interação.");
+    });
+  };
+
+  // tenta tocar imediatamente (caso já permitido)
+  playMusic();
+
+  // garante que toque após interação
+  document.body.addEventListener("click", playMusic, { once: true });
+}
+
+// 🔹 Restaura o estado salvo ao abrir a página
+window.addEventListener('load', () => {
+  const saved = loadProgress();
+
+  // Sempre inicia a música de fundo
+  startBackgroundMusic();
+
+  if (!saved) return;
+
+  console.log("🔁 Restaurando progresso:", saved);
+
+  // Se estava no quiz
+  if (saved.phase === 'quiz') {
+    currentQuestion = saved.currentQuestion || 0;
+    document.getElementById("startOverlay").style.display = "none";
+    document.getElementById("quizContent").style.display = "block";
+    document.getElementById("progressBar").style.display = "block";
+    playCurrentAudio();
+    updateTopProgress();
+    updateThermometer();
+  }
+
+  // Se estava nas etapas finais
+else if (saved.phase === 'final') {
+  audioPlaying = false; // limpa estados antigos
+  currentStage = saved.currentStage || 0;
+  document.getElementById("startOverlay").style.display = "none";
+  hideThermometer();
+  playFinalStage();
+
+  // 🔊 Retoma o áudio com 1 clique se o usuário voltar no pitch final
+  document.body.addEventListener('click', function resumeFinalAudioOnce() {
+    const stage = finalStages[saved.currentStage || 0];
+    if (stage && stage.audio) {
+      const resumeAudio = new Audio(stage.audio);
+      resumeAudio.play().catch(err => console.log("⚠️ Autoplay bloqueado:", err));
+
+      // ✅ Quando o áudio terminar, mostra os botões e o texto
+      resumeAudio.onended = () => {
+        showStageButtons();
+      };
+    }
+
+    // remove o evento após tocar
+    document.body.removeEventListener('click', resumeFinalAudioOnce);
+  });
+}
+  
+});
+
+
+
+
+
+
+// 🧩 Sempre salvar quando muda de etapa
+function handleAnswer(selectedIndex) {
+  currentQuestion++;
+
+  if (currentQuestion < questions.length) {
+    loadNextQuestion();
+    updateThermometer();
+    saveProgress(); // 💾 salva o progresso
+  } else {
+    document.getElementById("answers").style.display = "none";
+    document.getElementById("questionText").style.display = "none";
+    hideThermometer();
+    setTimeout(() => {
+      showResult();
+      saveProgress(); // 💾 salva quando termina o quiz
+    }, 500);
+  }
+}
+
+// 🔹 Também salvar nas etapas finais
+function playFinalStage() {
+  const stage = finalStages[currentStage];
+  const container = document.querySelector(".quiz-container");
+
+  container.innerHTML = `
+    <div class="gif-container">
+      <img src="${stage.gif}" alt="Oráculo">
+    </div>
+  `;
+
+
+
+
+
+
+// 🌌 Efeito de desintegração só na primeira etapa final
+if (currentStage === 0) {
+  const effect = document.createElement("div");
+  effect.className = "disintegration-effect";
+  document.body.appendChild(effect);
+
+  for (let i = 0; i < 120; i++) {
+    const particle = document.createElement("span");
+    particle.className = "particle";
+    particle.style.left = Math.random() * 100 + "vw";
+    particle.style.top = Math.random() * 100 + "vh";
+    particle.style.animationDelay = Math.random() * 1.5 + "s";
+    effect.appendChild(particle);
+  }
+
+  setTimeout(() => effect.remove(), 2500); // limpa o efeito após 2,5s
+}
+
+
+
+  const audio = new Audio(stage.audio);
+  audio.play();
+
+  // 🚨 Salva o estágio atual no localStorage
+  saveProgress();
+
+  // 🎯 Evento do pixel se for a última etapa  <!-- IMPORTANTE!-->
+  if (currentStage === finalStages.length - 1) {
+    fbq('track', 'Search');
+    console.log("📩 Evento disparado (última etapa)");
+  }
+
+  audio.onended = () => showStageButtons();
+}
+
+
+
+
+
+
+function showStageButtons() {
+  const stage = finalStages[currentStage];
+  const container = document.querySelector(".quiz-container");
+
+  container.innerHTML = `
+    <div class="gif-container">
+      <img src="${stage.gif}" alt="Oráculo">
+    </div>
+    <div class="question-text" style="display:block;">${stage.title}</div>
+  `;
+
+  // 🎇 Se for a última etapa, dispara fogos e som automaticamente  <!-- IMPORTANTE!--> 
+  if (currentStage === finalStages.length - 1) {
+    launchConfetti();  
+
+    const sound = new Audio("https://cdn.pixabay.com/download/audio/2022/03/10/audio_5b4d3bfb9e.mp3?filename=balloon-pop-48030.mp3");  // som dos fogos
+    sound.volume = 0.4;
+    sound.play();
+  }
+
+  stage.buttons.forEach(btnData => {
+    const btn = document.createElement("button");
+    btn.textContent = btnData.text;
+    btn.className = "btn-universal";
+
+    btn.onmouseenter = () => btn.style.boxShadow = "0 0 25px rgba(0,255,200,0.9)";
+    btn.onmouseleave = () => btn.style.boxShadow = "0 0 15px rgba(0,255,200,0.6)";
+
+    if (btnData.action === "continuar") {
+      btn.onclick = () => {
+        currentStage++;
+        saveProgress();
+        if (currentStage < finalStages.length) {
+          playFinalStage();
+        } else {
+          const params = new URLSearchParams(window.location.search);
+          const utmString = params.toString();
+          let finalLink = "https://pay.hotmart.com/C102252201D?checkoutMode=10";
+
+          if (utmString) {
+            const separator = finalLink.includes('?') ? '&' : '?';
+            finalLink = `${finalLink}${separator}${utmString}`;
+          }
+
+          window.location.href = finalLink;
+        }
+      };
+    }
+
+    else if (btnData.action === "link") {
+      btn.onclick = () => {
+        // apenas redireciona (efeito já foi disparado antes)
+        const params = new URLSearchParams(window.location.search);
+        const utmString = params.toString();
+        let finalLink = btnData.link;
+
+        if (utmString) {
+          const separator = finalLink.includes('?') ? '&' : '?';
+          finalLink = `${finalLink}${separator}${utmString}`;
+        }
+
+        setTimeout(() => {
+          window.location.href = finalLink;
+        }, 500);
+      };
+    }
+
+    container.appendChild(btn);
+  });
+}
+
+
+
+// 🧹 Função para limpar o progresso completamente
+function resetProgress() {
+  localStorage.removeItem('persuasaoProgress');
+  console.log("🧹 Progresso resetado");
+}
+
+// 🧲 Se o lead clicar no botão final manualmente, também limpa
+document.addEventListener('click', e => {
+  if (e.target.textContent.includes("ACESSAR O CÓDIGO")) {
+    resetProgress();
+  }
+});
+</script>
+
+
+<script>
+// 🎆 EFEITO DE FOGOS DE ARTIFÍCIO
+function launchFireworks() {
+  const fireworksContainer = document.createElement('div');
+  fireworksContainer.style.position = 'fixed';
+  fireworksContainer.style.inset = '0';
+  fireworksContainer.style.pointerEvents = 'none';
+  fireworksContainer.style.zIndex = '999999';
+  document.body.appendChild(fireworksContainer);
+
+  const colors = ['#00fff2', '#00bfff', '#ff00cc', '#ffcc00', '#ffffff'];
+
+  for (let i = 0; i < 60; i++) {
+    const particle = document.createElement('div');
+    particle.style.position = 'absolute';
+    particle.style.width = '4px';
+    particle.style.height = '4px';
+    particle.style.borderRadius = '50%';
+    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+    particle.style.left = Math.random() * 100 + 'vw';
+    particle.style.top = Math.random() * 100 + 'vh';
+    particle.style.opacity = 1;
+    particle.style.transform = 'scale(1)';
+    fireworksContainer.appendChild(particle);
+
+    const angle = Math.random() * 2 * Math.PI;
+    const distance = 80 + Math.random() * 80;
+
+    const x = Math.cos(angle) * distance;
+    const y = Math.sin(angle) * distance;
+
+    particle.animate([
+      { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+      { transform: `translate(${x}px, ${y}px) scale(0.2)`, opacity: 0 }
+    ], {
+      duration: 1200 + Math.random() * 600,
+      easing: 'ease-out',
+      fill: 'forwards'
+    });
+  }
+
+  // Remove o container após o efeito
+  setTimeout(() => fireworksContainer.remove(), 2000);
+}
+</script>
+
+<!-- Biblioteca do confete (coloque no topo da página, antes da função) -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<script>
+function launchConfetti() {
+  // duração total do efeito
+  var duration = 2000;
+  var end = Date.now() + duration;
+
+  // loop de animação
+  (function frame() {
+    // Confete explodindo da esquerda
+    confetti({
+      particleCount: 6,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0, y: 1 },
+      colors: ['#00ffcc', '#00e0ff', '#00bfff', '#00aaff', '#66ffff']
+    });
+
+    // Confete explodindo da direita
+    confetti({
+      particleCount: 6,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1, y: 1 },
+      colors: ['#00ffcc', '#00e0ff', '#00bfff', '#00aaff', '#66ffff']
+    });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  })();
+}
+</script>
+
+</body>
+</html>
