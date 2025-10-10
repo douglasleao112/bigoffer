@@ -631,51 +631,34 @@ setupGlobalAudioUnlock();
 
 const finalStages = [
  {
-  audio: "https://static.wixstatic.com/mp3/7f5efc_dfee1ff35aa342f0b0318b3e9772ff34.mp3",  // 🎧 Audio 7
+  audio: "https://static.wixstatic.com/mp3/7f5efc_42e20ac7756f4146b4ec6d5d0e2c627b.mp3",  // 🎧 Audio 7
   title: "Aún hay más por descubrir...",
   gif: "https://static.wixstatic.com/media/7f5efc_e4cececd9a3d4752ac73ed9e3aa22854~mv2.gif",
   buttons: [
-    { text: "Reclamar Regalo", action: "continuar" }
+    { text: "Desbloquear ahora", action: "continuar" },
+    { text: "Acceso exclusivo", action: "continuar" }
   ]
 },
 {
-  audio: "https://static.wixstatic.com/mp3/7f5efc_a693289732534832af56017ed03173cb.mp3",  // 🎧 Audio 8
-  title: "Ahora comienza el verdadero juego.",
-  gif: "https://static.wixstatic.com/media/7f5efc_8e1f897492c6474d880adf2ad3182ac5~mv2.gif",
-  buttons: [
-    { text: "Sí, lo tengo", action: "continuar" },
-    { text: "Desbloquear ahora", action: "continuar" }
-  ]
-},
-{
-  audio: "https://static.wixstatic.com/mp3/7f5efc_8c92a5ada4fd4a7bb7e69334272c59df.mp3",  // 🎧 Audio 9
-  title: "¿Estás listo para el poder completo?",
-  gif: "https://static.wixstatic.com/media/7f5efc_65ecff36c016466f86572c9701297323~mv2.gif",
-  buttons: [
-    { text: "Sí, está claro", action: "continuar" },
-    { text: "Continuar ahora", action: "continuar" }
-  ]
-},
-{
-  audio: "https://static.wixstatic.com/mp3/7f5efc_9c90bcfd47ec494f8066895bf978af0b.mp3",  // 🎧 Audio 10
+  audio: "https://static.wixstatic.com/mp3/7f5efc_8c92a5ada4fd4a7bb7e69334272c59df.mp3",  // 🎧 Audio 8
   title: "¿Te comprometes?",
   gif: "https://static.wixstatic.com/media/7f5efc_8f04a0244d954ae795ddd741d52fc009~mv2.gif",
   buttons: [
-    { text: "Me comprometo", action: "continuar" },
-    { text: "Lo pensaré", action: "continuar" }
+    { text: "Estoy listo, continuar", action: "continuar" },
+    { text: "Dominar la persuasión", action: "continuar" }
   ]
 },
 
   
   {
-  audio: "https://static.wixstatic.com/mp3/7f5efc_c55ae0194c5b477dbfe8870727b1d1a4.mp3",    // 🎧 Áudio 11
+  audio: "https://static.wixstatic.com/mp3/7f5efc_dc7763dc85574e4b85dcacbf241e3b49.mp3",    // 🎧 Áudio 9
 title: (() => {
   const dias = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
   const hoje = new Date();
   const diaSemana = dias[hoje.getDay()];
   const dia = hoje.getDate().toString().padStart(2, '0');
   const mes = hoje.toLocaleString('es-ES', { month: 'long' });
-  return `70% OFF, válida solo este ${diaSemana} ${dia} de ${mes}.`;
+  return `$ 50 OFF, válida solo este ${diaSemana} ${dia} de ${mes}.`;
 })(),
   gif: "https://static.wixstatic.com/media/7f5efc_a7bee9f2a76c46c4b3f33679c2bdc969~mv2.gif",
   buttons: [
