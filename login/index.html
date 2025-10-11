@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
+   <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-
   <title>Área de Miembros - Iniciar Sesión</title>
   <link rel="icon" href="https://i.imgur.com/qTtFLJe.png" type="image/png">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -144,6 +145,16 @@ document.addEventListener('keydown', e => {
     || e.key === 'F12';
   if (forbidden) e.preventDefault();
 });
+  </script>
+
+
+
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js')
+      .then(() => console.log("✅ Service Worker registrado com sucesso"))
+      .catch(err => console.error("Erro ao registrar SW:", err));
+  }
   </script>
 
 </body>
