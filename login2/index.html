@@ -899,9 +899,8 @@ document.addEventListener('keydown', e => {
 </script>
 
 
-
 <script>
-async function handleLogin(e){
+async function handleLogin(e) {
   e.preventDefault();
   const email = document.getElementById('email').value.trim().toLowerCase();
   if (!email) return;
@@ -913,7 +912,15 @@ async function handleLogin(e){
       body: 'email=' + encodeURIComponent(email)
     });
 
-    const data = await res.json();
+    const text = await res.text(); // Lê a resposta bruta primeiro
+    let data;
+
+    try {
+      data = JSON.parse(text); // Tenta converter pra JSON
+    } catch {
+      console.warn('Resposta bruta do servidor:', text);
+      data = { ok: false, allowed: false }; // fallback se não for JSON
+    }
 
     if (data.ok && data.allowed) {
       localStorage.setItem('userEmail', email);
@@ -921,13 +928,14 @@ async function handleLogin(e){
     } else {
       alert('❌ Email no encontrado. Usa el mismo email que utilizaste en la compra.');
     }
+
   } catch (err) {
-    console.error(err);
+    console.error('Erro ao verificar o email:', err);
     alert('⚠️ Error al verificar el email. Intenta nuevamente.');
   }
 }
 
-// Checa se já está logado
+// Verifica login salvo ao carregar
 window.addEventListener('DOMContentLoaded', () => {
   const email = localStorage.getItem('userEmail');
   if (email) {
