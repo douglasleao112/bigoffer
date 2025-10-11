@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Área de Miembros - Iniciar Sesión</title>
+  <link rel="icon" href="https://i.imgur.com/qTtFLJe.png" type="image/png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: radial-gradient(circle at top, #1a1a1a 0%, #000 100%);
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      transform: perspective(1000px) rotateX(1deg);
+    }
+
+    .login-card input {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      color: white;
+      width: 100%;
+      padding: 12px;
+      margin-top: 1rem;
+      outline: none;
+      transition: all 0.3s;
+    }
+
+    .login-card input:focus {
+      border-color: #00ffae;
+      box-shadow: 0 0 10px #00ffae;
+    }
+
+    .login-card button {
+      margin-top: 1.5rem;
+      width: 100%;
+      background: linear-gradient(90deg, #00ffae, #00cc88);
+      color: black;
+      font-weight: bold;
+      padding: 12px;
+      border-radius: 10px;
+      transition: all 0.3s;
+      box-shadow: 0 0 15px #00ffae66;
+    }
+
+    .login-card button:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 0 25px #00ffae99;
+    }
+
+    .note {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-card">
+    <img src="https://i.imgur.com/qTtFLJe.png" alt="Logo" class="mx-auto mb-6 w-20 h-auto">
+    
+    <form onsubmit="handleLogin(event)">
+      <input type="email" id="email" placeholder="Correo electrónico" required>
+      <button type="submit">Entrar</button>
+    </form>
+
+    <p class="note">*Utiliza el mismo correo electrónico que usaste en la compra.</p>
+  </div>
+
+  <script>
+    function handleLogin(event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      if (email) {
+        localStorage.setItem('userEmail', email);
+        window.location.href = '/areamember';
+      }
+    }
+  </script>
+
+</body>
+</html>
