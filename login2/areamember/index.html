@@ -242,7 +242,8 @@ button:hover, a:hover {
     <li> <a href="#" onclick="enterBonos(); closeUserMenu();" class="block px-4 py-2 hover:bg-white/10"> 🎁 Bonos </a></li>
     <li> <a href="#" onclick="enterLibros(); closeUserMenu();" class="block px-4 py-2 hover:bg-white/10"> 📚 Libros Prohibidos</a></li>
       <li><a href="#" onclick="openModal('https://drive.google.com/embeddedfolderview?id=18T08y6aEltW3TM3eISL3nhklkkCewxQ8#grid','Manuales de Neurociencia'); closeUserMenu();" class="block px-4 py-2 hover:bg-white/10">🧬 Manuales Neurociencia </a> </li>
-    <li> <a href="/login" class="block px-4 py-2 text-red-400 hover:bg-red-500/10"> 🚪 Salir </a></li>
+   <li>  <a href="#" onclick="logout()" class="block px-4 py-2 text-red-400 hover:bg-red-500/10"> 🚪 Salir </a></li>
+
   </ul>
 </div>
 
@@ -724,6 +725,12 @@ button:hover, a:hover {
     // Navegación entre HOME y AUDIOBOOK
     const home = document.getElementById('home');
     const audiobook = document.getElementById('audiobook');
+
+
+    function logout(){
+  localStorage.removeItem('userEmail');
+  location.reload();
+}
 
 function enterAudiobook(){
   hideHome();
