@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
-   <link rel="manifest" href="areamember/manifest.json">
-    <meta name="theme-color" content="#000000">
+  <link rel="manifest" href="areamember/manifest.json">
+  <meta name="theme-color" content="#000000">
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no"/>
   <title>Área de Miembros - Iniciar Sesión</title>
-  <link rel="icon" href="https://i.imgur.com/qTtFLJe.png" type="image/png">
+  <link rel="icon" href="https://i.imgur.com/ZrA1cA0.png" type="image/png">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -19,7 +18,6 @@
       align-items: center;
       justify-content: center;
     }
-
     .login-card {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -32,7 +30,6 @@
       text-align: center;
       transform: perspective(1000px) rotateX(1deg);
     }
-
     .login-card input {
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
@@ -44,12 +41,10 @@
       outline: none;
       transition: all 0.3s;
     }
-
     .login-card input:focus {
       border-color: #00ffae;
       box-shadow: 0 0 10px #00ffae;
     }
-
     .login-card button {
       margin-top: 1.5rem;
       width: 100%;
@@ -61,101 +56,110 @@
       transition: all 0.3s;
       box-shadow: 0 0 15px #00ffae66;
     }
-
     .login-card button:hover {
       transform: translateY(-2px) scale(1.02);
       box-shadow: 0 0 25px #00ffae99;
     }
-
     .note {
       margin-top: 1rem;
       font-size: 0.85rem;
       color: rgba(255,255,255,0.7);
     }
+
+    /* popup */
+    .popup-bg {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    .popup-bg img {
+      max-width: 90%;
+      border-radius: 1rem;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
   </style>
 </head>
 <body>
-
   <div class="login-card">
     <img src="https://i.imgur.com/qTtFLJe.png" alt="Logo" class="mx-auto mb-6 w-20 h-auto">
-     <p class="note">*Utiliza el mismo correo electrónico<br> que usaste en la compra.</p>
+
+    <!-- Botão de instalar -->
+    <button id="installBtn" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition-all mb-4 hidden">
+      📲 Instalar App
+    </button>
+
+    <p class="note">*Utiliza el mismo correo electrónico<br> que usaste en la compra.</p>
     <form onsubmit="handleLogin(event)">
       <input type="email" id="email" placeholder="usuario@email.com" required>
       <button type="submit">Entrar</button>
     </form>
+  </div>
 
-   
+  <!-- Popup -->
+  <div id="popup" class="popup-bg" onclick="closePopup()">
+    <img id="popupImg" src="" alt="Instrucciones para instalar">
   </div>
 
   <script>
-    function handleLogin(event) {
-      event.preventDefault();
+    function handleLogin(e){
+      e.preventDefault();
       const email = document.getElementById('email').value.trim();
-      if (email) {
+      if(email){
         localStorage.setItem('userEmail', email);
         window.location.href = '/login/areamember';
       }
     }
 
+    // ---- Lógica do botão Instalar ----
+    const installBtn = document.getElementById('installBtn');
+    let deferredPrompt;
 
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      // mostra o botão
+      installBtn.classList.remove('hidden');
+    });
 
+    installBtn.addEventListener('click', async () => {
+      if (window.matchMedia('(display-mode: standalone)').matches) return;
+      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+      const popupImg = document.getElementById('popupImg');
+      const popup = document.getElementById('popup');
+      popupImg.src = isIOS ? "https://i.imgur.com/E0Bhtnh.gif" : "https://i.imgur.com/AYQyWT8.gif";
+      popup.style.display = 'flex';
 
-    
+      // se Android, dispara prompt
+      if (!isIOS && deferredPrompt) {
+        await deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(choice => {
+          if (choice.outcome === 'accepted') {
+            installBtn.style.display = 'none';
+          }
+          deferredPrompt = null;
+        });
+      }
+    });
 
-  
-// Bloqueia pinça (touchmove com 2 dedos)
-document.addEventListener('touchmove', function(e) {
-  if (e.touches && e.touches.length > 1) {
-    e.preventDefault();
-  }
-}, { passive: false });
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+    }
 
-// Bloqueia duplo-toque rápido
-let lastTouchEnd = 0;
-document.addEventListener('touchend', function(e) {
-  const now = Date.now();
-  if (now - lastTouchEnd <= 300) {
-    e.preventDefault();
-  }
-  lastTouchEnd = now;
-}, false);
+    // esconde botão se já estiver instalado
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      installBtn.style.display = 'none';
+    }
 
-// Bloqueia gestos específicos no iOS
-document.addEventListener('gesturestart', function(e) {
-  e.preventDefault();
-});
-
-
-
-// Bloqueia o menu de contexto (clique direito)
-document.addEventListener('contextmenu', e => e.preventDefault());
-
-// Impede copiar/recortar/selecionar texto
-['copy','cut','selectstart','dragstart'].forEach(evt =>
-  document.addEventListener(evt, e => e.preventDefault())
-);
-
-// Bloqueia atalho Ctrl+C, Ctrl+U (ver fonte), Ctrl+S, Ctrl+P e F12
-document.addEventListener('keydown', e => {
-  const forbidden =
-    // combinações de Ctrl + C, U, S, P, A
-    (e.ctrlKey &&
-      ['c','u','s','p','a'].includes(e.key.toLowerCase()))
-    // F12
-    || e.key === 'F12';
-  if (forbidden) e.preventDefault();
-});
+    // registra o service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('areamember/sw.js')
+        .then(() => console.log("✅ Service Worker registrado com sucesso"))
+        .catch(err => console.error("Erro ao registrar SW:", err));
+    }
   </script>
-
-
-
-  <script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('areamember/sw.js')
-    .then(() => console.log("✅ Service Worker registrado com sucesso"))
-    .catch(err => console.error("Erro ao registrar SW:", err));
-}
-  </script>
-
 </body>
 </html>
