@@ -120,12 +120,17 @@
     const installBtn = document.getElementById('installBtn');
     let deferredPrompt;
 
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      // mostra o botão
-      installBtn.classList.remove('hidden');
-    });
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.classList.remove('hidden');
+});
+
+// força o botão aparecer em iOS (Safari não dispara o evento)
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+if (isIOS) {
+  installBtn.classList.remove('hidden');
+}
 
     installBtn.addEventListener('click', async () => {
       if (window.matchMedia('(display-mode: standalone)').matches) return;
