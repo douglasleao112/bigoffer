@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Área de Miembros — El Código de la Persuasión</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="https://i.imgur.com/iPllVtt.jpeg" type="image/png">
+  <meta name="theme-color" content="#000000">
+  <style>
+    /* Fondo negro absoluto del app */
+    body { background:#000; }
+
+    /* Card base con imagen de fondo oscurecida */
+    .card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      background-size: cover;
+      background-position: center;
+      background-image: url("https://media.istockphoto.com/id/914504784/pt/foto/dark-forest-in-twilight.jpg?s=612x612&w=0&k=20&c=8BvUnga37xiMW8g_cmvN0yAoEqsldpEafdUQAQDK1g4=");
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(ellipse at 30% 20%, rgba(0,0,0,.35), rgba(0,0,0,.85)),
+                  linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,.85));
+      mix-blend-mode: multiply;
+    }
+    .card:hover{ transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,.5); }
+
+    /* Modal full-screen */
+    .modal {
+      position: fixed; inset: 0; z-index: 70;
+      display: none;
+      background: rgba(0,0,0,.8);
+      backdrop-filter: blur(6px);
+    }
+    .modal.open{ display: block; }
+    .modal-content{
+      position: absolute; inset: 0;
+      display:flex; flex-direction: column;
+      background: #0a0a0a;
+    }
+    .modal-header{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: .75rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08);
+      background: linear-gradient(to bottom, #0f0f0f, #0a0a0a);
+    }
+    .modal-title{ color:#fff; font-weight:600; font-size: .95rem; opacity:.9 }
+    .btn-x{
+      width:36px; height:36px; display:grid; place-items:center;
+      border-radius:.75rem; border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04); color:#fff; opacity:.9;
+    }
+    .btn-x:hover{ background: rgba(255,255,255,.08); }
+    .modal-body{ flex:1; }
+    .modal-iframe{ width:100%; height:100%; border:0; }
+
+    /* Acordeón elegante */
+    .acc-item{
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: 1rem;
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
+      overflow: hidden;
+    }
+    .acc-btn{
+      width:100%; text-align:left;
+      padding: .9rem 1rem;
+      color:#fff; font-weight:600;
+      display:flex; align-items:center; gap:.6rem;
+    }
+    .acc-btn span.badge{
+      font-size:.7rem; letter-spacing:.04em;
+      padding:.15rem .5rem; border-radius:.5rem;
+      border:1px solid rgba(255,255,255,.14);
+      color:#e5e5e5; opacity:.9;
+    }
+    .acc-panel{
+      max-height: 0; overflow: hidden; transition: max-height .35s ease;
+      border-top:1px solid rgba(255,255,255,.06);
+      background: rgba(255,255,255,.02);
+    }
+    .acc-item.active .acc-panel{ max-height: 400px; }
+    .audio-wrap{ padding: .9rem 1rem; }
+    .audio{ width:100% }
+  </style>
+</head>
+<body class="text-white selection:bg-white/10 selection:text-white">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur-md">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div>
+        <div class="text-sm sm:text-base font-semibold tracking-wide">Bienvenido</div>
+        <div class="text-xs sm:text-sm text-white/60">Área de miembros secreta</div>
+      </div>
+      <img src="https://i.imgur.com/qTtFLJe.png" alt="Logo" class="h-8 w-auto opacity-90">
+    </div>
+  </header>
+
+  <!-- Mensaje topo -->
+  <section class="max-w-6xl mx-auto px-4 pt-6">
+    <div class="rounded-2xl border border-white/10 bg-white/[.025] p-4">
+      <p class="text-sm sm:text-base text-white/80">
+        ¡Accede a tu conocimiento privado! Explora los módulos, escucha los audios y abre materiales exclusivos sin salir del entorno.
+      </p>
+    </div>
+  </section>
+
+  <!-- MENU PRINCIPAL (Home) -->
+  <main id="home" class="max-w-6xl mx-auto px-4 py-6">
+    <!-- Grid: 2 col en móvil -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6">
+      <!-- 1. Libro -->
+      <button class="card aspect-[4/3] group" onclick="openModal('https://drive.google.com/file/d/1Em2Uz1mtyJHmlb2Pk06w1JchYiXT78wd/view?usp=drive_link','Libro: Código Completo de la Persuasión')">
+        <div class="relative z-10 h-full w-full p-4 flex flex-col justify-end">
+          <div class="text-xs text-white/70">Libro</div>
+          <h3 class="text-sm sm:text-base font-bold leading-snug">Código Completo de la Persuasión</h3>
+        </div>
+      </button>
+
+      <!-- 2. Audiobook -->
+      <button class="card aspect-[4/3] group" onclick="enterAudiobook()">
+        <div class="relative z-10 h-full w-full p-4 flex flex-col justify-end">
+          <div class="text-xs text-white/70">Audiobook</div>
+          <h3 class="text-sm sm:text-base font-bold leading-snug">Código de la Persuasión</h3>
+        </div>
+      </button>
+
+      <!-- 3. Psicolgía Oscura (video) -->
+      <button class="card aspect-[4/3] group" onclick="openModal('https://drive.google.com/file/d/18_tZlirSidwlG_ASeA7lom0ZB1T6tBmS/view','Código de la Persuasión Oscura')">
+        <div class="relative z-10 h-full w-full p-4 flex flex-col justify-end">
+          <div class="text-xs text-white/70">Video</div>
+          <h3 class="text-sm sm:text-base font-bold leading-snug">Código de la Persuasión Oscura</h3>
+        </div>
+      </button>
+
+      <!-- 4. Bonos (carpeta) -->
+      <button class="card aspect-[4/3] group" onclick="openModal('https://drive.google.com/drive/folders/1Ks0O2CJ4m06jzLg44y43Wu9l78Wdt6YJ','Bonos')">
+        <div class="relative z-10 h-full w-full p-4 flex flex-col justify-end">
+          <div class="text-xs text-white/70">BONOS</div>
+          <h3 class="text-sm sm:text-base font-bold leading-snug">Accesos y materiales extra</h3>
+        </div>
+      </button>
+
+      <!-- 5. Libros Prohibidos (carpeta) -->
+      <button class="card aspect-[4/3] group" onclick="openModal('https://drive.google.com/drive/folders/1_TAYY_6DuyBJ-q_nSuyaBCvtZXibBJWb','Libros Prohibidos')">
+        <div class="relative z-10 h-full w-full p-4 flex flex-col justify-end">
+          <div class="text-xs text-white/70">Biblioteca</div>
+          <h3 class="text-sm sm:text-base font-bold leading-snug">Libros Prohibidos</h3>
+        </div>
+      </button>
+
+      <!-- 6. Manuales de neurociencia - Artículos -->
+      <button class="card aspect-[4/3] group" onclick="openModal('https://drive.google.com/drive/folders/18T08y6aEltW3TM3eISL3nhklkkCewxQ8?usp=drive_link','Manuales de neurociencia — Artículos')">
+        <div class="relative z-10 h-full w-full p-4 flex flex-col justify-end">
+          <div class="text-xs text-white/70">Lecturas</div>
+          <h3 class="text-sm sm:text-base font-bold leading-snug">Manuales de neurociencia — Artículos</h3>
+        </div>
+      </button>
+    </div>
+  </main>
+
+  <!-- SECCIÓN AUDIOBOOK (card 2) -->
+  <section id="audiobook" class="max-w-4xl mx-auto px-4 pb-10 hidden">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-lg font-bold">Audiobook — Código de la Persuasión</h2>
+      <button onclick="backToHome()"
+              class="text-sm px-3 py-2 rounded-xl border border-white/15 bg-white/[.04] hover:bg-white/[.07]">
+        ⟵ Volver al menú
+      </button>
+    </div>
+
+    <p class="text-white/70 text-sm mb-4">
+      Toca cada tema para desplegar y reproducir el audio correspondiente.
+    </p>
+
+    <div class="space-y-3">
+      <!-- Reutilizamos acc-item para cada audio -->
+      <!-- 1 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span> Escasez — El Poder de lo que es Raro
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_e0eacd7e1f91415e92d6a9a0ddb296d1.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 2 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span> Urgencia — La Fuerza del Tiempo en tu Contra
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_f7342953ac0244d7a86824ad9323df1f.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 3 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span> Prueba Social — El Poder de lo que Hacen los Demás
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_5ef4e6472e8e4a7cb88731cab122b9f8.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 4 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span> Autoridad — El Peso de la Especialización
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_afe666d0f61c47648cfef3142fc4bbb9.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 5 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span> Reciprocidad — El Poder de Dar Antes de Recibir
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_1ecde4f5bfef4314b6d6c6bc1a5b148f.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 6 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span> Novedad — El Fascinio por lo que es Nuevo
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_09a0a51869bc453681c70549aa9e49d3.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 7 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span> Anticipación — El Placer de la Espera
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_6eb726b2f2c343739bba9935ba343054.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 8 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span> Historias — El Encanto del Storytelling
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_7189f682f3a64fe09a5dd26a7025bf89.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 9 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span> Comunidad — El Poder del Pertenecer
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_9137876b9e7748b6b56008fc87ea7511.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 10 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span> Simplicidad — El Atajo que Todos Desean
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_3446c6877bb543ed88e8a3794993cf79.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 11 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span> Curiosidad — El Vacío que Debe Ser Llenado
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_5261b8d2e4b44414ba5ece6397208004.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 12 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span> Exclusividad — El Valor del Acceso Restringido
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_2019fb87101e46d38412ebd50fd2f3fa.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 13 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span> Dolor y Placer — La Brújula de las Decisiones Humanas
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_9b23101e7c174162b3e39e129b19179f.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 14 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span> Garantía — El Eliminador del Riesgo
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_cfbbc580db8d4b01b0983b4eb39aae29.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 15 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span> Compromiso y Coherencia — El Peso de la Palabra Dada
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_42898873a77d41dc98245d263a2f5c00.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 16 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Cierre</span> Conclusión — El Código de la Persuasión en tus Manos
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_6c342c7157a84e46972d115ab7b4fd36.mp3"></audio>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center text-white/60 text-xs py-4 border-t border-white/10">
+  El Código de la [P]ersuación © Todos los derechos reservados.
+</footer>
+
+  <!-- MODAL reutilizable -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle">Contenido</div>
+        <button class="btn-x" aria-label="Cerrar" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <iframe id="modalFrame" class="modal-iframe" src="" allow="autoplay; encrypted-media"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Navegación entre HOME y AUDIOBOOK
+    const home = document.getElementById('home');
+    const audiobook = document.getElementById('audiobook');
+
+    function enterAudiobook(){
+      home.classList.add('hidden');
+      audiobook.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function backToHome(){
+      audiobook.classList.add('hidden');
+      home.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Modal Iframe
+    const modal = document.getElementById('modal');
+    const frame = document.getElementById('modalFrame');
+    const titleEl = document.getElementById('modalTitle');
+
+    function openModal(url, title='Contenido'){
+      titleEl.textContent = title || 'Contenido';
+      // Para enlaces de Google Drive, intentamos usar el link tal cual.
+      frame.src = url;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(){
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden','true');
+      frame.src = 'about:blank';
+      document.body.style.overflow = '';
+    }
+    // Cerrar al pulsar fuera del contenido
+    modal.addEventListener('click', (e)=>{
+      if(e.target === modal){ closeModal(); }
+    });
+    // ESC para cerrar
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+
+    // Acordeón
+    function toggleAcc(btn){
+      const item = btn.closest('.acc-item');
+      const isActive = item.classList.contains('active');
+
+      // Cerrar todos
+      document.querySelectorAll('.acc-item').forEach(i=>{
+        i.classList.remove('active');
+        const panel = i.querySelector('.acc-panel');
+        if(panel){ panel.style.maxHeight = null; }
+      });
+
+      // Abrir el actual si no estaba activo
+      if(!isActive){
+        item.classList.add('active');
+        const panel = item.querySelector('.acc-panel');
+        if(panel){
+          // establecer max-height para permitir transición suave
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        }
+      }
+    }
+
+    // Ajustar alturas al redimensionar (por si cambia scrollHeight)
+    window.addEventListener('resize', ()=>{
+      document.querySelectorAll('.acc-item.active .acc-panel').forEach(panel=>{
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      });
+    });
+  </script>
+</body>
+</html>
