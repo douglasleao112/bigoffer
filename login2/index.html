@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="manifest" href="areamember/manifest.json">
+  <meta name="theme-color" content="#000000">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no"/>
+  <title>Área de Miembros - Iniciar Sesión</title>
+  <link rel="icon" href="https://i.imgur.com/ZrA1cA0.png" type="image/png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: radial-gradient(circle at top, #1a1a1a 0%, #000 100%);
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      transform: perspective(1000px) rotateX(1deg);
+    }
+
+    .title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #fff;
+      text-shadow: 0 0 8px rgba(255,255,255,0.2);
+      margin-bottom: 1.5rem;
+    }
+
+    .login-card input {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      color: white;
+      width: 100%;
+      padding: 12px;
+      margin-top: 0.5rem;
+      outline: none;
+      transition: all 0.3s;
+    }
+
+    .login-card input:focus {
+      border-color: #00ffae;
+      box-shadow: 0 0 10px #00ffae;
+    }
+
+    .login-card button {
+      margin-top: 1rem;
+      width: 100%;
+      background: linear-gradient(90deg, #00ffae, #00cc88);
+      color: black;
+      font-weight: bold;
+      padding: 12px;
+      border-radius: 10px;
+      transition: all 0.3s;
+      box-shadow: 0 0 15px #00ffae66;
+    }
+
+    .login-card button:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 0 25px #00ffae99;
+    }
+
+    .note {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* Texto Instalar App */
+    .install-text {
+      margin-top: 1.3rem;
+      color: #ff7a00;
+      font-weight: bold;
+      cursor: pointer;
+      text-shadow: 0 0 10px #ff7a00, 0 0 20px #ff7a00;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff7a00, 0 0 20px #ff7a00; }
+      to { text-shadow: 0 0 20px #ffae00, 0 0 40px #ff7a00; }
+    }
+
+    /* Popup */
+    .popup-bg {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .popup-bg img {
+      max-width: 90%;
+      border-radius: 1rem;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <img src="https://i.imgur.com/qTtFLJe.png" alt="Logo" class="mx-auto mb-4 w-20 h-auto">
+
+    <h1 class="title">El Código de la Persuasión</h1>
+
+    <form onsubmit="handleLogin(event)">
+      <p class="note" style="margin-bottom: 3px;">
+        *Mismo Email que usaste en la compra.
+      </p>
+      <input type="email" id="email" placeholder="usuario@email.com" required>
+      <button type="submit">Entrar</button>
+    </form>
+
+    <!-- Texto “Instalar App” -->
+    <p id="installText" class="install-text">📲 Instalar App</p>
+  </div>
+
+  <!-- Popup -->
+  <div id="popup" class="popup-bg" onclick="closePopup()">
+    <img id="popupImg" src="" alt="Instrucciones para instalar">
+  </div>
+
+  
+  <script>
+    function handleLogin(e){
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      if(email){
+        localStorage.setItem('userEmail', email);
+        window.location.href = '/login/areamember';
+      }
+    }
+
+    const installText = document.getElementById('installText');
+    const popupImg = document.getElementById('popupImg');
+    const popup = document.getElementById('popup');
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    const isAndroid = /android/i.test(navigator.userAgent);
+
+    installText.addEventListener('click', () => {
+      popupImg.src = isIOS 
+        ? "https://i.imgur.com/E0Bhtnh.gif" 
+        : "https://i.imgur.com/AYQyWT8.gif";
+      popup.style.display = 'flex';
+    });
+
+    function closePopup() {
+      popup.style.display = 'none';
+    }
+
+    // ✅ Esconde "Instalar App" se o usuário já estiver no PWA
+    if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
+      const installElement = document.getElementById('installText');
+      if (installElement) installElement.style.display = 'none';
+    }
+
+    // Registra o Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('areamember/sw.js')
+        .then(() => console.log("✅ Service Worker registrado com sucesso"))
+        .catch(err => console.error("Erro ao registrar SW:", err));
+    }
+  </script>
+</body>
+</html>
