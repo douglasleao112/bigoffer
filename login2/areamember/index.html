@@ -124,11 +124,92 @@ button:hover, a:hover {
   filter: drop-shadow(0 0 6px #00ffae99);
 }
 
+
+
+
+
+
+
+
+
+/* LOGIN STYLE */
+.login-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  transform: perspective(1000px) rotateX(1deg);
+}
+
+.login-card input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: white;
+  width: 100%;
+  padding: 12px;
+  margin-top: 0.5rem;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.login-card input:focus {
+  border-color: #00ffae;
+  box-shadow: 0 0 10px #00ffae;
+}
+
+.login-card button {
+  margin-top: 1rem;
+  width: 100%;
+  background: linear-gradient(90deg, #00ffae, #00cc88);
+  color: black;
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 10px;
+  transition: all 0.3s;
+  box-shadow: 0 0 15px #00ffae66;
+}
+
+.login-card button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 25px #00ffae99;
+}
+
+.note {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.7);
+}
+
   </style>
 
   
 </head>
   <body class="text-white selection:bg-white/10 selection:text-white min-h-screen flex flex-col">
+
+
+<!-- LOGIN SCREEN -->
+<div id="loginScreen" class="fixed inset-0 flex items-center justify-center bg-black z-[9999]">
+  <div class="login-card">
+    <img src="https://i.imgur.com/qTtFLJe.png" alt="Logo" class="mx-auto mb-4 w-20 h-auto">
+    <h1 class="title">El Código de la Persuasión</h1>
+    <form onsubmit="handleLogin(event)">
+      <p class="note" style="margin-bottom: 3px;">
+        *Mismo Email que usaste en la compra.
+      </p>
+      <input type="email" id="email" placeholder="usuario@email.com" required>
+      <button type="submit">Entrar</button>
+    </form>
+  </div>
+</div>
+
+
+
 
   
   <!-- HEADER -->
@@ -809,5 +890,45 @@ document.addEventListener('keydown', e => {
 });
 
 </script>
+
+
+
+<script>
+async function handleLogin(e){
+  e.preventDefault();
+  const email = document.getElementById('email').value.trim().toLowerCase();
+  if (!email) return;
+
+  try {
+    const res = await fetch('https://projeto360.site/hotmart/check_email.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: 'email=' + encodeURIComponent(email)
+    });
+
+    const data = await res.json();
+
+    if (data.ok && data.allowed) {
+      localStorage.setItem('userEmail', email);
+      document.getElementById('loginScreen').style.display = 'none';
+    } else {
+      alert('❌ Email no encontrado. Usa el mismo email que utilizaste en la compra.');
+    }
+  } catch (err) {
+    console.error(err);
+    alert('⚠️ Error al verificar el email. Intenta nuevamente.');
+  }
+}
+
+// Checa se já está logado
+window.addEventListener('DOMContentLoaded', () => {
+  const email = localStorage.getItem('userEmail');
+  if (email) {
+    document.getElementById('loginScreen').style.display = 'none';
+  }
+});
+</script>
+
+
 </body>
 </html>
