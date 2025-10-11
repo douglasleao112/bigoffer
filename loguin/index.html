@@ -1,101 +1,639 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-
-  <title>Área de Miembros - Iniciar Sesión</title>
-  <link rel="icon" href="https://i.imgur.com/qTtFLJe.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Área de Miembros — El Código de la Persuasión</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="https://i.imgur.com/iPllVtt.jpeg" type="image/png">
+  <meta name="theme-color" content="#000000">
   <style>
-    body {
-      background: radial-gradient(circle at top, #1a1a1a 0%, #000 100%);
-      font-family: 'Poppins', sans-serif;
-      color: white;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    /* Fondo negro absoluto del app */
+   body {
+  background: radial-gradient(circle at top, #1a1a1a 0%, #000 100%);
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
 
-    .login-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
-      border-radius: 1.5rem;
-      padding: 2rem;
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-      transform: perspective(1000px) rotateX(1deg);
-    }
+    /* Card base con imagen de fondo oscurecida */
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.05);
+  background-size: cover;
+  background-position: center;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px #00ffae44;
+  border-color: #00ffae55;
+}
+.card::before {
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,.8));
+}
 
-    .login-card input {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 10px;
-      color: white;
-      width: 100%;
-      padding: 12px;
-      margin-top: 1rem;
-      outline: none;
-      transition: all 0.3s;
-    }
 
-    .login-card input:focus {
-      border-color: #00ffae;
-      box-shadow: 0 0 10px #00ffae;
+    /* Modal full-screen */
+    .modal {
+      position: fixed; inset: 0; z-index: 70;
+      display: none;
+      background: rgba(0,0,0,.8);
+      backdrop-filter: blur(6px);
     }
+    .modal.open{ display: block; }
+    .modal-content{
+      position: absolute; inset: 0;
+      display:flex; flex-direction: column;
+      background: #0a0a0a;
+    }
+    .modal-header{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: .75rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08);
+      background: linear-gradient(to bottom, #0f0f0f, #0a0a0a);
+    }
+    .modal-title{ color:#fff; font-weight:600; font-size: .95rem; opacity:.9 }
+    .btn-x{
+      width:36px; height:36px; display:grid; place-items:center;
+      border-radius:.75rem; border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04); color:#fff; opacity:.9;
+    }
+    .btn-x:hover{ background: rgba(255,255,255,.08); }
+    .modal-body{ flex:1; }
+    .modal-iframe{ width:100%; height:100%; border:0; }
 
-    .login-card button {
-      margin-top: 1.5rem;
-      width: 100%;
-      background: linear-gradient(90deg, #00ffae, #00cc88);
-      color: black;
-      font-weight: bold;
-      padding: 12px;
-      border-radius: 10px;
-      transition: all 0.3s;
-      box-shadow: 0 0 15px #00ffae66;
+    /* Acordeón elegante */
+    .acc-item{
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: 1rem;
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
+      overflow: hidden;
     }
+    .acc-btn{
+      width:100%; text-align:left;
+      border-left: 3px solid transparent;
+      padding: .9rem 1rem;
+      color:#fff; font-weight:600;
+      display:flex; align-items:center; gap:.6rem;
+    }
+    .acc-item.active .acc-btn {
+  border-left: 3px solid #00ffae;
+  box-shadow: 0 0 8px #00ffae44;
+}
+    .acc-btn span.badge{
+      font-size:.7rem; letter-spacing:.04em;
+      padding:.15rem .5rem; border-radius:.5rem;
+      border:1px solid rgba(255,255,255,.14);
+      color:#e5e5e5; opacity:.9;
+    }
+    .acc-panel{
+      max-height: 0; overflow: hidden; transition: max-height .35s ease;
+      border-top:1px solid rgba(255,255,255,.06);
+      background: rgba(255,255,255,.02);
+    }
+    .acc-item.active .acc-panel{ max-height: 400px; }
+    .audio-wrap{ padding: .9rem 1rem; }
+    .audio{ width:100% }
 
-    .login-card button:hover {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 0 25px #00ffae99;
-    }
+    header, footer {
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 20px rgba(0,255,174,0.1);
+}
 
-    .note {
-      margin-top: 1rem;
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.7);
-    }
+button, a {
+  transition: all 0.3s ease;
+}
+button:hover, a:hover {
+  filter: drop-shadow(0 0 6px #00ffae99);
+}
+
   </style>
+
+  
 </head>
-<body>
+<body class="text-white selection:bg-white/10 selection:text-white">
 
-  <div class="login-card">
-    <img src="https://i.imgur.com/qTtFLJe.png" alt="Logo" class="mx-auto mb-6 w-20 h-auto">
-    
-    <form onsubmit="handleLogin(event)">
-      <input type="email" id="email" placeholder="Correo electrónico" required>
-      <button type="submit">Entrar</button>
-    </form>
+  
+  <!-- HEADER -->
+<header class="sticky top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur-md">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between relative">
 
-    <p class="note">*Utiliza el mismo correo electrónico que usaste en la compra.</p>
+    <!-- Logo + texto -->
+    <div class="flex items-center gap-3">
+      <img src="https://i.imgur.com/qTtFLJe.png" alt="Logo" class="h-8 w-auto opacity-90">
+      <div>
+        <div class="text-sm sm:text-base font-semibold tracking-wide">Bienvenido</div>
+        <div class="text-xs sm:text-sm text-white/60">Área de miembros secreta</div>
+      </div>
+    </div>
+
+    <!-- Ícone de usuário -->
+    <div class="relative">
+      <button id="userBtn" class="w-9 h-9 rounded-full overflow-hidden border border-white/10 hover:border-white/20 bg-white/5">
+        <img src="https://cdn-icons-png.flaticon.com/512/6596/6596121.png" alt="User" class="w-full h-full object-cover">
+      </button>
+
+      <!-- Menu suspenso -->
+      <div id="userMenu"
+           class="hidden absolute right-0 mt-2 w-56 rounded-2xl border border-white/10 bg-black/90 backdrop-blur-md shadow-xl">
+        <ul class="text-sm text-white/80 divide-y divide-white/10">
+          <li><a href="#" onclick="openModal('https://7f5efc8c-3c47-4ebb-8955-b529f5255ded.usrfiles.com/ugd/7f5efc_1a306e5906a4456dbcf0355c9761b911.pdf','Libro'); closeUserMenu();" class="block px-4 py-2 hover:bg-white/10">📘 Libro</a></li>
+          <li><a href="#" onclick="enterAudiobook(); closeUserMenu();" class="block px-4 py-2 hover:bg-white/10">🎧 Audiobook</a></li>
+          <li><a href="#" onclick="openModal('https://drive.google.com/file/d/18_tZlirSidwlG_ASeA7lom0ZB1T6tBmS/view','Código de la Persuasión Oscura'); closeUserMenu();" class="block px-4 py-2 hover:bg-white/10">🧠 Persuasión Oscura</a></li>
+          <li><a href="#" onclick="openModal('https://drive.google.com/drive/folders/1Ks0O2CJ4m06jzLg44y43Wu9l78Wdt6YJ','Bonos'); closeUserMenu();" class="block px-4 py-2 hover:bg-white/10">🎁 Bonos</a></li>
+          <li><a href="#" onclick="openModal('https://drive.google.com/drive/folders/1_TAYY_6DuyBJ-q_nSuyaBCvtZXibBJWb','Libros Prohibidos'); closeUserMenu();" class="block px-4 py-2 hover:bg-white/10">📚 Libros Prohibidos</a></li>
+          <li><a href="#" onclick="openModal('https://drive.google.com/drive/folders/1_TAYY_6DuyBJ-q_nSuyaBCvtZXibBJWb','Manuales de neurociencia — Artículos'); closeUserMenu();" class="block px-4 py-2 hover:bg-white/10">🧬 Manuales Neurociencia</a></li>
+          <li><a href="/login" class="block px-4 py-2 text-red-400 hover:bg-red-500/10">🚪 Salir</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const userBtn = document.getElementById('userBtn');
+  const userMenu = document.getElementById('userMenu');
+
+  userBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    userMenu.classList.toggle('hidden');
+    userMenu.classList.toggle('animate-fade');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!userMenu.contains(e.target) && !userBtn.contains(e.target)) {
+      closeUserMenu();
+    }
+  });
+
+  function closeUserMenu() {
+    userMenu.classList.add('hidden');
+  }
+</script>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade {
+    animation: fadeIn 0.2s ease forwards;
+  }
+</style>
+
+
+
+
+
+
+  <!-- Mensaje topo -->
+  <section class="max-w-6xl mx-auto px-4 pt-6">
+    <div class="rounded-2xl border border-white/10 bg-white/[.025] p-4">
+      <p class="text-sm sm:text-base text-white/80">
+        ¡Accede a tu conocimiento privado! Explora los módulos, escucha los audios y abre materiales exclusivos sin salir del entorno.
+      </p>
+    </div>
+  </section>
+
+  <!-- MENU PRINCIPAL (Home) -->
+  <main id="home" class="max-w-6xl mx-auto px-4 py-6">
+    <!-- Grid: 2 col en móvil -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6">
+      <!-- 1. Libro -->
+      <button class="card aspect-[4/3]" 
+ style="background-image:url('https://st.depositphotos.com/1550726/4531/i/450/depositphotos_45317759-stock-photo-man-walking-in-a-mysterious.jpg')" 
+ onclick="openModal('https://7f5efc8c-3c47-4ebb-8955-b529f5255ded.usrfiles.com/ugd/7f5efc_1a306e5906a4456dbcf0355c9761b911.pdf','Libro: Código Completo de la Persuasión')">
+        <div class="relative z-10 h-full w-full p-4 flex flex-col justify-end">
+          <div class="text-xs text-white/70">Libro</div>
+          <h3 class="text-sm sm:text-base font-bold leading-snug">Código Completo de la Persuasión</h3>
+        </div>
+      </button>
+
+      <!-- 2. Audiobook -->
+      <button class="card aspect-[4/3]" 
+ style="background-image:url('https://cdn.pixabay.com/photo/2012/08/22/08/22/moon-54671_1280.jpg')" 
+ onclick="enterAudiobook()">
+        <div class="relative z-10 h-full w-full p-4 flex flex-col justify-end">
+          <div class="text-xs text-white/70">Audiobook</div>
+          <h3 class="text-sm sm:text-base font-bold leading-snug">Código de la Persuasión</h3>
+        </div>
+      </button>
+
+      <!-- 3. Psicolgía Oscura (video) -->
+      <button class="card aspect-[4/3]" 
+ style="background-image:url('https://static7.depositphotos.com/1275240/755/i/450/depositphotos_7554205-stock-photo-walking.jpg')" 
+ onclick="openModal('https://drive.google.com/file/d/18_tZlirSidwlG_ASeA7lom0ZB1T6tBmS/view','Código de la Persuasión Oscura')">
+ 
+        <div class="relative z-10 h-full w-full p-4 flex flex-col justify-end">
+          <div class="text-xs text-white/70">Video</div>
+          <h3 class="text-sm sm:text-base font-bold leading-snug">Código de la Persuasión Oscura</h3>
+        </div>
+      </button>
+
+      <!-- 4. Bonos (carpeta) -->
+      <button class="card aspect-[4/3]" 
+ style="background-image:url('https://media.istockphoto.com/id/1482130036/pt/foto/person-in-dark-tunnel-going-towards-the-light.jpg?s=170667a&w=0&k=20&c=EjERNOx0twWLTUBeHlme7jb4xxsk944eisHwVoBq7_c=')" 
+ onclick="openModal('https://drive.google.com/drive/folders/1Ks0O2CJ4m06jzLg44y43Wu9l78Wdt6YJ','Bonos')">
+ 
+        <div class="relative z-10 h-full w-full p-4 flex flex-col justify-end">
+          <div class="text-xs text-white/70">BONOS</div>
+          <h3 class="text-sm sm:text-base font-bold leading-snug">Accesos y materiales extra</h3>
+        </div>
+      </button>
+
+      <!-- 5. Libros Prohibidos (carpeta) -->
+      <button class="card aspect-[4/3]" 
+ style="background-image:url('https://us.123rf.com/450wm/ipheung/ipheung2110/ipheung211000107/176563730-conceito-de-seguran%C3%A7a-cibern%C3%A9tica-um-hacker-de-internet-an%C3%B4nimo-online-adulto.jpg?ver=6')" 
+ onclick="openModal('https://drive.google.com/drive/folders/1_TAYY_6DuyBJ-q_nSuyaBCvtZXibBJWb','Libros Prohibidos')">
+ 
+        <div class="relative z-10 h-full w-full p-4 flex flex-col justify-end">
+          <div class="text-xs text-white/70">Biblioteca</div>
+          <h3 class="text-sm sm:text-base font-bold leading-snug">Libros Prohibidos</h3>
+        </div>
+      </button>
+
+      <!-- 6. Manuales de neurociencia - Artículos -->
+      <button class="card aspect-[4/3]" 
+ style="background-image:url('https://wallpapers.com/images/hd/dark-forest-background-ee054q7gtjo6s15k.jpg')" 
+ onclick="openModal('https://drive.google.com/drive/folders/1_TAYY_6DuyBJ-q_nSuyaBCvtZXibBJWb','Manuales de neurociencia — Artículos')">
+
+        <div class="relative z-10 h-full w-full p-4 flex flex-col justify-end">
+          <div class="text-xs text-white/70">Lecturas</div>
+          <h3 class="text-sm sm:text-base font-bold leading-snug">Manuales de neurociencia</h3>
+        </div>
+      </button>
+    </div>
+  </main>
+
+  <!-- SECCIÓN AUDIOBOOK (card 2) -->
+  <section id="audiobook" class="max-w-4xl mx-auto px-4 pb-10 hidden">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-lg font-bold">Audiobook — Código de la Persuasión</h2>
+      <button onclick="backToHome()"
+              class="text-sm px-3 py-2 rounded-xl border border-white/15 bg-white/[.04] hover:bg-white/[.07]">
+      ⭠
+      </button>
+    </div>
+
+    <p class="text-white/70 text-sm mb-4">
+      Toca cada tema para desplegar y reproducir el audio correspondiente.
+    </p>
+
+    <div class="space-y-3">
+      <!-- Reutilizamos acc-item para cada audio -->
+      <!-- 1 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span>1. Escasez — El Poder de lo que es Raro
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_e0eacd7e1f91415e92d6a9a0ddb296d1.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 2 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span>2. Urgencia — La Fuerza del Tiempo en tu Contra
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_f7342953ac0244d7a86824ad9323df1f.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 3 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span>3. Prueba Social — El Poder de lo que Hacen los Demás
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_5ef4e6472e8e4a7cb88731cab122b9f8.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 4 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span>4. Autoridad — El Peso de la Especialización
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_afe666d0f61c47648cfef3142fc4bbb9.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 5 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span>5. Reciprocidad — El Poder de Dar Antes de Recibir
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_1ecde4f5bfef4314b6d6c6bc1a5b148f.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 6 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span>6. Novedad — El Fascinio por lo que es Nuevo
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_09a0a51869bc453681c70549aa9e49d3.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 7 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span>7. Anticipación — El Placer de la Espera
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_6eb726b2f2c343739bba9935ba343054.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 8 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span>8. Historias — El Encanto del Storytelling
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_7189f682f3a64fe09a5dd26a7025bf89.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 9 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span>9. Comunidad — El Poder del Pertenecer
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_9137876b9e7748b6b56008fc87ea7511.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 10 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span>10. Simplicidad — El Atajo que Todos Desean
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_3446c6877bb543ed88e8a3794993cf79.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 11 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span>11. Curiosidad — El Vacío que Debe Ser Llenado
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_5261b8d2e4b44414ba5ece6397208004.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 12 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span>12. Exclusividad — El Valor del Acceso Restringido
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_2019fb87101e46d38412ebd50fd2f3fa.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 13 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span>13. Dolor y Placer — La Brújula de las Decisiones Humanas
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_9b23101e7c174162b3e39e129b19179f.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 14 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span>14. Garantía — El Eliminador del Riesgo
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_cfbbc580db8d4b01b0983b4eb39aae29.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 15 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Sección</span>15. Compromiso y Coherencia — El Peso de la Palabra Dada
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_42898873a77d41dc98245d263a2f5c00.mp3"></audio>
+          </div>
+        </div>
+      </div>
+      <!-- 16 -->
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <span class="badge">Cierre</span>Conclusión — El Código de la Persuasión en tus Manos
+        </button>
+        <div class="acc-panel">
+          <div class="audio-wrap">
+            <audio class="audio" controls preload="none"
+              src="https://static.wixstatic.com/mp3/7f5efc_6c342c7157a84e46972d115ab7b4fd36.mp3"></audio>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center text-white/60 text-xs py-4 border-t border-white/10">
+  El Código de la [P]ersuación © Todos los derechos reservados.
+</footer>
+
+  <!-- MODAL reutilizable -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle">Contenido</div>
+        <button class="btn-x" aria-label="Cerrar" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <iframe id="modalFrame" class="modal-iframe" src="" allow="autoplay; encrypted-media"></iframe>
+      </div>
+    </div>
   </div>
 
   <script>
-    function handleLogin(event) {
-      event.preventDefault();
-      const email = document.getElementById('email').value.trim();
-      if (email) {
-        localStorage.setItem('userEmail', email);
-        window.location.href = '/loguin/areamember';
+    // Navegación entre HOME y AUDIOBOOK
+    const home = document.getElementById('home');
+    const audiobook = document.getElementById('audiobook');
+
+    function enterAudiobook(){
+      home.classList.add('hidden');
+      audiobook.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function backToHome(){
+      audiobook.classList.add('hidden');
+      home.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Modal Iframe
+    const modal = document.getElementById('modal');
+    const frame = document.getElementById('modalFrame');
+    const titleEl = document.getElementById('modalTitle');
+
+    function openModal(url, title='Contenido'){
+      titleEl.textContent = title || 'Contenido';
+      // Para enlaces de Google Drive, intentamos usar el link tal cual.
+      frame.src = url;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(){
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden','true');
+      frame.src = 'about:blank';
+      document.body.style.overflow = '';
+    }
+    // Cerrar al pulsar fuera del contenido
+    modal.addEventListener('click', (e)=>{
+      if(e.target === modal){ closeModal(); }
+    });
+    // ESC para cerrar
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+
+    // Acordeón
+    function toggleAcc(btn){
+      const item = btn.closest('.acc-item');
+      const isActive = item.classList.contains('active');
+
+      // Cerrar todos
+      document.querySelectorAll('.acc-item').forEach(i=>{
+        i.classList.remove('active');
+        const panel = i.querySelector('.acc-panel');
+        if(panel){ panel.style.maxHeight = null; }
+      });
+
+      // Abrir el actual si no estaba activo
+      if(!isActive){
+        item.classList.add('active');
+        const panel = item.querySelector('.acc-panel');
+        if(panel){
+          // establecer max-height para permitir transición suave
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        }
       }
     }
-  </script>
 
+    // Ajustar alturas al redimensionar (por si cambia scrollHeight)
+    window.addEventListener('resize', ()=>{
+      document.querySelectorAll('.acc-item.active .acc-panel').forEach(panel=>{
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      });
+    });
+  </script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js')
+      .then(() => console.log("✅ Service Worker registrado com sucesso"))
+      .catch(err => console.error("Erro ao registrar SW:", err));
+  }
+
+
+  
+  
+
+  
+// Bloqueia pinça (touchmove com 2 dedos)
+document.addEventListener('touchmove', function(e) {
+  if (e.touches && e.touches.length > 1) {
+    e.preventDefault();
+  }
+}, { passive: false });
+
+// Bloqueia duplo-toque rápido
+let lastTouchEnd = 0;
+document.addEventListener('touchend', function(e) {
+  const now = Date.now();
+  if (now - lastTouchEnd <= 300) {
+    e.preventDefault();
+  }
+  lastTouchEnd = now;
+}, false);
+
+// Bloqueia gestos específicos no iOS
+document.addEventListener('gesturestart', function(e) {
+  e.preventDefault();
+});
+
+
+
+// Bloqueia o menu de contexto (clique direito)
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+// Impede copiar/recortar/selecionar texto
+['copy','cut','selectstart','dragstart'].forEach(evt =>
+  document.addEventListener(evt, e => e.preventDefault())
+);
+
+// Bloqueia atalho Ctrl+C, Ctrl+U (ver fonte), Ctrl+S, Ctrl+P e F12
+document.addEventListener('keydown', e => {
+  const forbidden =
+    // combinações de Ctrl + C, U, S, P, A
+    (e.ctrlKey &&
+      ['c','u','s','p','a'].includes(e.key.toLowerCase()))
+    // F12
+    || e.key === 'F12';
+  if (forbidden) e.preventDefault();
+});
+
+</script>
 </body>
 </html>
