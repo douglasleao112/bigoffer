@@ -119,66 +119,80 @@
   </div>
 
   <script>
-    function handleLogin(e){
-      e.preventDefault();
-      const email = document.getElementById('email').value.trim();
-      if(email){
-        localStorage.setItem('userEmail', email);
-        window.location.href = '/login/areamember';
-      }
+  function handleLogin(e){
+    e.preventDefault();
+    const email = document.getElementById('email').value.trim();
+    if(email){
+      localStorage.setItem('userEmail', email);
+      window.location.href = '/login/areamember';
     }
+  }
 
-    // ---- Lógica do botão Instalar ----
-    const installBtn = document.getElementById('installBtn');
-    let deferredPrompt;
+  const installBtn = document.getElementById('installBtn');
+  let deferredPrompt;
 
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  installBtn.classList.remove('hidden');
-});
+  // Detecta se é Android ou iOS
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isAndroid = /android/i.test(navigator.userAgent);
 
-// força o botão aparecer em iOS (Safari não dispara o evento)
-const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-if (isIOS) {
-  installBtn.classList.remove('hidden');
-}
+  // Escuta o evento nativo do Chrome (Android / Desktop)
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.classList.remove('hidden');
+  });
 
-    installBtn.addEventListener('click', async () => {
-      if (window.matchMedia('(display-mode: standalone)').matches) return;
-      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-      const popupImg = document.getElementById('popupImg');
-      const popup = document.getElementById('popup');
-      popupImg.src = isIOS ? "https://i.imgur.com/E0Bhtnh.gif" : "https://i.imgur.com/AYQyWT8.gif";
+  // Exibe o botão manualmente para iOS e Android se o evento não for disparado
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      if (isIOS || isAndroid) {
+        installBtn.classList.remove('hidden');
+      }
+    }, 1000);
+  });
+
+  installBtn.addEventListener('click', async () => {
+    if (window.matchMedia('(display-mode: standalone)').matches) return;
+    const popupImg = document.getElementById('popupImg');
+    const popup = document.getElementById('popup');
+
+    // iOS mostra gif com instruções
+    if (isIOS) {
+      popupImg.src = "https://i.imgur.com/E0Bhtnh.gif";
       popup.style.display = 'flex';
-
-      // se Android, dispara prompt
-      if (!isIOS && deferredPrompt) {
-        await deferredPrompt.prompt();
-        deferredPrompt.userChoice.then(choice => {
-          if (choice.outcome === 'accepted') {
-            installBtn.style.display = 'none';
-          }
-          deferredPrompt = null;
-        });
-      }
-    });
-
-    function closePopup() {
-      document.getElementById('popup').style.display = 'none';
     }
 
-    // esconde botão se já estiver instalado
-    if (window.matchMedia('(display-mode: standalone)').matches) {
-      installBtn.style.display = 'none';
+    // Android: tenta usar o prompt oficial
+    if (isAndroid && deferredPrompt) {
+      await deferredPrompt.prompt();
+      const choice = await deferredPrompt.userChoice;
+      if (choice.outcome === 'accepted') installBtn.style.display = 'none';
+      deferredPrompt = null;
     }
 
-    // registra o service worker
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('areamember/sw.js')
-        .then(() => console.log("✅ Service Worker registrado com sucesso"))
-        .catch(err => console.error("Erro ao registrar SW:", err));
+    // Se o prompt não estiver disponível, mostra instrução manual também
+    if (isAndroid && !deferredPrompt) {
+      popupImg.src = "https://i.imgur.com/AYQyWT8.gif";
+      popup.style.display = 'flex';
     }
-  </script>
+  });
+
+  function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+  }
+
+  // Esconde o botão se já estiver instalado
+  if (window.matchMedia('(display-mode: standalone)').matches) {
+    installBtn.style.display = 'none';
+  }
+
+  // Registra o service worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('areamember/sw.js')
+      .then(() => console.log("✅ Service Worker registrado com sucesso"))
+      .catch(err => console.error("Erro ao registrar SW:", err));
+  }
+</script>
+
 </body>
 </html>
