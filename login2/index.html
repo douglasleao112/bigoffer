@@ -139,14 +139,32 @@
 
   
   <script>
-    function handleLogin(e){
-      e.preventDefault();
-      const email = document.getElementById('email').value.trim();
-      if(email){
-        localStorage.setItem('userEmail', email);
-        window.location.href = '/login/areamember';
-      }
+async function handleLogin(e){
+  e.preventDefault();
+  const email = document.getElementById('email').value.trim().toLowerCase();
+  if (!email) return;
+
+  try {
+    const res = await fetch('https://projeto360.site/hotmart/check_email.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: 'email=' + encodeURIComponent(email)
+    });
+
+    const data = await res.json();
+
+    if (data.ok && data.allowed) {
+      localStorage.setItem('userEmail', email);
+      window.location.href = '/login/areamember';
+    } else {
+      alert('❌ Email no encontrado. Usa el mismo email que utilizaste en la compra.');
     }
+  } catch (err) {
+    console.error(err);
+    alert('⚠️ Error al verificar el email. Intenta nuevamente.');
+  }
+}
+
 
     const installText = document.getElementById('installText');
     const popupImg = document.getElementById('popupImg');
