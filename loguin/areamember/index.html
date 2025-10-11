@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Área de Miembros — El Código de la Persuasión</title>
@@ -87,6 +90,8 @@
     .audio-wrap{ padding: .9rem 1rem; }
     .audio{ width:100% }
   </style>
+
+  
 </head>
 <body class="text-white selection:bg-white/10 selection:text-white">
   <!-- Header -->
@@ -482,5 +487,12 @@
       });
     });
   </script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js')
+      .then(() => console.log("✅ Service Worker registrado com sucesso"))
+      .catch(err => console.error("Erro ao registrar SW:", err));
+  }
+</script>
 </body>
 </html>
