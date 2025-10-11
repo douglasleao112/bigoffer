@@ -6,7 +6,7 @@ self.addEventListener("install", e => {
         "./index.html",
         "./manifest.json",
         "https://cdn.tailwindcss.com",
-        "https://i.imgur.com/qTtFLJe.png"
+        "https://i.imgur.com/ZrA1cA0.png"
       ]);
     })
   );
