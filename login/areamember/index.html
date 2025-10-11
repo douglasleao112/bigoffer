@@ -110,7 +110,13 @@
   border-bottom: 1px solid rgba(255,255,255,0.08);
   box-shadow: 0 0 20px rgba(0,255,174,0.1);
 }
-
+footer {
+  margin-top: auto;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 -5px 20px rgba(0,255,174,0.08);
+}
 button, a {
   transition: all 0.3s ease;
 }
@@ -122,7 +128,7 @@ button:hover, a:hover {
 
   
 </head>
-<body class="text-white selection:bg-white/10 selection:text-white">
+  <body class="text-white selection:bg-white/10 selection:text-white min-h-screen flex flex-col">
 
   
   <!-- HEADER -->
@@ -207,7 +213,7 @@ button:hover, a:hover {
   </section>
 
   <!-- MENU PRINCIPAL (Home) -->
-  <main id="home" class="max-w-6xl mx-auto px-4 py-6">
+  <main id="home" class="max-w-6xl mx-auto px-4 py-6 flex-grow">
     <!-- Grid: 2 col en móvil -->
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6">
       <!-- 1. Libro -->
@@ -233,7 +239,7 @@ button:hover, a:hover {
       <!-- 3. Psicolgía Oscura (video) -->
       <button class="card aspect-[4/3]" 
  style="background-image:url('https://static7.depositphotos.com/1275240/755/i/450/depositphotos_7554205-stock-photo-walking.jpg')" 
- onclick="openModal('https://drive.google.com/file/d/18_tZlirSidwlG_ASeA7lom0ZB1T6tBmS/view','Código de la Persuasión Oscura')">
+ onclick="openModal('https://drive.google.com/file/d/18_tZlirSidwlG_ASeA7lom0ZB1T6tBmS/preview','Código de la Persuasión Oscura')">
  
         <div class="relative z-10 h-full w-full p-4 flex flex-col justify-end">
           <div class="text-xs text-white/70">Video</div>
@@ -244,7 +250,7 @@ button:hover, a:hover {
       <!-- 4. Bonos (carpeta) -->
       <button class="card aspect-[4/3]" 
  style="background-image:url('https://media.istockphoto.com/id/1482130036/pt/foto/person-in-dark-tunnel-going-towards-the-light.jpg?s=170667a&w=0&k=20&c=EjERNOx0twWLTUBeHlme7jb4xxsk944eisHwVoBq7_c=')" 
- onclick="openModal('https://drive.google.com/drive/folders/1Ks0O2CJ4m06jzLg44y43Wu9l78Wdt6YJ','Bonos')">
+ onclick="openModal('https://drive.google.com/drive/folders/1Ks0O2CJ4m06jzLg44y43Wu9l78Wdt6YJ/preview','Bonos')">
  
         <div class="relative z-10 h-full w-full p-4 flex flex-col justify-end">
           <div class="text-xs text-white/70">BONOS</div>
@@ -255,7 +261,7 @@ button:hover, a:hover {
       <!-- 5. Libros Prohibidos (carpeta) -->
       <button class="card aspect-[4/3]" 
  style="background-image:url('https://us.123rf.com/450wm/ipheung/ipheung2110/ipheung211000107/176563730-conceito-de-seguran%C3%A7a-cibern%C3%A9tica-um-hacker-de-internet-an%C3%B4nimo-online-adulto.jpg?ver=6')" 
- onclick="openModal('https://drive.google.com/drive/folders/1_TAYY_6DuyBJ-q_nSuyaBCvtZXibBJWb','Libros Prohibidos')">
+ onclick="openModal('https://drive.google.com/drive/folders/1_TAYY_6DuyBJ-q_nSuyaBCvtZXibBJWb/preview','Libros Prohibidos')">
  
         <div class="relative z-10 h-full w-full p-4 flex flex-col justify-end">
           <div class="text-xs text-white/70">Biblioteca</div>
@@ -266,7 +272,7 @@ button:hover, a:hover {
       <!-- 6. Manuales de neurociencia - Artículos -->
       <button class="card aspect-[4/3]" 
  style="background-image:url('https://wallpapers.com/images/hd/dark-forest-background-ee054q7gtjo6s15k.jpg')" 
- onclick="openModal('https://drive.google.com/drive/folders/1_TAYY_6DuyBJ-q_nSuyaBCvtZXibBJWb','Manuales de neurociencia — Artículos')">
+ onclick="openModal('https://drive.google.com/drive/folders/1_TAYY_6DuyBJ-q_nSuyaBCvtZXibBJWb/preview','Manuales de neurociencia — Artículos')">
 
         <div class="relative z-10 h-full w-full p-4 flex flex-col justify-end">
           <div class="text-xs text-white/70">Lecturas</div>
