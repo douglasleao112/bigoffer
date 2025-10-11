@@ -95,6 +95,55 @@
         window.location.href = '/loguin/areamember';
       }
     }
+
+
+
+
+    
+
+  
+// Bloqueia pinça (touchmove com 2 dedos)
+document.addEventListener('touchmove', function(e) {
+  if (e.touches && e.touches.length > 1) {
+    e.preventDefault();
+  }
+}, { passive: false });
+
+// Bloqueia duplo-toque rápido
+let lastTouchEnd = 0;
+document.addEventListener('touchend', function(e) {
+  const now = Date.now();
+  if (now - lastTouchEnd <= 300) {
+    e.preventDefault();
+  }
+  lastTouchEnd = now;
+}, false);
+
+// Bloqueia gestos específicos no iOS
+document.addEventListener('gesturestart', function(e) {
+  e.preventDefault();
+});
+
+
+
+// Bloqueia o menu de contexto (clique direito)
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+// Impede copiar/recortar/selecionar texto
+['copy','cut','selectstart','dragstart'].forEach(evt =>
+  document.addEventListener(evt, e => e.preventDefault())
+);
+
+// Bloqueia atalho Ctrl+C, Ctrl+U (ver fonte), Ctrl+S, Ctrl+P e F12
+document.addEventListener('keydown', e => {
+  const forbidden =
+    // combinações de Ctrl + C, U, S, P, A
+    (e.ctrlKey &&
+      ['c','u','s','p','a'].includes(e.key.toLowerCase()))
+    // F12
+    || e.key === 'F12';
+  if (forbidden) e.preventDefault();
+});
   </script>
 
 </body>
