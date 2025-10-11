@@ -12,27 +12,36 @@
   <meta name="theme-color" content="#000000">
   <style>
     /* Fondo negro absoluto del app */
-    body { background:#000; }
+   body {
+  background: radial-gradient(circle at top, #1a1a1a 0%, #000 100%);
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
 
     /* Card base con imagen de fondo oscurecida */
-    .card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 1rem;
-      border: 1px solid rgba(255,255,255,0.08);
-      background-size: cover;
-      background-position: center;
-      background-image: url("https://media.istockphoto.com/id/914504784/pt/foto/dark-forest-in-twilight.jpg?s=612x612&w=0&k=20&c=8BvUnga37xiMW8g_cmvN0yAoEqsldpEafdUQAQDK1g4=");
-      transition: transform .25s ease, box-shadow .25s ease;
-    }
-    .card::before{
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(ellipse at 30% 20%, rgba(0,0,0,.35), rgba(0,0,0,.85)),
-                  linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,.85));
-      mix-blend-mode: multiply;
-    }
-    .card:hover{ transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,.5); }
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.05);
+  background-size: cover;
+  background-position: center;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px #00ffae44;
+  border-color: #00ffae55;
+}
+.card::before {
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,.8));
+}
+
 
     /* Modal full-screen */
     .modal {
@@ -71,10 +80,15 @@
     }
     .acc-btn{
       width:100%; text-align:left;
+      border-left: 3px solid transparent;
       padding: .9rem 1rem;
       color:#fff; font-weight:600;
       display:flex; align-items:center; gap:.6rem;
     }
+    .acc-item.active .acc-btn {
+  border-left: 3px solid #00ffae;
+  box-shadow: 0 0 8px #00ffae44;
+}
     .acc-btn span.badge{
       font-size:.7rem; letter-spacing:.04em;
       padding:.15rem .5rem; border-radius:.5rem;
@@ -89,6 +103,21 @@
     .acc-item.active .acc-panel{ max-height: 400px; }
     .audio-wrap{ padding: .9rem 1rem; }
     .audio{ width:100% }
+
+    header, footer {
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 20px rgba(0,255,174,0.1);
+}
+
+button, a {
+  transition: all 0.3s ease;
+}
+button:hover, a:hover {
+  filter: drop-shadow(0 0 6px #00ffae99);
+}
+
   </style>
 
   
@@ -182,14 +211,14 @@
     <!-- Grid: 2 col en móvil -->
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6">
       <!-- 1. Libro -->
-      <button class="card aspect-[4/3]" 
- style="background-image:url('https://png.pngtree.com/thumb_back/fh260/background/20210903/pngtree-clouds-shuttle-night-gloomy-moon-material-image_798905.jpg')" 
- onclick="openModal('https://7f5efc8c-3c47-4ebb-8955-b529f5255ded.usrfiles.com/ugd/7f5efc_1a306e5906a4456dbcf0355c9761b911.pdf','Libro: Código Completo de la Persuasión')">
-        <div class="relative z-10 h-full w-full p-4 flex flex-col justify-end">
-          <div class="text-xs text-white/70">Libro</div>
-          <h3 class="text-sm sm:text-base font-bold leading-snug">Código Completo de la Persuasión</h3>
-        </div>
-      </button>
+  <button class="card aspect-[4/3]" 
+ style="background-image:url('https://st.depositphotos.com/1550726/4531/i/450/depositphotos_45317759-stock-photo-man-walking-in-a-mysterious.jpg')" 
+ onclick="openModal('https://drive.google.com/file/d/1Em2Uz1mtyJHmlb2Pk06w1JchYiXT78wd/preview','Libro: Código Completo de la Persuasión')">
+  <div class="relative z-10 h-full w-full p-4 flex flex-col justify-end">
+    <div class="text-xs text-white/70">Libro</div>
+    <h3 class="text-sm sm:text-base font-bold leading-snug">Código Completo de la Persuasión</h3>
+  </div>
+</button>
 
       <!-- 2. Audiobook -->
       <button class="card aspect-[4/3]" 
@@ -236,7 +265,7 @@
 
       <!-- 6. Manuales de neurociencia - Artículos -->
       <button class="card aspect-[4/3]" 
- style="background-image:url('https://png.pngtree.com/thumb_back/fh260/background/20210903/pngtree-clouds-shuttle-night-gloomy-moon-material-image_798905.jpg')" 
+ style="background-image:url('https://wallpapers.com/images/hd/dark-forest-background-ee054q7gtjo6s15k.jpg')" 
  onclick="openModal('https://drive.google.com/drive/folders/1_TAYY_6DuyBJ-q_nSuyaBCvtZXibBJWb','Manuales de neurociencia — Artículos')">
 
         <div class="relative z-10 h-full w-full p-4 flex flex-col justify-end">
