@@ -30,6 +30,16 @@
       text-align: center;
       transform: perspective(1000px) rotateX(1deg);
     }
+    .title {
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      font-weight: 600;
+      background: linear-gradient(90deg, #ff7a00, #ffae00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 12px rgba(255, 122, 0, 0.4);
+      margin-bottom: 1.5rem;
+    }
     .login-card input {
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
@@ -37,7 +47,7 @@
       color: white;
       width: 100%;
       padding: 12px;
-      margin-top: 1rem;
+      margin-top: 0.5rem;
       outline: none;
       transition: all 0.3s;
     }
@@ -46,7 +56,7 @@
       box-shadow: 0 0 10px #00ffae;
     }
     .login-card button {
-      margin-top: 1.5rem;
+      margin-top: 1rem;
       width: 100%;
       background: linear-gradient(90deg, #00ffae, #00cc88);
       color: black;
@@ -64,6 +74,20 @@
       margin-top: 1rem;
       font-size: 0.85rem;
       color: rgba(255,255,255,0.7);
+    }
+
+    /* Texto Instalar App */
+    .install-text {
+      margin-top: 1.3rem;
+      color: #ff7a00;
+      font-weight: bold;
+      cursor: pointer;
+      text-shadow: 0 0 10px #ff7a00, 0 0 20px #ff7a00;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff7a00, 0 0 20px #ff7a00; }
+      to { text-shadow: 0 0 20px #ffae00, 0 0 40px #ff7a00; }
     }
 
     /* popup */
@@ -85,33 +109,18 @@
 </head>
 <body>
   <div class="login-card">
-    <img src="https://i.imgur.com/qTtFLJe.png" alt="Logo" class="mx-auto mb-6 w-20 h-auto">
+    <h1 class="title">El Código de la Persuasión</h1>
 
+    <form onsubmit="handleLogin(event)">
+      <p class="note" style="margin-bottom: 4px;">
+        *Mismo email que usaste en la compra.
+      </p>
+      <input type="email" id="email" placeholder="usuario@email.com" required>
+      <button type="submit">Entrar</button>
+    </form>
 
-
-<!-- Frase de boas-vindas -->
-<p class="text-sm text-gray-300 mb-1">
-  Bienvenido al universo secreto de la comunicación persuasiva.
-</p>
-
-<!-- Botão de instalar (laranja puro) -->
-<button id="installBtn"
-  class="w-full font-bold py-2 px-4 rounded-lg shadow-lg transition-all mb-4 mt-1 hidden text-white"
-  style="background: linear-gradient(90deg, #ff7a00, #ff5100); box-shadow: 0 0 15px #ff7a0066;">
-  📲 Instalar App
-</button>
-
-
-
-
-<form onsubmit="handleLogin(event)">
-  <p class="note" style="margin-bottom: 4px; font-size: 0.85rem; color: rgba(255,255,255,0.7);">
-    *Mismo email que usaste en la compra. </p>
-  <input type="email" id="email" placeholder="usuario@email.com"  required  style="margin-top: 0; padding-top: 10px;" >
-  <button type="submit">Entrar</button>
-</form>
-
-
+    <!-- Texto “Instalar App” -->
+    <p id="installText" class="install-text">📲 Instalar App</p>
   </div>
 
   <!-- Popup -->
@@ -129,71 +138,29 @@
     }
   }
 
-  const installBtn = document.getElementById('installBtn');
-  let deferredPrompt;
+  const installText = document.getElementById('installText');
+  const popupImg = document.getElementById('popupImg');
+  const popup = document.getElementById('popup');
 
-  // Detecta se é Android ou iOS
   const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
   const isAndroid = /android/i.test(navigator.userAgent);
 
-  // Escuta o evento nativo do Chrome (Android / Desktop)
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    installBtn.classList.remove('hidden');
-  });
-
-  // Exibe o botão manualmente para iOS e Android se o evento não for disparado
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      if (isIOS || isAndroid) {
-        installBtn.classList.remove('hidden');
-      }
-    }, 1000);
-  });
-
-  installBtn.addEventListener('click', async () => {
-    if (window.matchMedia('(display-mode: standalone)').matches) return;
-    const popupImg = document.getElementById('popupImg');
-    const popup = document.getElementById('popup');
-
-    // iOS mostra gif com instruções
-    if (isIOS) {
-      popupImg.src = "https://i.imgur.com/E0Bhtnh.gif";
-      popup.style.display = 'flex';
-    }
-
-    // Android: tenta usar o prompt oficial
-    if (isAndroid && deferredPrompt) {
-      await deferredPrompt.prompt();
-      const choice = await deferredPrompt.userChoice;
-      if (choice.outcome === 'accepted') installBtn.style.display = 'none';
-      deferredPrompt = null;
-    }
-
-    // Se o prompt não estiver disponível, mostra instrução manual também
-    if (isAndroid && !deferredPrompt) {
-      popupImg.src = "https://i.imgur.com/AYQyWT8.gif";
-      popup.style.display = 'flex';
-    }
+  installText.addEventListener('click', () => {
+    popupImg.src = isIOS 
+      ? "https://i.imgur.com/E0Bhtnh.gif" 
+      : "https://i.imgur.com/AYQyWT8.gif";
+    popup.style.display = 'flex';
   });
 
   function closePopup() {
-    document.getElementById('popup').style.display = 'none';
+    popup.style.display = 'none';
   }
 
-  // Esconde o botão se já estiver instalado
-  if (window.matchMedia('(display-mode: standalone)').matches) {
-    installBtn.style.display = 'none';
-  }
-
-  // Registra o service worker
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('areamember/sw.js')
       .then(() => console.log("✅ Service Worker registrado com sucesso"))
       .catch(err => console.error("Erro ao registrar SW:", err));
   }
-</script>
-
+  </script>
 </body>
 </html>
