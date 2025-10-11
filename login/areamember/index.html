@@ -151,18 +151,22 @@ button:hover, a:hover {
       </button>
 
       <!-- Menu suspenso -->
-      <div id="userMenu"
-           class="hidden absolute right-0 mt-2 w-56 rounded-2xl border border-white/10 bg-black/90 backdrop-blur-md shadow-xl">
-        <ul class="text-sm text-white/80 divide-y divide-white/10">
-          <li><a href="#" onclick="openModal('https://7f5efc8c-3c47-4ebb-8955-b529f5255ded.usrfiles.com/ugd/7f5efc_1a306e5906a4456dbcf0355c9761b911.pdf','Libro'); closeUserMenu();" class="block px-4 py-2 hover:bg-white/10">📘 Libro</a></li>
-          <li><a href="#" onclick="enterAudiobook(); closeUserMenu();" class="block px-4 py-2 hover:bg-white/10">🎧 Audiobook</a></li>
-          <li><a href="#" onclick="openModal('https://drive.google.com/file/d/18_tZlirSidwlG_ASeA7lom0ZB1T6tBmS/view','Código de la Persuasión Oscura'); closeUserMenu();" class="block px-4 py-2 hover:bg-white/10">🧠 Persuasión Oscura</a></li>
-          <li><a href="#" onclick="openModal('https://drive.google.com/drive/folders/1Ks0O2CJ4m06jzLg44y43Wu9l78Wdt6YJ','Bonos'); closeUserMenu();" class="block px-4 py-2 hover:bg-white/10">🎁 Bonos</a></li>
-          <li><a href="#" onclick="openModal('https://drive.google.com/drive/folders/1_TAYY_6DuyBJ-q_nSuyaBCvtZXibBJWb','Libros Prohibidos'); closeUserMenu();" class="block px-4 py-2 hover:bg-white/10">📚 Libros Prohibidos</a></li>
-          <li><a href="#" onclick="openModal('https://drive.google.com/drive/folders/1_TAYY_6DuyBJ-q_nSuyaBCvtZXibBJWb','Manuales de neurociencia — Artículos'); closeUserMenu();" class="block px-4 py-2 hover:bg-white/10">🧬 Manuales Neurociencia</a></li>
-          <li><a href="/login" class="block px-4 py-2 text-red-400 hover:bg-red-500/10">🚪 Salir</a></li>
-        </ul>
-      </div>
+<!-- Menu suspenso -->
+<div id="userMenu"
+     class="hidden absolute right-0 mt-2 w-56 rounded-2xl border border-white/10 bg-black/90 backdrop-blur-md shadow-xl">
+  <ul class="text-sm text-white/80 divide-y divide-white/10">
+    <li> <a href="#" onclick="openModal('https://drive.google.com/file/d/1Em2Uz1mtyJHmlb2Pk06w1JchYiXT78wd/preview','Libro — Código Completo de la Persuasión'); closeUserMenu();" class="block px-4 py-2 hover:bg-white/10"> 📘 Libro </a> </li>
+    <li> <a href="#" onclick="enterAudiobook(); closeUserMenu();" class="block px-4 py-2 hover:bg-white/10"> 🎧 Audiobook</a></li>
+    <li> <a href="#" onclick="openModal('https://drive.google.com/file/d/18_tZlirSidwlG_ASeA7lom0ZB1T6tBmS/preview','Código de la Persuasión Oscura'); closeUserMenu();" class="block px-4 py-2 hover:bg-white/10">🧠 Persuasión Oscura</a> </li>
+    <li> <a href="#" onclick="enterBonos(); closeUserMenu();" class="block px-4 py-2 hover:bg-white/10"> 🎁 Bonos </a></li>
+    <li> <a href="#" onclick="enterLibros(); closeUserMenu();" class="block px-4 py-2 hover:bg-white/10"> 📚 Libros Prohibidos</a></li>
+      <li><a href="#" onclick="openModal('https://drive.google.com/embeddedfolderview?id=18T08y6aEltW3TM3eISL3nhklkkCewxQ8#grid','Manuales de Neurociencia'); closeUserMenu();" class="block px-4 py-2 hover:bg-white/10">🧬 Manuales Neurociencia </a> </li>
+    <li> <a href="/login" class="block px-4 py-2 text-red-400 hover:bg-red-500/10"> 🚪 Salir </a></li>
+  </ul>
+</div>
+
+
+      
     </div>
   </div>
 </header>
