@@ -1,11 +1,12 @@
 {
   "name": "El Código de la Persuasión",
   "short_name": "Persuasión",
-  "start_url": "./index.html",
+  "start_url": "/login/",
+  "scope": "/login/",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#000000",
   "theme_color": "#000000",
-  "orientation": "portrait",
   "icons": [
     {
       "src": "https://i.imgur.com/qTtFLJe.png",
