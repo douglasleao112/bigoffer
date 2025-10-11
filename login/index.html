@@ -137,6 +137,7 @@
     <img id="popupImg" src="" alt="Instrucciones para instalar">
   </div>
 
+  
   <script>
     function handleLogin(e){
       e.preventDefault();
@@ -164,6 +165,13 @@
       popup.style.display = 'none';
     }
 
+    // ✅ Esconde "Instalar App" se o usuário já estiver no PWA
+    if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
+      const installElement = document.getElementById('installText');
+      if (installElement) installElement.style.display = 'none';
+    }
+
+    // Registra o Service Worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('areamember/sw.js')
         .then(() => console.log("✅ Service Worker registrado com sucesso"))
