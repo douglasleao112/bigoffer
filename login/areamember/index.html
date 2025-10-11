@@ -203,14 +203,14 @@ button:hover, a:hover {
 
 
 
-  <!-- Mensaje topo -->
-  <section class="max-w-6xl mx-auto px-4 pt-6">
-    <div class="rounded-2xl border border-white/10 bg-white/[.025] p-4">
-      <p class="text-sm sm:text-base text-white/80">
-        ¡Accede a tu conocimiento privado! Explora los módulos, escucha los audios y abre materiales exclusivos sin salir del entorno.
-      </p>
-    </div>
-  </section>
+<!-- Mensaje topo (solo visible en pantalla principal) -->
+<section id="topMessage" class="max-w-6xl mx-auto px-4 pt-6">
+  <div class="rounded-2xl border border-white/10 bg-white/[.025] p-4">
+    <p class="text-sm sm:text-base text-white/80">
+      ¡Accede a tu conocimiento privado! Explora los módulos, escucha los audios y abre materiales exclusivos sin salir del entorno.
+    </p>
+  </div>
+</section>
 
   <!-- MENU PRINCIPAL (Home) -->
   <main id="home" class="max-w-6xl mx-auto px-4 py-6 flex-grow">
@@ -236,6 +236,16 @@ button:hover, a:hover {
         </div>
       </button>
 
+
+      
+
+
+
+
+
+
+
+
       <!-- 3. Psicolgía Oscura (video) -->
       <button class="card aspect-[4/3]" 
  style="background-image:url('https://static7.depositphotos.com/1275240/755/i/450/depositphotos_7554205-stock-photo-walking.jpg')" 
@@ -247,21 +257,20 @@ button:hover, a:hover {
         </div>
       </button>
 
-      <!-- 4. Bonos (carpeta) -->
+<!-- 4. Bonos -->
 <button class="card aspect-[4/3]" 
  style="background-image:url('https://media.istockphoto.com/id/1482130036/pt/foto/person-in-dark-tunnel-going-towards-the-light.jpg?s=170667a&w=0&k=20&c=EjERNOx0twWLTUBeHlme7jb4xxsk944eisHwVoBq7_c=')" 
- onclick="openModal('https://drive.google.com/embeddedfolderview?id=1Ks0O2CJ4m06jzLg44y43Wu9l78Wdt6YJ#grid','Bonos')">
+ onclick="enterBonos()">
   <div class="relative z-10 h-full w-full p-4 flex flex-col justify-end">
     <div class="text-xs text-white/70">BONOS</div>
     <h3 class="text-sm sm:text-base font-bold leading-snug">Accesos y materiales extra</h3>
   </div>
 </button>
 
-      <!-- 5. Libros Prohibidos (carpeta) -->
+<!-- 5. Libros Prohibidos -->
 <button class="card aspect-[4/3]" 
  style="background-image:url('https://us.123rf.com/450wm/ipheung/ipheung2110/ipheung211000107/176563730-conceito-de-seguran%C3%A7a-cibern%C3%A9tica-um-hacker-de-internet-an%C3%B4nimo-online-adulto.jpg?ver=6')" 
- onclick="openModal('https://drive.google.com/embeddedfolderview?id=1_TAYY_6DuyBJ-q_nSuyaBCvtZXibBJWb#grid','Libros Prohibidos')">
-
+ onclick="enterLibros()">
   <div class="relative z-10 h-full w-full p-4 flex flex-col justify-end">
     <div class="text-xs text-white/70">Biblioteca</div>
     <h3 class="text-sm sm:text-base font-bold leading-snug">Libros Prohibidos</h3>
@@ -282,6 +291,52 @@ button:hover, a:hover {
 
     </div>
   </main>
+
+
+  
+
+
+      <!-- SECCIÓN BONOS -->
+<section id="bonosSection" class="max-w-4xl mx-auto px-4 pb-10 hidden">
+  <div class="flex items-center justify-between mb-4">
+    <h2 class="text-lg font-bold">🎁 Bonos Exclusivos</h2>
+    <button onclick="backToHome()" class="text-sm px-3 py-2 rounded-xl border border-white/15 bg-white/[.04] hover:bg-white/[.07]">⭠</button>
+  </div>
+   
+  <div class="space-y-3">
+    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1r2l3lWc3jJvR8j0GEuO9Q8BzuUzlEJaz/preview','BONO - 29 Técnicas Secretas de Persuasión Mental (Audiolibro Prohibido)')">
+      1. BONO — 29 Técnicas Secretas de Persuasión Mental (Audiolibro Prohibido)
+    </button>
+    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1PG2gQ4mmCVLLroQVKHPdSHGeZWVts6Wj/preview','BONO - Manipulación y Psicología Oscura')">
+      2. BONO — Manipulación y Psicología Oscura
+    </button>
+  </div>
+</section>
+
+<!-- SECCIÓN LIBROS PROHIBIDOS -->
+<section id="librosSection" class="max-w-4xl mx-auto px-4 pb-10 hidden">
+  <div class="flex items-center justify-between mb-4">
+    <h2 class="text-lg font-bold">📚 Libros Prohibidos</h2>
+    <button onclick="backToHome()" class="text-sm px-3 py-2 rounded-xl border border-white/15 bg-white/[.04] hover:bg-white/[.07]">⭠</button>
+  </div>
+ <div class="space-y-3">
+    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1phlkZftIF-NcCQMyMnQcgUXyc0x08LmL/preview','PNL - Técnicas Prohibidas de Persuasión')">1. PNL - Técnicas Prohibidas de Persuasión</button>
+    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1rZhyT9vqrRYvQWlhFhufA2Za7y1r0IKD/preview','Alejandro Magno')">2.Alejandro Magno</button>
+    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1LGQGD8DQm2Fr6HML9ctYNArx5sSZwfzV/preview','Define Develop Deliver')">3. Define Develop Deliver</button>
+    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1TtXgpOuBRoRfRi7V-BFpt_I69RpQZkac/preview','El Poder de la Persuasión')">4. El Poder de la Persuasión</button>
+    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/138ZKh90o6v0taIH0IQInh_FbuvuU16V9/preview','El Poder de Persuasión 2')">5. El Poder de Persuasión 2</button>
+    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/13OAeuL0_MgVlcvZrm7Ib4xLUbxg72gsK/preview','El Libro Negro de la Persuasión')">6. El Libro Negro de la Persuasión</button>
+    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1JHsYNNTkY5nftVW2zZnv4hpaxMiyvn-c/preview','El Libro Negro del Psicoanálisis')">7. El Libro Negro del Psicoanálisis</button>
+    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1N5gHfjEhERopwD82tGr6KLVcEh4cvCjY/preview','Influencia — La Psicología de la Persuasión')">8. Influencia — La Psicología de la Persuasión</button>
+    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1OpnwTrISGe52MISF4Q3h1myM2yVw74RN/preview','Legado de Filón de Alejandría')">9. Legado de Filón de Alejandría</button>
+    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1nOpG4SyCeSCVLM-VLsrROiU3nzYmrykC/preview','Maestro de la Persuasión — Mateo Holm')">10. Maestro de la Persuasión — Mateo Holm</button>
+    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1iTqy590xvFM2NaVjJjtCrn-mPuNi6qnG/preview','Manipulación y Psicología Oscura')">11. Manipulación y Psicología Oscura</button>
+    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1iozQBiQUCrL0isUorzruv2jDSZoIeRkA/preview','Pre-suasion — Un Método Revolucionario')">12. Pre-suasion — Un Método Revolucionario</button>
+    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1jNpD42zG9fLIotC3c9uf8TEngAOmT323/preview','El Poder de la Persuasao — Robert B. Cialdini')">13. El Poder de la Persuasao — Robert B. Cialdini</button>
+    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1bYKYNJ4haeESC54h-jUVvbIF4LZIZmUy/preview','30 Gatillos Mentales para Vender Más')">14. 30 Gatillos Mentales para Vender Más</button>
+  </div>
+</section>
+
 
   <!-- SECCIÓN AUDIOBOOK (card 2) -->
   <section id="audiobook" class="max-w-4xl mx-auto px-4 pb-10 hidden">
@@ -517,16 +572,44 @@ button:hover, a:hover {
     const home = document.getElementById('home');
     const audiobook = document.getElementById('audiobook');
 
-    function enterAudiobook(){
-      home.classList.add('hidden');
-      audiobook.classList.remove('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    function backToHome(){
-      audiobook.classList.add('hidden');
-      home.classList.remove('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+function enterAudiobook(){
+  hideHome();
+  audiobook.classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function backToHome(){
+  audiobook.classList.add('hidden');
+  bonosSection.classList.add('hidden');
+  librosSection.classList.add('hidden');
+  showHome();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+
+
+    const bonosSection = document.getElementById('bonosSection');
+const librosSection = document.getElementById('librosSection');
+
+function enterBonos(){
+  hideHome();
+  bonosSection.classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function enterLibros(){
+  hideHome();
+  librosSection.classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function backToHome(){
+  audiobook.classList.add('hidden');
+  bonosSection.classList.add('hidden');
+  librosSection.classList.add('hidden');
+  home.classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
     // Modal Iframe
     const modal = document.getElementById('modal');
@@ -595,7 +678,19 @@ button:hover, a:hover {
 
 
   
-  
+  const topMessage = document.getElementById('topMessage');
+
+function showHome() {
+  home.classList.remove('hidden');
+  topMessage.classList.remove('hidden');
+}
+
+function hideHome() {
+  home.classList.add('hidden');
+  topMessage.classList.add('hidden');
+}
+
+
 
   
 // Bloqueia pinça (touchmove com 2 dedos)
