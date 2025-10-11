@@ -90,7 +90,7 @@
       const email = document.getElementById('email').value.trim();
       if (email) {
         localStorage.setItem('userEmail', email);
-        window.location.href = '/areamember';
+        window.location.href = '/loguin/areamember';
       }
     }
   </script>
