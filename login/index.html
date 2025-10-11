@@ -18,6 +18,7 @@
       align-items: center;
       justify-content: center;
     }
+
     .login-card {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -30,16 +31,16 @@
       text-align: center;
       transform: perspective(1000px) rotateX(1deg);
     }
+
     .title {
-      font-size: 1.5rem;
-      letter-spacing: 1px;
+      font-size: 1.6rem;
       font-weight: 600;
-      background: linear-gradient(90deg, #ff7a00, #ffae00);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 12px rgba(255, 122, 0, 0.4);
+      letter-spacing: 1px;
+      color: #fff;
+      text-shadow: 0 0 8px rgba(255,255,255,0.2);
       margin-bottom: 1.5rem;
     }
+
     .login-card input {
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
@@ -51,10 +52,12 @@
       outline: none;
       transition: all 0.3s;
     }
+
     .login-card input:focus {
       border-color: #00ffae;
       box-shadow: 0 0 10px #00ffae;
     }
+
     .login-card button {
       margin-top: 1rem;
       width: 100%;
@@ -66,10 +69,12 @@
       transition: all 0.3s;
       box-shadow: 0 0 15px #00ffae66;
     }
+
     .login-card button:hover {
       transform: translateY(-2px) scale(1.02);
       box-shadow: 0 0 25px #00ffae99;
     }
+
     .note {
       margin-top: 1rem;
       font-size: 0.85rem;
@@ -85,12 +90,13 @@
       text-shadow: 0 0 10px #ff7a00, 0 0 20px #ff7a00;
       animation: glow 2s ease-in-out infinite alternate;
     }
+
     @keyframes glow {
       from { text-shadow: 0 0 10px #ff7a00, 0 0 20px #ff7a00; }
       to { text-shadow: 0 0 20px #ffae00, 0 0 40px #ff7a00; }
     }
 
-    /* popup */
+    /* Popup */
     .popup-bg {
       position: fixed;
       inset: 0;
@@ -100,6 +106,7 @@
       justify-content: center;
       z-index: 9999;
     }
+
     .popup-bg img {
       max-width: 90%;
       border-radius: 1rem;
@@ -109,6 +116,8 @@
 </head>
 <body>
   <div class="login-card">
+    <img src="https://i.imgur.com/qTtFLJe.png" alt="Logo" class="mx-auto mb-4 w-20 h-auto">
+
     <h1 class="title">El Código de la Persuasión</h1>
 
     <form onsubmit="handleLogin(event)">
@@ -129,38 +138,37 @@
   </div>
 
   <script>
-  function handleLogin(e){
-    e.preventDefault();
-    const email = document.getElementById('email').value.trim();
-    if(email){
-      localStorage.setItem('userEmail', email);
-      window.location.href = '/login/areamember';
+    function handleLogin(e){
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      if(email){
+        localStorage.setItem('userEmail', email);
+        window.location.href = '/login/areamember';
+      }
     }
-  }
 
-  const installText = document.getElementById('installText');
-  const popupImg = document.getElementById('popupImg');
-  const popup = document.getElementById('popup');
+    const installText = document.getElementById('installText');
+    const popupImg = document.getElementById('popupImg');
+    const popup = document.getElementById('popup');
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    const isAndroid = /android/i.test(navigator.userAgent);
 
-  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-  const isAndroid = /android/i.test(navigator.userAgent);
+    installText.addEventListener('click', () => {
+      popupImg.src = isIOS 
+        ? "https://i.imgur.com/E0Bhtnh.gif" 
+        : "https://i.imgur.com/AYQyWT8.gif";
+      popup.style.display = 'flex';
+    });
 
-  installText.addEventListener('click', () => {
-    popupImg.src = isIOS 
-      ? "https://i.imgur.com/E0Bhtnh.gif" 
-      : "https://i.imgur.com/AYQyWT8.gif";
-    popup.style.display = 'flex';
-  });
+    function closePopup() {
+      popup.style.display = 'none';
+    }
 
-  function closePopup() {
-    popup.style.display = 'none';
-  }
-
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('areamember/sw.js')
-      .then(() => console.log("✅ Service Worker registrado com sucesso"))
-      .catch(err => console.error("Erro ao registrar SW:", err));
-  }
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('areamember/sw.js')
+        .then(() => console.log("✅ Service Worker registrado com sucesso"))
+        .catch(err => console.error("Erro ao registrar SW:", err));
+    }
   </script>
 </body>
 </html>
