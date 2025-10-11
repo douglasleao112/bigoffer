@@ -298,20 +298,31 @@ button:hover, a:hover {
 
       <!-- SECCIÓN BONOS -->
 <section id="bonosSection" class="max-w-4xl mx-auto px-4 pb-10 hidden">
+
+
   <div class="flex items-center justify-between mb-4">
     <h2 class="text-lg font-bold">🎁 Bonos Exclusivos</h2>
     <button onclick="backToHome()" class="text-sm px-3 py-2 rounded-xl border border-white/15 bg-white/[.04] hover:bg-white/[.07] mt-1">⭠</button>
   </div>
    <p class="text-white/70 text-sm mb-4">Aprovecha este contenido extra con grandes enseñanzas.</p>
-  <div class="space-y-3">
-    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1r2l3lWc3jJvR8j0GEuO9Q8BzuUzlEJaz/preview','BONO - 29 Técnicas Secretas de Persuasión Mental (Audiolibro Prohibido)')">
-      1. BONO — 29 Técnicas Secretas de Persuasión Mental (Audiolibro Prohibido)
-    </button>
-    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1PG2gQ4mmCVLLroQVKHPdSHGeZWVts6Wj/preview','BONO - Manipulación y Psicología Oscura')">
-      2. BONO — Manipulación y Psicología Oscura
-    </button>
-  </div>
+<div class="grid grid-cols-1 gap-3">
+  <button class="w-full text-left p-4 rounded-xl border border-white/10 bg-white/[.03] hover:bg-white/[.06] hover:border-white/20 transition-all duration-200"
+    onclick="openModal('https://drive.google.com/file/d/1r2l3lWc3jJvR8j0GEuO9Q8BzuUzlEJaz/preview','BONO - 29 Técnicas Secretas de Persuasión Mental (Audiolibro Prohibido)')">
+    1. BONO — 29 Técnicas Secretas de Persuasión Mental (Audiolibro Prohibido)
+  </button>
+
+  <button class="w-full text-left p-4 rounded-xl border border-white/10 bg-white/[.03] hover:bg-white/[.06] hover:border-white/20 transition-all duration-200"
+    onclick="openModal('https://drive.google.com/file/d/1PG2gQ4mmCVLLroQVKHPdSHGeZWVts6Wj/preview','BONO - Manipulación y Psicología Oscura')">
+    2. BONO — Manipulación y Psicología Oscura
+  </button>
+</div>
+
 </section>
+
+
+
+
+
 
 <!-- SECCIÓN LIBROS PROHIBIDOS -->
 <section id="librosSection" class="max-w-4xl mx-auto px-4 pb-10 hidden">
@@ -322,29 +333,86 @@ button:hover, a:hover {
 
   <p class="text-white/70 text-sm mb-4">Estos son los libros más poderosos sobre el tema de neurociencia y persuasión.</p>
 
- <div class="space-y-3">
-    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1phlkZftIF-NcCQMyMnQcgUXyc0x08LmL/preview','PNL - Técnicas Prohibidas de Persuasión')">1. PNL - Técnicas Prohibidas de Persuasión</button>
-    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1rZhyT9vqrRYvQWlhFhufA2Za7y1r0IKD/preview','Alejandro Magno')">2.Alejandro Magno</button>
-    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1LGQGD8DQm2Fr6HML9ctYNArx5sSZwfzV/preview','Define Develop Deliver')">3. Define Develop Deliver</button>
-    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1TtXgpOuBRoRfRi7V-BFpt_I69RpQZkac/preview','El Poder de la Persuasión')">4. El Poder de la Persuasión</button>
-    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/138ZKh90o6v0taIH0IQInh_FbuvuU16V9/preview','El Poder de Persuasión 2')">5. El Poder de Persuasión 2</button>
-    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/13OAeuL0_MgVlcvZrm7Ib4xLUbxg72gsK/preview','El Libro Negro de la Persuasión')">6. El Libro Negro de la Persuasión</button>
-    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1JHsYNNTkY5nftVW2zZnv4hpaxMiyvn-c/preview','El Libro Negro del Psicoanálisis')">7. El Libro Negro del Psicoanálisis</button>
-    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1N5gHfjEhERopwD82tGr6KLVcEh4cvCjY/preview','Influencia — La Psicología de la Persuasión')">8. Influencia — La Psicología de la Persuasión</button>
-    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1OpnwTrISGe52MISF4Q3h1myM2yVw74RN/preview','Legado de Filón de Alejandría')">9. Legado de Filón de Alejandría</button>
-    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1nOpG4SyCeSCVLM-VLsrROiU3nzYmrykC/preview','Maestro de la Persuasión — Mateo Holm')">10. Maestro de la Persuasión — Mateo Holm</button>
-    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1iTqy590xvFM2NaVjJjtCrn-mPuNi6qnG/preview','Manipulación y Psicología Oscura')">11. Manipulación y Psicología Oscura</button>
-    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1iozQBiQUCrL0isUorzruv2jDSZoIeRkA/preview','Pre-suasion — Un Método Revolucionario')">12. Pre-suasion — Un Método Revolucionario</button>
-    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1jNpD42zG9fLIotC3c9uf8TEngAOmT323/preview','El Poder de la Persuasao — Robert B. Cialdini')">13. El Poder de la Persuasao — Robert B. Cialdini</button>
-    <button class="acc-btn" onclick="openModal('https://drive.google.com/file/d/1bYKYNJ4haeESC54h-jUVvbIF4LZIZmUy/preview','30 Gatillos Mentales para Vender Más')">14. 30 Gatillos Mentales para Vender Más</button>
-  </div>
+<div class="grid grid-cols-1 gap-3">
+  <button class="w-full text-left p-4 rounded-xl border border-white/10 bg-white/[.03] hover:bg-white/[.06] hover:border-white/20 transition-all duration-200"
+    onclick="openModal('https://drive.google.com/file/d/1phlkZftIF-NcCQMyMnQcgUXyc0x08LmL/preview','PNL - Técnicas Prohibidas de Persuasión')">
+    1. PNL - Técnicas Prohibidas de Persuasión
+  </button>
+
+  <button class="w-full text-left p-4 rounded-xl border border-white/10 bg-white/[.03] hover:bg-white/[.06] hover:border-white/20 transition-all duration-200"
+    onclick="openModal('https://drive.google.com/file/d/1rZhyT9vqrRYvQWlhFhufA2Za7y1r0IKD/preview','Alejandro Magno')">
+    2. Alejandro Magno
+  </button>
+
+  <button class="w-full text-left p-4 rounded-xl border border-white/10 bg-white/[.03] hover:bg-white/[.06] hover:border-white/20 transition-all duration-200"
+    onclick="openModal('https://drive.google.com/file/d/1LGQGD8DQm2Fr6HML9ctYNArx5sSZwfzV/preview','Define Develop Deliver')">
+    3. Define Develop Deliver
+  </button>
+
+  <button class="w-full text-left p-4 rounded-xl border border-white/10 bg-white/[.03] hover:bg-white/[.06] hover:border-white/20 transition-all duration-200"
+    onclick="openModal('https://drive.google.com/file/d/1TtXgpOuBRoRfRi7V-BFpt_I69RpQZkac/preview','El Poder de la Persuasión')">
+    4. El Poder de la Persuasión
+  </button>
+
+  <button class="w-full text-left p-4 rounded-xl border border-white/10 bg-white/[.03] hover:bg-white/[.06] hover:border-white/20 transition-all duration-200"
+    onclick="openModal('https://drive.google.com/file/d/138ZKh90o6v0taIH0IQInh_FbuvuU16V9/preview','El Poder de Persuasión 2')">
+    5. El Poder de Persuasión 2
+  </button>
+
+  <button class="w-full text-left p-4 rounded-xl border border-white/10 bg-white/[.03] hover:bg-white/[.06] hover:border-white/20 transition-all duration-200"
+    onclick="openModal('https://drive.google.com/file/d/13OAeuL0_MgVlcvZrm7Ib4xLUbxg72gsK/preview','El Libro Negro de la Persuasión')">
+    6. El Libro Negro de la Persuasión
+  </button>
+
+  <button class="w-full text-left p-4 rounded-xl border border-white/10 bg-white/[.03] hover:bg-white/[.06] hover:border-white/20 transition-all duration-200"
+    onclick="openModal('https://drive.google.com/file/d/1JHsYNNTkY5nftVW2zZnv4hpaxMiyvn-c/preview','El Libro Negro del Psicoanálisis')">
+    7. El Libro Negro del Psicoanálisis
+  </button>
+
+  <button class="w-full text-left p-4 rounded-xl border border-white/10 bg-white/[.03] hover:bg-white/[.06] hover:border-white/20 transition-all duration-200"
+    onclick="openModal('https://drive.google.com/file/d/1N5gHfjEhERopwD82tGr6KLVcEh4cvCjY/preview','Influencia — La Psicología de la Persuasión')">
+    8. Influencia — La Psicología de la Persuasión
+  </button>
+
+  <button class="w-full text-left p-4 rounded-xl border border-white/10 bg-white/[.03] hover:bg-white/[.06] hover:border-white/20 transition-all duration-200"
+    onclick="openModal('https://drive.google.com/file/d/1OpnwTrISGe52MISF4Q3h1myM2yVw74RN/preview','Legado de Filón de Alejandría')">
+    9. Legado de Filón de Alejandría
+  </button>
+
+  <button class="w-full text-left p-4 rounded-xl border border-white/10 bg-white/[.03] hover:bg-white/[.06] hover:border-white/20 transition-all duration-200"
+    onclick="openModal('https://drive.google.com/file/d/1nOpG4SyCeSCVLM-VLsrROiU3nzYmrykC/preview','Maestro de la Persuasión — Mateo Holm')">
+    10. Maestro de la Persuasión — Mateo Holm
+  </button>
+
+  <button class="w-full text-left p-4 rounded-xl border border-white/10 bg-white/[.03] hover:bg-white/[.06] hover:border-white/20 transition-all duration-200"
+    onclick="openModal('https://drive.google.com/file/d/1iTqy590xvFM2NaVjJjtCrn-mPuNi6qnG/preview','Manipulación y Psicología Oscura')">
+    11. Manipulación y Psicología Oscura
+  </button>
+
+  <button class="w-full text-left p-4 rounded-xl border border-white/10 bg-white/[.03] hover:bg-white/[.06] hover:border-white/20 transition-all duration-200"
+    onclick="openModal('https://drive.google.com/file/d/1iozQBiQUCrL0isUorzruv2jDSZoIeRkA/preview','Pre-suasion — Un Método Revolucionario')">
+    12. Pre-suasion — Un Método Revolucionario
+  </button>
+
+  <button class="w-full text-left p-4 rounded-xl border border-white/10 bg-white/[.03] hover:bg-white/[.06] hover:border-white/20 transition-all duration-200"
+    onclick="openModal('https://drive.google.com/file/d/1jNpD42zG9fLIotC3c9uf8TEngAOmT323/preview','El Poder de la Persuasao — Robert B. Cialdini')">
+    13. El Poder de la Persuasao — Robert B. Cialdini
+  </button>
+
+  <button class="w-full text-left p-4 rounded-xl border border-white/10 bg-white/[.03] hover:bg-white/[.06] hover:border-white/20 transition-all duration-200"
+    onclick="openModal('https://drive.google.com/file/d/1bYKYNJ4haeESC54h-jUVvbIF4LZIZmUy/preview','30 Gatillos Mentales para Vender Más')">
+    14. 30 Gatillos Mentales para Vender Más
+  </button>
+</div>
+
+
 </section>
 
 
   <!-- SECCIÓN AUDIOBOOK (card 2) -->
   <section id="audiobook" class="max-w-4xl mx-auto px-4 pb-10 hidden">
     <div class="flex items-center justify-between mb-4">
-      <h2 class="text-lg font-bold">Audiobook — Código de la Persuasión</h2>
+      <h2 class="text-lg font-bold">🔊 Audiobook — Código de la Persuasión</h2>
       <button onclick="backToHome()"
               class="text-sm px-3 py-2 rounded-xl border border-white/15 bg-white/[.04] hover:bg-white/[.07]">
       ⭠
@@ -360,7 +428,7 @@ button:hover, a:hover {
       <!-- 1 -->
       <div class="acc-item">
         <button class="acc-btn" onclick="toggleAcc(this)">
-          <span class="badge">Sección</span>1. Escasez — El Poder de lo que es Raro
+          <span class="badge">Cap.1</span>Escasez — El Poder de lo que es Raro
         </button>
         <div class="acc-panel">
           <div class="audio-wrap">
@@ -372,7 +440,7 @@ button:hover, a:hover {
       <!-- 2 -->
       <div class="acc-item">
         <button class="acc-btn" onclick="toggleAcc(this)">
-          <span class="badge">Sección</span>2. Urgencia — La Fuerza del Tiempo en tu Contra
+          <span class="badge">Cap.2</span>Urgencia — La Fuerza del Tiempo en tu Contra
         </button>
         <div class="acc-panel">
           <div class="audio-wrap">
@@ -384,7 +452,7 @@ button:hover, a:hover {
       <!-- 3 -->
       <div class="acc-item">
         <button class="acc-btn" onclick="toggleAcc(this)">
-          <span class="badge">Sección</span>3. Prueba Social — El Poder de lo que Hacen los Demás
+          <span class="badge">Cap.3</span>Prueba Social — El Poder de lo que Hacen los Demás
         </button>
         <div class="acc-panel">
           <div class="audio-wrap">
@@ -396,7 +464,7 @@ button:hover, a:hover {
       <!-- 4 -->
       <div class="acc-item">
         <button class="acc-btn" onclick="toggleAcc(this)">
-          <span class="badge">Sección</span>4. Autoridad — El Peso de la Especialización
+          <span class="badge">Cap.4</span>Autoridad — El Peso de la Especialización
         </button>
         <div class="acc-panel">
           <div class="audio-wrap">
@@ -408,7 +476,7 @@ button:hover, a:hover {
       <!-- 5 -->
       <div class="acc-item">
         <button class="acc-btn" onclick="toggleAcc(this)">
-          <span class="badge">Sección</span>5. Reciprocidad — El Poder de Dar Antes de Recibir
+          <span class="badge">Cap.5</span>Reciprocidad — El Poder de Dar Antes de Recibir
         </button>
         <div class="acc-panel">
           <div class="audio-wrap">
@@ -420,7 +488,7 @@ button:hover, a:hover {
       <!-- 6 -->
       <div class="acc-item">
         <button class="acc-btn" onclick="toggleAcc(this)">
-          <span class="badge">Sección</span>6. Novedad — El Fascinio por lo que es Nuevo
+          <span class="badge">Cap.6</span>Novedad — El Fascinio por lo que es Nuevo
         </button>
         <div class="acc-panel">
           <div class="audio-wrap">
@@ -432,7 +500,7 @@ button:hover, a:hover {
       <!-- 7 -->
       <div class="acc-item">
         <button class="acc-btn" onclick="toggleAcc(this)">
-          <span class="badge">Sección</span>7. Anticipación — El Placer de la Espera
+          <span class="badge">Cap.7</span>Anticipación — El Placer de la Espera
         </button>
         <div class="acc-panel">
           <div class="audio-wrap">
@@ -444,7 +512,7 @@ button:hover, a:hover {
       <!-- 8 -->
       <div class="acc-item">
         <button class="acc-btn" onclick="toggleAcc(this)">
-          <span class="badge">Sección</span>8. Historias — El Encanto del Storytelling
+          <span class="badge">Cap.8</span>Historias — El Encanto del Storytelling
         </button>
         <div class="acc-panel">
           <div class="audio-wrap">
@@ -456,7 +524,7 @@ button:hover, a:hover {
       <!-- 9 -->
       <div class="acc-item">
         <button class="acc-btn" onclick="toggleAcc(this)">
-          <span class="badge">Sección</span>9. Comunidad — El Poder del Pertenecer
+          <span class="badge">Cap.9</span>Comunidad — El Poder del Pertenecer
         </button>
         <div class="acc-panel">
           <div class="audio-wrap">
@@ -468,7 +536,7 @@ button:hover, a:hover {
       <!-- 10 -->
       <div class="acc-item">
         <button class="acc-btn" onclick="toggleAcc(this)">
-          <span class="badge">Sección</span>10. Simplicidad — El Atajo que Todos Desean
+          <span class="badge">Cap.10</span>Simplicidad — El Atajo que Todos Desean
         </button>
         <div class="acc-panel">
           <div class="audio-wrap">
@@ -480,7 +548,7 @@ button:hover, a:hover {
       <!-- 11 -->
       <div class="acc-item">
         <button class="acc-btn" onclick="toggleAcc(this)">
-          <span class="badge">Sección</span>11. Curiosidad — El Vacío que Debe Ser Llenado
+          <span class="badge">Cap.11</span>Curiosidad — El Vacío que Debe Ser Llenado
         </button>
         <div class="acc-panel">
           <div class="audio-wrap">
@@ -492,7 +560,7 @@ button:hover, a:hover {
       <!-- 12 -->
       <div class="acc-item">
         <button class="acc-btn" onclick="toggleAcc(this)">
-          <span class="badge">Sección</span>12. Exclusividad — El Valor del Acceso Restringido
+          <span class="badge">Cap.12</span>Eclusividad — El Valor del Acceso Restringido
         </button>
         <div class="acc-panel">
           <div class="audio-wrap">
@@ -504,7 +572,7 @@ button:hover, a:hover {
       <!-- 13 -->
       <div class="acc-item">
         <button class="acc-btn" onclick="toggleAcc(this)">
-          <span class="badge">Sección</span>13. Dolor y Placer — La Brújula de las Decisiones Humanas
+          <span class="badge">Cap.13</span>Dolor y Placer — La Brújula de las Decisiones Humanas
         </button>
         <div class="acc-panel">
           <div class="audio-wrap">
@@ -516,7 +584,7 @@ button:hover, a:hover {
       <!-- 14 -->
       <div class="acc-item">
         <button class="acc-btn" onclick="toggleAcc(this)">
-          <span class="badge">Sección</span>14. Garantía — El Eliminador del Riesgo
+          <span class="badge">Cap.14</span>Garantía — El Eliminador del Riesgo
         </button>
         <div class="acc-panel">
           <div class="audio-wrap">
@@ -528,7 +596,7 @@ button:hover, a:hover {
       <!-- 15 -->
       <div class="acc-item">
         <button class="acc-btn" onclick="toggleAcc(this)">
-          <span class="badge">Sección</span>15. Compromiso y Coherencia — El Peso de la Palabra Dada
+          <span class="badge">Cap.15</span>Compromiso y Coherencia — El Peso de la Palabra Dada
         </button>
         <div class="acc-panel">
           <div class="audio-wrap">
