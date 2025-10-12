@@ -186,6 +186,37 @@ button:hover, a:hover {
   color: rgba(255,255,255,0.7);
 }
 
+
+.title {
+  font-size: 2rem; /* aumentei o tamanho */
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #fff;
+  text-shadow:
+    0 0 10px #00ffae,
+    0 0 20px #00ffae,
+    0 0 30px #00ffae,
+    0 0 40px #00ffae;
+  animation: neonPulse 2s infinite alternate;
+}
+
+/* Animação de brilho */
+@keyframes neonPulse {
+  from {
+    text-shadow:
+      0 0 8px #00ffae,
+      0 0 16px #00ffae,
+      0 0 24px #00ffae,
+      0 0 32px #00ffae;
+  }
+  to {
+    text-shadow:
+      0 0 16px #00ffae,
+      0 0 32px #00ffae,
+      0 0 48px #00ffae,
+      0 0 64px #00ffae;
+  }
+}
   </style>
 
   
