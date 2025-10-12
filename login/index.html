@@ -31,15 +31,36 @@
       text-align: center;
       transform: perspective(1000px) rotateX(1deg);
     }
+.title {
+  font-size: 1.5rem; /* aumentei o tamanho */
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #fff;
+  text-shadow:
+    0 0 10px #00ffae,
+    0 0 20px #00ffae,
+    0 0 30px #00ffae,
+    0 0 40px #00ffae;
+  animation: neonPulse 2s infinite alternate;
+}
 
-    .title {
-      font-size: 1.4rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      color: #fff;
-      text-shadow: 0 0 8px rgba(255,255,255,0.2);
-      margin-bottom: 1.5rem;
-    }
+/* Animação de brilho */
+@keyframes neonPulse {
+  from {
+    text-shadow:
+      0 0 8px #00ffae,
+      0 0 16px #00ffae,
+      0 0 24px #00ffae,
+      0 0 32px #00ffae;
+  }
+  to {
+    text-shadow:
+      0 0 16px #00ffae,
+      0 0 32px #00ffae,
+      0 0 48px #00ffae,
+      0 0 64px #00ffae;
+  }
+}
 
     .login-card input {
       background: rgba(255, 255, 255, 0.1);
@@ -81,20 +102,34 @@
       color: rgba(255,255,255,0.7);
     }
 
-    /* Texto Instalar App */
-    .install-text {
-      margin-top: 1.3rem;
-      color: #ff7a00;
-      font-weight: bold;
-      cursor: pointer;
-      text-shadow: 0 0 10px #ff7a00, 0 0 20px #ff7a00;
-      animation: glow 2s ease-in-out infinite alternate;
-    }
+/* Botão Instalar App (nova versão elegante) */
+.install-text {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: #00ffae;
+  font-weight: 600;
+  border: 1px solid rgba(0, 255, 174, 0.6);
+  border-radius: 9999px;
+  padding: 6px 16px;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 255, 174, 0.1);
+}
 
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #ff7a00, 0 0 20px #ff7a00; }
-      to { text-shadow: 0 0 20px #ffae00, 0 0 40px #ff7a00; }
-    }
+.install-text:hover {
+  background: rgba(0, 255, 174, 0.15);
+  box-shadow: 0 0 15px rgba(0, 255, 174, 0.5);
+  transform: translateY(-1px);
+  color: #00ffae;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #ff7a00, 0 0 20px #ff7a00; }
+  to { text-shadow: 0 0 20px #ffae00, 0 0 40px #ff7a00; }
+}
 
     /* Popup */
     .popup-bg {
@@ -129,7 +164,7 @@
     </form>
 
     <!-- Texto “Instalar App” -->
-    <p id="installText" class="install-text">📲 Instalar App</p>
+    <p id="installText" class="install-text">Instalar App</p>
   </div>
 
   <!-- Popup -->
