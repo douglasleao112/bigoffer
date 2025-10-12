@@ -980,15 +980,20 @@ document.addEventListener('keydown', e => {
 });
 
 </script>
-
 <script>
 async function handleLogin(e) {
   e.preventDefault();
-  const email = document.getElementById('email').value.trim().toLowerCase();
-  if (!email) return;
+
+  const emailInput = document.getElementById('email');
+  const email = emailInput.value.trim().toLowerCase();
+
+  if (!email) {
+    alert('⚠️ Por favor, ingresa tu email.');
+    return;
+  }
 
   try {
-    // Faz a requisição com GET
+    // Faz a requisição para o PHP no InfinityFree
     const res = await fetch(`https://projeto360.site/hotmart/check_email.php?email=${encodeURIComponent(email)}`);
     const data = await res.json();
 
@@ -996,10 +1001,10 @@ async function handleLogin(e) {
       localStorage.setItem('userEmail', email);
       document.getElementById('loginScreen').style.display = 'none';
     } else {
-      alert('❌ Email no encontrado. Usa el mismo email que utilizaste en la compra.');
+      alert(data.msg || '❌ Email no encontrado. Usa el mismo email que utilizaste en la compra.');
     }
   } catch (err) {
-    console.error('Erro ao verificar el email:', err);
+    console.error('Erro ao verificar o email:', err);
     alert('⚠️ Error al verificar el email. Intenta nuevamente.');
   }
 }
@@ -1020,12 +1025,14 @@ const popup = document.getElementById('popup');
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 const isAndroid = /android/i.test(navigator.userAgent);
 
-installText.addEventListener('click', () => {
-  popupImg.src = isIOS 
-    ? "https://i.imgur.com/E0Bhtnh.gif"   // GIF para iPhone
-    : "https://i.imgur.com/AYQyWT8.gif";  // GIF para Android
-  popup.style.display = 'flex';
-});
+if (installText) {
+  installText.addEventListener('click', () => {
+    popupImg.src = isIOS 
+      ? "https://i.imgur.com/E0Bhtnh.gif"   // GIF para iPhone
+      : "https://i.imgur.com/AYQyWT8.gif";  // GIF para Android
+    popup.style.display = 'flex';
+  });
+}
 
 function closePopup() {
   popup.style.display = 'none';
@@ -1037,5 +1044,6 @@ if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.
   if (installElement) installElement.style.display = 'none';
 }
 </script>
+
 </body>
 </html>
