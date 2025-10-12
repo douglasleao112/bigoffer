@@ -983,44 +983,29 @@ document.addEventListener('keydown', e => {
 
 
 
-
 <script>
 async function handleLogin(e) {
   e.preventDefault();
-
-  const emailInput = document.getElementById('email');
-  const email = emailInput.value.trim().toLowerCase();
-
-  if (!email) {
-    alert('⚠️ Por favor, ingresa tu email.');
-    return;
-  }
+  const email = document.getElementById('email').value.trim().toLowerCase();
+  if (!email) return;
 
   try {
-    // Faz a requisição para o PHP no InfinityFree
-    const res = await fetch(`https://hotmart-webhook-42ya.onrender.com/check_email.php?email=${encodeURIComponent(email)}`);  
+    const res = await fetch(`https://projeto360.site/hotmart/check_email.php?email=${encodeURIComponent(email)}`);
     const data = await res.json();
 
     if (data.ok && data.allowed) {
       localStorage.setItem('userEmail', email);
       document.getElementById('loginScreen').style.display = 'none';
     } else {
-      alert(data.msg || '❌ Email no encontrado. Usa el mismo email que utilizaste en la compra.');
+      alert(data.msg || '❌ Correo no encontrado o pendiente.');
     }
   } catch (err) {
-    console.error('Erro ao verificar o email:', err);
-    alert('⚠️ Error al verificar el email. Intenta nuevamente.');
+    alert('⚠️ Error al verificar el correo. Intenta nuevamente.');
+    console.error('Error al verificar el correo:', err);
   }
 }
-
-// Verifica login salvo ao carregar
-window.addEventListener('DOMContentLoaded', () => {
-  const email = localStorage.getItem('userEmail');
-  if (email) {
-    document.getElementById('loginScreen').style.display = 'none';
-  }
-});
 </script>
+
 
 
 
