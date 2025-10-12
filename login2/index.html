@@ -219,15 +219,28 @@ button:hover, a:hover {
 }
 
 
-/* Texto Instalar App */
+/* Botão Instalar App (nova versão elegante) */
 .install-text {
   margin-top: 1rem;
-  color: #ff7a00;
-  font-weight: bold;
-  cursor: pointer;
-  text-shadow: 0 0 10px #ff7a00, 0 0 20px #ff7a00;
-  animation: glow 2s ease-in-out infinite alternate;
+  font-size: 0.8rem;
+  color: #00ffae;
+  font-weight: 600;
+  border: 1px solid rgba(0, 255, 174, 0.6);
+  border-radius: 9999px;
+  padding: 6px 16px;
   display: inline-block;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 255, 174, 0.1);
+}
+
+.install-text:hover {
+  background: rgba(0, 255, 174, 0.15);
+  box-shadow: 0 0 15px rgba(0, 255, 174, 0.5);
+  transform: translateY(-1px);
+  color: #00ffae;
 }
 
 @keyframes glow {
