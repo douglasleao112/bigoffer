@@ -257,30 +257,31 @@ button:hover, a:hover {
 
 
 
-/* Botão Instalar App — design novo, pequeno e elegante */
-.btn-install-new {
-  margin-top: 0.8rem;
-  background: transparent;
-  color: #ffd84d;
-  border: 1px solid #ffd84d;
-  border-radius: 4px;
-  padding: 3px 10px;
-  font-size: 0.7rem;
-  letter-spacing: 0.3px;
-  cursor: pointer;
-  opacity: 0.8;
-  transition: all 0.25s ease;
-}
-
-.btn-install-new:hover {
-  opacity: 1;
-  border-color: #ffef8a;
-  color: #ffef8a;
-  transform: translateY(-1px);
-  box-shadow: 0 0 6px #ffef8a44;
+/* Novo botão Instalar App — pequeno, transparente e com borda amarela */
+.btn-install {
+  margin-top: 0.6rem;
   background: transparent !important;
+  border: 0.8px solid #ffcc00;   /* borda amarela fina */
+  color: #ffcc00;
+  font-size: 0.68rem;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  opacity: 0.8;
+  width: auto;
+  display: inline-block;
 }
 
+.btn-install:hover {
+  opacity: 1;
+  border-color: #ffe766;
+  color: #ffe766;
+  box-shadow: 0 0 5px #ffe76655;
+  transform: translateY(-1px);
+  background: transparent !important; /* garante que nunca preencha */
+}
   </style>
 
   
@@ -302,7 +303,7 @@ button:hover, a:hover {
       </p>
       <input type="email" id="email" placeholder="usuario@email.com" required>
       <button type="submit">Entrar</button>
-      <button id="installText" type="button" class="btn-install-new">Instalar App</button>
+      <button id="installText" type="button" class="btn-install">Instalar App</button>
     </form>
   </div>
 </div>
