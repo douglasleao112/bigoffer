@@ -1,8 +1,8 @@
 {
   "name": "El Código de la Persuasión",
   "short_name": "Persuasión",
-  "start_url": "/login/areamember/",
-  "scope": "/login/",
+  "start_url": "/login2/",
+  "scope": "/login2/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
