@@ -219,31 +219,6 @@ button:hover, a:hover {
 }
 
 
-/* Botão Instalar App — versão minimalista e vazada */
-.install-btn {
-  margin-top: 0.6rem;
-  display: inline-block;
-  padding: 3px 8px;
-  font-size: 0.7rem;
-  font-weight: 500;
-  color: #ff8c00;
-  border: 0.8px solid #ff8c00;
-  border-radius: 6px;
-  background: transparent;
-  cursor: pointer;
-  opacity: 0.7;
-  transition: all 0.25s ease;
-}
-
-.install-btn:hover {
-  opacity: 1;
-  border-color: #ffae00;
-  color: #ffae00;
-  transform: translateY(-1px);
-  box-shadow: 0 0 5px #ffae0066;
-  background: transparent !important; /* garante que não preenche nunca */
-}
-
 /* Texto Instalar App */
 .install-text {
   margin-top: 1.3rem;
@@ -297,7 +272,7 @@ button:hover, a:hover {
       </p>
       <input type="email" id="email" placeholder="usuario@email.com" required>
       <button type="submit">Entrar</button>
-      <button id="installText" type="button" class="install-btn">📲 Instalar App</button>
+      <p id="installText" class="install-text">📲 Instalar App</p>
     </form>
   </div>
 </div>
