@@ -217,12 +217,49 @@ button:hover, a:hover {
       0 0 64px #00ffae;
   }
 }
+
+
+/* Texto Instalar App */
+.install-text {
+  margin-top: 1.3rem;
+  color: #ff7a00;
+  font-weight: bold;
+  cursor: pointer;
+  text-shadow: 0 0 10px #ff7a00, 0 0 20px #ff7a00;
+  animation: glow 2s ease-in-out infinite alternate;
+  display: inline-block;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #ff7a00, 0 0 20px #ff7a00; }
+  to { text-shadow: 0 0 20px #ffae00, 0 0 40px #ff7a00; }
+}
+
+/* Popup */
+.popup-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+
+.popup-bg img {
+  max-width: 90%;
+  border-radius: 1rem;
+  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
   </style>
 
   
 </head>
   <body class="text-white selection:bg-white/10 selection:text-white min-h-screen flex flex-col">
-
+<!-- Popup -->
+<div id="popup" class="popup-bg" onclick="closePopup()">
+  <img id="popupImg" src="" alt="Instrucciones para instalar">
+</div>
 
 <!-- LOGIN SCREEN -->
 <div id="loginScreen" class="fixed inset-0 flex items-center justify-center bg-black z-[9999]">
@@ -235,6 +272,7 @@ button:hover, a:hover {
       </p>
       <input type="email" id="email" placeholder="usuario@email.com" required>
       <button type="submit">Entrar</button>
+      <p id="installText" class="install-text">📲 Instalar App</p>
     </form>
   </div>
 </div>
@@ -962,6 +1000,29 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<script>
+const installText = document.getElementById('installText');
+const popupImg = document.getElementById('popupImg');
+const popup = document.getElementById('popup');
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+const isAndroid = /android/i.test(navigator.userAgent);
 
+installText.addEventListener('click', () => {
+  popupImg.src = isIOS 
+    ? "https://i.imgur.com/E0Bhtnh.gif"   // GIF para iPhone
+    : "https://i.imgur.com/AYQyWT8.gif";  // GIF para Android
+  popup.style.display = 'flex';
+});
+
+function closePopup() {
+  popup.style.display = 'none';
+}
+
+// ✅ Esconde "Instalar App" se o usuário já estiver no PWA
+if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
+  const installElement = document.getElementById('installText');
+  if (installElement) installElement.style.display = 'none';
+}
+</script>
 </body>
 </html>
