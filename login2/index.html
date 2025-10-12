@@ -976,7 +976,7 @@ async function handleLogin(e) {
 
   try {
     // Faz a requisição com GET
-    const res = await fetch(`http://projeto360.site/hotmart/check_email.php?email=${encodeURIComponent(email)}`);
+    const res = await fetch(`https://projeto360.site/hotmart/check_email.php?email=${encodeURIComponent(email)}`);
     const data = await res.json();
 
     if (data.ok && data.allowed) {
