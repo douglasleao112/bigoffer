@@ -113,82 +113,103 @@
 </script>
 
 
-
-<!-- HERO -->
-<section class="relative flex flex-col items-center text-center px-6 pt-16 pb-10 bg-black overflow-hidden">
-
-  <!-- HEADLINE -->
-  <h1 class="text-2xl lg:text-4xl font-bold leading-tight mb-6 z-20 relative">
-    <span class="text-white block">
-      El Secreto que los Ricos
-    </span>
-    <span class="bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent block">
-      Usan para Ganar Más Dinero
-    </span>
-  </h1>
-
-  <!-- VIDEO HERO -->
-  <div class="relative flex justify-center w-full max-w-lg z-10">
-    <video id="heroVideo"
-      class="w-full rounded-xl shadow-2xl object-cover"
-      preload="auto"
-      playsinline
-      loop
-      poster="https://i.imgur.com/BTxzeTn.gif">
-      <source src="https://video.wixstatic.com/video/7f5efc_eb57ec3bebee4ccda89a0e68f70e82a1/1080p/mp4/file.mp4" type="video/mp4">
-    </video>
-
-    <!-- Barra de progresso -->
-  <div class="absolute bottom-0 left-0 w-full h-[12px] bg-transparent rounded-b-xl overflow-hidden">
-    <div id="progressBar" class="h-full w-0 bg-red-600/80 shadow-[0_0_12px_rgba(255,0,0,0.6)] transition-all duration-200"></div>
-  </div>
-</div>
-
-
-  <!-- BOTÃO -->
-<a href="#oque"
-   class="bg-green-500 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all btn-pulsante mt-14">
-  🔒 DESBLOQUEAR CÓDIGO
-</a>
-
-  <p class="text-sm text-gray-400 mt-4">
-    *Solo por hoy. Vuelve a esta página<br> y perderás el acceso exclusivo.
-  </p>
-</section>
-
+ <!-- REDIRECIONADOR
 <script>
-  const video = document.getElementById("heroVideo");
-  const bar = document.getElementById("progressBar");
+  const params = window.location.search;
+  let destino = "https://bigoffer.netlify.app/oraculo/";
 
-  // Atualiza a barra de progresso conforme o tempo do vídeo
-  function atualizarBarra() {
-    const duracao = video.duration;
-    const tempo = video.currentTime;
-    if (!duracao || duracao === Infinity) return;
-
-    let progresso = 0;
-    if (tempo <= 10) {
-      progresso = (tempo / 10) * 50;          // 0–10s → 0%–50%
-    } else if (tempo <= 20) {
-      progresso = 50 + ((tempo - 10) / 10) * 25; // 10–20s → 50%–75%
-    } else {
-      progresso = 75 + ((tempo - 20) / (duracao - 20)) * 25; // restante → 75%–100%
-    }
-    bar.style.width = Math.min(progresso, 100) + "%";
+  if (params) {
+    const separator = destino.includes('?') ? '&' : '?';
+    destino = destino + separator + params.substring(1);
   }
 
-  video.addEventListener("timeupdate", atualizarBarra);
-
-  // Só dá play com som no clique — sem rolagem
-  document.addEventListener("click", e => {
-    if (e.target.closest("a")) return; // ignora cliques em links
-    if (video && video.paused) {
-      video.muted = false;
-      video.volume = 1.0;
-      video.play().catch(err => console.log("Autoplay bloqueado:", err));
-    }
-  });
+  window.location.href = destino;
 </script>
+-->
+
+
+
+
+
+
+<!-- HERO -->
+<section class="relative px-6 pt-12 pb-4 lg:pt-16 lg:pb-4 bg-black overflow-hidden">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
+
+    <!-- Imagem HERO com notas sobrepostas  https://i.imgur.com/rE9pIj5.png  https://i.imgur.com/0lYJNhC.png  https://i.imgur.com/o4XQhvi.png-->
+    <div class="flex justify-center lg:order-2 relative">
+      <img 
+    src="https://i.imgur.com/K6jnMTc.png"      
+    class="w-[90%] max-w-sm lg:max-w-md object-contain animate-zoom-sutil relative z-10 mt-8 sm:mt-10 lg:mt-0"
+    />
+
+      <!-- Nota canto superior direito -->
+      <img src="https://i.imgur.com/y3gEyJ5.png" 
+      class="absolute top-0 right-[-30px] lg:right-[-60px] w-32 lg:w-40 opacity-80 rotate-6 animate-float z-20" />
+
+      <!-- Nota canto esquerdo (mais alta agora) -->
+      <img src="https://i.imgur.com/op6Rtye.png" class="absolute left-[-20px] lg:left-[-60px] w-28 lg:w-36 opacity-80 -rotate-3 animate-float-delay z-20" style="bottom: 130px; /* mobile padrão */
+            @media (min-width:724px){ bottom: 100px !important; }" />
+    </div>
+
+    <!-- Texto HERO -->
+    <div class="text-center lg:text-left lg:order-1">
+      <h1 class="text-3xl lg:text-5xl font-bold leading-tight mb-6">
+        <span class="text-white">
+          El Secreto que los Ricos 
+        </span><br>
+        <span class="bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent">
+          Usan para Ganar Más Dinero
+        </span>
+      </h1>
+      <p class="text-lg max-w-xl mx-auto lg:mx-0 text-gray-300 mb-8">
+        Descubre cómo convertir las palabras en <b>armas de influencia para dominar los negocios, las relaciones y el DINERO</b>.
+      </p><br>
+      <div style="display: inline-block; text-align: center;">
+        <a href="#oque" class="bg-green-500 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all btn-pulsante"> 
+          🔒 DESBLOQUEAR CÓDIGO 
+        </a>
+        <p class="text-sm text-gray-400" style="margin-top: 18px;">
+          *Solo por hoy. Vuelve a esta página<br> y perderás el acceso exclusivo.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+   <!-- notas flutuando -->
+<style>
+@keyframes floatMoney {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+.animate-float {
+  animation: floatMoney 6s ease-in-out infinite;
+}
+.animate-float-delay {
+  animation: floatMoney 7s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+</style>
+
+
+<!-- Animação zoom img da hero
+<style>
+@keyframes zoomInOutSutil {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+.animate-zoom-sutil {
+  animation: zoomInOutSutil 6s ease-in-out infinite;
+}
+</style>
+-->
 
 
 
@@ -1039,6 +1060,36 @@ function getParams() {
 }();
 
 </script>
+
+
+ 
+<script>//zona clicavem da hero para avançar para dobra 2
+document.addEventListener("DOMContentLoaded", () => {
+  const hero = document.querySelector("section.relative"); // HERO principal
+  const target = document.querySelector("#oque"); // segunda seção (#oque)
+
+  if (hero && target) {
+    hero.addEventListener("click", (e) => {
+      // Só funciona se o usuário estiver no topo (primeira dobra)
+      if (window.scrollY > window.innerHeight * 0.2) return;
+
+      const rect = hero.getBoundingClientRect();
+      const y = e.clientY - rect.top;
+
+      // Define faixa da área clicável (entre headline e botão)
+      const zoneStart = rect.height * 0.25;
+      const zoneEnd = rect.height * 0.9;
+
+      // Se o clique estiver dentro da zona, faz o scroll
+      if (y >= zoneStart && y <= zoneEnd) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  }
+});
+</script>
+
 
 </body>
 </html>
