@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>El Código de la [P]ersuasión</title>
+<link rel="icon" href="https://i.imgur.com/iPllVtt.jpeg" type="image/png">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Favicon -->
+<link rel="icon" href="https://i.imgur.com/iPllVtt.jpeg" type="image/png">
+
+<!-- Open Graph para redes sociales -->
+<meta property="og:title" content="El Código de la [P]ersuasión" />
+<meta property="og:description" content="Descubre los gatillos mentales ocultos y técnicas de persuasión prohibidas." />
+<meta property="og:image" content="https://i.imgur.com/iPllVtt.jpeg" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://bigoffer.netlify.app/lp-1/" />
+
+<!-- Para WhatsApp y Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="El Código de la [P]ersuasión" />
+<meta name="twitter:description" content="Descubre los gatillos mentales ocultos y técnicas de persuasión prohibidas." />
+<meta name="twitter:image" content="https://i.imgur.com/iPllVtt.jpeg" />
+
+  <style>
+      html {
+    scroll-behavior: smooth;
+  }
+    .aviso-topo {
+      background-color: #b71e1e;
+      color: #fff;
+      text-align: center;
+      padding: 10px 16px;
+      font-weight: bold;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9999;
+      transition: top 0.4s ease-in-out;
+    }
+    body { margin-top: 60px; }
+    .aviso-topo.hide { top: -60px; }
+
+    /* Botão pulsante com brilho */
+    .btn-pulsante {
+      animation: pulseZoom 1.5s infinite ease-in-out;
+      box-shadow: 0 0 15px rgba(34,197,94,0.8), 0 0 25px rgba(34,197,94,0.6);
+      transition: transform 0.3s ease-in-out;
+    }
+    @keyframes pulseZoom {
+      0%   { transform: scale(1);   box-shadow: 0 0 10px rgba(34,197,94,0.7), 0 0 20px rgba(34,197,94,0.5); }
+      50%  { transform: scale(1.08); box-shadow: 0 0 20px rgba(34,197,94,1), 0 0 40px rgba(34,197,94,0.7); }
+      100% { transform: scale(1);   box-shadow: 0 0 10px rgba(34,197,94,0.7), 0 0 20px rgba(34,197,94,0.5); }
+    }
+  </style>
+
+
+
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "tmugztuwhn");
+</script>
+
+
+</head>
+
+<body class="bg-black text-white font-sans">
+
+<!-- Franja Roja con Cronómetro -->
+<div class="aviso-topo" id="aviso-topo">
+  ⚠️ <b>ATENCIÓN:</b> Este descuento termina en<span id="countdown" style="margin-left:3px; font-weight:bold;"></span>
+</div>
+
+<script>
+  // Cronômetro regressivo de 5 minutos
+  let tempo = 10 * 60; 
+  const countdownEl = document.getElementById("countdown");
+
+  function atualizarCountdown() {
+    const minutos = Math.floor(tempo / 60);
+    const segundos = tempo % 60;
+    countdownEl.textContent = `${minutos}:${segundos.toString().padStart(2,'0')}`;
+    if (tempo > 0) {
+      tempo--;
+    } else {
+      clearInterval(timer);
+      countdownEl.textContent = "Expirado!";
+    }
+  }
+  atualizarCountdown();
+  const timer = setInterval(atualizarCountdown, 1000);
+
+  // Esconder tarja ao rolar
+  let ultimoScroll = 0;
+  const aviso = document.getElementById("aviso-topo");
+  window.addEventListener("scroll", () => {
+    const atualScroll = window.scrollY;
+    if (atualScroll > ultimoScroll) {
+      aviso.classList.add("hide");
+    } else {
+      aviso.classList.remove("hide");
+    }
+    ultimoScroll = atualScroll;
+  });
+</script>
+
+
+ <!-- REDIRECIONADOR
+<script>
+  const params = window.location.search;
+  let destino = "https://bigoffer.netlify.app/oraculo/";
+
+  if (params) {
+    const separator = destino.includes('?') ? '&' : '?';
+    destino = destino + separator + params.substring(1);
+  }
+
+  window.location.href = destino;
+</script>
+-->
+
+
+
+
+<!-- HERO -->
+<section class="relative px-6 pt-12 pb-4 lg:pt-16 lg:pb-4 bg-black overflow-hidden">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
+
+    <!-- VIDEO HERO -->
+    <div class="flex justify-center lg:order-2 relative">
+      <video id="heroVideo" 
+        class="w-[90%] max-w-sm lg:max-w-md object-contain relative z-10 mt-8 sm:mt-10 lg:mt-0"
+        preload="auto"
+        playsinline
+        muted
+        loop
+        poster="https://i.imgur.com/K6jnMTc.png"
+      >
+        <source src="https://video.wixstatic.com/video/7f5efc_a9792c570a6c402889f39831e9a435b6/1080p/mp4/file.mp4" type="video/mp4">
+      </video>
+
+      <!-- Notas decorativas -->
+      <img src="https://i.imgur.com/y3gEyJ5.png" 
+        class="absolute top-0 right-[-30px] lg:right-[-60px] w-32 lg:w-40 opacity-80 rotate-6 animate-float z-20" />
+      <img src="https://i.imgur.com/op6Rtye.png" 
+        class="absolute left-[-20px] lg:left-[-60px] w-28 lg:w-36 opacity-80 -rotate-3 animate-float-delay z-20" 
+        style="bottom: 130px;" />
+    </div>
+
+    <!-- Texto HERO -->
+    <div class="text-center lg:text-left lg:order-1">
+      <h1 class="text-3xl lg:text-5xl font-bold leading-tight mb-6">
+        <span class="text-white">
+          El Secreto que los Ricos 
+        </span><br>
+        <span class="bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent">
+          Usan para Ganar Más Dinero
+        </span>
+      </h1>
+      <p class="text-lg max-w-xl mx-auto lg:mx-0 text-gray-300 mb-8">
+        Descubre cómo convertir las palabras en <b>armas de influencia para dominar los negocios, las relaciones y el DINERO</b>.
+      </p><br>
+      <div style="display: inline-block; text-align: center;">
+        <a href="#oque" class="bg-green-500 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all btn-pulsante"> 
+          🔒 DESBLOQUEAR CÓDIGO 
+        </a>
+        <p class="text-sm text-gray-400" style="margin-top: 18px;">
+          *Solo por hoy. Vuelve a esta página<br> y perderás el acceso exclusivo.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Tocar o vídeo ao clicar em qualquer lugar da página
+  document.addEventListener("click", () => {
+    const video = document.getElementById("heroVideo");
+    if (video && video.paused) {
+      video.play().catch(err => console.log("Autoplay bloqueado:", err));
+    }
+  });
+</script>
+
+
+
+
+<!--
+<section class="relative px-6 pt-12 pb-4 lg:pt-16 lg:pb-4 bg-black overflow-hidden">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
+
+    Imagem HERO com notas sobrepostas  https://i.imgur.com/rE9pIj5.png  https://i.imgur.com/0lYJNhC.png  https://i.imgur.com/o4XQhvi.png
+    <div class="flex justify-center lg:order-2 relative">
+      <img  src="https://i.imgur.com/K6jnMTc.png"   class="w-[90%] max-w-sm lg:max-w-md object-contain animate-zoom-sutil relative z-10 mt-8 sm:mt-10 lg:mt-0" />
+ 
+      <img src="https://i.imgur.com/y3gEyJ5.png" class="absolute top-0 right-[-30px] lg:right-[-60px] w-32 lg:w-40 opacity-80 rotate-6 animate-float z-20" />
+ 
+      <img src="https://i.imgur.com/op6Rtye.png" class="absolute left-[-20px] lg:left-[-60px] w-28 lg:w-36 opacity-80 -rotate-3 animate-float-delay z-20" style="bottom: 130px; /* mobile padrão */
+            @media (min-width:724px){ bottom: 100px !important; }" />
+    </div>
+
+
+    <div class="text-center lg:text-left lg:order-1">
+      <h1 class="text-3xl lg:text-5xl font-bold leading-tight mb-6">
+        <span class="text-white">
+          El Secreto que los Ricos 
+        </span><br>
+        <span class="bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent">
+          Usan para Ganar Más Dinero
+        </span>
+      </h1>
+      <p class="text-lg max-w-xl mx-auto lg:mx-0 text-gray-300 mb-8">
+        Descubre cómo convertir las palabras en <b>armas de influencia para dominar los negocios, las relaciones y el DINERO</b>.
+      </p><br>
+      <div style="display: inline-block; text-align: center;">
+        <a href="#oque" class="bg-green-500 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all btn-pulsante"> 
+          🔒 DESBLOQUEAR CÓDIGO 
+        </a>
+        <p class="text-sm text-gray-400" style="margin-top: 18px;">
+          *Solo por hoy. Vuelve a esta página<br> y perderás el acceso exclusivo.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+   
+<style>
+@keyframes floatMoney {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+.animate-float {
+  animation: floatMoney 6s ease-in-out infinite;
+}
+.animate-float-delay {
+  animation: floatMoney 7s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+</style>
+
+
+
+<style>
+@keyframes zoomInOutSutil {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+.animate-zoom-sutil {
+  animation: zoomInOutSutil 6s ease-in-out infinite;
+}
+</style>
+-->
+
+
+
+
+<style>
+@media (min-width: 1024px) {
+  .btn-caption {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+}
+</style>
+
+    </div>
+
+  </div>
+</section><br><br><br><br><br>
+
+
+
+
+<!-- SEÇÃO 2: PARA QUEM É -->
+<section id="oque" class="px-6 pt-0 pb-12 bg-black text-center">
+ 
+
+<!-- Imagem translucida com fade-in -->
+<div class="flex justify-center">
+  <img src="https://i.imgur.com/5cdAX57.png" 
+       alt="Decoração"
+       class="w-full max-w-2xl opacity-0 animate-fade-in -mb-2">
+</div>
+
+<style>
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(1.05); }
+  to   { opacity: 0.8; transform: scale(1); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1.5s ease-in-out forwards;
+  animation-delay: 1s; /* só aparece depois de 2 segundos */
+}
+</style>
+
+
+  <!-- Título -->
+<h2 class="text-3xl lg:text-4xl font-bold mb-10 bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent">
+  Descubre si tienes la <span class="underline decoration-red-600 decoration-2 underline-offset-2">madurez</span> para este tipo de contenido...
+</h2>
+
+  <!-- Grid dos cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+    <div class="card relative border border-gray-600 rounded-xl p-6 bg-white/5 overflow-hidden">
+      <img src="https://img.freepik.com/premium-photo/audience-concert-black-white_832479-14491.jpg"
+           class="absolute inset-0 w-full h-full object-cover opacity-30" />
+      <div class="relative z-10 text-white font-semibold">
+        Para quienes desean ganar dinero y enriquecerse con la [P]ersuación.
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card relative border border-gray-600 rounded-xl p-6 bg-white/5 overflow-hidden opacity-0 translate-y-10 transition-all duration-700">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ823lK4dDABdtlnYdKF3QKQCjAiK5y-lwLOOaUlgdA8cuIx3FGlFO_dpVW3H-a7imgmFk&usqp=CAU"
+           class="absolute inset-0 w-full h-full object-cover opacity-30 transition-transform duration-500 hover:scale-110" />
+      <div class="relative z-10 text-white font-semibold">
+        Aprende estas técnicas para controlar y manipular a las personas.
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="card relative border border-gray-600 rounded-xl p-6 bg-white/5 overflow-hidden opacity-0 translate-y-10 transition-all duration-700">
+      <img src="https://www.eusemfronteiras.com.br/wp-content/uploads/2018/11/pexels-photo-568025.jpeg"
+           class="absolute inset-0 w-full h-full object-cover opacity-30 transition-transform duration-500 hover:scale-110" />
+      <div class="relative z-10 text-white font-semibold">
+        Para quienes quieren mejorar sus relaciones y conseguir lo que desean.
+      </div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="card relative border border-gray-600 rounded-xl p-6 bg-white/5 overflow-hidden opacity-0 translate-y-10 transition-all duration-700">
+      <img src="https://images.pexels.com/photos/1666816/pexels-photo-1666816.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+           class="absolute inset-0 w-full h-full object-cover opacity-30 transition-transform duration-500 hover:scale-110" />
+      <div class="relative z-10 text-white font-semibold">
+        Para quienes buscan respeto, autoridad y autoconfianza.
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+  // Animação dos cards ao rolar a página
+  const cards = document.querySelectorAll('.card');
+
+  function revelarCards() {
+    const triggerBottom = window.innerHeight * 0.85;
+    cards.forEach(card => {
+      const cardTop = card.getBoundingClientRect().top;
+      if (cardTop < triggerBottom) {
+        card.classList.add("opacity-100", "translate-y-0");
+        card.classList.remove("opacity-0", "translate-y-10");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", revelarCards);
+  window.addEventListener("load", revelarCards);
+</script>
+
+
+
+      <!-- Setinha animada -->
+<div class="flex justify-center mt-0">
+  <div class="animate-bounce text-red-500 text-3xl drop-shadow-[0_0_6px_#ff0000] leading-none text-center">
+    ↓
+  </div>
+</div>
+
+
+
+<br><br><br>
+
+
+
+
+<!-- SEÇÃO 3 -->
+<section class="relative px-6 py-32 bg-black text-center overflow-hidden">
+  <h2 class="text-3xl lg:text-4xl font-bold mb-16 bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent relative z-20">
+    ¿Qué vas a aprender dentro del Código de la <span class="text-red-600">[P]ersuación</span>?
+  </h2>
+
+  <!-- Línea de sangre -->
+  <div id="blood-line" class="absolute top-56 left-1/2 -translate-x-1/2 w-[6px] rounded-full z-10"></div>
+
+  <!-- Textos -->
+  <div class="relative flex flex-col items-center gap-20 z-20">
+    <p class="opacity-0 transition-opacity duration-1000 text-white text-base max-w-md fade-text drop-shadow-[0_0_10px_black]">
+      📖 Descubre los 15 disparadores mentales, <br>
+      cómo funcionan y cómo aplicarlos <br>
+      en tu día a día.
+    </p>
+    <p class="opacity-0 transition-opacity duration-1000 text-white text-base max-w-md fade-text drop-shadow-[0_0_10px_black]">
+      🧠 Domina las técnicas de PNL para <br>
+      programar tu mente e influir en <br>
+      las personas.
+    </p>
+    <p class="opacity-0 transition-opacity duration-1000 text-white text-base max-w-md fade-text drop-shadow-[0_0_10px_black]">
+      🎯 Mira aplicaciones prácticas en ventas, <br>
+      negociaciones y relaciones reales.
+    </p>
+  </div>
+</section>
+
+<style>
+    .fade-text {
+text-shadow: 0 0 8px rgba(0,0,0,0.8), 0 0 16px rgba(0,0,0,0.7);
+}
+#blood-line {
+  height: 0;
+  background: #b71e1e; 
+  box-shadow: none; 
+  position: absolute;
+  border-radius: 999px;
+}
+
+#blood-line::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background: #b71e1e; 
+  border-radius: 50%;
+  box-shadow: none; 
+  z-index: 2;
+}
+
+
+#blood-line::before {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 9px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 90px solid #b71e1e;
+  opacity: 1;
+  filter: none; 
+  z-index: 1;
+}
+</style>
+<script>
+  const bloodLine = document.getElementById("blood-line");
+  const texts = document.querySelectorAll(".fade-text");
+
+  let maxProgress = 0; // guarda até onde já chegou
+
+  window.addEventListener("scroll", () => {
+    const section = bloodLine.parentElement;
+    const rect = section.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    if (rect.top < windowHeight && rect.bottom > 0) {
+      let progress = Math.min(Math.max((windowHeight - rect.top) / (rect.height + windowHeight), 0), 1);
+
+      // nunca diminuir, só aumentar
+      if (progress > maxProgress) {
+        maxProgress = progress;
+      }
+
+      // sangue desce mais devagar (divisor = velocidade)
+      const slowProgress = maxProgress * 0.6; // 0.5 = bem devagar, 0.8 = mais rápido
+
+      bloodLine.style.height = `${slowProgress * rect.height}px`;
+      bloodLine.style.width = `${6 + slowProgress * 6}px`;
+
+      // Textos aparecem um pouco antes
+      texts.forEach((text, i) => {
+        let trigger = (i + 1) * 0.12 + 0.05;
+        if (slowProgress > trigger) {
+          text.classList.add("opacity-100");
+        }
+      });
+    }
+  });
+</script>
+
+
+
+<br><br><br>
+
+
+<!-- CARD DE PREÇO -->
+<div id="preco" class="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-8 max-w-sm sm:max-w-md mx-auto text-black mt-20 shadow-2xl">
+
+  <!-- Reflexos de vidro -->
+  <div class="absolute inset-0 pointer-events-none rounded-2xl">
+    <div class="absolute top-0 left-0 w-1/2 h-1/3 bg-gradient-to-br from-white/40 to-transparent opacity-20 blur-2xl"></div>
+    <div class="absolute bottom-0 right-0 w-1/3 h-1/4 bg-gradient-to-tl from-white/30 to-transparent opacity-10 blur-xl"></div>
+    <div class="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-5"></div>
+  </div>
+
+  <!-- Imagem  -->
+  <div class="flex justify-center relative -mt-36 z-20">
+    <img src="https://i.imgur.com/eLB6tfA.png" 
+        class="w-[360px] sm:w-[460px] h-auto object-contain drop-shadow-[0_0_45px_rgba(0,0,0,0.9)]">
+  </div>
+
+  <!-- Conteúdo do card -->
+  <div class="relative z-10 -mt-10">
+    <!-- Título -->
+ <h3 class="text-2xl font-extrabold text-white mb-6 text-center relative z-10 mt-10">
+  EL CÓDIGO DE LA [P]ERSUASIÓN
+</h3>
+
+  <!-- Lista de beneficios -->
+<ul class="mx-auto max-w-[300px] text-left mb-6 space-y-3 text-white/90 text-sm sm:text-base leading-snug">
+  <li class="flex items-center gap-2">
+    <span class="flex-shrink-0 mt-[1px] text-red-500 text-lg leading-none">✓</span>
+    <span><strong class="text-white">Código Completo de Persuasión</strong></span>
+  </li>
+  <li class="flex items-center gap-2">
+    <span class="flex-shrink-0 mt-[1px] text-red-500 text-lg leading-none">✓</span>
+    <span>Versión en <strong>Audiolibro</strong> Completa</span>
+  </li>
+  <li class="flex items-center gap-2">
+    <span class="flex-shrink-0 mt-[1px] text-red-500 text-lg leading-none">✓</span>
+    <span><strong><span class="text-red-500">BONO #1:</span></strong> Manual de Comunicación de Alto Impacto</span>
+  </li>
+  <li class="flex items-center gap-2">
+    <span class="flex-shrink-0 mt-[1px] text-red-500 text-lg leading-none">✓</span>
+    <span><strong><span class="text-red-500">BONO #2:</span></strong> Libros Prohibidos para generar riqueza</span>
+  </li>
+  <li class="flex items-center gap-2">
+    <span class="flex-shrink-0 mt-[1px] text-red-500 text-lg leading-none">✓</span>
+    <span><strong><span class="text-red-500">BONO #3:</span></strong> Contenido exclusivo de grandes mentorías</span>
+  </li>
+  <li class="flex items-center gap-2">
+    <span class="flex-shrink-0 mt-[1px] text-red-500 text-lg leading-none">✓</span>
+    <span>Acceso <strong>Vitalicio</strong> al Área de Miembros 🎁</span>
+  </li>
+</ul>
+
+  
+
+<!-- Preço -->
+<div class="text-center mb-4">
+  <p class="text-base mb-2 text-gray-200">
+    De <s class="text-red-500">$ 59,70</s> por
+  </p>
+
+  <div class="flex items-center justify-center gap-2 leading-none">
+    <span class="text-7xl sm:text-7xl font-extrabold text-green-400 drop-shadow-[0_0_20px_rgba(34,197,94,0.9)]">
+      $ 9,70
+    </span>
+  </div>
+
+  <div class="mt-1 text-gray-200 text-base">*Solo por hoy $50 OFF</div>
+</div><br>
+
+
+
+<!-- Botão CTA -->
+<a href="https://pay.hotmart.com/C102252201D?checkoutMode=10"
+   class="block bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-lg text-lg transition-all btn-pulsante text-center shadow-lg leading-tight">
+  DESBLOQUEAR EL CÓDIGO
+  <span class="block text-sm font-normal text-white/80 mt-0.1">
+    Recibe el acceso inmediatamente
+  </span>
+</a>
+
+<!-- Rodapé com imagem colada no botão -->
+<div class="flex justify-center mt-4">
+  <img src="https://i.imgur.com/YUJAO1q.png" 
+       class="w-56 h-auto opacity-95">
+</div>
+
+
+
+  </div>
+</div>
+
+
+
+
+
+
+
+<br><br><br><br>
+
+<!-- SEÇÃO DEPOIMENTOS -->
+<section class="px-6 py-20 bg-black text-center relative overflow-hidden">
+  <h2 class="text-3xl lg:text-4xl font-bold mb-10 bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent">
+    Mentes que ya dominan la [P]ersuasión
+  </h2>
+
+  <!-- Contenedor con scroll y drag -->
+  <div id="infiniteSlider" class="relative w-full overflow-x-auto select-none hide-scrollbar cursor-grab">
+    <div id="sliderContent" class="flex gap-6 py-2">
+      <!-- ====== COPIA BASE (8 tarjetas) ====== -->
+
+      <!-- 1) Carlos (ya existía) -->
+      <article class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative flex-shrink-0">
+        <div class="flex items-center gap-4 mb-4">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq0jls4tKxq6BxwxiA4Amhif4qtfzJoD-1TQ&s"
+               alt="Carlos Mendes" class="w-16 h-16 rounded-full object-cover">
+          <div class="text-left">
+            <div class="text-yellow-400">★★★★★</div>
+            <p class="font-bold">Carlos Mendes</p>
+            <p class="text-sm text-gray-300">@carlos.mendes</p>
+          </div>
+        </div>
+        <p class="italic text-gray-200">"Después de aplicar las técnicas, mi relación cambió por completo. Hoy tengo el respeto y la admiración de mi pareja como nunca antes."</p>
+      </article>
+
+      <!-- 2) Juliana (ya existía) -->
+      <article class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative flex-shrink-0">
+        <div class="flex items-center gap-4 mb-4">
+          <img src="https://storage.alboom.ninja/sites/12999/media/20841125_1231455266966305_7701507656374992607_n_b6ed5833d2e7_54ddc3f2ae66.jpg?t=1583411351"
+               alt="Juliana Costa" class="w-16 h-16 rounded-full object-cover">
+          <div class="text-left">
+            <div class="text-yellow-400">★★★★★</div>
+            <p class="font-bold">Juliana Costa</p>
+            <p class="text-sm text-gray-300">@julicosta.oficial</p>
+          </div>
+        </div>
+        <p class="italic text-gray-200">"Logré duplicar mis ventas en menos de 2 semanas. La gente simplemente ya no me dice 'no'."</p>
+      </article>
+
+      <!-- 3) Daniel (ya existía) -->
+      <article class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative flex-shrink-0">
+        <div class="flex items-center gap-4 mb-4">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI50nmF1rK5pKKVxoP9YwrRGwQzv_b-AbGJg&s"
+               alt="Daniel Moreira" class="w-16 h-16 rounded-full object-cover">
+          <div class="text-left">
+            <div class="text-yellow-400">★★★★★</div>
+            <p class="font-bold">Daniel Moreira</p>
+            <p class="text-sm text-gray-300">@danmoreira</p>
+          </div>
+        </div>
+        <p class="italic text-gray-200">"En el trabajo empecé a ser visto como un líder. Cerré proyectos millonarios y finalmente alcancé la promoción que buscaba."</p>
+      </article>
+
+      <!-- 4) Fernanda (ya existía) -->
+      <article class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative flex-shrink-0">
+        <div class="flex items-center gap-4 mb-4">
+          <img src="https://cdn.vgnoticias.com.br/storage/webdisco/2018/12/23/800x600/74e6e3a8d13a7ba54fda12c07f6b225a.jpg"
+               alt="Fernanda Ribeiro" class="w-16 h-16 rounded-full object-cover">
+          <div class="text-left">
+            <div class="text-yellow-400">★★★★★</div>
+            <p class="font-bold">Fernanda Ribeiro</p>
+            <p class="text-sm text-gray-300">@fer.ribeiro</p>
+          </div>
+        </div>
+        <p class="italic text-gray-200">"Aprendí a manipular las situaciones a mi favor. Hoy gano más dinero y tengo el respeto de las personas a mi alrededor."</p>
+      </article>
+
+      <!-- ====== NUEVOS 4 TESTIMONIOS (2H / 2M) ====== -->
+
+      <!-- 5) Hombre (foto 1) -->
+      <article class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative flex-shrink-0">
+        <div class="flex items-center gap-4 mb-4">
+          <img src="https://ogimg.infoglobo.com.br/in/22286655-81b-b82/FT1086A/reproducao-facebook.jpg"
+               alt="Rafael Álvarez" class="w-16 h-16 rounded-full object-cover">
+          <div class="text-left">
+            <div class="text-yellow-400">★★★★★</div>
+            <p class="font-bold">Rafael Álvarez</p>
+            <p class="text-sm text-gray-300">@rafa.alvarez</p>
+          </div>
+        </div>
+        <p class="italic text-gray-200">"Pensé que esto era humo, pero a la semana ya cerré dos contratos grandes. Control y respeto, y más autoridad."</p>
+      </article>
+
+      <!-- 6) Hombre (foto 2) -->
+      <article class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative flex-shrink-0">
+        <div class="flex items-center gap-4 mb-4">
+          <img src="https://static.ndmais.com.br/2023/01/mateus-macedo.jpg"
+               alt="Mateo Macedo" class="w-16 h-16 rounded-full object-cover">
+          <div class="text-left">
+            <div class="text-yellow-400">★★★★★</div>
+            <p class="font-bold">Mateo Macedo</p>
+            <p class="text-sm text-gray-300">@mateomacedo</p>
+          </div>
+        </div>
+        <p class="italic text-gray-200">"Aplicando un par de frases, invertí la dinámica con mi ex y en ventas. Hoy marco el ritmo y nadie me pisa."</p>
+      </article>
+
+      <!-- 7) Mujer (foto 1) -->
+      <article class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative flex-shrink-0">
+        <div class="flex items-center gap-4 mb-4">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA1G-RMwZqjJSlrfOa_D8gmRVci6aNi3IEHQ&s"
+               alt="Carolina Gómez" class="w-16 h-16 rounded-full object-cover">
+          <div class="text-left">
+            <div class="text-yellow-400">★★★★★</div>
+            <p class="font-bold">Carolina Gómez</p>
+            <p class="text-sm text-gray-300">@carogomez</p>
+          </div>
+        </div>
+        <p class="italic text-gray-200">"Dejé de ser invisible en reuniones. Ahora me escuchan, cierro acuerdos y el miedo desapareció. Vale cada centavo, literal, en mi carrera."</p>
+      </article>
+
+      <!-- 8) Mujer (foto 2) -->
+      <article class="glass-card w-80 p-6 rounded-xl shadow-lg text-white relative flex-shrink-0">
+        <div class="flex items-center gap-4 mb-4">
+          <img src="https://marilianoticia.com.br/wp-content/uploads/2016/04/asfixia.jpg"
+               alt="María Luisa" class="w-16 h-16 rounded-full object-cover">
+          <div class="text-left">
+            <div class="text-yellow-400">★★★★★</div>
+            <p class="font-bold">María Luisa</p>
+            <p class="text-sm text-gray-300">@marialuisa.ok</p>
+          </div>
+        </div>
+        <p class="italic text-gray-200">"Usé las técnicas con límites claros: resultados en trabajo y pareja. Seguridad, carisma y cero dramas. Lo recomendaría a mi mejor amiga."</p>
+      </article>
+
+      <!-- ====== FIN COPIA BASE ====== -->
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- Estilos carrusel -->
+<style>
+.glass-card {
+  position: relative;
+  background: rgba(16, 16, 16, 0.348);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('https://i.pinimg.com/564x/b2/9d/df/b29ddf01acd53e07e44d63efcc5c54a4.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3; /* textura translúcida */
+  z-index: 0;
+}
+
+.glass-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0) 60%,   /* centro limpo */
+    rgba(0, 0, 0, 0.7) 100%  /* bordas escuras */
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.glass-card > * {
+  position: relative;
+  z-index: 2;
+}
+  .hide-scrollbar::-webkit-scrollbar{ display:none; }
+  .hide-scrollbar{ -ms-overflow-style:none; scrollbar-width:none; }
+  #infiniteSlider { scroll-behavior: auto; }
+  #infiniteSlider.grabbing, #infiniteSlider:active { cursor: grabbing; }
+</style>
+
+
+
+
+<script>
+(() => {
+  const container = document.getElementById('infiniteSlider');
+  const content = document.getElementById('sliderContent');
+
+  // Duplica os cards para garantir rolagem infinita suave
+  const items = Array.from(content.children);
+  content.append(...items.map(el => el.cloneNode(true)), ...items.map(el => el.cloneNode(true)));
+
+  let totalWidth = 0;
+  function computeWidth() {
+    const gap = parseFloat(getComputedStyle(content).gap || 0);
+    totalWidth = items.reduce((sum, el) => sum + el.offsetWidth, 0) + gap * (items.length - 1);
+  }
+
+  window.addEventListener('load', () => {
+    computeWidth();
+    container.scrollLeft = totalWidth; // começa no meio
+    requestAnimationFrame(autoScroll);
+  });
+  window.addEventListener('resize', computeWidth);
+
+  // --- Loop infinito imperceptível ---
+  function keepInfinite() {
+    if (container.scrollLeft <= 0) {
+      // Quando chega ao início, volta para o meio sem "pular"
+      container.scrollLeft += totalWidth;
+    } else if (container.scrollLeft >= totalWidth * 2) {
+      container.scrollLeft -= totalWidth;
+    }
+  }
+
+  // --- Autoplay suave e lento (da direita → esquerda) ---
+  let speed = 0.03; // quanto menor, mais lento
+  let active = true;
+  let last = performance.now();
+
+  function autoScroll(now) {
+    const delta = now - last;
+    last = now;
+    if (active) {
+      container.scrollLeft -= speed * delta; // move da direita para a esquerda
+      keepInfinite();
+    }
+    requestAnimationFrame(autoScroll);
+  }
+
+  function pauseScroll() { active = false; }
+  let resumeTimer;
+  function resumeScroll() {
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(() => (active = true), 2000);
+  }
+
+  // --- Arrasto manual bidirecional ---
+  let isDown = false, startX = 0, scrollStart = 0, dragged = false;
+  container.addEventListener('pointerdown', e => {
+    pauseScroll();
+    isDown = true;
+    dragged = false;
+    startX = e.clientX;
+    scrollStart = container.scrollLeft;
+    container.classList.add('grabbing');
+    container.setPointerCapture(e.pointerId);
+  });
+
+  container.addEventListener('pointermove', e => {
+    if (!isDown) return;
+    const dx = e.clientX - startX;
+    if (Math.abs(dx) > 3) dragged = true;
+    container.scrollLeft = scrollStart - dx;
+    keepInfinite();
+  });
+
+  const endDrag = e => {
+    if (!isDown) return;
+    isDown = false;
+    container.classList.remove('grabbing');
+    if (e.pointerId) try { container.releasePointerCapture(e.pointerId); } catch(_){}
+    resumeScroll();
+  };
+
+  container.addEventListener('pointerup', endDrag);
+  container.addEventListener('pointerleave', endDrag);
+  container.addEventListener('click', e => {
+    if (dragged) { e.preventDefault(); e.stopPropagation(); }
+  }, true);
+})();
+</script>
+
+
+
+<br>
+
+
+
+<!-- GARANTIA -->
+<section class="px-6 py-16 text-center">
+  <div class="bg-white text-black rounded-xl shadow-lg max-w-lg mx-auto p-8">
+    <img src="https://media.inlead.cloud/uploads/7652/2025-03-12/sm-x1kj9-sm-5qzj0-image-220-2-3.webp" 
+         alt="Garantia 30 Dias" 
+         class="mx-auto mb-6 w-32 lg:w-40">
+    <h3 class="text-2xl font-bold mb-4">Garantía de 30 Días</h3>
+    <p style="font-size:14px; color:#333; line-height:1.5; max-width:420px; margin:0 auto;">
+      Sé que vives con un poco de miedo, así que decidí garantizar este material por 30 días.<br><br>
+      Si no cumple con tus expectativas, te devolveremos esa pequeña cantidad que pagaste, sin hacer preguntas.<br><br>
+      Solo envía un correo electrónico al soporte <b>contato@codpersuasion.com</b>
+    </p>
+  </div>
+</section>
+
+<!-- OFERTA FINAL -->
+<section class="px-6 py-20 bg-gradient-to-b from-black to-gray-900 text-center">
+  <h2 class="text-3xl lg:text-5xl font-bold mb-6"><b>⚠️ ¿Ansioso...?</b> ¿Ya bajaste hasta el final sin leer?</h2>
+  <p class="text-gray-300 mb-8">Te lo resumo... Este material es una guía completa de <b>PNL y Disparadores Mentales</b> para influir en las personas, persuadir y conquistar respeto, ventas y autoridad. 
+<br>
+ <p class="text-gray-300 mb-8"><b>¡CUIDADO!</b> ¡No uses estas técnicas para el mal! 
+  </p>
+ <!-- Botão CTA -->
+<a href="https://pay.hotmart.com/C102252201D?checkoutMode=10"
+   class="mx-auto w-[90%] max-w-sm sm:max-w-md bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-lg text-lg transition-all btn-pulsante text-center shadow-lg leading-tight block">
+  ✅ QUIERO ACCEDER AHORA
+  <span class="block text-sm font-normal text-white/80 mt-0.5">
+    Aprovecha $50 de descuento
+  </span>
+</a>
+
+<!-- Estrelas -->
+<p class="text-center text-yellow-400 text-sm font-light mt-3">
+  ★★★★★ + de 5.000 miembros
+</p>
+
+<br>
+<br>
+</section>
+
+
+
+
+
+<!-- FOOTER -->
+<footer class="bg-black text-gray-500 text-[10px] text-center py-8 px-4">
+  
+  <!-- Imagem pequena acima do texto -->
+<br>
+
+<div class="text-center mt-6">
+  <img src="https://i.imgur.com/qTtFLJe.png" 
+       alt="Logo El Código de la Persuasión" 
+       class="mx-auto w-14 h-auto mb-1 opacity-70">
+  <p><strong>El Código de la [P]ersuación</strong> - Todos los derechos reservados.</p>
+</div>
+
+
+
+ <br><br>
+</footer>
+
+
+<script>
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+</script>
+
+
+
+
+<!-- Notificações (canto inferior esquerdo) -->
+<div id="toasts" class="fixed bottom-4 left-4 z-[10000] space-y-3 pointer-events-none"></div>
+
+<style>
+  /* animações do toast */
+  @keyframes toastIn {
+    from { transform: translate(-20px, 20px); opacity: 0; }
+    to   { transform: translate(0, 0);        opacity: 1; }
+  }
+  @keyframes toastOut {
+    to { transform: translateY(10px); opacity: 0; }
+  }
+  .toast-enter { animation: toastIn .6s ease forwards; }
+  .toast-exit  { animation: toastOut .5s ease forwards; }
+</style>
+
+<script>
+  // listas: 5 homens + 5 mulheres, 10 UFs diferentes
+const NOMES = [
+  "Carlos Ramírez", "Juan Pérez", "Luis Fernández", "Miguel Torres", "Diego González",
+  "Ana María", "Camila López", "Fernanda Castillo", "Juliana Rodríguez", "Mariana Herrera"
+];
+
+  const UFS = ["AR","BO","CL","CO","CR","CU","DO","EC","MX","HN"];
+
+  const TOASTS_WRAP = document.getElementById("toasts");
+  const CHECK_SVG = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="12" fill="#22c55e" opacity=".95"></circle>
+      <path d="M7 12.5l3.2 3L17 9" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`;
+
+  function randItem(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+  function showToast() {
+    const nome = randItem(NOMES);
+    const uf   = randItem(UFS);
+
+const toast = document.createElement("div");
+toast.className = "toast-enter flex items-start gap-3 w-[320px] max-w-[92vw] p-4 rounded-2xl text-white shadow-2xl border border-white/10 backdrop-blur-md";
+toast.style.background = "rgba(19,19,19,0.85)"; 
+toast.innerHTML = `
+  <div class="shrink-0 mt-0.5">${CHECK_SVG}</div>
+  <div class="flex-1 leading-tight">
+    <div class="font-semibold">${nome}, ${uf}</div>
+    <div class="text-sm text-white/90">¡Entró en la Comunidad!</div>
+  </div>
+`;
+
+    TOASTS_WRAP.appendChild(toast);
+
+    // remove após ~5s
+    setTimeout(() => {
+      toast.classList.remove("toast-enter");
+      toast.classList.add("toast-exit");
+      setTimeout(() => toast.remove(), 550);
+    }, 5000);
+
+    // agenda próxima notificação em 15–20s
+    scheduleNext();
+  }
+
+  function scheduleNext(){
+    const delay = 20000 + Math.random()*10000; // 20s a 30s
+    setTimeout(showToast, delay);
+  }
+
+  // inicia após um pequeno atraso
+  setTimeout(showToast, 7000);
+
+
+
+
+
+
+  
+// Bloqueia pinça (touchmove com 2 dedos)
+document.addEventListener('touchmove', function(e) {
+  if (e.touches && e.touches.length > 1) {
+    e.preventDefault();
+  }
+}, { passive: false });
+
+// Bloqueia duplo-toque rápido
+let lastTouchEnd = 0;
+document.addEventListener('touchend', function(e) {
+  const now = Date.now();
+  if (now - lastTouchEnd <= 300) {
+    e.preventDefault();
+  }
+  lastTouchEnd = now;
+}, false);
+
+// Bloqueia gestos específicos no iOS
+document.addEventListener('gesturestart', function(e) {
+  e.preventDefault();
+});
+
+
+
+// Bloqueia o menu de contexto (clique direito)
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+// Impede copiar/recortar/selecionar texto
+['copy','cut','selectstart','dragstart'].forEach(evt =>
+  document.addEventListener(evt, e => e.preventDefault())
+);
+
+// Bloqueia atalho Ctrl+C, Ctrl+U (ver fonte), Ctrl+S, Ctrl+P e F12
+document.addEventListener('keydown', e => {
+  const forbidden =
+    // combinações de Ctrl + C, U, S, P, A
+    (e.ctrlKey &&
+      ['c','u','s','p','a'].includes(e.key.toLowerCase()))
+    // F12
+    || e.key === 'F12';
+  if (forbidden) e.preventDefault();
+});
+
+
+</script>
+
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '839138854780074'); // seu pixel ID
+  fbq('track', 'Contact');
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+       src="https://www.facebook.com/tr?id=839138854780074&ev=Contact&noscript=1"/>
+</noscript>
+
+
+
+
+<script>
+    let prefix = ["https://payment.hotmart.com", "https://pay.hotmart.com"];
+
+function getParams() {
+    let t = "",
+        e = window.top.location.href,
+        r = new URL(e);
+    if (null != r) {
+        let a = r.searchParams.get("utm_source"),
+            n = r.searchParams.get("utm_medium"),
+            o = r.searchParams.get("utm_campaign"),
+            m = r.searchParams.get("utm_term"),
+            c = r.searchParams.get("utm_content"); - 1 !== e.indexOf("?") && (t = `&sck=${a}|${n}|${o}|${m}|${c}`), console.log(t)
+    }
+    return t
+}! function() {
+    var t = new URLSearchParams(window.location.search);
+    t.toString() && document.querySelectorAll("a").forEach(function(e) {
+        for (let r = 0; r < prefix.length; r++) - 1 !== e.href.indexOf(prefix[r]) && (-1 === e.href.indexOf("?") ? e.href += "?" + t.toString() + getParams() : e.href += "&" + t.toString() + getParams())
+    })
+}();
+
+</script>
+
+
+ 
+<script>//zona clicavem da hero para avançar para dobra 2
+document.addEventListener("DOMContentLoaded", () => {
+  const hero = document.querySelector("section.relative"); // HERO principal
+  const target = document.querySelector("#oque"); // segunda seção (#oque)
+
+  if (hero && target) {
+    hero.addEventListener("click", (e) => {
+      // Só funciona se o usuário estiver no topo (primeira dobra)
+      if (window.scrollY > window.innerHeight * 0.2) return;
+
+      const rect = hero.getBoundingClientRect();
+      const y = e.clientY - rect.top;
+
+      // Define faixa da área clicável (entre headline e botão)
+      const zoneStart = rect.height * 0.25;
+      const zoneEnd = rect.height * 0.9;
+
+      // Se o clique estiver dentro da zona, faz o scroll
+      if (y >= zoneStart && y <= zoneEnd) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  }
+});
+</script>
+
+
+</body>
+</html>
