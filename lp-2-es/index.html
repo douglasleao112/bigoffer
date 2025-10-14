@@ -159,23 +159,33 @@
   </h1>
 
 <!-- VIDEO HERO --> 
- <div class="relative flex justify-center w-full max-w-lg z-10"> 
-  <div class="video-glow rounded-xl overflow-hidden"> 
-    <video id="heroVideo" 
-    class="w-full rounded-xl object-cover" 
-    preload="auto" 
-    playsinline poster="https://i.imgur.com/JrfTAZg.gif"> 
-    
-    <source src="https://video.wixstatic.com/video/7f5efc_eb57ec3bebee4ccda89a0e68f70e82a1/1080p/mp4/file.mp4" 
-    type="video/mp4"> </video> 
-  </div> 
-    
-    <!-- IMAGEM SOBRE O VÍDEO --> 
-     <div id="overlaySymbol" 
-     class="absolute inset-0 flex items-center justify-center z-30 pointer-events-none transition-opacity duration-700"> 
-     <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" 
-     class="w-20 sm:w-56 md:w-64 lg:w-72 h-auto opacity-100 animate-zoomPulse select-none"> 
+ <div class="relative flex justify-center w-full max-w-lg z-10">
+  <div class="video-glow rounded-xl overflow-hidden relative">
+    <video id="heroVideo"
+      class="w-full rounded-xl object-cover"
+      preload="auto"
+      playsinline
+      poster="https://i.imgur.com/JrfTAZg.gif">
+      <source src="https://video.wixstatic.com/video/7f5efc_eb57ec3bebee4ccda89a0e68f70e82a1/1080p/mp4/file.mp4"
+        type="video/mp4">
+    </video>
+  </div>
+
+  <!-- Barra de progresso (AGORA SOBRE O VÍDEO) -->
+  <div class="absolute bottom-0 left-0 w-full h-[12px] rounded-b-xl overflow-hidden z-50">
+    <div id="progressBar"
+      class="h-full w-0 bg-red-600/90 shadow-[0_0_14px_rgba(255,0,0,0.7)] transition-all duration-200">
     </div>
+  </div>
+
+  <!-- Ícone sobre o vídeo -->
+  <div id="overlaySymbol"
+    class="absolute inset-0 flex items-center justify-center z-30 pointer-events-none transition-opacity duration-700">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png"
+      class="w-20 sm:w-56 md:w-64 lg:w-72 h-auto opacity-100 animate-zoomPulse select-none">
+  </div>
+</div>
+
 
  
 
