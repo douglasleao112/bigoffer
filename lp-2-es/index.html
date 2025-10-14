@@ -432,24 +432,34 @@
     <source src="https://video.wixstatic.com/video/7f5efc_0e8a173ccdfd4f928f2d5c123415d129/480p/mp4/file.mp4" type="video/mp4">
   </video>
 </div>
-</section>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", () => {
   const v = document.getElementById("videoAreaMiembros");
+
+  // Tentativa automática de autoplay
   const tryPlay = () => {
+    if (!v) return;
+    v.muted = true; // obrigatório para iOS
     const playPromise = v.play();
     if (playPromise !== undefined) {
       playPromise.catch(() => {
-        // iOS às vezes bloqueia até o muted autoplay
-        v.muted = true;
-        v.play();
+        // Se o autoplay for bloqueado, tenta novamente ao interagir
+        const resume = () => {
+          v.play();
+          document.removeEventListener('touchstart', resume);
+          document.removeEventListener('click', resume);
+        };
+        document.addEventListener('touchstart', resume, { once: true });
+        document.addEventListener('click', resume, { once: true });
       });
     }
   };
+
   tryPlay();
 });
 </script>
+
 
 
 <br><br><br><br>
