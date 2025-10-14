@@ -59,34 +59,33 @@
     }
 
 
-
-  /* ✨ Moldura luminosa animada ao redor do vídeo */
+/* Moldura luminosa sutil e próxima ao vídeo */
 .video-glow {
   position: relative;
-  box-shadow: 0 0 35px rgba(255, 255, 255, 0.25),
-              0 0 70px rgba(255, 255, 255, 0.15),
-              0 0 90px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2),
+              0 0 20px rgba(255, 255, 255, 0.1),
+              0 0 30px rgba(255, 255, 255, 0.05);
   transition: all 0.6s ease-in-out;
 }
 
-/* Animação contínua do brilho se movendo */
+/* Brilho animado mais discreto e rente ao contorno */
 .animated-glow::before {
   content: "";
   position: absolute;
-  inset: -3px;
+  inset: -1px; /* aproxima o brilho do vídeo */
   border-radius: 1rem;
   background: conic-gradient(
     from 0deg,
-    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.2),
     rgba(255, 255, 255, 0.05),
-    rgba(255, 255, 255, 0.25)
+    rgba(255, 255, 255, 0.2)
   );
-  animation: rotateGlow 6s linear infinite;
-  filter: blur(20px);
+  animation: rotateGlow 8s linear infinite;
+  filter: blur(6px); /* reduzido para deixar o brilho mais nítido e próximo */
   z-index: 0;
 }
 
-/* Efeito giratório sutil do brilho */
+/* Movimento suave e lento */
 @keyframes rotateGlow {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -98,6 +97,7 @@
   z-index: 2;
   border-radius: 1rem;
 }
+
 
   </style>
 
