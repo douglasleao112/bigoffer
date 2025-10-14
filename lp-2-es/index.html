@@ -149,19 +149,33 @@
 </style>
 
 <script>
-  const videoOverlay = document.getElementById("heroVideo"); // nome diferente
+  const videoOverlay = document.getElementById("heroVideo");
   const overlaySymbol = document.getElementById("overlaySymbol");
 
+  let jaTocou = false; // controla se já foi executado uma vez
+  let terminou = false; // controla se o vídeo terminou
+
   document.addEventListener("click", (e) => {
-    if (e.target.closest("a")) return;
+    // impede play se clicar em link ou se já tiver rodado
+    if (e.target.closest("a") || jaTocou || terminou) return;
+
     if (videoOverlay && videoOverlay.paused) {
       videoOverlay.muted = false;
       videoOverlay.volume = 1.0;
       videoOverlay.play().then(() => {
+        jaTocou = true; // marca que já tocou
         overlaySymbol.style.opacity = "0";
-        setTimeout(() => overlaySymbol.style.display = "none", 800);
+        setTimeout(() => (overlaySymbol.style.display = "none"), 800);
       }).catch(err => console.log("Autoplay bloqueado:", err));
     }
+  });
+
+  // impede replay após terminar
+  videoOverlay.addEventListener("ended", () => {
+    terminou = true;
+    videoOverlay.pause();
+    videoOverlay.removeAttribute("controls"); // remove controles
+    videoOverlay.style.pointerEvents = "none"; // bloqueia clique no vídeo
   });
 </script>
 
@@ -258,20 +272,8 @@
 <div class="flex justify-center">
   <img src="https://i.imgur.com/5cdAX57.png" 
        alt="Decoração"
-       class="w-full max-w-2xl opacity-0 animate-fade-in -mb-2">
+       class="w-full max-w-2xl  -mb-2">
 </div>
-
-<style>
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(1.05); }
-  to   { opacity: 0.8; transform: scale(1); }
-}
-
-.animate-fade-in {
-  animation: fadeIn 1.5s ease-in-out forwards;
-  animation-delay: 1s; /* só aparece depois de 2 segundos */
-}
-</style>
 
 
   <!-- Título -->
@@ -290,7 +292,7 @@
     </div>
 
     <!-- CARD 2 -->
-    <div class="card relative border border-gray-600 rounded-xl p-6 bg-white/5 overflow-hidden opacity-0 translate-y-10 transition-all duration-700">
+    <div class="card relative border border-gray-600 rounded-xl p-6 bg-white/5 overflow-hidden ">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ823lK4dDABdtlnYdKF3QKQCjAiK5y-lwLOOaUlgdA8cuIx3FGlFO_dpVW3H-a7imgmFk&usqp=CAU"
            class="absolute inset-0 w-full h-full object-cover opacity-30 transition-transform duration-500 hover:scale-110" />
       <div class="relative z-10 text-white font-semibold">
@@ -299,7 +301,7 @@
     </div>
 
     <!-- CARD 3 -->
-    <div class="card relative border border-gray-600 rounded-xl p-6 bg-white/5 overflow-hidden opacity-0 translate-y-10 transition-all duration-700">
+    <div class="card relative border border-gray-600 rounded-xl p-6 bg-white/5 overflow-hidden ">
       <img src="https://www.eusemfronteiras.com.br/wp-content/uploads/2018/11/pexels-photo-568025.jpeg"
            class="absolute inset-0 w-full h-full object-cover opacity-30 transition-transform duration-500 hover:scale-110" />
       <div class="relative z-10 text-white font-semibold">
@@ -308,7 +310,7 @@
     </div>
 
     <!-- CARD 4 -->
-    <div class="card relative border border-gray-600 rounded-xl p-6 bg-white/5 overflow-hidden opacity-0 translate-y-10 transition-all duration-700">
+    <div class="card relative border border-gray-600 rounded-xl p-6 bg-white/5 overflow-hidden ">
       <img src="https://images.pexels.com/photos/1666816/pexels-photo-1666816.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
            class="absolute inset-0 w-full h-full object-cover opacity-30 transition-transform duration-500 hover:scale-110" />
       <div class="relative z-10 text-white font-semibold">
@@ -319,25 +321,6 @@
 </section>
 
 
-
-<script>
-  // Animação dos cards ao rolar a página
-  const cards = document.querySelectorAll('.card');
-
-  function revelarCards() {
-    const triggerBottom = window.innerHeight * 0.85;
-    cards.forEach(card => {
-      const cardTop = card.getBoundingClientRect().top;
-      if (cardTop < triggerBottom) {
-        card.classList.add("opacity-100", "translate-y-0");
-        card.classList.remove("opacity-0", "translate-y-10");
-      }
-    });
-  }
-
-  window.addEventListener("scroll", revelarCards);
-  window.addEventListener("load", revelarCards);
-</script>
 
 
 
@@ -359,9 +342,8 @@
   </h2>
 
   <div class="flex justify-center mt-1">
-    <img src="https://i.imgur.com/o934mNr.gif" 
-         alt="Área secreta" 
-         class="w-72 sm:w-96 h-auto">
+    <img src="https://i.imgur.com/xYRaJUr.gif" 
+      class="w-72 sm:w-96 h-auto">
   </div>
 </section>
 
@@ -462,7 +444,7 @@ text-shadow: 0 0 8px rgba(0,0,0,0.8), 0 0 16px rgba(0,0,0,0.7);
       if (scrollPercent > maxProgress) maxProgress = scrollPercent;
 
       // controla a descida do sangue (mantém o mesmo ritmo visual)
-      const bloodProgress = maxProgress * 0.9; // define a velocidade da gota
+      const bloodProgress = maxProgress * 0.7; // define a velocidade da gota
       bloodLine.style.height = `${bloodProgress * rect.height}px`;
       bloodLine.style.width = `${6 + bloodProgress * 6}px`;
 
@@ -746,7 +728,7 @@ text-shadow: 0 0 8px rgba(0,0,0,0.8), 0 0 16px rgba(0,0,0,0.7);
 
 
 
-<br><br><br><br>
+<br><br><br>
 
 <!-- SEÇÃO DEPOIMENTOS -->
 <section class="px-6 py-16 bg-black text-center relative overflow-hidden">
