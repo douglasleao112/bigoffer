@@ -570,7 +570,7 @@ text-shadow: 0 0 8px rgba(0,0,0,0.8), 0 0 16px rgba(0,0,0,0.7);
 
 
 <!-- TÍTULO DAS OFERTAS -->
-<h2 class="text-3xl lg:text-4xl font-bold mb-10 lg:mb-12 bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent text-center">
+<h2 id="preco" class="text-3xl lg:text-4xl font-bold mb-10 lg:mb-12 bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent text-center">
   Elige la mejor oferta
 </h2>
 
@@ -1061,7 +1061,7 @@ text-shadow: 0 0 8px rgba(0,0,0,0.8), 0 0 16px rgba(0,0,0,0.7);
  <p class="text-gray-300 mb-8"><b>¡CUIDADO!</b> ¡No uses estas técnicas para el mal! </p>
 
  <!-- Botão CTA -->
-<a href="https://pay.hotmart.com/C102252201D?checkoutMode=10"
+<a href="#preco"
    class="mx-auto w-[90%] max-w-sm sm:max-w-md bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-lg text-lg transition-all btn-pulsante text-center shadow-lg leading-tight block">
   ✅ QUIERO ACCEDER AHORA
   <span class="block text-sm font-normal text-white/80 mt-0.5">
@@ -1079,7 +1079,21 @@ text-shadow: 0 0 8px rgba(0,0,0,0.8), 0 0 16px rgba(0,0,0,0.7);
 <br><br>
 
 <!-- CARD DE ALERTA  -->
-<p class="text-gray-300 mb-1">203 personas están viendo esta oferta</p>
+<p id="contadorVisitas" class="text-gray-300 mb-1">
+  203 personas están viendo esta oferta
+</p>
+
+<script>
+  const contador = document.getElementById("contadorVisitas");
+
+  function atualizarContador() {
+    const numeroAleatorio = Math.floor(Math.random() * (250 - 203 + 1)) + 203;
+    contador.textContent = `${numeroAleatorio} personas están viendo esta oferta`;
+  }
+
+  // Atualiza a cada 5 segundos (5000 ms)
+  setInterval(atualizarContador, 5000);
+</script>
 <div class="flex justify-center mb-2">
   <div class="relative flex items-center gap-2 bg-[#d40000] text-white text-sm font-semibold px-4 py-1.5 rounded shadow-[0_0_8px_rgba(255,0,0,0.4)] overflow-hidden">
     <!-- Brilho branco discreto no canto direito -->
