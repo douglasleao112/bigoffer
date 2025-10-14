@@ -548,14 +548,24 @@ text-shadow: 0 0 8px rgba(0,0,0,0.8), 0 0 16px rgba(0,0,0,0.7);
 <div class="relative w-full max-w-5xl bg-[#050505] border border-white/5 rounded-xl p-8 pl-4 shadow-[0_0_25px_rgba(255,255,255,0.03)] hover:shadow-[0_0_40px_rgba(255,255,255,0.06)] text-center overflow-hidden">
 
   <!-- Brilho inferior -->
-  <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-white/5 to-transparent pointer-events-none rounded-b-xl"></div>
+<div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-white/5 to-transparent pointer-events-none rounded-b-xl"></div>
 
-  <h3 class="text-2xl font-bold text-white mb-4">¡Y MÁS REGALOS SORPRESAS!</h3>
+<!-- IMAGEM ACIMA DO TÍTULO (menor e transparente) -->
+<div class="flex justify-center mb-0 relative z-10">
+  <img src="https://i.imgur.com/rJDNGOt.png" 
+       alt="Regalos Sorpresa"
+       class="w-32 sm:w-34 h-auto opacity-50">
+</div>
 
-  <p class="text-gray-300 text-base mb-1">Valor total de los bonos:</p>
-  <p class="text-red-500 text-2xl font-bold line-through mb-2">$ 78.60</p>
-  <p class="text-gray-300 text-base mb-1">Solo por HOY:</p>
-  <p class="text-green-500 text-3xl font-extrabold">GRATIS</p>
+<!-- TÍTULO -->
+<h3 class="text-2xl font-bold text-white mb-4">¡Y MÁS REGALOS SORPRESAS!</h3>
+
+<div class="flex justify-center items-baseline gap-2 mb-2">
+  <p class="text-gray-300 text-base">Valor total de los bonos:</p>
+  <p class="text-red-500 text-xl line-through">$ 78.60</p>
+</div>
+<p class="text-gray-300 text-base mb-1">Solo por HOY:</p>
+<p class="text-green-500 text-3xl font-extrabold">GRATIS</p>
 </div>
 
   </div>
@@ -570,7 +580,7 @@ text-shadow: 0 0 8px rgba(0,0,0,0.8), 0 0 16px rgba(0,0,0,0.7);
 
 
 <!-- TÍTULO DAS OFERTAS -->
-<h2 class="text-3xl lg:text-4xl font-bold mb-10 lg:mb-12 bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent text-center">
+<h2  class="text-3xl lg:text-4xl font-bold mb-10 lg:mb-12 bg-gradient-to-t from-gray-400 to-white bg-clip-text text-transparent text-center">
   Elige la mejor oferta
 </h2>
 
@@ -613,9 +623,8 @@ text-shadow: 0 0 8px rgba(0,0,0,0.8), 0 0 16px rgba(0,0,0,0.7);
     <!-- Preço -->
     <div class="text-center mb-4">
       <div class="flex items-center justify-center gap-2 leading-none">
-        <span class="text-7xl sm:text-7xl font-extrabold text-green-400 drop-shadow-[0_0_20px_rgba(34,197,94,0.9)]">
-          
-        $ 9.70
+        <span class="text-5xl sm:text-7xl font-extrabold text-green-400 drop-shadow-[0_0_20px_rgba(34,197,94,0.9)]">
+            $ 9.70
         </span>
       </div>
       <div class="mt-1 text-gray-200 text-base">A la vista</div>
@@ -635,7 +644,7 @@ text-shadow: 0 0 8px rgba(0,0,0,0.8), 0 0 16px rgba(0,0,0,0.7);
 
 
 <!-- CARD DE PREÇO COMPLETO -->
-<div id="preco" class="relative bg-[#0a0a0a]/90 backdrop-blur-xl border border-white/10 rounded-2xl p-8 max-w-sm sm:max-w-md mx-auto text-black mt-14 sm:mt-16 mb-12 shadow-[0_0_25px_rgba(255,255,255,0.05)]">
+<div class="relative bg-[#0a0a0a]/90 backdrop-blur-xl border border-white/10 rounded-2xl p-8 max-w-sm sm:max-w-md mx-auto text-black mt-14 sm:mt-16 mb-12 shadow-[0_0_25px_rgba(255,255,255,0.05)]">
   <!-- Reflexos de vidro -->
   <div class="absolute inset-0 pointer-events-none rounded-2xl">
     <div class="absolute top-0 left-0 w-1/2 h-1/3 bg-gradient-to-br from-white/40 to-transparent opacity-20 blur-2xl"></div>
@@ -697,7 +706,7 @@ text-shadow: 0 0 8px rgba(0,0,0,0.8), 0 0 16px rgba(0,0,0,0.7);
   </p>
 
   <div class="flex items-center justify-center gap-2 leading-none">
-    <span class="text-7xl sm:text-7xl font-extrabold text-green-400 drop-shadow-[0_0_20px_rgba(34,197,94,0.9)]">
+    <span class="text-6xl sm:text-7xl font-extrabold text-green-400 drop-shadow-[0_0_20px_rgba(34,197,94,0.9)]">
       $ 11.70
     </span>
   </div>
