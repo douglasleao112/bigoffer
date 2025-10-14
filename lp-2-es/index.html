@@ -403,50 +403,51 @@
     .fade-text {
 text-shadow: 0 0 8px rgba(0,0,0,0.8), 0 0 16px rgba(0,0,0,0.7);
 }
+
 #blood-line {
   height: 0;
-  background: #b71e1e; 
-  box-shadow: none; 
+  background: #b71e1e;
+  box-shadow: none;
   position: absolute;
-  border-radius: 999px;
+  top: 165px; /* antes era -80px, agora começa mais embaixo */
+  border-radius: 1px;
 }
 
 #blood-line::after {
   content: '';
   position: absolute;
-  bottom: -15px;
+  bottom: -25px;
   left: 50%;
   transform: translateX(-50%);
-  width: 20px;
-  height: 20px;
-  background: #b71e1e; 
+  width: 22px;
+  height: 22px;
+  background: #b71e1e;
   border-radius: 50%;
-  box-shadow: none; 
   z-index: 2;
 }
-
 
 #blood-line::before {
   content: '';
   position: absolute;
-  bottom: -1px;
+  bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
   width: 0;
   height: 0;
-  border-left: 9px solid transparent;
+  border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-bottom: 90px solid #b71e1e;
-  opacity: 1;
-  filter: none; 
+  border-bottom: 110px solid #b71e1e;
   z-index: 1;
 }
+
+
 </style>
+
 <script>
   const bloodLine = document.getElementById("blood-line");
   const texts = document.querySelectorAll(".fade-text");
 
-  let maxProgress = 0; // guarda até onde já chegou
+  let maxProgress = 0;
 
   window.addEventListener("scroll", () => {
     const section = bloodLine.parentElement;
@@ -454,30 +455,34 @@ text-shadow: 0 0 8px rgba(0,0,0,0.8), 0 0 16px rgba(0,0,0,0.7);
     const windowHeight = window.innerHeight;
 
     if (rect.top < windowHeight && rect.bottom > 0) {
-      let progress = Math.min(Math.max((windowHeight - rect.top) / (rect.height + windowHeight), 0), 1);
+      // progresso principal da seção
+      const scrollPercent = Math.min(Math.max((windowHeight - rect.top) / (rect.height + windowHeight), 0), 1);
 
-      // nunca diminuir, só aumentar
-      if (progress > maxProgress) {
-        maxProgress = progress;
-      }
+      // mantém o valor máximo já alcançado (para a gota não "subir")
+      if (scrollPercent > maxProgress) maxProgress = scrollPercent;
 
-      // sangue desce mais devagar (divisor = velocidade)
-      const slowProgress = maxProgress * 0.6; // 0.5 = bem devagar, 0.8 = mais rápido
+      // controla a descida do sangue (mantém o mesmo ritmo visual)
+      const bloodProgress = maxProgress * 0.9; // define a velocidade da gota
+      bloodLine.style.height = `${bloodProgress * rect.height}px`;
+      bloodLine.style.width = `${6 + bloodProgress * 6}px`;
 
-      bloodLine.style.height = `${slowProgress * rect.height}px`;
-      bloodLine.style.width = `${6 + slowProgress * 6}px`;
-
-      // Textos aparecem um pouco antes
+      // --- NOVO: lógica separada só para textos ---
+      const textProgress = (windowHeight - rect.top) / windowHeight;
       texts.forEach((text, i) => {
-        let trigger = (i + 1) * 0.12 + 0.05;
-        if (slowProgress > trigger) {
+        const trigger = 0.25 + i * 0.15; // surgem em sequência mais natural
+        if (textProgress > trigger) {
           text.classList.add("opacity-100");
+          text.classList.remove("opacity-0");
         }
       });
     }
   });
-</script>
 
+  // Garante animação mesmo se já estiver visível no carregamento
+  window.addEventListener("load", () => {
+    setTimeout(() => window.dispatchEvent(new Event("scroll")), 400);
+  });
+</script>
 
 
 
