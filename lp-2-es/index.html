@@ -180,35 +180,39 @@
 </style>
 
 <script>
-  const videoOverlay = document.getElementById("heroVideo");
+  const mainVideo = document.getElementById("heroVideo");
+  const previewVideo = document.getElementById("previewVideo");
   const overlaySymbol = document.getElementById("overlaySymbol");
 
-  let jaTocou = false; // controla se já foi executado uma vez
-  let terminou = false; // controla se o vídeo terminou
+  let jaTocou = false;
+  let terminou = false;
 
-  document.addEventListener("click", (e) => {
-    // impede play se clicar em link ou se já tiver rodado
+  document.addEventListener("click", e => {
     if (e.target.closest("a") || jaTocou || terminou) return;
 
-    if (videoOverlay && videoOverlay.paused) {
-      videoOverlay.muted = false;
-      videoOverlay.volume = 1.0;
-      videoOverlay.play().then(() => {
-        jaTocou = true; // marca que já tocou
+    if (mainVideo && mainVideo.paused) {
+      mainVideo.muted = false;
+      mainVideo.volume = 1.0;
+      mainVideo.play().then(() => {
+        jaTocou = true;
         overlaySymbol.style.opacity = "0";
-        setTimeout(() => (overlaySymbol.style.display = "none"), 800);
+        previewVideo.style.opacity = "0"; // esconde o vídeo de fundo
+        setTimeout(() => {
+          overlaySymbol.style.display = "none";
+          previewVideo.style.display = "none";
+        }, 800);
       }).catch(err => console.log("Autoplay bloqueado:", err));
     }
   });
 
-  // impede replay após terminar
-  videoOverlay.addEventListener("ended", () => {
+  mainVideo.addEventListener("ended", () => {
     terminou = true;
-    videoOverlay.pause();
-    videoOverlay.removeAttribute("controls"); // remove controles
-    videoOverlay.style.pointerEvents = "none"; // bloqueia clique no vídeo
+    mainVideo.pause();
+    mainVideo.removeAttribute("controls");
+    mainVideo.style.pointerEvents = "none";
   });
 </script>
+
 
 
 
