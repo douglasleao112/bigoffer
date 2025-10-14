@@ -149,17 +149,17 @@
 </style>
 
 <script>
-  const video = document.getElementById("heroVideo");
+  const videoOverlay = document.getElementById("heroVideo"); // nome diferente
   const overlaySymbol = document.getElementById("overlaySymbol");
 
   document.addEventListener("click", (e) => {
     if (e.target.closest("a")) return;
-    if (video && video.paused) {
-      video.muted = false;
-      video.volume = 1.0;
-      video.play().then(() => {
-        overlaySymbol.style.opacity = "0"; // desaparece suavemente
-        setTimeout(() => overlaySymbol.style.display = "none", 800); // remove após fade
+    if (videoOverlay && videoOverlay.paused) {
+      videoOverlay.muted = false;
+      videoOverlay.volume = 1.0;
+      videoOverlay.play().then(() => {
+        overlaySymbol.style.opacity = "0";
+        setTimeout(() => overlaySymbol.style.display = "none", 800);
       }).catch(err => console.log("Autoplay bloqueado:", err));
     }
   });
