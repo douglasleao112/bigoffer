@@ -58,20 +58,45 @@
       100% { transform: scale(1);   box-shadow: 0 0 10px rgba(34,197,94,0.7), 0 0 20px rgba(34,197,94,0.5); }
     }
 
+    
 
-    /* Brilho sutil e elegante ao redor do vídeo */
+  /* ✨ Moldura luminosa animada ao redor do vídeo */
 .video-glow {
   position: relative;
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.12),
-              0 0 50px rgba(255, 0, 0, 0.08),
-              0 0 70px rgba(255, 255, 255, 0.06);
-  transition: box-shadow 0.6s ease-in-out;
+  box-shadow: 0 0 35px rgba(255, 255, 255, 0.25),
+              0 0 70px rgba(255, 255, 255, 0.15),
+              0 0 90px rgba(255, 255, 255, 0.1);
+  transition: all 0.6s ease-in-out;
 }
 
-.video-glow:hover {
-  box-shadow: 0 0 35px rgba(255, 255, 255, 0.18),
-              0 0 60px rgba(255, 0, 0, 0.12),
-              0 0 90px rgba(255, 255, 255, 0.1);
+/* Animação contínua do brilho se movendo */
+.animated-glow::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 1rem;
+  background: conic-gradient(
+    from 0deg,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.25)
+  );
+  animation: rotateGlow 6s linear infinite;
+  filter: blur(20px);
+  z-index: 0;
+}
+
+/* Efeito giratório sutil do brilho */
+@keyframes rotateGlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Garante que o vídeo esteja acima do brilho */
+.video-glow video {
+  position: relative;
+  z-index: 2;
+  border-radius: 1rem;
 }
 
   </style>
