@@ -158,34 +158,27 @@
     </span>
   </h1>
 
-  <!-- VIDEO HERO -->
+  <!-- VIDEO HERO --> 
 <div class="relative flex justify-center w-full max-w-lg z-10">
   <div class="video-glow rounded-xl overflow-hidden">
-    <!-- Vídeo de preview (loop infinito e mudo) -->
-    <video id="previewVideo"
-      class="absolute inset-0 w-full h-full object-cover rounded-xl"
-      autoplay
-      loop
-      muted
-      playsinline>
-      <source src="https://video.wixstatic.com/video/7f5efc_306d7354541a41dd82c4fa473657d0fb/480p/mp4/file.mp4" type="video/mp4">
-    </video>
-
-    <!-- Vídeo principal (reproduz ao clicar) -->
     <video id="heroVideo"
-      class="relative w-full rounded-xl object-cover z-10"
+      class="w-full rounded-xl object-cover"
       preload="auto"
-      playsinline>
+      playsinline
+      poster="https://i.imgur.com/JrfTAZg.gif">
       <source src="https://video.wixstatic.com/video/7f5efc_eb57ec3bebee4ccda89a0e68f70e82a1/1080p/mp4/file.mp4" type="video/mp4">
     </video>
   </div>
-
-  <!-- Ícone de play -->
-  <div id="overlaySymbol" class="absolute inset-0 flex items-center justify-center z-30 pointer-events-none transition-opacity duration-700">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" 
-         class="w-20 sm:w-56 md:w-64 lg:w-72 h-auto opacity-100 animate-zoomPulse select-none">
-  </div>
+  
+  <!-- IMAGEM SOBRE O VÍDEO --> 
+   
+  <div id="overlaySymbol" 
+  class="absolute inset-0 flex items-center justify-center z-30 pointer-events-none transition-opacity duration-700"> 
+  <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" 
+  class="w-20 sm:w-56 md:w-64 lg:w-72 h-auto opacity-100 animate-zoomPulse select-none"> 
 </div>
+
+ 
 
 
 
