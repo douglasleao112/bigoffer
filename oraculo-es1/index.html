@@ -318,6 +318,34 @@ body {
   }
 }
 
+
+
+#beginPortal {
+  background-color: #00c853 !important;
+  color: white !important;
+  border: none;
+  padding: 8px 48px;
+  font-size: 13px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  animation: zoomInOut 1.4s ease-in-out infinite;
+  box-shadow: 0 0 15px #00c853;
+  transition: all 0.3s ease;
+}
+
+@keyframes zoomInOut {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.07);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
   </style>
 
 
@@ -356,14 +384,16 @@ body {
 <body>
 
 
-<!-- 🌀 POPUP DE INÍCIO --><!-- IMPORTANTE!-->
+
+<!-- POPUP DE INÍCIO    IMPORTANTE!-->
 <div id="startOverlay" class="overlay">
   <div class="popup-glass">
-    <h2>⚠️ATENCIÓN</h2>
-    <p>Antes de continuar, pon el <b>VOLUMEN AL MÁXIMO</b> para escuchar todo con claridad.</p>
-    <button id="beginPortal" class="btn-universal">ESCUCHAR 🔊</button>
+    <h2><b>⚠️PROHIBIDO</b></h2>
+    <p>Lo que ricos esconden… lo que vas a oír podría cambiar tu relación con el dinero para siempre.</p>
+    <button id="beginPortal">🔥 JUGAR AHORA</button>
   </div>
 </div>
+
 
 
 <style>
@@ -379,7 +409,7 @@ body {
   z-index: 10000;
 }
 
-/* 💎 Caixa de vidro */
+/*  Caixa de vidro */
 .popup-glass {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -393,7 +423,7 @@ body {
   box-shadow: none; /* sem brilho */
 }
 
-/* ✨ Texto e botão */
+/*  Texto e botão */
 .popup-glass h2 {
   font-size: 1.3em;
   margin-bottom: 10px;
@@ -1059,3 +1089,4 @@ function launchConfetti() {
 
 </body>
 </html>
+>
