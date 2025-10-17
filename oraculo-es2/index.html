@@ -321,7 +321,6 @@ body {
 
 
 #beginPortal {
-  background-color: #00c853 !important;
   color: white !important;
   border: none;
   padding: 8px 48px;
@@ -330,7 +329,6 @@ body {
   cursor: pointer;
   font-weight: bold;
   animation: zoomInOut 1.4s ease-in-out infinite;
-  box-shadow: 0 0 15px #00c853;
   transition: all 0.3s ease;
 }
 
@@ -345,6 +343,8 @@ body {
     transform: scale(1);
   }
 }
+
+
   </style>
 
 
@@ -385,13 +385,42 @@ body {
 
 
 <!-- POPUP DE INÍCIO    IMPORTANTE!-->
-<div id="startOverlay" class="overlay">
-  <div class="popup-glass">
-    <h2><b>⚠️PROHIBIDO</b></h2>
-    <p>Lo que ricos esconden… lo que vas a oír podría cambiar tu relación con el dinero para siempre.</p>
-    <button id="beginPortal">🔥 JUGAR AHORA</button>
-  </div>
+<div id="startOverlay" style="
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  cursor: pointer;
+">
+  <img id="beginPortal"
+       src="https://i.imgur.com/0BVGMHY.png"
+       alt="Portal prohibido"
+       style="width:220px; max-width:80vw; border:none; background:none; transform: translateY(-40px); pointer-events:none;">
 </div>
+
+<script>
+  const overlay = document.getElementById("startOverlay");
+  const beginPortal = document.getElementById("beginPortal");
+
+  // 🔊 Clique em qualquer parte do overlay dispara o evento do beginPortal
+  overlay.addEventListener("click", () => {
+    beginPortal.click(); // força o clique real no elemento com ID correto
+  });
+
+  // 🔊 Mantém o evento do beginPortal que inicia o áudio
+  beginPortal.addEventListener("click", () => {
+    overlay.style.transition = "opacity 0.6s ease";
+    overlay.style.opacity = "0";
+    setTimeout(() => overlay.remove(), 600);
+
+    // Aqui o áudio será liberado como antes
+    console.log("Início do áudio!");
+  });
+</script>
 
 
 
